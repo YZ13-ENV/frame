@@ -1,0 +1,10 @@
+.light_wrapper {
+    width: 120%;
+    max-width: 100vw;
+}
+#ambiLightv2, .ambientLight {
+    position: absolute;
+    align-self: center;
+    width: 100%;
+    z-index: -1;
+}
