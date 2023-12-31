@@ -1,4 +1,7 @@
-import ShotSkeleton from '@/components/skeletons/shot'
+import { Suspense } from 'react'
+import Loading from './loading'
+import AdvancedChunk from '@/components/widgets/chunk'
+import { bum } from '@/api/bum'
 
 type Props = {
     params: {
@@ -7,43 +10,11 @@ type Props = {
 }
 const page = ({ params }: Props) => {
     return (
-        <>
+        <Suspense fallback={ <Loading /> }>
             <div className="w-full h-full z-20 grid shots_grid gap-6">
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
-                <ShotSkeleton />
+                <AdvancedChunk getter={ bum.shots.all } order={params.order} />
             </div>
-        </>
+        </Suspense>
     )
 }
 
