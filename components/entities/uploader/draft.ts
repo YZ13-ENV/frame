@@ -1,5 +1,5 @@
+import { ShotForUpload } from '@/types/shot';
 import { createSlice } from '@reduxjs/toolkit';
-import { ShotForUpload } from "@darkmaterial/core/types"
 
 
 type Props = {
