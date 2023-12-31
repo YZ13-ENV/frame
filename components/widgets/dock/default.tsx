@@ -1,11 +1,9 @@
 'use client'
 import { BiPlus } from 'react-icons/bi'
 import Link from 'next/link'
-import { useAppSelector } from '@/components/entities/store/store'
 import DockLayout from './layout'
 
 const Dock = () => {
-    const isSub = useAppSelector(state => state.user.isSubscriber)
     return (
         <DockLayout>
             <Link href='/uploads/shot'

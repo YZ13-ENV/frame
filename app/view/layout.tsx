@@ -1,12 +1,9 @@
 
 
 type Props = {
-    children?: JSX.Element | JSX.Element[]
-    searchParams: {
-        id: string
-    }
+    children: JSX.Element
 }
-const layout = ({ searchParams, children }: Props) => {
+const layout = ({ children }: Props) => {
     return (
         <div className="w-full">
             { children }

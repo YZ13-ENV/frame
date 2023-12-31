@@ -3,7 +3,7 @@ import Image from "next/image"
 
 
 type Props = {
-    children?: JSX.Element | JSX.Element[]
+    children: JSX.Element | JSX.Element[]
 }
 const layout = async({ children }: Props) => {
     const grid = await file.static.get('gird.svg')

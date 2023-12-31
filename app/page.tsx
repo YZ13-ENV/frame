@@ -1,7 +1,7 @@
 
 import { file } from '@/api/file'
 import { config } from '@/app.config'
-import RemoteLogo from '@/components/shared/remote/remote-logo'
+import RemoteServerLogo from '@/components/shared/remote/remote-logo-server'
 import ShotSkeleton from '@/components/skeletons/shot'
 import { Button } from '@/components/ui/button'
 import dynamic from 'next/dynamic'
@@ -22,9 +22,9 @@ const HomePage = async() => {
                         <Image src={grid} fill className='z-[-2] object-cover opacity-40' alt='grid' />
                     </>
                 }
-                <RemoteLogo className='z-10' dark={config.remote.logo.dark} light={config.remote.logo.light} size={128} />
+                <RemoteServerLogo className='z-10' dark={config.remote.logo.dark} light={config.remote.logo.light} size={128} />
                 <div className="absolute scale-150 opacity-30 blur-xl">
-                    <RemoteLogo dark={config.remote.logo.dark} light={config.remote.logo.light} size={128} />
+                    <RemoteServerLogo dark={config.remote.logo.dark} light={config.remote.logo.light} size={128} />
                 </div>
             </div>
             <div className='relative flex items-center justify-center w-full min-h-screen lg:px-12 py-6 px-6'>
