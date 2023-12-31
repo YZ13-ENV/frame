@@ -1,13 +1,13 @@
-import "ui/styles/globals.css";
+import '@/app/globals.css'
 import '@/app/local.css'
 import { Metadata } from "next";
+import { Spectral, Geologica } from 'next/font/google'
 import StateProvider from '@/components/StateProvider'
-import { BodyWrapper, HtmlWrapper } from "@darkmaterial/ui/shared";
-import { SessionPicker } from "@darkmaterial/ui/widgets";
-import { SessionWatcher, TokenWatcher } from "@darkmaterial/ui/entities";
+const first_font = Geologica({ subsets: ['latin', 'cyrillic'], weight: ['600', '500', '400'], variable: '--root-font' })
+const second_font = Spectral({ subsets: ['latin', 'cyrillic'], weight: ['600', '400'], variable: '--second-font' })
 
 export const metadata: Metadata = {
-  title: 'Dark Material',
+  title: 'frame',
   icons: ['ui/assets/bum.svg']
 }
 
@@ -17,15 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <StateProvider>
-      <HtmlWrapper>
-        <BodyWrapper>
-          <SessionWatcher />
-          <TokenWatcher />
-          <SessionPicker />
-          {children}
-        </BodyWrapper>
-      </HtmlWrapper>
-    </StateProvider>
+    <html lang='en' className={`${first_font.className} ${first_font.variable} ${second_font.variable}`} aria-title='html-wrapper'>
+        <body id='root' className='w-full min-h-screen'>
+          <StateProvider>
+            {children}
+          </StateProvider>
+        </body>
+      </html>
   );
 }

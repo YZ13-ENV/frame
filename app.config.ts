@@ -1,7 +1,7 @@
-import { AppConfig } from "@darkmaterial/core/types";
+import { AppConfig } from "./types/config"
 
 export const config: AppConfig = {
-    name: "bum",
+    name: "frame",
     version: "0.0.0",
     status: "development",
     app: {
