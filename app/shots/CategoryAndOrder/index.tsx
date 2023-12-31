@@ -6,8 +6,10 @@ import { withCustomSortTab } from './const'
 import { useAppSelector } from '@/components/entities/store/store'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { cleanPathname, detectCategoryTab, detectSortTab } from './helpers'
-import { auth } from '@darkmaterial/core/utils'
-import { Switch, Select, SelectContent, SelectGroup, SelectItem, Tabs, TabsList, TabsTrigger, SelectTrigger, SelectValue } from '@darkmaterial/ui/shadcn'
+import { auth } from '@/utils/app'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Switch } from '@/components/ui/switch'
 
 type Props = {
     integrationMode?: boolean

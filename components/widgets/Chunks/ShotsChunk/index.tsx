@@ -1,6 +1,7 @@
+import { ChunkResponse } from "@/types/common"
 import Controller from "./ui/Controller"
-import type { ChunkResponse, DocShotData } from "@darkmaterial/core/types"
-import { ShotCard } from '@darkmaterial/ui/widgets'
+import { DocShotData } from "@/types/shot"
+import { ShotCard } from "../../ShotCard"
 
 type Props<T> = {
     props: T

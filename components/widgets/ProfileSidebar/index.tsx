@@ -8,10 +8,9 @@ import { MdHistory, MdWork } from 'react-icons/md'
 import { RiUser5Line } from 'react-icons/ri'
 import { useAppSelector } from '@/components/entities/store/store'
 import FollowButton from '../Dock/ui/FollowButton'
-// import fallbackImg from 'ui/assets/EmptyUser.svg'
-import type { ShortUserData } from '@darkmaterial/core/types'
-import { auth } from '@darkmaterial/core/utils'
-import { Avatar } from '@darkmaterial/ui/shared'
+import { ShortUserData } from '@/types/user'
+import { auth } from '@/utils/app'
+import Avatar from '@/components/shared/avatar'
 
 type Props = {
     author?: ShortUserData
@@ -47,7 +46,7 @@ const ProfileSidebar = ({ uid, author }: Props) => {
                 author &&
                 <div className="flex flex-col items-center justify-between w-full gap-2 md:flex-row h-fit">
                     <div className="flex items-center w-full gap-2 md:w-1/2 h-fit">
-                        <Avatar src={author.photoUrl} size={42} noLabel fallbackImage={'fallbackImg'} />
+                        <Avatar src={author.photoUrl} size={42} />
                         <div className="flex-col justify-center hidden w-full h-full md:flex">
                             <div className="flex items-center gap-1 w-fit h-fit">
                                 <span className='font-medium line-clamp-1 text-accent-foreground'>{author.displayName || 'Пользователь'}</span>

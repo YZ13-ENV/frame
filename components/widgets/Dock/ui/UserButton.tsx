@@ -1,8 +1,8 @@
 'use client'
 
-import { auth } from "@darkmaterial/core/utils"
-import { UserCircle } from "@darkmaterial/ui/widgets"
+import { auth } from "@/utils/app"
 import { useAuthState } from "react-firebase-hooks/auth"
+import { UserCircle } from "../../UserCircle"
 
 const UserButton = () => {
     const [user] = useAuthState(auth)
