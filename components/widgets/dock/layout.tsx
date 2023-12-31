@@ -2,7 +2,6 @@ import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import RemoteLogo from '@/components/shared/remote/remote-logo'
 import { config } from '@/app.config'
-const UserButton = dynamic(() => import('./ui/UserButton'))
 const SquareButton = dynamic(() => import('./ui/SquareButton'))
 
 type Props = {
@@ -24,7 +23,6 @@ const DockLayout = ({ children }: Props) => {
                 <SquareButton>
                     {/* <ProductsGrid /> */}
                 </SquareButton>
-                <UserButton />
             </div>
         </div>
     )

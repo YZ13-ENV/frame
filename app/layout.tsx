@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className={`${first_font.className} ${first_font.variable} ${second_font.variable}`} aria-title='html-wrapper'>
-        <body id='root' className='w-full min-h-screen'>
+    <html lang='en' className={`${first_font.className} ${first_font.variable} ${second_font.variable}`}>
+        <body id='root' className='w-full min-h-screen dark'>
           <StateProvider>
             {children}
           </StateProvider>
