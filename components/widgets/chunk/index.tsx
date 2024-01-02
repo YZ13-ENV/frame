@@ -6,18 +6,19 @@ import ShotCard from "@/components/shared/shot-card"
 type Props = {
     order?: string, 
     category?: string
+    hideController?: boolean
     getter: ({ order, category }: {
         order?: string | undefined;
         category?: string | undefined;
     }) => Promise<ChunkResponse<DocShotData[]>>
 }
 
-async function AdvancedChunk({ getter, category, order }: Props) {
+async function AdvancedChunk({ getter, hideController=false, category, order }: Props) {
     const { data, next } = await getter({order, category})
     return (
         <>
             { data && data.map( item => <ShotCard key={item.doc_id} shot={item} />) }
-            <Controller next={next} />
+            { !hideController && <Controller next={next} />}
         </>
     )
 }

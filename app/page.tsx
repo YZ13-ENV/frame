@@ -1,12 +1,15 @@
 
+import { bum } from '@/api/bum'
 import { file } from '@/api/file'
 import { config } from '@/app.config'
 import RemoteServerLogo from '@/components/shared/remote/remote-logo-server'
-import ShotSkeleton from '@/components/skeletons/shot'
+import Loading from './(shots)/(routes)/shots/[order]/loading'
 import { Button } from '@/components/ui/button'
+import AdvancedChunk from '@/components/widgets/chunk'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Suspense } from 'react'
 import { BiRightArrowAlt } from 'react-icons/bi'
 const Dock = dynamic(() => import("@/components/widgets/dock/default"))
 
@@ -29,7 +32,7 @@ const HomePage = async() => {
             </div>
             <div className='relative flex items-center justify-center w-full min-h-screen lg:px-12 py-6 px-6'>
                 <div className="w-full h-full absolute top-0 left-0 z-10 bg-gradient-to-t from-background to-transparent" />
-                <div className="absolute left-0 z-20 bottom-0 w-full h-1/3 flex items-center justify-center">
+                <div className="absolute left-0 z-40 bottom-0 w-full h-1/3 flex items-center justify-center">
                     <Button className='gap-2' asChild>
                         <Link href='/shots/popular' className='gap-2'>
                             Продолжить просмотр
@@ -37,23 +40,11 @@ const HomePage = async() => {
                         </Link>
                     </Button>
                 </div>
-                <div className="w-full h-full grid shots_grid gap-6">
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                    <ShotSkeleton />
-                </div>
+                <Suspense fallback={ <Loading /> }>
+                    <div className="w-full h-full grid shots_grid px-12 gap-6">
+                        <AdvancedChunk hideController getter={ bum.shots.all } order={'popular'} />
+                    </div>
+                </Suspense>
             </div>
             <div className="w-full h-20"></div>
         </>
