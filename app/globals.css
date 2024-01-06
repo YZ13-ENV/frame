@@ -139,3 +139,12 @@
   }
 
 }
+
+@layer components {
+  .nav-tabs {
+    @apply md:flex hidden
+  }
+  .nav-select {
+    @apply md:hidden flex
+  }
+}

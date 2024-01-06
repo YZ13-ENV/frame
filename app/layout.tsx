@@ -1,3 +1,4 @@
+import 'ui/dist/style.css'
 import '@/app/globals.css'
 import '@/app/local.css'
 import { Metadata } from "next";

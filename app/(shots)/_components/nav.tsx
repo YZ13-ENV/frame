@@ -42,7 +42,7 @@ const Nav = () => {
                 <Switch checked={ orderTab === '/popular' ? false : true } />
                 <span className={`text-sm font-medium transition-all ${ orderTab === '/new' ? 'text-secondary-foreground' : 'text-muted-foreground' } `}>Новые</span>
             </div>
-            <div className="md:hidden flex">
+            <div className="nav-select">
                 <Select defaultValue="/" value={categoryTab}>
                     <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select a fruit" />
@@ -59,7 +59,7 @@ const Nav = () => {
                     </SelectContent>
                 </Select>
             </div>
-            <div className="md:flex hidden">
+            <div className="nav-tabs">
                 <Tabs defaultValue="/" value={categoryTab}  className="w-fit">
                     <TabsList>
                         {

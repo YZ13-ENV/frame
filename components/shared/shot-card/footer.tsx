@@ -2,6 +2,7 @@ import { user } from "@/api/user"
 import { DocShotData } from "@/types/shot"
 import Avatar from "../avatar"
 import { BiHeart, BiShow } from "react-icons/bi"
+import Link from "next/link"
 
 type Props = {
     shot: DocShotData
@@ -12,10 +13,10 @@ const Footer = async({ shot }: Props) => {
         <div className="w-full mt-3 h-6 shrink-0 flex items-center justify-between gap-3">
             {
                 author
-                ? <div className="w-fit h-fit flex items-center justify-start gap-2">
+                ? <Link href={`/${author.nickname || author.uid}`} className="w-fit h-fit flex items-center justify-start gap-2">
                     <Avatar src={author.photoUrl} isSubscriber={author.isSubscriber} />
                     <span className="text-sm">{author.displayName}</span>
-                </div>
+                </Link>
                 : <div />
             }
 

@@ -2,7 +2,6 @@ import { api_host } from "@/const/host"
 import { authorizationHeader } from "@/helpers/headers"
 import { ChunkResponse } from "@/types/common"
 import { DocShotData, ShotData, ShotForUpload } from "@/types/shot"
-import { doc, runTransaction } from "firebase/firestore"
 
 const LONG_CACHE_TIME = 600
 const MEDIUM_CACHE_TIME = 300
@@ -65,6 +64,25 @@ export const bum = (() => {
         },
         shots: (() => {
             return {
+                byUser: async({ uid, order, category }: { uid?: string, order?: string, category?: string }): Promise<ChunkResponse<DocShotData[]>> => {
+                    try {
+                        if (!uid) throw Error('uid is not provided')
+                        const headers = new Headers()
+                        const authHeader = authorizationHeader()
+                        headers.append('authorization', authHeader || '')
+                        const url = order && category 
+                        ? `${api_host}/shots/user/${uid}/${order}/${category}` 
+                        : order 
+                        ? `${api_host}/shots/user/${uid}/${order}` 
+                        : `${api_host}/shots/user/${uid}` 
+                        const res = await fetch(url, { method: 'GET', headers: headers })
+                        if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
+                        return { count: 0, data: [], next: '' }
+                    } catch(e) {
+                        console.warn(e)
+                        return { count: 0, data: [], next: '' }
+                    }
+                },
                 tags: async(): Promise<ChunkResponse<string[]>> => {
                     try {
                         const headers = new Headers()
@@ -86,7 +104,7 @@ export const bum = (() => {
                         const headers = new Headers()
                         const authHeader = authorizationHeader()
                         headers.append('authorization', authHeader || '')
-                        const url = order && category ? `${api_host}/shots/${order}/${category}` : order ? `${api_host}/shots/${order}` : `${api_host}/shots` 
+                        const url = order && category ? `${api_host}/shots/all/${order}/${category}` : order ? `${api_host}/shots/all/${order}` : `${api_host}/shots` 
                         const res = await fetch(url, { method: 'GET', headers: headers })
                         if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
                         return { count: 0, data: [], next: '' }
