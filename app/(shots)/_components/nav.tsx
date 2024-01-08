@@ -2,14 +2,14 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { categories, cleanPathname, detectCategoryTab, detectSortTab, withCustomSortTab } from "@/const/categories"
+import { cleanPathname, detectCategoryTab, detectSortTab, withCustomSortTab } from "@/const/categories"
 import { usePathname, useRouter } from "next/navigation"
 import { useLayoutEffect, useMemo, useState } from "react"
 
 type Props = {
-
+    padding?: boolean
 }
-const Nav = () => {
+const Nav = ({ padding=false }: Props) => {
     const pathname = usePathname()
     // const excludeIf = (val: string, notSupported: boolean=false) => {
     //     if ((!user || !isSub || notSupported) && val === '/recommendations') return false
@@ -35,7 +35,7 @@ const Nav = () => {
         }
     },[isShotsLayout, isShotPage, orderTab, categoryTab])
     return (
-        <div className="relative z-40 flex flex-row items-center justify-center w-full gap-8 px-6 my-6 shrink-0 h-fit">
+        <div className={`relative z-40 flex flex-row items-center lg:justify-center justify-between w-full gap-8 ${padding ? 'px-6' : 'px-0'} my-6 shrink-0 h-fit`}>
             <div onClick={() => orderTab === '/popular' ? setOrderTab('/new') : setOrderTab('/popular')}
             className={`flex items-center justify-center w-fit gap-2 shrink-0 h-fit`}>
                 <span className={`text-sm font-medium transition-all ${ orderTab === '/popular' ? 'text-secondary-foreground' : 'text-muted-foreground' }`}>Популярные</span>

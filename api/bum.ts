@@ -104,7 +104,7 @@ export const bum = (() => {
                         const headers = new Headers()
                         const authHeader = authorizationHeader()
                         headers.append('authorization', authHeader || '')
-                        const url = order && category ? `${api_host}/shots/all/${order}/${category}` : order ? `${api_host}/shots/all/${order}` : `${api_host}/shots` 
+                        const url = order && category ? `${api_host}/shots/all/${order}/${category}` : order ? `${api_host}/shots/all/${order}` : `${api_host}/shots/all/popular` 
                         const res = await fetch(url, { method: 'GET', headers: headers })
                         if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
                         return { count: 0, data: [], next: '' }

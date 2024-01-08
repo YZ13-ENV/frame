@@ -5,6 +5,7 @@ import { Suspense } from "react"
 import Loading from '@/app/(shots)/(routes)/shots/[order]/loading'
 import AdvancedChunk from "@/components/widgets/chunk"
 import { bum } from "@/api/bum"
+import { redirect } from "next/navigation"
 
 type Props = {
     params: {
@@ -15,7 +16,10 @@ const page = async({ params }: Props) => {
     const byId = user.byId.short(params.nick)
     const byNickname = user.byNick.short(params.nick)
     const [dataById, dataByNickname] = await Promise.all([byId, byNickname])
-    const author = dataById || dataByNickname
+    const author = dataByNickname ? dataByNickname : dataById 
+    console.log(author)
+    const isNickname = author ? params.nick === author.nickname : false
+    if (!isNickname && author && author.nickname) return redirect(`/${author.nickname}`)
     return (
         <>
             <div className="w-full h-[50vh] pt-16">
@@ -38,7 +42,7 @@ const page = async({ params }: Props) => {
                     </TabsList>
                 </Tabs>
             </div>
-            <div className="w-full py-12 lg:px-24 md:px-12 px-6">
+            <div className="w-full py-12 lg:px-24 md:px-12 px-6 min-h-[17rem]">
                 {
                     author && author.uid &&
                     <Suspense fallback={ <Loading /> }>

@@ -13,9 +13,9 @@ const RemoteServerLogo = async(props: RemoteLogoProps) => {
     return (
         <>
             {/* dark-mode logo */}
-            <Image className='hidden dark:block' src={darkVariant} width={width} height={height} alt={props.alt || 'remote-logo'} />
+            <Image className={'hidden dark:block ' + props.className} src={darkVariant} width={width} height={height} alt={props.alt || 'remote-logo'} />
             {/* light-mode logo */}
-            <Image className='block dark:hidden' src={lightVariant} width={width} height={height} alt={props.alt || 'remote-logo'} />
+            <Image className={'block dark:hidden ' + props.className} src={lightVariant} width={width} height={height} alt={props.alt || 'remote-logo'} />
         </>
     )
 }

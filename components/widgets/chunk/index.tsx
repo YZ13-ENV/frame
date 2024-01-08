@@ -19,8 +19,13 @@ async function AdvancedChunk({ getter, hideController=false, uid, category, orde
     const { data, next } =  uid ? await getter({uid, order, category}) : await getter({order, category})
     return (
         <>
+            { 
+                !data || data && data.length === 0 && <div className="w-full col-span-full h-96 mx-auto flex items-center justify-center">
+                    <span className="text-sm text-muted-foreground">Работ не найдено</span>
+                </div>
+            }
             { data && data.map( item => <ShotCard key={item.doc_id} shot={item} />) }
-            { !hideController && <Controller next={next} />}
+            { (!hideController || data.length === 0) && <Controller next={next} />}
         </>
     )
 }

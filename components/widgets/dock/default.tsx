@@ -7,9 +7,9 @@ const Dock = () => {
     return (
         <DockLayout>
             <Link href='/uploads/shot'
-            className="flex items-center justify-center h-12 gap-2 p-2 pr-2 border bg-card md:pr-4 w-fit rounded-xl">
-                <BiPlus size={28} />
-                <span className='hidden text-sm font-medium md:inline'>Поделиться работой</span>
+            className="flex items-center justify-center h-10 gap-2 p-2 pr-2 border bg-card md:pr-4 w-fit rounded-xl">
+                <BiPlus size={24} />
+                <span className='hidden text-xs font-medium md:inline'>Поделиться работой</span>
             </Link>
         </DockLayout>
     )
