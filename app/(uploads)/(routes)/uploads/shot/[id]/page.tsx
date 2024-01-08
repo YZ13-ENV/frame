@@ -1,20 +1,22 @@
 import { file } from '@/api/file'
-import Header from '@/app/(uploads)/_components/hub/header'
-import NewDraftButton from '@/app/(uploads)/_components/hub/new-draft-button'
+import Blocks from '@/app/(uploads)/_components/upload/blocks'
 import FinalTouch from '@/app/(uploads)/_components/upload/final-touch'
 import Controls from '@/app/(uploads)/_components/upload/header/controls'
+import Side from '@/app/(uploads)/_components/upload/side'
+import ShotAdaptiveWrapper from '@/components/shared/shot-adaptive-wrapper'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 // import React from 'react'
 
 type Props = {
-    searchParams: {
-        selected?: string
+    params: {
+        id: string
     }
 }
-const page = async({ searchParams }: Props) => {
+const page = async({ params }: Props) => {
     const grid = await file.static.get('gird.svg')
+    const draftId = params.id
     return (
         <>
             { grid && <Image src={grid} fill className='z-[-2] object-cover opacity-40' alt='grid' /> }
@@ -23,15 +25,15 @@ const page = async({ searchParams }: Props) => {
                 <span className="text-sm text-center text-muted-foreground">Конструктор недоступен на мобильных устройствах</span>
                 <Button asChild><Link href='/'>Вернуться</Link></Button>
             </div>
-            <div className="w-full h-full flex relative flex-col items-center justify-center">
+            <div className="w-full h-screen flex relative flex-col items-center justify-center">
                 <Controls />
-                <Header />
-                <div className="max-w-5xl w-full mx-0 pt-24 flex flex-col px-6">
-                    <div className="w-full h-fit flex items-center justify-between">
-                        <h2 className='text-xl font-bold'>Черновики</h2>
-                        <NewDraftButton />
-                    </div>
-                </div>
+                <Side />
+                <Blocks />
+                <ShotAdaptiveWrapper>
+                    <h1 className='text-center'>{draftId}</h1>
+                    <div className="w-full rounded-xl bg-card aspect-[4/3]"></div>
+
+                </ShotAdaptiveWrapper>
             </div>
         </>
     )

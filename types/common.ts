@@ -3,8 +3,7 @@ export type ChunkResponse<T> = {
     data: T
     next: string
 }
-
-
+export type DocData<T> = { doc_id: string } & T
 export type Categories = {
     "all": string,
     "dev": string,

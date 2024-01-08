@@ -1,14 +1,13 @@
 import { api_host } from "@/const/host"
 import { authorizationHeader } from "@/helpers/headers"
 import { ChunkResponse } from "@/types/common"
-import { DocShotData, ShotData, ShotForUpload } from "@/types/shot"
+import { Attachment, DocShotData, DraftForUpload, DraftShotData, ShotData } from "@/types/shot"
 
 const LONG_CACHE_TIME = 600
 const MEDIUM_CACHE_TIME = 300
 const SHORT_CACHE_TIME = 120
 
-export const bum = (() => {
-    return {
+export const bum = {
         isFollowed: async(userId: string, followId: string): Promise<boolean> => {
             try {
                 const headers = new Headers()
@@ -62,8 +61,27 @@ export const bum = (() => {
                 return false
             }
         },
-        shots: (() => {
-            return {
+        attachments: {
+            generate: async(path: string, file: File): Promise<Attachment | null> => {
+                try {
+                    const headers = new Headers()
+                    const form = new FormData()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const url = `${api_host}/shots/attachments/${path}`
+                    form.append('file', file)
+                    const res = await fetch(url, { method: 'POST', headers: headers, body: form })
+                    if (res.ok) {
+                        const attachment: Attachment = await res.json()
+                        return attachment
+                    } else return null
+                } catch(e) {
+                    console.warn(e)
+                    return null
+                }
+            }
+        },
+        shots: {
                 byUser: async({ uid, order, category }: { uid?: string, order?: string, category?: string }): Promise<ChunkResponse<DocShotData[]>> => {
                     try {
                         if (!uid) throw Error('uid is not provided')
@@ -162,12 +180,9 @@ export const bum = (() => {
                         return []
                     }
                 },
-            }
-
-        })(),
-        shot: (() => {
+        },
+        shot: {
             // Тут мы можем выбрать что мы можем сделать с работой, получить, удалить и т.д.
-            return {
                 get: async(shotId: string, userId?: string): Promise<DocShotData | null> => {
                     try {
                         if (userId) {
@@ -184,6 +199,50 @@ export const bum = (() => {
                         return null
                     }
                 },
+                create: async(id: string, draft: ShotData) => {
+                    try {
+                        const headers = new Headers()
+                        const authHeader = authorizationHeader()
+                        headers.append('authorization', authHeader || '')
+                        headers.append('Content-Type', 'application/json')
+                        const url = `${api_host}/shots/shot/${id}`
+                        const res = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(draft) })
+                        if (res.ok) return Boolean(await res.text())
+                        return false
+                    } catch(e) {
+                        console.log(e)
+                        return false
+                    }
+                },
+                update: async(id: string, draft: ShotData) => {
+                    try {
+                        const headers = new Headers()
+                        const authHeader = authorizationHeader()
+                        headers.append('authorization', authHeader || '')
+                        headers.append('Content-Type', 'application/json')
+                        const url = `${api_host}/shots/shot/${id}`
+                        const res = await fetch(url, { method: 'PATCH', headers: headers, body: JSON.stringify(draft) })
+                        if (res.ok) return Boolean(await res.text())
+                        return false
+                    } catch(e) {
+                        console.log(e)
+                        return false
+                    }
+                },
+                delete: async(id: string) => {
+                    try {
+                        const headers = new Headers()
+                        const authHeader = authorizationHeader()
+                        headers.append('authorization', authHeader || '')
+                        const url = `${api_host}/shots/shot/${id}`
+                        const res = await fetch(url, { method: 'DELETE', headers: headers })
+                        if (res.ok) return Boolean(await res.text())
+                        return false
+                    } catch(e) {
+                        console.log(e)
+                        return false
+                    }
+                },
                 getPopularOne: async(userId: string): Promise<DocShotData | null> => {
                     try {
                         const shots = await bum.shots.byType(userId, 'shots', 'popular')
@@ -194,45 +253,51 @@ export const bum = (() => {
                         return null
                     }
                 }
-            }
-        })(),
-        draft: (() => {
-            return {
-                update: async(userId: string, shotId: string, shot: ShotForUpload) => {
-                    // const shotRef = doc(db, 'users', userId, 'shots', shotId)
-                    // try {
-                    //     await runTransaction(db, async (transaction) => {
-                    //         const sfDoc = await transaction.get(shotRef);
-                    //         if (!sfDoc.exists()) {
-                    //             transaction.set(shotRef, shot)
-                    //         }
-                    //         transaction.update(shotRef, shot);
-                    //     });
-                    //     console.log("Transaction successfully committed!");
-                    //     return true
-                    // } catch (e) {
-                    //     console.log("Transaction failed: ", e);
-                    //     return false
-                    // }
-                },
-                upload: async(userId: string, draftId: string, draft: ShotData) => {
-                    // const shotRef = doc(db, 'users', userId, 'shots', draftId)
-                    // try {
-                    //     await runTransaction(db, async (transaction) => {
-                    //         const sfDoc = await transaction.get(shotRef);
-                    //         if (!sfDoc.exists()) {
-                    //             throw new Error("Draft that been tried to publish doesn't exist")
-                    //         }
-                    //         transaction.update(shotRef, draft);
-                    //     });
-                    //     console.log('Transaction successfully committed')
-                    //     return true
-                    // } catch (e) {
-                    //     console.log("Transaction failed: ", e);
-                    //     return false
-                    // }
+        },
+        draft: {
+            create: async(id: string, draft: DraftForUpload) => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    headers.append('Content-Type', 'application/json')
+                    const url = `${api_host}/shots/draft/${id}`
+                    const res = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(draft) })
+                    if (res.ok) return Boolean(await res.text())
+                    return false
+                } catch(e) {
+                    console.log(e)
+                    return false
+                }
+            },
+            update: async(id: string, draft: DraftShotData) => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    headers.append('Content-Type', 'application/json')
+                    const url = `${api_host}/shots/draft/${id}`
+                    const res = await fetch(url, { method: 'PATCH', headers: headers, body: JSON.stringify(draft) })
+                    if (res.ok) return Boolean(await res.text())
+                    return false
+                } catch(e) {
+                    console.log(e)
+                    return false
+                }
+            },
+            delete: async(id: string) => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const url = `${api_host}/shots/draft/${id}`
+                    const res = await fetch(url, { method: 'DELETE', headers: headers })
+                    if (res.ok) return Boolean(await res.text())
+                    return false
+                } catch(e) {
+                    console.log(e)
+                    return false
                 }
             }
-        })(),
-    }
-})()
+        },
+}

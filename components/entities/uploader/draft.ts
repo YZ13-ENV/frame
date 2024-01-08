@@ -1,19 +1,22 @@
-import { ShotForUpload } from '@/types/shot';
+import { DraftForUpload } from '@/types/shot';
 import { createSlice } from '@reduxjs/toolkit';
 
 
 type Props = {
     draftId: string | null
-    draft: ShotForUpload
+    draft: DraftForUpload
 }
 
 const initialState: Props = {
     draftId: null,
     draft: {
+        attachments: [],
+        authorId: '',
         title: '',
         rootBlock: {
-            type: 'image',
-            link: ''
+            id: 0,
+            content_type: '',
+            type: 'media'
         },
         blocks: [],
         thumbnail: null
@@ -30,16 +33,16 @@ const draftSlice = createSlice({
         setDraftId(state, { payload, type }: { payload: Props['draftId'], type: string }) {
             state.draftId = payload
         },
-        setTitle(state, { payload, type }: { payload: ShotForUpload['title'], type: string }) {
+        setTitle(state, { payload, type }: { payload: DraftForUpload['title'], type: string }) {
             state.draft.title = payload
         },
-        setRootBlock(state, { payload, type }: { payload: ShotForUpload['rootBlock'], type: string }){
+        setRootBlock(state, { payload, type }: { payload: DraftForUpload['rootBlock'], type: string }){
             state.draft.rootBlock = payload
         },
-        setThumbnail(state, { payload, type }: { payload: ShotForUpload['thumbnail'], type: string }){
+        setThumbnail(state, { payload, type }: { payload: DraftForUpload['thumbnail'], type: string }){
             state.draft.thumbnail = payload
         },
-        setBlocks(state, { payload, type }: { payload: ShotForUpload['blocks'], type: string }){
+        setBlocks(state, { payload, type }: { payload: DraftForUpload['blocks'], type: string }){
             state.draft.blocks = payload
         }
     }

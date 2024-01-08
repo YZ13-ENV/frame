@@ -31,8 +31,8 @@ const FinalTouch = () => {
         if (user && draftId) {
             setLoading(true)
             const preparedBlocks = draft.blocks.filter((block => {
-                if (block.type === 'image' || block.type === 'video') {
-                    if (block.link === '') return false
+                if (block.type === 'media') {
+                    if (block.id === 0) return false
                     return true
                 }
                 if (block.type === 'text') {
@@ -45,9 +45,8 @@ const FinalTouch = () => {
                 }
                 return true
             }))
-            const preparedDraft: ShotData = {
+            const shot: ShotData = {
                 ...draft,
-                enableMdSyntax: true,
                 blocks: preparedBlocks,
                 authorId: user.uid,
                 isDraft: false,
@@ -57,14 +56,15 @@ const FinalTouch = () => {
                 likes: [],
                 tags: tags,
                 views: [],
+                updatedAt: DateTime.now().toSeconds()
             }
-            await bum.draft.upload(user.uid, draftId, preparedDraft)
+            await bum.shot.create(draftId, shot)
             setLoading(false)
             setTags([])
             setFeedBack(true)
             dispatch(setFinalTouchModal(false))
             dispatch(setDraftId(null))
-            dispatch(setDraft({ blocks: [], rootBlock: { link: '', type: 'image' }, thumbnail: null, title: '' }))
+            dispatch(setDraft({ blocks: [], rootBlock: { id: 0, content_type: '', type: 'media' }, thumbnail: { id: 0, contentType: '', url: '' }, title: '', attachments:[], authorId: '' }))
             router.push(`/view?s=${draftId}`)
         }
     }

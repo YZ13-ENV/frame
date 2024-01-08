@@ -1,11 +1,4 @@
-export type ShortUserData = {
-    uid: string
-    photoUrl: string
-    displayName: string
-    email: string
-    isSubscriber: boolean
-    [key: string]: any
-}
+import { DocData } from "./common"
 
 // Простые блоки
 export type TextBlock = {
@@ -15,16 +8,6 @@ export type TextBlock = {
     align?: 'left' | 'center' | 'right'
     isBold?: boolean
     isItalic?: boolean
-}
-
-export type ImageBlock = {
-    type: 'image'
-    link: string
-}
-
-export type VideoBlock = {
-    type: 'video'
-    link: string
 }
 
 export type GalleryBlock = {
@@ -43,21 +26,19 @@ export type StickerBlock = {
     code: string
 }
 
-type SeparatorWithAuthor = {
-    withIcon: true
-    uid: string
-}
-type SeparatorWithOutAuthor = {
-    withIcon: false
-}
-
 export type SeparatorProps = {
     type: 'separator'
-} & (SeparatorWithAuthor | SeparatorWithOutAuthor)
+    withIcon: boolean
+    uid: string
+}
 // ---
 
 // Более сложные блоки
-export type MediaBlock = VideoBlock | ImageBlock
+export type MediaBlock = {
+    type: 'media'
+    id: number // значение берётся из attachments
+    content_type: string // значение берётся из attachments
+}
 type RootBlock = MediaBlock
 export type Blocks = MediaBlock | GalleryBlock | TextBlock | SeparatorProps | StickerBlock
 
@@ -93,36 +74,50 @@ export type CommentBlock = {
 }
 
 export type Thumbnail = {
-    width: string
-    height: string
-    link: string
+    id: number
+    contentType: Attachment['contentType']
+    url: Attachment['url']
 }
 
-export type ShotForUpload = {
+export type Attachment = {
+    id: number
+    size: number
+    url: string
+    contentType: string
+    createdAt: number
+}
+
+// Первая загрузка черновика ( draft -> create(draft) )
+export type DraftForUpload = {
     title: string
     rootBlock: RootBlock
+    attachments: Attachment[]
     blocks: Blocks[]
     thumbnail: Thumbnail | null
+    authorId: string
 }
-
+// Последующие загрузки черновика ( draft -> update(draft) )
 export type DraftShotData = {
     isDraft: boolean
     authorId: string
     title: string
+    attachments: Attachment[]
     rootBlock: RootBlock
     blocks: Blocks[]
-    createdAt: number
+    updatedAt: number
     thumbnail: Thumbnail | null
 }
-
+// Опубликованный черновик как работа ( draft -> shot )
 export type ShotData = {
-    enableMdSyntax?: boolean
     isDraft: boolean
     authorId: string
     title: string
+    attachments: Attachment[]
     rootBlock: RootBlock
     blocks: Blocks[]
+    scheduledFor?: number
     createdAt: number
+    updatedAt: number
     likes: ActionWithUid[]
     views: ActionWithUid[]
     comments: CommentBlock[]
@@ -131,10 +126,10 @@ export type ShotData = {
     thumbnail: Thumbnail | null
 }
 
-export type LoadedShot = { author: ShortUserData } & ShotData
+export type LoadedShot = DocData<ShotData>
 
-export type DocShotData = { doc_id: string } & ShotData
-export type DocDraftShotData = { doc_id: string } & DraftShotData
+export type DocShotData = DocData<ShotData>
+export type DocDraftShotData = DocData<DraftShotData>
 
 export type GroupedReactions = {
     key: string

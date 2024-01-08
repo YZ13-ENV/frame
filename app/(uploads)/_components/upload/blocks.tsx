@@ -1,32 +1,22 @@
-'use client'
-import { useAppSelector } from '@/components/entities/store/store'
-import TextBlock from './blocks/text-block'
-import MediaUploader from './tools/media-uploader'
-import Separator from './blocks/separator'
-import Sticker from './blocks/sticker'
-// import React from 'react'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const Blocks = () => {
-    const draft = useAppSelector(state => state.uploader.draft.draft)
-    /* 
-        limits for blocks -
-        text +
-        media +
-        separator +
-        gallery -
-        sticker -
-    */ 
     return (
-        <div className="flex flex-col w-full max-w-2xl mx-auto gap-14 h-fit">
-            {
-                draft.blocks.map((block, index) => {
-                    if (block.type === 'text') return <TextBlock key={`#block${index}`} index={index} block={block} />
-                    if (block.type === 'image' || block.type === 'video') return <MediaUploader key={`#block${index}`} rootBlock={false} block={block} index={index} />
-                    if (block.type === 'separator') return <Separator key={`#block${index}`} index={index} block={block} />
-                    if (block.type === 'sticker') return <Sticker key={`#block${index}`} index={index} block={block} />
-                    return <span key={index + block.type}>{block.type}</span>
-                })
-            }
+        <div className="absolute bottom-0 z-10 left-6 w-80 bg-card px-4 rounded-t-xl border-x border-t">
+            <Accordion type="single" defaultValue="1"  className="w-full">
+                <AccordionItem value="1">
+                    <AccordionTrigger>Компоненты</AccordionTrigger>
+                    <AccordionContent>
+                        <div className="w-full h-fit flex flex-col gap-2">
+                            <div className="w-full rounded-lg h-9 bg-muted"></div>
+                            <div className="w-full rounded-lg h-9 bg-muted"></div>
+                            <div className="w-full rounded-lg h-9 bg-muted"></div>
+                            <div className="w-full rounded-lg h-9 bg-muted"></div>
+                            <div className="w-full rounded-lg h-9 bg-muted"></div>
+                        </div>
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
         </div>
     )
 }
