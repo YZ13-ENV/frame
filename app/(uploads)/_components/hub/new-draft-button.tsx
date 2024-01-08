@@ -39,7 +39,7 @@ const NewDraftButton = () => {
                     id: 0,
                     url: ''
                 },
-                title: draftId
+                title: name
             }
             const res = await bum.draft.create(draftId, draft)
             if (res) {

@@ -1,7 +1,7 @@
 import { api_host } from "@/const/host"
 import { authorizationHeader } from "@/helpers/headers"
 import { ChunkResponse } from "@/types/common"
-import { Attachment, DocShotData, DraftForUpload, DraftShotData, ShotData } from "@/types/shot"
+import { Attachment, DocDraftShotData, DocShotData, DraftForUpload, DraftShotData, ShotData } from "@/types/shot"
 
 const LONG_CACHE_TIME = 600
 const MEDIUM_CACHE_TIME = 300
@@ -255,6 +255,16 @@ export const bum = {
                 }
         },
         draft: {
+            get: async(shotId: string): Promise<DocDraftShotData | null> => {
+                try {
+                    const res = await fetch(`${api_host}/shots/draft/${shotId}`, { method: 'GET', cache: 'no-store' })
+                    const draft: DocDraftShotData = await res.json()
+                    return draft
+                } catch(e) {
+                    console.log(e)
+                    return null
+                }
+            },
             create: async(id: string, draft: DraftForUpload) => {
                 try {
                     const headers = new Headers()

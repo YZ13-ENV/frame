@@ -9,7 +9,7 @@ type Props = {
 }
 
 const ShotCard = ({ shot }: Props) => {
-    const typeOfThumbnail = shot.thumbnail && shot.thumbnail.link.endsWith('.mp4') ? 'video' : 'image'
+    // const typeOfThumbnail = shot.thumbnail && shot.thumbnail.link.endsWith('.mp4') ? 'video' : 'image'
     return (
         <div className="w-full h-full">
             <div className="relative w-full cursor-pointer aspect-[4/3] overflow-hidden bg-background rounded-lg group/wrapper border">
@@ -18,14 +18,14 @@ const ShotCard = ({ shot }: Props) => {
                         <span>{shot.title}</span>
                     </div>
                 </Link>
-                { 
+                {/* { 
                     process.env.NODE_ENV === 'production' &&
                     shot.thumbnail
                     ? typeOfThumbnail === 'image' 
                     ? <Image src={cdn(shot.thumbnail.link)} className="z-0 group-hover/wrapper:brightness-50 transition-all" fill alt='shot-thumbnail' /> 
                     : <video className="w-full absolute h-full z-0 group-hover/wrapper:brightness-50 transition-all"><source src={cdn(shot.thumbnail.link)} /></video>
                     : null
-                }
+                } */}
             </div>
             <Footer shot={shot} />
         </div>
