@@ -17,7 +17,6 @@ const page = async({ params }: Props) => {
     const byNickname = user.byNick.short(params.nick)
     const [dataById, dataByNickname] = await Promise.all([byId, byNickname])
     const author = dataByNickname ? dataByNickname : dataById 
-    console.log(author)
     const isNickname = author ? params.nick === author.nickname : false
     if (!isNickname && author && author.nickname) return redirect(`/${author.nickname}`)
     return (

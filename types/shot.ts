@@ -43,11 +43,17 @@ export type StickerBlock = {
     code: string
 }
 
-export type SeparatorProps = {
-    type: 'separator'
-    withIcon: boolean
+type SeparatorWithAuthor = {
+    withIcon: true
     uid: string
 }
+type SeparatorWithOutAuthor = {
+    withIcon: false
+}
+
+export type SeparatorProps = {
+    type: 'separator'
+} & (SeparatorWithAuthor | SeparatorWithOutAuthor)
 // ---
 
 // Более сложные блоки
