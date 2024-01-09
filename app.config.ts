@@ -2,7 +2,7 @@ import { AppConfig } from "./types/config"
 
 export const config: AppConfig = {
     name: "frame",
-    version: "0.0.0",
+    version: "0.1.0",
     status: "development",
     app: {
         hasAuthPage: false,
@@ -12,12 +12,12 @@ export const config: AppConfig = {
         hasSearchPage: false
     },
     features: {
-        enableLightMode: true,
+        enableLightMode: false,
         enableAppsGrid: true,
         enableNotifications: true
     },
     remote: {
-        domain: "https://bum.darkmaterial.space",
+        domain: "https://frame.darkmaterial.space",
         logo: {
             dark: "bum/bum-dark.svg",
             light: "bum/bum-light.svg"
