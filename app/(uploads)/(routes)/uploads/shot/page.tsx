@@ -37,7 +37,7 @@ const page = async({ searchParams }: Props) => {
                         <h2 className='text-xl font-bold'>Черновики</h2>
                         <NewDraftButton />
                     </div>
-                    <div className="w-full h-fit flex flex-col py-6">
+                    <div className="w-full h-fit flex flex-col py-6 gap-6">
                         { uid && <AdvancedChunk getter={ bum.drafts.byUser } uid={uid} /> }
                     </div>
                 </div>

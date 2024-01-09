@@ -4,6 +4,7 @@ import Blocks from '@/app/(uploads)/_components/upload/blocks'
 import FinalTouch from '@/app/(uploads)/_components/upload/final-touch'
 import Controls from '@/app/(uploads)/_components/upload/header/controls'
 import Side from '@/app/(uploads)/_components/upload/side'
+import Title from '@/app/(uploads)/_components/upload/view-blocks/title'
 import ShotAdaptiveWrapper from '@/components/shared/shot-adaptive-wrapper'
 import { Button } from '@/components/ui/button'
 import { cookies } from 'next/headers'
@@ -35,10 +36,10 @@ const page = async({ params }: Props) => {
             </div>
             <div className="w-full h-screen flex relative flex-col items-center justify-center">
                 <Controls />
-                <Side />
+                <Side title={draft.title} updatedAt={draft.updatedAt} draft={draft} />
                 <Blocks />
                 <ShotAdaptiveWrapper>
-                    <h1 className='text-center'>{draft.title}</h1>
+                    <Title />
                     <div className="w-full rounded-xl bg-card aspect-[4/3]"></div>
 
                 </ShotAdaptiveWrapper>

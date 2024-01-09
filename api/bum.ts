@@ -318,7 +318,7 @@ export const bum = {
                     return false
                 }
             },
-            update: async(id: string, draft: DraftShotData) => {
+            update: async(id: string, draft: DraftShotData): Promise<DocDraftShotData | null> => {
                 try {
                     const headers = new Headers()
                     const authHeader = authorizationHeader()
@@ -326,11 +326,11 @@ export const bum = {
                     headers.append('Content-Type', 'application/json')
                     const url = `${api_host}/shots/draft/${id}`
                     const res = await fetch(url, { method: 'PATCH', headers: headers, body: JSON.stringify(draft) })
-                    if (res.ok) return Boolean(await res.text())
-                    return false
+                    if (res.ok) return await res.json() as DocDraftShotData
+                    return null
                 } catch(e) {
                     console.log(e)
-                    return false
+                    return null
                 }
             },
             delete: async(id: string) => {

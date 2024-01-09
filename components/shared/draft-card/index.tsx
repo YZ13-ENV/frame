@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { DocDraftShotData } from "@/types/shot"
 import { DateTime } from "luxon"
+import Link from "next/link"
 import { BiRightArrowAlt } from "react-icons/bi"
 
 type Props = {
@@ -16,7 +17,8 @@ const DraftCard = ({ draft }: Props) => {
                         <span className="text-sm text-muted-foreground">Название</span>
                         <span className="text-base font-medium text-accent-foreground">{draft.title}</span>
                     </div>
-                    <Button className='gap-2' variant='outline'>Открыть <BiRightArrowAlt /></Button>
+                    <Button asChild className='gap-2' variant='outline'><Link href={`/uploads/shot/${draft.doc_id}`} 
+                    className='flex items-center gap-2'>Открыть <BiRightArrowAlt /></Link></Button>
                 </div>
                 <div className="w-fit h-fit flex items-center gap-4">
                     <div className="w-fit h-fit flex flex-col">
