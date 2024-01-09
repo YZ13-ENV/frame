@@ -93,7 +93,7 @@ export type DraftForUpload = {
     rootBlock: RootBlock
     attachments: Attachment[]
     blocks: Blocks[]
-    thumbnail: Thumbnail | null
+    thumbnail: Thumbnail
     authorId: string
 }
 // Последующие загрузки черновика ( draft -> update(draft) )
@@ -105,7 +105,7 @@ export type DraftShotData = {
     rootBlock: RootBlock
     blocks: Blocks[]
     updatedAt: number
-    thumbnail: Thumbnail | null
+    thumbnail: Thumbnail
 }
 // Опубликованный черновик как работа ( draft -> shot )
 export type ShotData = {
@@ -123,7 +123,7 @@ export type ShotData = {
     comments: CommentBlock[]
     needFeedback: boolean
     tags: string[]
-    thumbnail: Thumbnail | null
+    thumbnail: Thumbnail
 }
 
 export type LoadedShot = DocData<ShotData>

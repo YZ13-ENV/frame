@@ -81,6 +81,44 @@ export const bum = {
                 }
             }
         },
+        drafts: {
+            all: async({ order, category }: { order?: string, category?: string }): Promise<ChunkResponse<DocDraftShotData[]>> => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const url = order && category 
+                    ? `${api_host}/shots/all/${order}/${category}?onlyDrafts=true` 
+                    : order ? `${api_host}/shots/all/${order}?onlyDrafts=true` 
+                    : `${api_host}/shots/all/popular?onlyDrafts=true` 
+                    const res = await fetch(url, { method: 'GET', headers: headers })
+                    if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
+                    return { count: 0, data: [], next: '' }
+                } catch(e) {
+                    console.warn(e)
+                    return { count: 0, data: [], next: '' }
+                }
+            },
+            byUser: async({ uid, order, category }: { uid?: string, order?: string, category?: string }): Promise<ChunkResponse<DocDraftShotData[]>> => {
+                try {
+                    if (!uid) throw Error('uid is not provided')
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const url = order && category 
+                    ? `${api_host}/shots/user/${uid}/${order}/${category}?onlyDrafts=true` 
+                    : order 
+                    ? `${api_host}/shots/user/${uid}/${order}?onlyDrafts=true` 
+                    : `${api_host}/shots/user/${uid}?onlyDrafts=true` 
+                    const res = await fetch(url, { method: 'GET', headers: headers })
+                    if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
+                    return { count: 0, data: [], next: '' }
+                } catch(e) {
+                    console.warn(e)
+                    return { count: 0, data: [], next: '' }
+                }
+            },
+        },
         shots: {
                 byUser: async({ uid, order, category }: { uid?: string, order?: string, category?: string }): Promise<ChunkResponse<DocShotData[]>> => {
                     try {

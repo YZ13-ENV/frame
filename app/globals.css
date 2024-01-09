@@ -156,4 +156,7 @@
   .nav-select {
     @apply lg:hidden flex
   }
+  .draft-card {
+    @apply w-full h-fit border bg-card rounded-lg p-4 flex items-start gap-4 md:flex-row flex-col
+  }
 }

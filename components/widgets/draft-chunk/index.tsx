@@ -1,7 +1,7 @@
 import { ChunkResponse } from "@/types/common"
 import Controller from "./ui/controller"
-import { DocShotData } from "@/types/shot"
-import ShotCard from "@/components/shared/shot-card"
+import { DocDraftShotData } from "@/types/shot"
+import DraftCard from "@/components/shared/draft-card"
 
 type Props = {
     uid?: string
@@ -12,7 +12,7 @@ type Props = {
         uid?: string
         order?: string | undefined;
         category?: string | undefined;
-    }) => Promise<ChunkResponse<DocShotData[]>>
+    }) => Promise<ChunkResponse<DocDraftShotData[]>>
 }
 
 async function AdvancedChunk({ getter, hideController=false, uid, category, order }: Props) {
@@ -24,7 +24,7 @@ async function AdvancedChunk({ getter, hideController=false, uid, category, orde
                     <span className="text-sm text-muted-foreground">Работ не найдено</span>
                 </div>
             }
-            { data && data.map( item => <ShotCard key={item.doc_id} shot={item} />) }
+            { data && data.map( item => <DraftCard key={item.doc_id} draft={item} />) }
             { (!hideController && data.length !== 0) && <Controller next={next} />}
         </>
     )
