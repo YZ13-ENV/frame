@@ -1,15 +1,12 @@
-import { user } from "@/api/user"
-import Avatar from "@/components/shared/avatar"
-import { Tabs, TabsTrigger, TabsList } from "@/components/ui/tabs"
-import { Suspense } from "react"
-import Loading from '@/app/(shots)/(routes)/shots/[order]/loading'
-import AdvancedChunk from "@/components/widgets/chunk"
 import { bum } from "@/api/bum"
-import { redirect } from "next/navigation"
-import Link from "next/link"
+import { user } from "@/api/user"
+import PortfolioNav from "@/app/(user)/_components/nav"
+import Avatar from "@/components/shared/avatar"
 import { Button } from "@/components/ui/button"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Link from "next/link"
+import { redirect } from "next/navigation"
 import { BiDotsVerticalRounded } from "react-icons/bi"
-import PortfolioNav from "../../_components/nav"
 
 type Props = {
     params: {
@@ -24,7 +21,7 @@ const page = async({ params }: Props) => {
     const isNickname = author ? params.nick === author.nickname : false
     const popular = author ? bum.shot.getPopularOne(author.uid) : null
     const path = isNickname && author ? `/${author.nickname}` : `/${params.nick}`
-    if (!isNickname && author && author.nickname) return redirect(`/${author.nickname}`)
+    if (!isNickname && author && author.nickname) return redirect(`/${author.nickname}/saved`)
     return (
         <>
             <div className="w-full h-[50vh] pt-16">
@@ -58,17 +55,10 @@ const page = async({ params }: Props) => {
                 </div>
             </div>
             <div className="w-full px-6 mx-auto max-w-screen-2xl">
-                <PortfolioNav path={path} value="1" />
+                <PortfolioNav path={path} value="2" />
             </div>
-            <div className="w-full py-12 lg:px-24 md:px-12 px-6 min-h-[17rem]">
-                {
-                    author && author.uid &&
-                    <Suspense fallback={ <Loading /> }>
-                        <div className="z-20 grid w-full h-full gap-6 shots_grid">
-                            <AdvancedChunk getter={ bum.shots.byUser } uid={author.uid} />
-                        </div>
-                    </Suspense>
-                }
+            <div className="w-full py-12 lg:px-24 md:px-12 px-6 min-h-[20rem]">
+
             </div>
         </>
     )
