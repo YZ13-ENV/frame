@@ -16,7 +16,7 @@ const ToolKit = () => {
         switch (blockType) {
             case 'media':
                 const media_block: MediaBlock = {
-                    id: format.generateId(6, true) as number,
+                    id: 0,
                     content_type: '',
                     type: 'media'
                 }

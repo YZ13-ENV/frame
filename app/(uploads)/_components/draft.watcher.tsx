@@ -2,7 +2,7 @@
 
 import { bum } from "@/api/bum"
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
-import { setDraft } from "@/components/entities/uploader/draft"
+import { setDraft, setDraftId } from "@/components/entities/uploader/draft"
 import { DocDraftShotData } from "@/types/shot"
 import { useDebounceEffect } from "ahooks"
 import { isEqual } from "lodash"
@@ -36,10 +36,11 @@ const DraftWatcher = ({ draft }: Props) => {
     },[isEq, localDraft, debouncedDraft], { wait: 2000 })
     useEffect(() => {
       dispatch(setDraft(draft))
+      dispatch(setDraftId(draft.doc_id))
     },[])
     return (
-        <div className="w-fit h-fit flex items-center gap-2">
-            <span className="text-sm text-muted-foreground inline-flex items-center gap-1 ">
+        <div className="flex items-center gap-2 w-fit h-fit">
+            <span className="inline-flex items-center gap-1 text-sm text-muted-foreground ">
                 Последнее обновление - <span className="capitalize">{lastUpdate.toFormat('HH:mm dd MMMM yyyy')}</span>
             </span>
             {

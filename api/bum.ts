@@ -68,7 +68,7 @@ export const bum = {
                     const form = new FormData()
                     const authHeader = authorizationHeader()
                     headers.append('authorization', authHeader || '')
-                    const url = `${api_host}/shots/attachments/${path}`
+                    const url = `${api_host}/shots/attachments?id=${path}`
                     form.append('file', file)
                     const res = await fetch(url, { method: 'POST', headers: headers, body: form })
                     if (res.ok) {

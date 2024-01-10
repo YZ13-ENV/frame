@@ -24,7 +24,11 @@ const Blocks = () => {
                                 blocks.length
                                 ? blocks.map((block, i) =>
                                     <div key={block.id + ' ' + i} className="flex items-center justify-between w-full px-2 rounded-lg cursor-pointer h-9 hover:bg-muted">
-                                        { block.type }
+                                        <span>
+                                            { block.type }
+                                            -
+                                            { block.id }
+                                        </span>
                                         <div className="flex items-center gap-2">
                                             <BiChevronUp />
                                             <BiChevronDown />
@@ -47,7 +51,9 @@ const Blocks = () => {
                         </div>
                     </AccordionTrigger>
                     <AccordionContent>
-                        <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
+                        <div className="w-full aspect-[4/3] rounded-lg border-dashed border-2 flex items-center justify-center p-4 flex-col bg-background">
+                            <span className="text-xs text-center text-muted-foreground">Перенесите файл для загрузки</span>
+                        </div>
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>

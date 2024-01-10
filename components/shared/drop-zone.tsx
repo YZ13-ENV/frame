@@ -2,8 +2,9 @@
 
 type Props = {
     onFile: (file: File) => void
+    className?: string
 }
-const DropZone = ({ onFile }: Props) => {
+const DropZone = ({ onFile, className='' }: Props) => {
     const onCatchFile = (list: FileList | null) => {
         if (list) {
             const file = list[0]
@@ -19,7 +20,7 @@ const DropZone = ({ onFile }: Props) => {
         onCatchFile(e.currentTarget.files)
     }
     return (
-        <input type="file" multiple={false} onDrop={onDrop} onChange={onChange} className='w-full h-full opacity-0' />
+        <input type="file" multiple={false} onDrop={onDrop} onChange={onChange} className={`w-full h-full opacity-0 ${className}`} />
     )
 }
 

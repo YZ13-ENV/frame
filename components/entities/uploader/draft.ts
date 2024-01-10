@@ -51,9 +51,12 @@ const draftSlice = createSlice({
         },
         setBlocks(state, { payload, type }: { payload: DraftShotData['blocks'], type: string }){
             state.draft.blocks = payload
-        }
+        },
+        setAttachments(state, { payload, type }: { payload: DraftShotData['attachments'], type: string }){
+            state.draft.attachments = payload
+        },
     }
 })
 
-export const { setTitle, setBlocks, setDraftId, setThumbnail, setRootBlock, setDraft } = draftSlice.actions
+export const { setTitle, setBlocks, setDraftId, setThumbnail, setRootBlock, setDraft, setAttachments } = draftSlice.actions
 export default draftSlice.reducer

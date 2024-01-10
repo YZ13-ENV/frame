@@ -5,6 +5,7 @@ import FinalTouch from '@/app/(uploads)/_components/upload/final-touch'
 import Controls from '@/app/(uploads)/_components/upload/header/controls'
 import Side from '@/app/(uploads)/_components/upload/side'
 import ViewBlocks from '@/app/(uploads)/_components/upload/view-blocks'
+import RootBlock from '@/app/(uploads)/_components/upload/view-blocks/root-block'
 import Title from '@/app/(uploads)/_components/upload/view-blocks/title'
 import ShotAdaptiveWrapper from '@/components/shared/shot-adaptive-wrapper'
 import { Button } from '@/components/ui/button'
@@ -37,13 +38,13 @@ const page = async({ params }: Props) => {
                 <Button asChild><Link href='/'>Вернуться</Link></Button>
             </div>
             <div className="relative flex flex-col items-center justify-center w-full h-screen">
-                <Controls />
-                <Side title={draft.title} updatedAt={draft.updatedAt} draft={draft} />
+                <Controls showPublish />
+                <Side title={draft.title} draft={draft} />
                 <Blocks />
                 <div className="w-full pt-24 mx-auto overflow-y-auto no-scrollbar">
                     <ShotAdaptiveWrapper>
                         <Title />
-                        <FileUploader />
+                        <RootBlock />
                         <ViewBlocks />
                     </ShotAdaptiveWrapper>
                 </div>

@@ -1,8 +1,14 @@
 import User from "@/components/shared/user-circle"
+import { Button } from "@/components/ui/button"
 
-const Controls = () => {
+
+type Props = {
+    showPublish?: boolean
+}
+const Controls = ({ showPublish=false }: Props) => {
     return (
-        <div className='w-fit p-6 absolute top-0 right-0 flex items-center gap-2'>
+        <div className='absolute top-0 right-0 flex items-center gap-4 p-6 w-fit'>
+            { showPublish && <Button>Опубликовать</Button> }
             <User />
         </div>
     )
