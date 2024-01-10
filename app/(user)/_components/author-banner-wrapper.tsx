@@ -4,7 +4,7 @@ type Props = {
 }
 const AuthorBannerWrapper = ({ children }: Props) => {
     return (
-        <div className="w-full md:h-[60vh] h-fit pt-16">{children}</div>
+        <div className="author-banner">{children}</div>
     )
 }
 

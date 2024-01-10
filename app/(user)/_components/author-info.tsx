@@ -24,7 +24,7 @@ const AuthorInfo = async({ author, userId }: Props) => {
                     <span className="text-base text-muted-foreground">{author?.position || author?.email}</span>
                 </div>
             </div>
-            <span className="text-5xl font-bold text-accent-foreground">Привет, я автор Frame</span>
+            <span className="author-description">Привет, я автор Frame</span>
             <Suspense fallback={<div className="w-64 h-5 rounded-md bg-muted animate-pulse" />}>
                 <AuthorStats authorId={author.uid} />
             </Suspense>
