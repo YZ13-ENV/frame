@@ -64,7 +64,13 @@ const FinalTouch = () => {
             setFeedBack(true)
             dispatch(setFinalTouchModal(false))
             dispatch(setDraftId(null))
-            dispatch(setDraft({ blocks: [], rootBlock: { id: 0, content_type: '', type: 'media' }, thumbnail: { id: 0, contentType: '', url: '' }, title: '', attachments:[], authorId: '' }))
+            dispatch(setDraft({ 
+                isDraft: false, updatedAt: DateTime.now().toSeconds(),
+                blocks: [], 
+                rootBlock: { id: 0, content_type: '', type: 'media' }, 
+                thumbnail: { id: 0, contentType: '', url: '' }, 
+                title: '', attachments:[], authorId: '' 
+            }))
             router.push(`/view?s=${draftId}`)
         }
     }
