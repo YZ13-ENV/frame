@@ -4,9 +4,11 @@ import Blocks from '@/app/(uploads)/_components/upload/blocks'
 import FinalTouch from '@/app/(uploads)/_components/upload/final-touch'
 import Controls from '@/app/(uploads)/_components/upload/header/controls'
 import Side from '@/app/(uploads)/_components/upload/side'
+import ViewBlocks from '@/app/(uploads)/_components/upload/view-blocks'
 import Title from '@/app/(uploads)/_components/upload/view-blocks/title'
 import ShotAdaptiveWrapper from '@/components/shared/shot-adaptive-wrapper'
 import { Button } from '@/components/ui/button'
+import FileUploader from '@/components/widgets/file-uploader'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -34,15 +36,17 @@ const page = async({ params }: Props) => {
                 <span className="text-sm text-center text-muted-foreground">Конструктор недоступен на мобильных устройствах</span>
                 <Button asChild><Link href='/'>Вернуться</Link></Button>
             </div>
-            <div className="w-full h-screen flex relative flex-col items-center justify-center">
+            <div className="relative flex flex-col items-center justify-center w-full h-screen">
                 <Controls />
                 <Side title={draft.title} updatedAt={draft.updatedAt} draft={draft} />
                 <Blocks />
-                <ShotAdaptiveWrapper>
-                    <Title />
-                    <div className="w-full rounded-xl bg-card aspect-[4/3]"></div>
-
-                </ShotAdaptiveWrapper>
+                <div className="w-full pt-24 mx-auto overflow-y-auto no-scrollbar">
+                    <ShotAdaptiveWrapper>
+                        <Title />
+                        <FileUploader />
+                        <ViewBlocks />
+                    </ShotAdaptiveWrapper>
+                </div>
             </div>
         </>
     )

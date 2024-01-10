@@ -6,14 +6,14 @@ import RemoteServerLogo from '@/components/shared/remote/remote-logo-server'
 import Loading from './(shots)/(routes)/shots/[order]/loading'
 import { Button } from '@/components/ui/button'
 import AdvancedChunk from '@/components/widgets/chunk'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { BiChevronDown, BiRightArrowAlt } from 'react-icons/bi'
 import { cookies } from 'next/headers'
 import LoginDrawer from '@/components/widgets/login-drawer'
-const Dock = dynamic(() => import("@/components/widgets/dock/default"))
+// import dynamic from 'next/dynamic'
+// const Dock = dynamic(() => import("@/components/widgets/dock/default"))
 
 const HomePage = async() => {
     const grid = await file.static.get('gird.svg')

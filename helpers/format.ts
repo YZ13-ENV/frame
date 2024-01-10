@@ -14,5 +14,17 @@ export const format = {
             randomString += charSet.substring(randomPoz,randomPoz+1)
         }
         return randomString
+    },
+    generateId: (len: number, onlyNumbers?: boolean) => {
+        const charSet = onlyNumbers 
+        ? '0123456789'
+        : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+        let result = ''
+        for (let i = 0; i < len; i++) {
+            const randomPoz = Math.floor(Math.random() * charSet.length)
+            result += charSet.substring(randomPoz,randomPoz+1)
+        }
+        if (onlyNumbers) return parseInt(result)
+        return result
     }
 }

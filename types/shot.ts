@@ -1,13 +1,10 @@
 import { DocData } from "./common"
 
+export type IdBlock<T> = { id: number } & T
 // Простые блоки
 export type TextBlock = {
     type: 'text'
     text: string
-    size?: 0 | 1 | 2 | 3
-    align?: 'left' | 'center' | 'right'
-    isBold?: boolean
-    isItalic?: boolean
 }
 
 export type GalleryBlock = {
@@ -40,7 +37,7 @@ export type MediaBlock = {
     content_type: string // значение берётся из attachments
 }
 type RootBlock = MediaBlock
-export type Blocks = MediaBlock | GalleryBlock | TextBlock | SeparatorProps | StickerBlock
+export type Blocks = IdBlock<MediaBlock> | IdBlock<GalleryBlock> | IdBlock<TextBlock> | IdBlock<SeparatorProps> | IdBlock<StickerBlock>
 
 export type NewCommentBlock = {
     authorId: string
