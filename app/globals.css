@@ -206,4 +206,25 @@
   .draft-card {
     @apply w-full h-fit border bg-card rounded-lg p-4 flex items-start gap-4 md:flex-row flex-col
   }
+  .author-banner-wrapper {
+    @apply flex md:flex-row flex-col justify-between w-full h-full gap-6 px-6 py-12 mx-auto max-w-screen-2xl
+  }
+  .author-info-wrapper {
+    @apply flex flex-col justify-center md:h-full h-fit gap-4 md:w-fit w-full
+  }
+  .pinned-work-wrapper {
+    @apply flex items-center md:h-full h-fit md:w-fit w-full shrink-0
+  }
+  .pinned-work {
+    @apply md:h-full h-fit md:w-fit w-full aspect-[4/3] min-h-[20rem] lg:max-w-none max-w-xl md:mx-0 mx-auto rounded-lg bg-muted shrink-0
+  }
+  .bio-wrapper {
+    @apply w-full mx-auto max-w-screen-2xl py-12 h-fit flex md:flex-row flex-col
+  }
+  .about-wrapper {
+    @apply md:w-2/3 w-full h-full flex flex-col p-6
+  }
+  .links-wrapper {
+    @apply md:w-1/3 w-full h-full flex flex-col gap-4 p-6
+  }
 }

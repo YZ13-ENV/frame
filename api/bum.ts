@@ -61,6 +61,76 @@ export const bum = {
                 return false
             }
         },
+        author: {
+            follow: async(from: string, to: string): Promise<string[]> => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const res = await fetch(`${api_host}/shots/user/follow?from=${from}&to=${to}`, {
+                        method: 'GET',
+                        headers: headers
+                    })
+                    if (res.ok) {
+                        return await res.json() as string[]
+                    } else return []
+                } catch(e) {
+                    console.log(e)
+                    return []
+                } 
+            },
+            likes: async(id: string): Promise<Array<ShotData['likes']>> => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const res = await fetch(`${api_host}/shots/user/likes?id=${id}`, {
+                        method: 'GET',
+                        headers: headers
+                    })
+                    if (res.ok) {
+                        return await res.json() as Array<ShotData['likes']>
+                    } else return []
+                } catch(e) {
+                    console.log(e)
+                    return []
+                } 
+            },
+            followers: async(id: string): Promise<string[]> => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const res = await fetch(`${api_host}/shots/user/followers?id=${id}`, {
+                        method: 'GET',
+                        headers: headers
+                    })
+                    if (res.ok) {
+                        return await res.json() as string[]
+                    } else return []
+                } catch(e) {
+                    console.log(e)
+                    return []
+                } 
+            },
+            followings: async(id: string): Promise<string[]> => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const res = await fetch(`${api_host}/shots/user/following?id=${id}`, {
+                        method: 'GET',
+                        headers: headers
+                    })
+                    if (res.ok) {
+                        return await res.json() as string[]
+                    } else return []
+                } catch(e) {
+                    console.log(e)
+                    return []
+                } 
+            }
+        },
         attachments: {
             generate: async(path: string, file: File): Promise<Attachment | null> => {
                 try {
