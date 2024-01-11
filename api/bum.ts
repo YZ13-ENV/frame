@@ -79,6 +79,74 @@ export const bum = {
                     return []
                 } 
             },
+            addAbout: async(id: string, about: string): Promise<string> => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const res = await fetch(`${api_host}/shots/user/about?id=${id}&about=${about}`, {
+                        method: 'POST',
+                        headers: headers
+                    })
+                    if (res.ok) {
+                        return await res.text() as string
+                    } else return ''
+                } catch(e) {
+                    console.log(e)
+                    return ''
+                } 
+            },
+            getAbout: async(id: string): Promise<string> => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const res = await fetch(`${api_host}/shots/user/about?id=${id}`, {
+                        method: 'GET',
+                        headers: headers
+                    })
+                    if (res.ok) {
+                        return await res.text() as string
+                    } else return ''
+                } catch(e) {
+                    console.log(e)
+                    return ''
+                } 
+            },
+            addSignature: async(id: string, signature: string): Promise<string> => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const res = await fetch(`${api_host}/shots/user/signature?id=${id}&signature=${signature}`, {
+                        method: 'POST',
+                        headers: headers
+                    })
+                    if (res.ok) {
+                        return await res.text() as string
+                    } else return ''
+                } catch(e) {
+                    console.log(e)
+                    return ''
+                } 
+            },
+            getSignature: async(id: string): Promise<string> => {
+                try {
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const res = await fetch(`${api_host}/shots/user/signature?id=${id}`, {
+                        method: 'GET',
+                        headers: headers
+                    })
+                    if (res.ok) {
+                        return await res.text() as string
+                    } else return ''
+                } catch(e) {
+                    console.log(e)
+                    return ''
+                } 
+            },
             likes: async(id: string): Promise<Array<ShotData['likes']>> => {
                 try {
                     const headers = new Headers()

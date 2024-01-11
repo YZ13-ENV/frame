@@ -1,6 +1,6 @@
-import ShotSkeleton from '@/components/skeletons/shot'
+import ShotSkeleton from './shot'
 
-const Loading = () => {
+const ShotsSkeleton = () => {
     return (
         <div className="w-full h-full z-20 grid shots_grid gap-6">
             <ShotSkeleton />
@@ -23,4 +23,4 @@ const Loading = () => {
     )
 }
 
-export default Loading
+export default ShotsSkeleton

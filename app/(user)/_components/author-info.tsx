@@ -15,6 +15,7 @@ const AuthorInfo = async({ author, userId }: Props) => {
     const isYou = author.uid === (userId || '')
     const followers = userId ? await bum.author.followings(userId) : []
     const isFollowed = followers.includes(author.uid)
+    const signature = await bum.author.getSignature(author.uid)
     return (
         <div className="author-info-wrapper">
             <div className="flex items-center gap-4 w-fit h-fit">
@@ -24,7 +25,7 @@ const AuthorInfo = async({ author, userId }: Props) => {
                     <span className="text-base text-muted-foreground">{author?.position || author?.email}</span>
                 </div>
             </div>
-            <span className="author-description">Привет, я автор Frame</span>
+            { signature && <span className="author-description">{signature}</span> }
             <Suspense fallback={<div className="w-64 h-5 rounded-md bg-muted animate-pulse" />}>
                 <AuthorStats authorId={author.uid} />
             </Suspense>

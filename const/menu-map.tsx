@@ -1,5 +1,6 @@
 import { BiCog, BiUser } from 'react-icons/bi'
 import { MenuMapProps, projects } from 'ui'
+import { auth } from '@/utils/app'
 
 export const menu: MenuMapProps = [
     {
@@ -34,7 +35,8 @@ export const menu: MenuMapProps = [
                 projects: projects
             },
             {
-                type: 'sign-out'
+                type: 'sign-out',
+                action: async() => await auth.signOut()
             }
         ]
     }
