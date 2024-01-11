@@ -28,10 +28,11 @@ const MediaBlock = ({ block, index }: Props) => {
     }
     const isImage = block.content_type.includes('jpg') || block.content_type.includes('png')
     const attachment = attachments.find(item => item.id === block.id)
-    if (block.id === 0) return <FileUploader onAttachment={pickAttachment} />
+    if (block.id === '0') return <FileUploader onAttachment={pickAttachment} />
     return (
         <div className="w-full aspect-[4/3] rounded-xl relative bg-card border overflow-hidden">
             {
+                process.env.NODE_ENV !== 'development' &&
                 isImage && attachment && <Image src={attachment.url} fill alt={attachment.contentType + attachment.createdAt} />
             }
         </div>

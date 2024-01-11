@@ -15,13 +15,13 @@ const initialState: Props = {
         authorId: '',
         title: '',
         rootBlock: {
-            id: 0,
+            id: '0',
             content_type: '',
             type: 'media'
         },
         blocks: [],
         thumbnail: {
-            id: 0,
+            id: '0',
             contentType: '',
             url: ''
         },

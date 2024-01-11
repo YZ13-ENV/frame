@@ -24,7 +24,7 @@ const FileUploader = ({ onAttachment }: Props) => {
             if (attachment) {
                 const isDuplicatedId = attachments.find(item => attachment.id === item.id) !== undefined
                 if (isDuplicatedId) {
-                    attachment.id = format.generateId(6, true) as number
+                    attachment.id = String(format.generateId(6, true) as number)
                     dispatch(setAttachments([...attachments, attachment]))
                     onAttachment && onAttachment(attachment)
                 } else {

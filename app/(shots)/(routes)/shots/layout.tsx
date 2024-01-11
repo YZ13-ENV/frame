@@ -1,9 +1,7 @@
 import { file } from "@/api/file"
 import FrameMark from "@/components/shared/frame-mark"
-import User from "@/components/shared/user-circle"
+import Header from "@/components/widgets/header"
 import Image from "next/image"
-import Link from "next/link"
-import { ProjectsGrid } from "ui"
 
 type Props = {
     children: JSX.Element | JSX.Element[]
@@ -12,16 +10,7 @@ const layout = async({ children }: Props) => {
     const grid = await file.static.get('gird.svg')
     return (
         <>
-            <div className="w-full h-fit flex absolute top-0 left-0 items-center justify-end pt-6 px-6 z-20">
-                <Link href='/shots/popular' className="w-fit h-fit mx-auto flex items-center justify-center gap-3">
-                    <FrameMark />
-                    <span className="text-2xl font-semibold">Frame</span>
-                </Link>
-                <div className="w-fit h-fit flex items-center gap-4 justify-end">
-                    <ProjectsGrid />
-                    <User />
-                </div>
-            </div>
+            <Header />
             <div className="min-h-screen w-full relative py-12 lg:px-24 md:px-12 px-6">
                 { 
                     grid && 

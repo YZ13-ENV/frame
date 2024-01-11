@@ -18,7 +18,7 @@ function getType(name: string) {
 
 type Scale = 'Bytes' | 'KiB' | 'MiB' | 'GiB' | 'TiB' | 'PiB' | 'EiB' | 'ZiB' | 'YiB'
 type ScaleArray = ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']
-function getSize(bytes: number, decimals: number = 2): {
+export function getSize(bytes: number, decimals: number = 2): {
     size: number
     scale:Scale
 } {

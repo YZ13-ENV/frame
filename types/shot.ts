@@ -1,6 +1,6 @@
 import { DocData } from "./common"
 
-export type IdBlock<T> = { id: number } & T
+export type IdBlock<T> = { id: string } & T
 // Простые блоки
 export type TextBlock = {
     type: 'text'
@@ -33,7 +33,7 @@ export type SeparatorProps = {
 // Более сложные блоки
 export type MediaBlock = {
     type: 'media'
-    id: number // значение берётся из attachments
+    id: string // значение берётся из attachments
     content_type: string // значение берётся из attachments
 }
 type RootBlock = MediaBlock
@@ -71,13 +71,13 @@ export type CommentBlock = {
 }
 
 export type Thumbnail = {
-    id: number
+    id: string
     contentType: Attachment['contentType']
     url: Attachment['url']
 }
 
 export type Attachment = {
-    id: number
+    id: string
     size: number
     url: string
     contentType: string

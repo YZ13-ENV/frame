@@ -1,13 +1,30 @@
 'use client'
-import { useAppSelector } from "@/components/entities/store/store"
+import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { LuComponent } from "react-icons/lu";
-import { BiChevronDown, BiChevronUp, BiImage } from "react-icons/bi";
+import { BiChevronDown, BiChevronUp, BiImage, BiPin, BiTrashAlt } from "react-icons/bi";
+import { getSize } from "@/helpers/filer";
+import { Button } from "@/components/ui/button";
+import ThumbnailBlock from "./view-blocks/thumbnail";
+import { Attachment } from "@/types/shot";
+import { file } from "@/api/file";
+import { setAttachments } from "@/components/entities/uploader/draft";
 
 const Blocks = () => {
-    const [selected, setSelected] = useState<'0' | '1' | '2'>('0')
+    const [selected, setSelected] = useState<'0' | '1' | '2' | '3'>('0')
+    const rootBlock = useAppSelector(state => state.uploader.draft.draft.rootBlock)
+    const thumbnail = useAppSelector(state => state.uploader.draft.draft.thumbnail)
     const blocks = useAppSelector(state => state.uploader.draft.draft.blocks)
+    const attachments = useAppSelector(state => state.uploader.draft.draft.attachments)
+    const mediaBlocks = useMemo(() => { return blocks.filter(block => block.type === 'media') },[blocks])
+    const dispatch = useAppDispatch()
+    const removeAttachment = async(id: Attachment['id'], url: string) => {
+        const withOutCDN = url.replace('https://cdn.darkmaterial.space/', '')
+        await file.upload.delete(withOutCDN)
+        const updatedAttachments = attachments.filter(attach => attach.id !== id)
+        dispatch(setAttachments(updatedAttachments))
+    }
     return (
         <div className="absolute bottom-0 z-10 px-4 border-t left-6 w-80 bg-card rounded-t-xl border-x">
             <Accordion type="single" value={selected} className="w-full">
@@ -51,8 +68,42 @@ const Blocks = () => {
                         </div>
                     </AccordionTrigger>
                     <AccordionContent>
-                        <div className="w-full aspect-[4/3] rounded-lg border-dashed border-2 flex items-center justify-center p-4 flex-col bg-background">
-                            <span className="text-xs text-center text-muted-foreground">Перенесите файл для загрузки</span>
+                        <ThumbnailBlock />
+                    </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="3">
+                    <AccordionTrigger onClick={() => setSelected(selected === '3' ? '0' : '3')}>
+                        <div className="flex items-center gap-2 w-fit h-fit">
+                            <BiPin />
+                            Прикрепленные файлы
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                        <div className="w-full h-fit flex flex-col gap-2">
+                            {
+                                attachments.map(attachment => {
+                                    const size = getSize(attachment.size)
+                                    const isUsedInBlocks = mediaBlocks.find(block => block.type === 'media' && block.id === attachment.id) !== undefined
+                                    const isUsedInThumbnail = thumbnail.id === attachment.id
+                                    const isUsedInRootBlock = rootBlock.id === attachment.id
+                                    const isUsed = isUsedInBlocks || isUsedInThumbnail || isUsedInRootBlock
+                                    return (
+                                        <div className="w-full h-24 flex items-start gap-2">
+                                            <div className="h-full aspect-[4/3] bg-muted rounded-lg"></div>
+                                            <div className="w-1/2 h-full flex flex-col">
+                                                <span className="font-medium">Файл #{attachment.id}</span>
+                                                <span className="text-xs text-muted-foreground">{attachment.contentType}</span>
+                                                { size && <span className="text-xs">{size.size} {size.scale}</span> }
+                                                <div className="w-full h-fit flex items-center gap-2 mt-auto">
+                                                    <Button disabled={isUsed} size='sm'>{isUsed ? 'Используется' : 'Прикрепить'}</Button>
+                                                    <Button onClick={() => removeAttachment(attachment.id, attachment.url)} disabled={isUsed}
+                                                    size='icon' variant='destructive' className="shrink-0"><BiTrashAlt /></Button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </AccordionContent>
                 </AccordionItem>

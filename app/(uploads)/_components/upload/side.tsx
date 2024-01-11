@@ -8,8 +8,9 @@ import DraftWatcher from "../draft.watcher"
 type Props = {
     draft: DocDraftShotData
     title: string
+    hasSubscription?: boolean
 }
-const Side = ({ title, draft }: Props) => {
+const Side = ({ title, draft, hasSubscription=false }: Props) => {
     return (
         <>
             <header className="absolute top-0 left-0 flex items-center gap-2 pt-6 pl-6 w-fit">
@@ -20,7 +21,7 @@ const Side = ({ title, draft }: Props) => {
                 </div>
             </header>
             <div className="absolute left-0 flex gap-10 pl-6 w-fit h-fit">
-                <ToolKit />
+                <ToolKit hasSubscription={hasSubscription} />
             </div>
         </>
     )

@@ -1,14 +1,12 @@
 import { file } from "@/api/file"
 import FrameMark from "@/components/shared/frame-mark"
-import User from "@/components/shared/user-circle"
 import Image from "next/image"
-import Link from "next/link"
-import { ProjectsGrid } from "ui"
 import PortfolioNav from "../../_components/nav"
 import AuthorBanner from "../../_components/author-banner"
 import { cookies } from "next/headers"
 import { user } from "@/api/user"
 import { bum } from "@/api/bum"
+import Header from "@/components/widgets/header"
 
 type Props = {
     children: JSX.Element | JSX.Element[]
@@ -38,16 +36,7 @@ const layout = async({ children, params }: Props) => {
                     <Image src={grid} fill className='z-[-2] max-h-screen object-cover opacity-40' alt='grid' />
                 </>
             }
-            <header className="relative w-full h-fit flex top-0 left-0 items-center justify-end pt-6 px-6 z-20">
-                <Link href='/shots/popular' className="w-fit h-fit md:mx-auto mr-auto flex items-center justify-center gap-3">
-                    <FrameMark />
-                    <span className="text-2xl font-semibold">Frame</span>
-                </Link>
-                <div className="absolute right-6 w-fit h-fit flex items-center gap-4 justify-end">
-                    <ProjectsGrid />
-                    <User />
-                </div>
-            </header>
+            <Header />
             {
                 author &&
                 <AuthorBanner author={author} authorId={author.uid} popularShot={popular} visitorId={uid || ''} />

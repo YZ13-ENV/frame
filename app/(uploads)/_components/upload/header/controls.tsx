@@ -1,5 +1,5 @@
 import User from "@/components/shared/user-circle"
-import { Button } from "@/components/ui/button"
+import FinalTouch from "../final-touch"
 
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 const Controls = ({ showPublish=false }: Props) => {
     return (
         <div className='absolute top-0 right-0 flex items-center gap-4 p-6 w-fit'>
-            { showPublish && <Button>Опубликовать</Button> }
+            { showPublish && <FinalTouch /> }
             <User />
         </div>
     )

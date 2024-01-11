@@ -3,36 +3,21 @@ import { Separator } from "@/components/ui/separator"
 import { BiImage, BiText } from "react-icons/bi"
 import { RiSeparator, RiEmojiStickerLine } from "react-icons/ri";
 import { LuGalleryThumbnails } from "react-icons/lu";
-import KitButton from "./kit-button";
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store";
-import { Blocks, IdBlock, MediaBlock, TextBlock } from "@/types/shot";
-import { format } from "@/helpers/format";
+import { Blocks } from "@/types/shot";
 import { setBlocks } from "@/components/entities/uploader/draft";
+import { getDefaultBlock } from "@/const/default-blocks";
+import KitButton from "./kit-button";
 
-const ToolKit = () => {
+type Props = {
+    hasSubscription?: boolean
+}
+const ToolKit = ({ hasSubscription=false }: Props) => {
     const blocks = useAppSelector(state => state.uploader.draft.draft.blocks)
     const dispatch = useAppDispatch()
     const blockController = (blockType: Blocks['type']) => {
-        switch (blockType) {
-            case 'media':
-                const media_block: MediaBlock = {
-                    id: 0,
-                    content_type: '',
-                    type: 'media'
-                }
-                dispatch(setBlocks([...blocks, media_block]))
-                break;
-            case 'text':
-                const text_block: IdBlock<TextBlock> = {
-                    id: format.generateId(6, true) as number,
-                    type: 'text',
-                    text: ''
-                }
-                dispatch(setBlocks([...blocks, text_block]))
-                break;
-            default:
-                break;
-        }
+        const block = getDefaultBlock(blockType)
+        dispatch(setBlocks([...blocks, block]))
     }
     return (
         <div className="flex flex-col gap-2 p-2 rounded-xl bg-card h-fit">
@@ -42,16 +27,21 @@ const ToolKit = () => {
             <KitButton button={{ onClick: () => blockController('media') }} tooltip="Медиа блок">
                 <BiImage />
             </KitButton>
-            <KitButton tooltip="Разделительный блок">
+            <KitButton button={{ onClick: () => blockController('separator') }} tooltip="Разделительный блок">
                 <RiSeparator />
             </KitButton>
-            <Separator />
-            <KitButton tooltip="Стикер блок">
-                <RiEmojiStickerLine />
-            </KitButton>
-            <KitButton tooltip="Карусель">
-                <LuGalleryThumbnails />
-            </KitButton>
+            {
+                hasSubscription && 
+                <>
+                    <Separator />
+                    <KitButton button={{ onClick: () => blockController('sticker') }} tooltip="Стикер блок">
+                        <RiEmojiStickerLine />
+                    </KitButton>
+                    <KitButton button={{ onClick: () => blockController('shotGrid') }} tooltip="Карусель">
+                        <LuGalleryThumbnails />
+                    </KitButton>
+                </>
+            }
         </div>
     )
 }
