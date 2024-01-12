@@ -33,7 +33,7 @@ const DraftCard = ({ draft }: Props) => {
                 <div className="w-fit h-fit flex items-center gap-4">
                     <div className="w-fit h-fit flex flex-col">
                         <span className="text-sm text-muted-foreground">Обложка</span>
-                        <span className="text-base text-accent-foreground">{draft.thumbnail.id !== 0 ? 'Есть' : 'Не загружена'}</span>
+                        <span className="text-base text-accent-foreground">{draft.thumbnail.id !== '0' ? 'Есть' : 'Не загружена'}</span>
                     </div>
                     <div className="w-fit h-fit flex flex-col">
                         <span className="text-sm text-muted-foreground">Вложений</span>

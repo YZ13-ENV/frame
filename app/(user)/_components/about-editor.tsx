@@ -1,5 +1,4 @@
 'use client'
-
 import { bum } from "@/api/bum"
 import Textarea from "@/components/shared/textarea"
 import { Button } from "@/components/ui/button"

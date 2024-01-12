@@ -3,7 +3,6 @@ import { bum } from '@/api/bum'
 import { Button } from '@/components/ui/button'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import { Input } from '@/components/ui/input'
-import { format } from '@/helpers/format'
 import { DraftForUpload } from '@/types/shot'
 import { auth } from '@/utils/app'
 import { useRouter } from 'next/navigation'
@@ -31,12 +30,12 @@ const NewDraftButton = () => {
                 blocks: [],
                 rootBlock: {
                     content_type: '',
-                    id: 0,
+                    id: '0',
                     type: 'media'
                 },
                 thumbnail: {
                     contentType: '',
-                    id: 0,
+                    id: '0',
                     url: ''
                 },
                 title: name
