@@ -9,6 +9,7 @@ const layout = ({ children }: Props) => {
         <div className="w-full">
             <Header />
             { children }
+            <footer className="w-full border-b h-16"></footer>
         </div>
     )
 }

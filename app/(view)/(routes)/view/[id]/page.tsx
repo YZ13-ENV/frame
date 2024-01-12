@@ -1,22 +1,22 @@
 import ShotAdaptiveWrapper from "@/components/shared/shot-adaptive-wrapper"
 import { cookies } from "next/headers";
-import ShotHeader from "../../_components/shot-header";
+import ShotHeader from "../../../_components/shot-header";
 import { bum } from "@/api/bum";
 import { Suspense } from "react";
 import ShotHeaderSkeleton from "@/components/skeletons/shot-header";
 import { DateTime } from "luxon";
-import MediaBlock from "../../_components/blocks/media-block";
+import MediaBlock from "../../../_components/blocks/media-block";
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Separator } from "@/components/ui/separator";
 
 
 type Props = {
-    searchParams: {
-        s?: string
+    params: {
+        id: string
     }
 }
-const page = async({ searchParams }: Props) => {
-    const shotId = searchParams.s
+const page = async({ params }: Props) => {
+    const shotId = params.id
     const cookiesList = cookies()
     const uidCookie = cookiesList.get('uid')
     const visitorId = uidCookie ? uidCookie.value : null
@@ -84,7 +84,6 @@ const page = async({ searchParams }: Props) => {
                     <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
                 </div>
             </div>
-            <footer className="w-full border-b h-16"></footer>
         </>
     )
 }

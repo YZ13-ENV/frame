@@ -73,7 +73,7 @@ const FinalTouch = () => {
                     thumbnail: { id: '0', contentType: '', url: '' }, 
                     title: '', attachments:[], authorId: '' 
                 }))
-                router.push(`/view?s=${draftId}`)
+                router.push(`/view/${draftId}`)
             }
         }
     }
