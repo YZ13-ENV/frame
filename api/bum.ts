@@ -62,6 +62,20 @@ export const bum = {
             }
         },
         author: {
+            last: async(uid: string): Promise<DocShotData[]> => {
+                try {
+                    if (!uid) throw new Error('uid is not provided')
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const url = `${api_host}/shots/user/last?id=${uid}`
+                    const res = await fetch(url, { method: 'GET', headers: headers })
+                    if (res.ok) return await res.json() as DocShotData[]
+                    return []
+                } catch(e) {
+                    return []
+                }
+            },
             follow: async(from: string, to: string): Promise<string[]> => {
                 try {
                     const headers = new Headers()

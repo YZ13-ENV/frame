@@ -12,6 +12,8 @@ import EmptyComments from "@/app/(view)/_components/empty-comments";
 import { Button } from "@/components/ui/button";
 import { BiHeart } from "react-icons/bi";
 import AuthorControls from "@/app/(view)/_components/author-controls";
+import LikeButton from "@/components/shared/like-button";
+import LastShots from "@/app/(view)/_components/last-shots";
 
 
 type Props = {
@@ -56,7 +58,7 @@ const page = async({ params }: Props) => {
                                 }
                             </div>
                             <div className="w-fit h-fit flex items-center gap-2">
-                                <Button size='icon' variant='outline'><BiHeart /></Button>
+                                <LikeButton id={shot.doc_id} defaultValue={!!shot.likes.find(like => visitorId ? like.uid === visitorId : false)} />
                             </div>
                         </div>
                         <div className="w-full h-fit p-2 rounded-lg bg-muted">
@@ -110,12 +112,16 @@ const page = async({ params }: Props) => {
                 <div className="w-full h-fit max-w-7xl mx-auto flex gap-6 view-wrapper-paddings">
                     <span className="text-lg font-semibold">Последние работы от ***</span>
                 </div>
+                <Suspense fallback={
                 <div className="view-block-wrapper view-last-shots-wrapper view-wrapper-paddings py-0">
                     <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
                     <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
                     <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
                     <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
                 </div>
+                }>
+                    <LastShots authorId={shot.authorId} />
+                </Suspense>
             </div>
         </>
     )
