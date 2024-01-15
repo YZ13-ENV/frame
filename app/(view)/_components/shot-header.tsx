@@ -12,7 +12,6 @@ type Props = {
 }
 const ShotHeader = async({ authorId, visitorId, statistics={ likes: 0, views: 0 } }: Props) => {
     const author = await user.byId.short(authorId)
-    const isYou = visitorId ? visitorId === authorId : false
     return (
         <div className="w-full h-fit flex flex-col border-y bg-card sticky top-0 z-20">
             <div className="w-full h-fit max-w-7xl mx-auto flex gap-4 view-wrapper-paddings">
@@ -37,11 +36,6 @@ const ShotHeader = async({ authorId, visitorId, statistics={ likes: 0, views: 0 
                                     <div className="w-24 h-4 rounded-md bg-muted"></div>
                                 </div>
                             </Link>
-                        }
-                        {
-                            isYou
-                            ? null
-                            : <button className="h-10 w-32 rounded-md bg-muted"></button>
                         }
                     </div>
                     <div className="w-fit h-fit flex items-center gap-4">

@@ -14,6 +14,8 @@ import { BiHeart } from "react-icons/bi";
 import AuthorControls from "@/app/(view)/_components/author-controls";
 import LikeButton from "@/components/shared/like-button";
 import LastShots from "@/app/(view)/_components/last-shots";
+import ViewWatcher from "@/app/(view)/_components/view-watcher";
+import { notFound } from "next/navigation";
 
 
 type Props = {
@@ -28,7 +30,7 @@ const page = async({ params }: Props) => {
     const visitorId = uidCookie ? uidCookie.value : null
     const shot = shotId ? await bum.shot.get(shotId) : null
     const isYou = shot && visitorId ? shot.authorId === visitorId : false
-    if (!shot) return ''
+    if (!shot) return notFound()
     return (
         <>
             <div className="w-full h-0" />
@@ -36,6 +38,7 @@ const page = async({ params }: Props) => {
                 <ShotHeader statistics={{ likes: shot.likes.length || 0, views: shot.views.length || 0 }}
                 authorId={shot.authorId} visitorId={visitorId || ''} />
             </Suspense>
+            <ViewWatcher shotId={shot.doc_id} views={shot.views} />
             <div className="w-full h-full flex flex-col border-b bg-card">
                 {
                     isYou &&

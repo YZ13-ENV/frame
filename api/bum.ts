@@ -386,6 +386,20 @@ export const bum = {
                         return []
                     }
                 },
+                view: async(id: string, uid: string): Promise<DocShotData['views']> => {
+                    try {
+                        if (!uid) throw new Error('uid is not provided')
+                        const headers = new Headers()
+                        const authHeader = authorizationHeader()
+                        headers.append('authorization', authHeader || '')
+                        const url = `${api_host}/shots/shot/${id}/view?uid=${uid}`
+                        const res = await fetch(url, { method: 'POST', headers: headers })
+                        if (res.ok) return await res.json() as DocShotData['views']
+                        return []
+                    } catch(e) {
+                        return []
+                    }
+                },
                 get: async(shotId: string, userId?: string): Promise<DocShotData | null> => {
                     try {
                         if (userId) {
