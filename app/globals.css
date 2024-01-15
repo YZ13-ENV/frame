@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 0 0% 95%;
@@ -9,29 +9,29 @@
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
- 
+
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
- 
+
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
- 
+
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
- 
+
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
- 
+
     --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;
- 
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
- 
+
     --radius: 0.5rem;
 
     --shot-width-mini: 250px;
@@ -40,38 +40,38 @@
     --shot-width-medium: 270px;
     --shot-width-large: 336px;
   }
- 
+
   .dark {
     --background: 0 0% 0%;
     --foreground: 0 0% 98%;
- 
+
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
- 
+
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
- 
+
     --primary: 0 0% 98%;
     --primary-foreground: 0 0% 9%;
- 
+
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
- 
+
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
- 
+
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
- 
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
- 
+
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -108,7 +108,7 @@
   .session-user-row {
     width: calc(188px - 36px);
   }
-  .no-scrollbar::-webkit-scrollbar { 
+  .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 }
@@ -247,5 +247,48 @@
   }
   .view-last-shots-wrapper {
     @apply grid md:grid-cols-4 grid-cols-2 md:grid-rows-1 grid-rows-2
+  }
+
+  .md-layout > h1 {
+    @apply pt-12 mb-6
+  }
+  .md-layout > h1:first-of-type {
+    @apply pt-0
+  }
+  .md-layout > h2:first-of-type {
+    @apply pt-0
+  }
+  .md-layout > h3:first-of-type {
+    @apply pt-0
+  }
+  .md-layout > h4:first-of-type {
+    @apply pt-0
+  }
+  .md-layout > h5:first-of-type {
+    @apply pt-0
+  }
+  .md-layout > h6:first-of-type {
+    @apply pt-0
+  }
+  .md-layout > h2 {
+    @apply pt-10 mb-6
+  }
+  .md-layout > h3 {
+    @apply pt-9 mb-6
+  }
+  .md-layout > h4 {
+    @apply pt-8 mb-6
+  }
+  .md-layout > h5 {
+    @apply pt-7 mb-6
+  }
+  .md-layout > h6 {
+    @apply pt-6 mb-6
+  }
+  .md-layout > p {
+    @apply my-4
+  }
+  .md-layout > span {
+    @apply my-4
   }
 }

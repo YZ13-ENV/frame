@@ -27,7 +27,7 @@ const page = async({ params }: Props) => {
     const uid = uidCookie ? uidCookie.value : null
     const grid = await file.static.get('gird.svg')
     const draftId = params.id
-    const draft = await bum.draft.get(draftId)
+    const draft = await bum.draft.get(draftId) || await bum.shot.get(draftId)
     const author = draft ? await user.byId.short(draft.authorId) : null
     const isAuthor = draft ? uid === draft.authorId : false
     if (!isAuthor || !draft) return JSON.stringify(draft, null, 2)

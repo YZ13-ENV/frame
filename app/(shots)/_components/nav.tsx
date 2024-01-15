@@ -1,8 +1,7 @@
 'use client'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { cleanPathname, detectCategoryTab, detectSortTab, withCustomSortTab } from "@/const/categories"
+import { cleanPathname, detectCategoryTab, detectSortTab, sortTabs, withCustomSortTab } from "@/const/categories"
 import { usePathname, useRouter } from "next/navigation"
 import { useLayoutEffect, useMemo, useState } from "react"
 
@@ -20,8 +19,8 @@ const Nav = ({ padding=false }: Props) => {
     const detectedSortTab = detectSortTab(pathname)
     const detectedCategoryTab = detectCategoryTab(pathname, detectedSortTab)
     // const options = sortTabs(integrationMode) // .filter(opt => pathname.includes('/shots') ? excludeIf(opt.value, false) : excludeIf(opt.value, true))
-    const isShotsLayout = useMemo(() => pathname.startsWith('/shots'), [pathname]) 
-    const isShotPage = useMemo(() => pathname.startsWith('/view'), [pathname]) 
+    const isShotsLayout = useMemo(() => pathname.startsWith('/shots'), [pathname])
+    const isShotPage = useMemo(() => pathname.startsWith('/view'), [pathname])
     const [orderTab, setOrderTab] = useState<string>(detectedSortTab)
     const [categoryTab, setCategoryTab] = useState<string>(detectedCategoryTab ? detectedCategoryTab : withCustomSortTab(orderTab)[0].value)
     const router = useRouter()
@@ -36,16 +35,30 @@ const Nav = ({ padding=false }: Props) => {
     },[isShotsLayout, isShotPage, orderTab, categoryTab])
     return (
         <div className={`relative z-40 flex flex-row items-center lg:justify-center justify-between w-full gap-8 ${padding ? 'px-6' : 'px-0'} my-6 shrink-0 h-fit`}>
-            <div onClick={() => orderTab === '/popular' ? setOrderTab('/new') : setOrderTab('/popular')}
+            <Select defaultValue="/popular" onValueChange={state => setOrderTab(state)} value={orderTab}>
+                <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select a order" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectGroup className='z-20'>
+                        {
+                            sortTabs().map(tab => <SelectItem key={tab.value} onClick={() => setOrderTab(tab.value)} value={tab.value}
+                                >{tab.label}</SelectItem>
+                            )
+                        }
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
+            {/* <div onClick={() => orderTab === '/popular' ? setOrderTab('/new') : setOrderTab('/popular')}
             className={`flex items-center justify-center w-fit gap-2 shrink-0 h-fit`}>
                 <span className={`text-sm font-medium transition-all ${ orderTab === '/popular' ? 'text-secondary-foreground' : 'text-muted-foreground' }`}>Популярные</span>
                 <Switch checked={ orderTab === '/popular' ? false : true } />
                 <span className={`text-sm font-medium transition-all ${ orderTab === '/new' ? 'text-secondary-foreground' : 'text-muted-foreground' } `}>Новые</span>
-            </div>
+            </div> */}
             <div className="nav-select">
-                <Select defaultValue="/" value={categoryTab}>
+                <Select defaultValue="/" value={categoryTab} onValueChange={state => setCategoryTab(state)}>
                     <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Select a fruit" />
+                        <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup className='z-20'>

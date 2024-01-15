@@ -6,7 +6,7 @@ type Props = {
 const layout = ({ children }: Props) => {
     return (
         <>
-            <div className="w-full h-[20vh]"></div>
+            {/* <div className="w-full h-[20vh]"></div> */}
             <Nav />
             { children }
         </>

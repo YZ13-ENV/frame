@@ -77,7 +77,7 @@ export const bum = {
                 } catch(e) {
                     console.log(e)
                     return []
-                } 
+                }
             },
             addAbout: async(id: string, about: string): Promise<string> => {
                 try {
@@ -94,7 +94,7 @@ export const bum = {
                 } catch(e) {
                     console.log(e)
                     return ''
-                } 
+                }
             },
             getAbout: async(id: string): Promise<string> => {
                 try {
@@ -111,7 +111,7 @@ export const bum = {
                 } catch(e) {
                     console.log(e)
                     return ''
-                } 
+                }
             },
             addSignature: async(id: string, signature: string): Promise<string> => {
                 try {
@@ -128,7 +128,7 @@ export const bum = {
                 } catch(e) {
                     console.log(e)
                     return ''
-                } 
+                }
             },
             getSignature: async(id: string): Promise<string> => {
                 try {
@@ -145,7 +145,7 @@ export const bum = {
                 } catch(e) {
                     console.log(e)
                     return ''
-                } 
+                }
             },
             likes: async(id: string): Promise<Array<ShotData['likes']>> => {
                 try {
@@ -162,7 +162,7 @@ export const bum = {
                 } catch(e) {
                     console.log(e)
                     return []
-                } 
+                }
             },
             followers: async(id: string): Promise<string[]> => {
                 try {
@@ -179,7 +179,7 @@ export const bum = {
                 } catch(e) {
                     console.log(e)
                     return []
-                } 
+                }
             },
             followings: async(id: string): Promise<string[]> => {
                 try {
@@ -196,7 +196,7 @@ export const bum = {
                 } catch(e) {
                     console.log(e)
                     return []
-                } 
+                }
             }
         },
         attachments: {
@@ -225,10 +225,10 @@ export const bum = {
                     const headers = new Headers()
                     const authHeader = authorizationHeader()
                     headers.append('authorization', authHeader || '')
-                    const url = order && category 
-                    ? `${api_host}/shots/all/${order}/${category}?onlyDrafts=true` 
-                    : order ? `${api_host}/shots/all/${order}?onlyDrafts=true` 
-                    : `${api_host}/shots/all/popular?onlyDrafts=true` 
+                    const url = order && category
+                    ? `${api_host}/shots/all/${order}/${category}?onlyDrafts=true`
+                    : order ? `${api_host}/shots/all/${order}?onlyDrafts=true`
+                    : `${api_host}/shots/all/popular?onlyDrafts=true`
                     const res = await fetch(url, { method: 'GET', headers: headers })
                     if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
                     return { count: 0, data: [], next: '' }
@@ -243,11 +243,11 @@ export const bum = {
                     const headers = new Headers()
                     const authHeader = authorizationHeader()
                     headers.append('authorization', authHeader || '')
-                    const url = order && category 
-                    ? `${api_host}/shots/user/${uid}/${order}/${category}?onlyDrafts=true` 
-                    : order 
-                    ? `${api_host}/shots/user/${uid}/${order}?onlyDrafts=true` 
-                    : `${api_host}/shots/user/${uid}?onlyDrafts=true` 
+                    const url = order && category
+                    ? `${api_host}/shots/user/${uid}/${order}/${category}?onlyDrafts=true`
+                    : order
+                    ? `${api_host}/shots/user/${uid}/${order}?onlyDrafts=true`
+                    : `${api_host}/shots/user/${uid}?onlyDrafts=true`
                     const res = await fetch(url, { method: 'GET', headers: headers })
                     if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
                     return { count: 0, data: [], next: '' }
@@ -264,11 +264,11 @@ export const bum = {
                         const headers = new Headers()
                         const authHeader = authorizationHeader()
                         headers.append('authorization', authHeader || '')
-                        const url = order && category 
-                        ? `${api_host}/shots/user/${uid}/${order}/${category}` 
-                        : order 
-                        ? `${api_host}/shots/user/${uid}/${order}` 
-                        : `${api_host}/shots/user/${uid}` 
+                        const url = order && category
+                        ? `${api_host}/shots/user/${uid}/${order}/${category}`
+                        : order
+                        ? `${api_host}/shots/user/${uid}/${order}`
+                        : `${api_host}/shots/user/${uid}`
                         const res = await fetch(url, { method: 'GET', headers: headers })
                         if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
                         return { count: 0, data: [], next: '' }
@@ -298,7 +298,7 @@ export const bum = {
                         const headers = new Headers()
                         const authHeader = authorizationHeader()
                         headers.append('authorization', authHeader || '')
-                        const url = order && category ? `${api_host}/shots/all/${order}/${category}` : order ? `${api_host}/shots/all/${order}` : `${api_host}/shots/all/popular` 
+                        const url = order && category ? `${api_host}/shots/all/${order}/${category}` : order ? `${api_host}/shots/all/${order}` : `${api_host}/shots/all/popular`
                         const res = await fetch(url, { method: 'GET', headers: headers })
                         if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
                         return { count: 0, data: [], next: '' }
@@ -358,7 +358,20 @@ export const bum = {
                 },
         },
         shot: {
-            // Тут мы можем выбрать что мы можем сделать с работой, получить, удалить и т.д.
+                like: async(id: string, uid: string): Promise<DocShotData['likes']> => {
+                    try {
+                        if (!uid) throw new Error('uid is not provided')
+                        const headers = new Headers()
+                        const authHeader = authorizationHeader()
+                        headers.append('authorization', authHeader || '')
+                        const url = `${api_host}/shots/shot/${id}/like?uid=${uid}`
+                        const res = await fetch(url, { method: 'POST', headers: headers })
+                        if (res.ok) return await res.json() as DocShotData['likes']
+                        return []
+                    } catch(e) {
+                        return []
+                    }
+                },
                 get: async(shotId: string, userId?: string): Promise<DocShotData | null> => {
                     try {
                         if (userId) {

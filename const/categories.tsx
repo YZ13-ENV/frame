@@ -1,5 +1,6 @@
 import { HiSortDescending } from "react-icons/hi"
 import { MdFiberNew } from "react-icons/md"
+import { RiUserStarLine } from "react-icons/ri"
 
 export const categories = [
     {
@@ -93,17 +94,12 @@ export const withCustomSortTab = (sortTag: string) => [
         value: `/mobile`
     },
 ]
-export const sortTabs = (integrationMode?: boolean) => [
-    // {
-    //     icon: <Tooltip title='Рекомендации'><BsStars className='inline-block mb-1' size={17} /></Tooltip>,
-    //     label: 'Рекомендации',
-    //     value: '/recommendations'
-    // },
-    // {
-    //     icon: <Tooltip title='Подписки'><RiUserStarLine className='inline-block mb-1' size={17} /></Tooltip>,
-    //     value: '/following',
-    //     label: 'Подписки'
-    // },
+export const sortTabs = (): { icon: JSX.Element, value: string, label: string }[] => [
+    {
+        icon: <RiUserStarLine className='inline-block mb-1' size={17} />,
+        value: '/following',
+        label: 'Подписки'
+    },
     {
         icon: <HiSortDescending className='inline-block mb-1' size={17} />,
         label: 'Популярные',
@@ -115,4 +111,4 @@ export const sortTabs = (integrationMode?: boolean) => [
         value: '/new'
     },
 
-].map(opt => integrationMode ? { icon: opt.icon, value: opt.value } : opt)
+]

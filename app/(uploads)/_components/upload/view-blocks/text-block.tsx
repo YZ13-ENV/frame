@@ -21,7 +21,7 @@ const TextBlock = ({ block, index }: Props) => {
         })
         dispatch(setBlocks(updatedBlocks))
     }
-    return <ForwardRefEditor markdown={block.text.replace(/\n/gi, "&nbsp; \n") || `Введите текст...`} onChange={onChange} />
+    return <ForwardRefEditor markdown={block.text || `Введите текст...`} onChange={onChange} />
 }
 
 export default TextBlock
