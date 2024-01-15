@@ -1,4 +1,4 @@
-# ![dey-logo](/public/bum.svg) bum (находится в бета тестировании)
+# Frame
 
 Рабочая сборка -> [Frame](https://frame.darkmaterial.space)
 
