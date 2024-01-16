@@ -9,14 +9,17 @@ type Props = {
     }
 }
 const page = async({ params }: Props) => {
-    const byId = user.byId.short(params.nick)
-    const byNickname = user.byNick.short(params.nick)
+    const nickname = params.nick
+    const byId = user.byId.short(nickname)
+    const byNickname = user.byNick.short(nickname)
     const [dataById, dataByNickname] = await Promise.all([byId, byNickname])
-    const author = dataByNickname ? dataByNickname : dataById 
-    const isNickname = author ? params.nick === author.nickname : false
+    const author = dataByNickname ? dataByNickname : dataById
+    const isNickname = author ? nickname === author.nickname : false
     const cookiesList = cookies()
     const uidCookie = cookiesList.get('uid')
-    const uid = uidCookie ? uidCookie.value : null
+    const visitorId = uidCookie ? uidCookie.value : null
+    const isYou = visitorId && author ? visitorId === author.uid : false
+    if (!isYou) redirect(`/${nickname}`)
     if (!isNickname && author && author.nickname) return redirect(`/${author.nickname}/saved`)
     return (
         <>

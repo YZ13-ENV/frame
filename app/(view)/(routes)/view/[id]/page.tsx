@@ -80,7 +80,7 @@ const page = async({ params }: Props) => {
                             ? shot.comments.map(comment => <div className="w-full h-20 rounded-lg bg-muted"></div>)
                             : <EmptyComments />
                             : <div className="w-full h-full flex items-center justify-center">
-                                <span className="mx-auto text-center text-muted-foreground">Комментарии отключены</span>
+                                <span className="mx-auto text-center text-sm text-muted-foreground">Комментарии отключены</span>
                             </div>
                         }
                         </div>

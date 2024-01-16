@@ -1,7 +1,7 @@
 import { api_host } from "@/const/host"
 import { authorizationHeader } from "@/helpers/headers"
 import { ChunkResponse } from "@/types/common"
-import { Attachment, DocDraftShotData, DocShotData, DraftForUpload, DraftShotData, ShotData } from "@/types/shot"
+import { Attachment, CommentBlock, DocDraftShotData, DocShotData, DraftForUpload, DraftShotData, ShotData } from "@/types/shot"
 
 const LONG_CACHE_TIME = 600
 const MEDIUM_CACHE_TIME = 300
@@ -398,6 +398,33 @@ export const bum = {
                         return []
                     } catch(e) {
                         return []
+                    }
+                },
+                addComment: async(id: string, comment: CommentBlock) => {
+                    try {
+                        const headers = new Headers()
+                        const authHeader = authorizationHeader()
+                        headers.append('authorization', authHeader || '')
+                        headers.append('Content-Type', 'application/json')
+                        const url = `${api_host}/shots/shot/${id}/comment`
+                        const res = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(comment) })
+                        if (res.ok) return await res.json() as CommentBlock[]
+                        return []
+                    } catch(e) {
+                        return []
+                    }
+                },
+                deleteComment: async(id: string, commentId: string) => {
+                    try {
+                        const headers = new Headers()
+                        const authHeader = authorizationHeader()
+                        headers.append('authorization', authHeader || '')
+                        const url = `${api_host}/shots/shot/${id}/comment?commentId=${commentId}`
+                        const res = await fetch(url, { method: 'POST', headers: headers })
+                        if (res.ok) return Boolean(await res.text())
+                        return false
+                    } catch(e) {
+                        return false
                     }
                 },
                 get: async(shotId: string, userId?: string): Promise<DocShotData | null> => {

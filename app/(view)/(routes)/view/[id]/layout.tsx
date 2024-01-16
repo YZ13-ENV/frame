@@ -7,7 +7,7 @@ type Props = {
 const layout = ({ children }: Props) => {
     return (
         <div className="w-full">
-            <Header mini transparent={false} />
+            <Header transparent={false} />
             { children }
             <footer className="w-full border-b h-16"></footer>
         </div>

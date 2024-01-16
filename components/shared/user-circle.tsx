@@ -1,18 +1,17 @@
 'use client'
 import { UserCircle } from 'ui'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from '@/utils/app'
 import type { User } from 'firebase/auth'
 import { useMediaQuery } from 'react-responsive'
 import { useEffect, useState } from 'react'
 import { user as userAPI } from '@/api/user'
 import { menu } from '@/const/menu-map'
+import { useSession } from '@/hooks/useSession'
 
 type Props = {
     size?: number
 }
 const User = ({ size=36 }: Props) => {
-    const [user] = useAuthState(auth)
+    const [session, controls, user] = useSession()
     const [isSubscriber, setIsSubscriber] = useState<boolean>(false)
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 786px)' })
     useEffect(() => {
