@@ -8,14 +8,12 @@ import { DateTime } from "luxon";
 import MediaBlock from "../../../_components/blocks/media-block";
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Separator } from "@/components/ui/separator";
-import EmptyComments from "@/app/(view)/_components/empty-comments";
-import { Button } from "@/components/ui/button";
-import { BiHeart } from "react-icons/bi";
 import AuthorControls from "@/app/(view)/_components/author-controls";
 import LikeButton from "@/components/shared/like-button";
 import LastShots from "@/app/(view)/_components/last-shots";
 import ViewWatcher from "@/app/(view)/_components/view-watcher";
 import { notFound } from "next/navigation";
+import Comments from "@/app/(view)/_components/comments";
 
 
 type Props = {
@@ -72,18 +70,8 @@ const page = async({ params }: Props) => {
                                 }
                             </div>
                         </div>
-                        <div className="w-full h-full flex flex-col gap-2">
-                            <div className="w-full shrink-0 h-36 rounded-lg border"></div>
-                        {
-                            shot.needFeedback
-                            ? shot.comments.length
-                            ? shot.comments.map(comment => <div className="w-full h-20 rounded-lg bg-muted"></div>)
-                            : <EmptyComments />
-                            : <div className="w-full h-full flex items-center justify-center">
-                                <span className="mx-auto text-center text-sm text-muted-foreground">Комментарии отключены</span>
-                            </div>
-                        }
-                        </div>
+                        <Comments comments={shot.comments} shotId={shot.doc_id}
+                        isCommentsEnabled={shot.needFeedback} />
                         {/* <div className="w-full h-fit flex flex-col gap-2">
                             <div className="w-full h-6 rounded-md bg-muted"></div>
                             <div className="w-2/3 h-6 rounded-md bg-muted"></div>

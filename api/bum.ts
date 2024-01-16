@@ -420,7 +420,7 @@ export const bum = {
                         const authHeader = authorizationHeader()
                         headers.append('authorization', authHeader || '')
                         const url = `${api_host}/shots/shot/${id}/comment?commentId=${commentId}`
-                        const res = await fetch(url, { method: 'POST', headers: headers })
+                        const res = await fetch(url, { method: 'DELETE', headers: headers })
                         if (res.ok) return Boolean(await res.text())
                         return false
                     } catch(e) {
