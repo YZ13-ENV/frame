@@ -14,12 +14,13 @@ const User = ({ size=36 }: Props) => {
     const [session, controls, user] = useSession()
     const [isSubscriber, setIsSubscriber] = useState<boolean>(false)
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 786px)' })
+    const link = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://frame.darkmaterial.space/shots/popular'
     useEffect(() => {
         if (user) userAPI.byId.short(user.uid)
         .then(data => setIsSubscriber(data ? data.isSubscriber : false))
     },[user])
     return (
-        <UserCircle size={size} isSubscriber={isSubscriber} map={menu}
+        <UserCircle size={size} isSubscriber={isSubscriber} map={menu} loginLink={`https://auth.darkmaterial.space/login/email?continue=${link}`}
         activeMenu={isTabletOrMobile ? 'mobile' : 'desktop'} user={user as User | undefined} buttonSize='lg' />
     )
 }
