@@ -2,9 +2,11 @@
 
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
 import { setRootBlock } from "@/components/entities/uploader/draft"
+import { Button } from "@/components/ui/button"
 import FileUploader from "@/components/widgets/file-uploader"
 import { Attachment, IdBlock, MediaBlock } from "@/types/shot"
 import Image from "next/image"
+import { GrDetach } from "react-icons/gr"
 
 
 const RootBlock = () => {
@@ -19,11 +21,25 @@ const RootBlock = () => {
         }
         dispatch(setRootBlock(updatedBlock))
     }
+    const detach = () => {
+        dispatch(setRootBlock({
+            id: '0',
+            content_type: '',
+            type: 'media'
+        }))
+    }
     const isImage = rootBlock.content_type.includes('jpg') || rootBlock.content_type.includes('png')
     const attachment = attachments.find(item => item.id === rootBlock.id)
     if (rootBlock.id === '0') return <FileUploader onAttachment={pickAttachment} />
     return (
         <div className="w-full aspect-[4/3] rounded-xl relative bg-card border overflow-hidden">
+            {
+                rootBlock.id !== '0' &&
+                <div className="w-fit h-fit p-2 z-20 absolute top-0 right-0">
+                    <Button size='icon' onClick={detach}
+                    variant='destructive'><GrDetach /></Button>
+                </div>
+            }
             {
                 process.env.NODE_ENV !== 'development' &&
                 isImage && attachment && <Image src={attachment.url} fill alt={attachment.contentType + attachment.createdAt} />

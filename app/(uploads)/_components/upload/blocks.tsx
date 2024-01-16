@@ -62,7 +62,7 @@ const Blocks = () => {
                 </AccordionItem>
                 <AccordionItem value="2">
                     <AccordionTrigger onClick={() => setSelected(selected === '2' ? '0' : '2')}>
-                        <div className="flex items-center gap-2 w-fit h-fit">
+                        <div className="flex items-center gap-2 w-fit h-fit relative">
                             <BiImage />
                             Обложка
                         </div>

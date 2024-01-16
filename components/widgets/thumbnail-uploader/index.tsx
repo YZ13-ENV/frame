@@ -35,7 +35,7 @@ const ThumbnailUploader = ({ onAttachment }: Props) => {
             }
         }
         return (
-            <div className="w-full aspect-[4/3] rounded-lg border-dashed border-2 flex gap-2 items-center justify-center p-4 flex-col bg-background">
+            <div className="w-full relative aspect-[4/3] rounded-lg border-dashed border-2 flex gap-2 items-center justify-center p-4 z-20 flex-col bg-background">
                 <span className="text-xs text-center text-muted-foreground">Перенесите файл для загрузки</span>
                 <span className="text-xs text-center text-muted-foreground">Не более 2МБ - .JPG .PNG</span>
                 <DropZone onFile={file => createAttachment(file)} className="absolute top-0 left-0" />

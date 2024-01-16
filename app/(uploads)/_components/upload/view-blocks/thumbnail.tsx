@@ -2,9 +2,11 @@
 
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
 import { setThumbnail } from "@/components/entities/uploader/draft"
+import { Button } from "@/components/ui/button"
 import ThumbnailUploader from "@/components/widgets/thumbnail-uploader"
 import { Attachment, Thumbnail } from "@/types/shot"
 import Image from "next/image"
+import { GrDetach } from "react-icons/gr"
 
 const ThumbnailBlock = () => {
     const thumbnail = useAppSelector(state => state.uploader.draft.draft.thumbnail)
@@ -18,11 +20,25 @@ const ThumbnailBlock = () => {
         }
         dispatch(setThumbnail(updatedThumbnail))
     }
+    const detachThumbnail = () => {
+        dispatch(setThumbnail({
+            id: '0',
+            contentType: '',
+            url: ''
+        }))
+    }
     const isImage = thumbnail.contentType.includes('jpg') || thumbnail.contentType.includes('png')
     const attachment = attachments.find(item => item.id === thumbnail.id)
     if (thumbnail.id === '0') return <ThumbnailUploader onAttachment={pickAttachment} />
     return (
-        <div className="w-full aspect-[4/3] rounded-xl relative bg-card border overflow-hidden">
+        <div className="relative w-full aspect-[4/3] rounded-xl bg-card border overflow-hidden">
+            {
+                thumbnail.url.length &&
+                <div className="w-fit h-fit p-2 z-20 absolute top-0 right-0">
+                    <Button size='icon' onClick={detachThumbnail}
+                    variant='destructive'><GrDetach /></Button>
+                </div>
+            }
             {
                 process.env.NODE_ENV !== 'development' &&
                 isImage && attachment && <Image src={attachment.url} fill alt={attachment.contentType + attachment.createdAt} />
