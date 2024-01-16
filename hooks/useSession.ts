@@ -65,6 +65,7 @@ export const useSession = (): [Session | null, (type: Controls, uid: string) => 
   const parsedSession = parseSession(session as string)
 
   const controls = (type: Controls, uid: string) => {
+    if (!uid) return undefined
     // controls type -> 'add' 'update' 'delete'
     // add - добавление пользователя в сессию
     // update - обновление текущего пользователя
