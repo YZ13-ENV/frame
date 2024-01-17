@@ -25,7 +25,7 @@ const layout = async({ children, params }: Props) => {
     const byNickname = user.byNick.short(nick)
     const [dataById, dataByNickname] = await Promise.all([byId, byNickname])
     const author = dataByNickname ? dataByNickname : dataById
-    const popular = author ? await bum.shot.getPopularOne(author.uid) : null
+    const popular = author ? await bum.author.mostPopularShot(author.uid) : null
     const isNickname = author ? nick === author.nickname : false
     const path = isNickname && author ? `/${author.nickname}` : `/${nick}`
     const isYou = author && uid ? author.uid === uid : false

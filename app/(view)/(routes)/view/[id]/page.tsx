@@ -14,6 +14,7 @@ import LastShots from "@/app/(view)/_components/last-shots";
 import ViewWatcher from "@/app/(view)/_components/view-watcher";
 import { notFound } from "next/navigation";
 import Comments from "@/app/(view)/_components/comments";
+import FollowButton from "@/app/(user)/_components/follow-button";
 
 
 type Props = {
@@ -55,7 +56,7 @@ const page = async({ params }: Props) => {
                                 {
                                     isYou
                                     ? <button className="h-9 w-32 rounded-md bg-muted"></button>
-                                    : <button className="h-9 w-32 rounded-md bg-muted"></button>
+                                    : visitorId ? <FollowButton from={visitorId} to={shot.authorId} /> : <button className="h-9 w-32 rounded-md bg-muted"></button>
                                 }
                             </div>
                             <div className="w-fit h-fit flex items-center gap-2">

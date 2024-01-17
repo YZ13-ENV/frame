@@ -219,7 +219,7 @@
     @apply flex items-center md:h-full h-fit md:w-fit w-full shrink-0
   }
   .pinned-work {
-    @apply lg:h-full h-fit lg:w-fit w-full aspect-[4/3] min-h-[20rem] lg:max-w-none max-w-xl lg:mx-0 mx-auto rounded-lg bg-muted shrink-0
+    @apply lg:h-full h-fit lg:w-fit w-full aspect-[4/3] min-h-[20rem] lg:max-w-none max-w-xl lg:mx-0 mx-auto rounded-lg bg-muted shrink-0 relative
   }
   .author-description {
     @apply xl:text-5xl text-4xl font-bold text-accent-foreground

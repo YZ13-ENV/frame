@@ -2,8 +2,8 @@ export const format = {
     numbers: (num: number) => {
         if (num < 999) {
             return num
-        } else if (num >= 1000 && num <= 999_999) {
-            return (num / 1000).toFixed(1) + 'k'
+        } else if (num >= 1_000 && num <= 999_999) {
+            return (num / 1_000).toFixed(1) + ' тыс.'
         } else return (num / 1_000_000).toFixed(1) + ' млн.'
     },
     random: (len: number, charSet?: string) => {
@@ -16,7 +16,7 @@ export const format = {
         return randomString
     },
     generateId: (len: number, onlyNumbers?: boolean) => {
-        const charSet = onlyNumbers 
+        const charSet = onlyNumbers
         ? '0123456789'
         : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
         let result = ''
