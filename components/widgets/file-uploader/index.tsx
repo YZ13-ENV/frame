@@ -8,16 +8,19 @@ import { useAppDispatch, useAppSelector } from "@/components/entities/store/stor
 import { format } from "@/helpers/format"
 import { setAttachments } from "@/components/entities/uploader/draft"
 import { Attachment } from "@/types/shot"
+import { media_type } from "@/const/file-types"
 
 type Props = {
     onAttachment?: (attachment: Attachment) => void
+    allowedFileTypes?: string[]
 }
-const FileUploader = ({ onAttachment }: Props) => {
+const FileUploader = ({ onAttachment, allowedFileTypes=media_type }: Props) => {
     const [user] = useAuthState(auth)
     const draftId = useAppSelector(state => state.uploader.draft.draftId)
     const attachments = useAppSelector(state => state.uploader.draft.draft.attachments)
     const dispatch = useAppDispatch()
     const createAttachment = async(file: File) => {
+        if (!allowedFileTypes.includes(file.type)) return null
         if (user) {
             const path = `users/${user.uid}/${draftId}`
             const attachment = await bum.attachments.generate(path, file)

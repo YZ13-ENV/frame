@@ -2,7 +2,6 @@ import { bum } from '@/api/bum'
 import { file } from '@/api/file'
 import Header from '@/app/(uploads)/_components/hub/header'
 import NewDraftButton from '@/app/(uploads)/_components/hub/new-draft-button'
-import FinalTouch from '@/app/(uploads)/_components/upload/final-touch'
 import Controls from '@/app/(uploads)/_components/upload/header/controls'
 import { Button } from '@/components/ui/button'
 import AdvancedChunk from '@/components/widgets/draft-chunk'
@@ -24,7 +23,6 @@ const page = async({ searchParams }: Props) => {
     return (
         <>
             { grid && <Image src={grid} fill className='z-[-2] object-cover opacity-40' alt='grid' /> }
-            <FinalTouch />
             <div className="only-desktop-warning">
                 <span className="text-sm text-center text-muted-foreground">Конструктор недоступен на мобильных устройствах</span>
                 <Button asChild><Link href='/'>Вернуться</Link></Button>

@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/components/entities/store/stor
 import { setRootBlock } from "@/components/entities/uploader/draft"
 import { Button } from "@/components/ui/button"
 import FileUploader from "@/components/widgets/file-uploader"
+import { media_with_video_type } from "@/const/file-types"
 import { Attachment, IdBlock, MediaBlock } from "@/types/shot"
 import Image from "next/image"
 import { GrDetach } from "react-icons/gr"
@@ -30,7 +31,7 @@ const RootBlock = () => {
     }
     const isImage = rootBlock.content_type.includes('jpg') || rootBlock.content_type.includes('png')
     const attachment = attachments.find(item => item.id === rootBlock.id)
-    if (rootBlock.id === '0') return <FileUploader onAttachment={pickAttachment} />
+    if (rootBlock.id === '0') return <FileUploader onAttachment={pickAttachment} allowedFileTypes={media_with_video_type} />
     return (
         <div className="w-full aspect-[4/3] rounded-xl relative bg-card border overflow-hidden">
             {

@@ -8,6 +8,7 @@ type Props = {
     draft: DocDraftShotData
 }
 const DraftCard = ({ draft }: Props) => {
+    const link = `https://frame.darkmaterial.space/view?id=${draft.doc_id}`
     return (
         <div className="draft-card">
             <div className="h-64 aspect-[4/3] rounded-lg bg-muted"></div>
@@ -17,7 +18,7 @@ const DraftCard = ({ draft }: Props) => {
                         <span className="text-sm text-muted-foreground">Название</span>
                         <span className="text-base font-medium text-accent-foreground">{draft.title}</span>
                     </div>
-                    <Button asChild className='gap-2' variant='outline'><Link href={`/uploads/shot/${draft.doc_id}`} 
+                    <Button asChild className='gap-2' variant='outline'><Link href={`/uploads/shot/${draft.doc_id}`}
                     className='flex items-center gap-2'>Открыть <BiRightArrowAlt /></Link></Button>
                 </div>
                 <div className="w-fit h-fit flex items-center gap-4">
@@ -42,7 +43,7 @@ const DraftCard = ({ draft }: Props) => {
                 </div>
                 <div className="w-fit h-fit flex flex-col">
                     <span className="text-sm text-muted-foreground">Ссылка (Не работает для черновика)</span>
-                    <span className="text-base text-accent-foreground">https://frame.darkmaterial.space/view?id={draft.doc_id}</span>
+                    <Link href={link} className="text-base text-accent-foreground">{link}</Link>
                 </div>
             </div>
         </div>

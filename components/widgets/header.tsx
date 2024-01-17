@@ -24,7 +24,7 @@ const Header = ({ transparent=true }: Props) => {
                 <FrameTitle />
             </div>
             <div className="absolute right-6 w-fit h-fit flex items-center gap-4 justify-end">
-                {/* <Notifications /> */}
+                <Notifications />
                 <ProjectsGrid />
                 <User />
             </div>
