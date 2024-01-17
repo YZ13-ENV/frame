@@ -1,9 +1,6 @@
-import { bum } from "@/api/bum"
 import Loading from "@/app/(shots)/(routes)/shots/[order]/loading"
 import Link from "next/link"
-import { Suspense } from "react"
 import { BiRightArrowAlt } from "react-icons/bi"
-import AdvancedChunk from "../widgets/chunk"
 import { Button } from "../ui/button"
 
 const ShotsExample = () => {
@@ -18,11 +15,7 @@ const ShotsExample = () => {
                 </Link>
             </Button>
         </div>
-        <Suspense fallback={ <Loading /> }>
-            <div className="w-full h-full grid shots_grid gap-6">
-                <AdvancedChunk hideController getter={ bum.shots.all } order={'popular'} />
-            </div>
-        </Suspense>
+        <Loading />
     </div>
   )
 }

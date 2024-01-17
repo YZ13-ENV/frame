@@ -15,6 +15,7 @@ import ViewWatcher from "@/app/(view)/_components/view-watcher";
 import { notFound } from "next/navigation";
 import Comments from "@/app/(view)/_components/comments";
 import FollowButton from "@/app/(user)/_components/follow-button";
+import AuthorWorks from "@/app/(view)/_components/author-works";
 
 
 type Props = {
@@ -100,21 +101,7 @@ const page = async({ params }: Props) => {
                     </aside>
                 </div>
             </div>
-            <div className="w-full h-full flex flex-col border-b py-6 gap-6">
-                <div className="w-full h-fit max-w-7xl mx-auto flex gap-6 view-wrapper-paddings">
-                    <span className="text-lg font-semibold">Последние работы от ***</span>
-                </div>
-                <Suspense fallback={
-                <div className="view-block-wrapper view-last-shots-wrapper view-wrapper-paddings py-0">
-                    <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
-                    <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
-                    <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
-                    <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
-                </div>
-                }>
-                    <LastShots authorId={shot.authorId} />
-                </Suspense>
-            </div>
+            <AuthorWorks authorId={shot.authorId} />
         </>
     )
 }
