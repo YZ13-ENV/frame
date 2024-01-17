@@ -1,4 +1,5 @@
 import { bum } from "@/api/bum"
+import ShotCard from "@/components/shared/shot-card"
 
 type Props = {
   authorId: string
@@ -10,7 +11,7 @@ const LastShots = async({ authorId }: Props) => {
         {
           lastShots.length
           ? lastShots.map(shot =>
-            <div key={'last-' + shot.doc_id} className="w-full aspect-[4/3] rounded-lg bg-background border"></div>
+            <ShotCard key={'last-' + shot.doc_id} shot={shot} enableFooter={false} />
           )
           : null
         }

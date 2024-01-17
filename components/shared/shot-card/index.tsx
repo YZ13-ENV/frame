@@ -5,9 +5,10 @@ import Link from "next/link"
 
 type Props = {
     shot: DocShotData
+    enableFooter?: boolean
 }
 
-const ShotCard = ({ shot }: Props) => {
+const ShotCard = ({ shot, enableFooter=true }: Props) => {
     const attachment = shot.attachments.find(attach => attach.id === shot.thumbnail.id)
     return (
         <div className="w-full h-full">
@@ -17,13 +18,16 @@ const ShotCard = ({ shot }: Props) => {
                         <span>{shot.title}</span>
                     </div>
                 </Link>
-                { 
+                {
                     process.env.NODE_ENV === 'production' &&
                     attachment &&
-                    <Image src={attachment.url} className="z-0 group-hover/wrapper:brightness-50 transition-all" fill alt='shot-thumbnail' /> 
+                    <Image src={attachment.url} className="z-0 group-hover/wrapper:brightness-50 transition-all" fill alt='shot-thumbnail' />
                 }
             </div>
-            <Footer shot={shot} />
+            {
+                enableFooter &&
+                <Footer shot={shot} />
+            }
         </div>
     )
 }

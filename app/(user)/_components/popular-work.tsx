@@ -1,5 +1,5 @@
+import ShotCard from "@/components/shared/shot-card"
 import { DocShotData } from "@/types/shot"
-import Image from "next/image"
 
 type Props = {
     shot: DocShotData
@@ -7,10 +7,7 @@ type Props = {
 const PopularWork = async({ shot }: Props) => {
     return (
         <div className="pinned-work">
-            {
-                process.env.NODE_ENV !== 'development' &&
-                <Image src={shot.thumbnail.url} fill alt='popular-shot' />
-            }
+            <ShotCard key={'popular-' + shot.doc_id} shot={shot} enableFooter={false} />
         </div>
     )
 }
