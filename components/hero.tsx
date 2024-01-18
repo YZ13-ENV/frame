@@ -11,7 +11,9 @@ const HeroSection = async() => {
   const grid = await file.static.get('gird.svg')
   const cookiesList = cookies()
   const uidCookie = cookiesList.get('uid')
-  const uid = uidCookie ? uidCookie.value : null
+  const visitorId = uidCookie ? uidCookie.value : null
+  const backLink = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://frame.darkmaterial.space'
+  const loginLink = `https://auth.darkmaterial.space/login?continue=${backLink}`
   return (
     <div className='relative flex items-center justify-center w-full h-[90vh] flex-col px-6 gap-6'>
         { grid &&
@@ -38,9 +40,9 @@ const HeroSection = async() => {
         <div className="w-fit h-fit flex items-center gap-2">
             <Button variant='outline'><Link href='/shots/popular'>К работам</Link></Button>
             {
-                uid
-                ? <Button><Link href={`/${uid}`}>К портфолио</Link></Button>
-                : <Button><Link href={process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://frame.darkmaterial.space'}>К портфолио</Link></Button>
+                visitorId
+                ? <Button><Link href={`/${visitorId}`}>К портфолио</Link></Button>
+                : <Button><Link href={loginLink}>Войти в аккаунт</Link></Button>
             }
         </div>
         <div className="w-fit absolute flex bottom-3 items-center flex-col gap-2 justify-center text-muted-foreground">

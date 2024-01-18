@@ -26,7 +26,7 @@ async function AdvancedChunk({ getter, hideController=false, uid, category, orde
                     <span className="text-sm text-muted-foreground">Работ не найдено</span>
                 </div>
             }
-            { data && data.map( item => <Suspense fallback={<ShotSkeleton />}><ShotCard key={item.doc_id} shot={item} /></Suspense> ) }
+            { data && data.map( item => <Suspense key={item.doc_id} fallback={<ShotSkeleton />}><ShotCard shot={item} /></Suspense> ) }
             { (!hideController && data.length !== 0) && <Controller next={next} />}
         </>
     )

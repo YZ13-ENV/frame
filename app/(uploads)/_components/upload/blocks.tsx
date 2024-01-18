@@ -6,8 +6,10 @@ import { BiImage, BiPin } from "react-icons/bi";
 import ThumbnailBlock from "./side-sections/thumbnail";
 import Components from "./side-sections/components";
 import Attachments from "./side-sections/attachments";
+import DangerZone from "./side-sections/danger-zone";
+import { PiSealWarningBold } from "react-icons/pi";
 
-type Selects = '0' | '1' | '2' | '3'
+type Selects = '0' | '1' | '2' | '3' | '4'
 const Blocks = () => {
     const [selected, setSelected] = useState<Selects>('0')
     return (
@@ -45,6 +47,17 @@ const Blocks = () => {
                     </AccordionTrigger>
                     <AccordionContent>
                         <Attachments />
+                    </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="4">
+                    <AccordionTrigger onClick={() => selected === "4" ? setSelected('0') : null}>
+                        <div className="flex items-center gap-2 w-fit h-fit">
+                            <PiSealWarningBold />
+                            Опасная зона
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                        <DangerZone />
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>

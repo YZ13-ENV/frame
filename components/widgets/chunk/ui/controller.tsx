@@ -39,7 +39,7 @@ function Controller({ next }: Props) {
     }
     return (
         <>
-            { items && items.map( item => <Suspense fallback={<ShotSkeleton />}><ShotCard key={item.doc_id} shot={item} /></Suspense> ) }
+            { items && items.map( item => <Suspense key={item.doc_id} fallback={<ShotSkeleton />}><ShotCard shot={item} /></Suspense> ) }
             <div className='flex items-center justify-center w-full py-2 col-span-full h-fit'>
                 <Button disabled={!nextLink || loading} onClick={fetchNext} variant={!nextLink ? 'outline' : 'default'}>
                     { loading && <BiLoaderAlt className='mr-1 animate-spin' /> }

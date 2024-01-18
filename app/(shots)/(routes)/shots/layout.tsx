@@ -1,7 +1,12 @@
 import { file } from "@/api/file"
+import { Suspense } from "react"
 import FrameMark from "@/components/shared/frame-mark"
-import Header from "@/components/widgets/header"
 import Image from "next/image"
+import dynamic from "next/dynamic"
+import HeaderSkeleton from "@/components/skeletons/header"
+const Header = dynamic(() => import( "@/components/widgets/header"), {
+    loading: () => <HeaderSkeleton />
+})
 
 type Props = {
     children: JSX.Element | JSX.Element[]
@@ -10,7 +15,9 @@ const layout = async({ children }: Props) => {
     const grid = await file.static.get('gird.svg')
     return (
         <>
-            <Header />
+            <Suspense fallback={<HeaderSkeleton />}>
+                <Header />
+            </Suspense>
             <div className="min-h-screen w-full relative py-12 lg:px-24 md:px-12 px-6">
                 {
                     grid &&
