@@ -2,7 +2,7 @@ import ShotSkeleton from '@/components/skeletons/shot'
 
 const Loading = () => {
     return (
-        <div className="w-full h-full z-20 grid shots_grid gap-6">
+        <>
             <ShotSkeleton />
             <ShotSkeleton />
             <ShotSkeleton />
@@ -19,7 +19,7 @@ const Loading = () => {
             <ShotSkeleton />
             <ShotSkeleton />
             <ShotSkeleton />
-        </div>
+        </>
     )
 }
 

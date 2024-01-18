@@ -15,7 +15,9 @@ const ShotsExample = () => {
                 </Link>
             </Button>
         </div>
-        <Loading />
+        <div className="w-full h-full z-20 grid shots_grid gap-6">
+          <Loading />
+        </div>
     </div>
   )
 }

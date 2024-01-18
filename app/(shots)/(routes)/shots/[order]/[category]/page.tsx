@@ -12,11 +12,7 @@ type Props = {
     }
 }
 const page = ({ params }: Props) => {
-    return (
-        <div className="w-full h-full z-20 grid shots_grid gap-6">
-            <AdvancedChunk getter={ bum.shots.all } order={params.order} category={params.category} />
-        </div>
-    )
+    return <AdvancedChunk getter={ bum.shots.all } order={params.order} category={params.category} />
 }
 
 export default page

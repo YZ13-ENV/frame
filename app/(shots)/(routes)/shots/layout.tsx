@@ -4,6 +4,7 @@ import FrameMark from "@/components/shared/frame-mark"
 import Image from "next/image"
 import dynamic from "next/dynamic"
 import HeaderSkeleton from "@/components/skeletons/header"
+import Nav from "../../_components/nav"
 const Header = dynamic(() => import( "@/components/widgets/header"), {
     loading: () => <HeaderSkeleton />
 })
@@ -26,7 +27,10 @@ const layout = async({ children }: Props) => {
                         <Image src={grid} fill className='z-[-2] max-h-screen absolute !-top-[60px] left-0 object-cover opacity-40' alt='grid' />
                     </>
                 }
-                { children }
+                <Nav />
+                <div className="w-full h-full z-20 grid shots_grid gap-6">
+                    { children }
+                </div>
             </div>
             <footer className="w-full h-fit p-6 border-t mt-24">
                 <div className="max-w-7xl mx-auto w-full h-full flex gap-4 items-center justify-center">
