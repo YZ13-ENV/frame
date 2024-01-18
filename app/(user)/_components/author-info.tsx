@@ -6,6 +6,7 @@ import AuthorStats from "./author-stats"
 import { Suspense } from "react"
 import FollowButton from "./follow-button"
 import { bum } from "@/api/bum"
+import SignatureEditor from "./signature-editor"
 
 type Props = {
     author: ShortUserData
@@ -25,7 +26,7 @@ const AuthorInfo = async({ author, userId }: Props) => {
                     <span className="text-base text-muted-foreground">{author?.position || author?.email}</span>
                 </div>
             </div>
-            { signature && <span className="author-description">{signature}</span> }
+            <SignatureEditor signature={signature} readOnly={!isYou} authorId={author.uid} />
             <Suspense fallback={<div className="w-64 h-5 rounded-md bg-muted animate-pulse" />}>
                 <AuthorStats authorId={author.uid} />
             </Suspense>

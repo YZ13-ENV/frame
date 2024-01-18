@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { BiRightArrowAlt, BiChevronDown } from 'react-icons/bi'
 import FrameMark from './shared/frame-mark'
 import User from './shared/user-circle'
-import LoginDrawer from './widgets/login-drawer'
 import Image from 'next/image'
 import { Button } from './ui/button'
 
@@ -41,7 +40,7 @@ const HeroSection = async() => {
             {
                 uid
                 ? <Button><Link href={`/${uid}`}>К портфолио</Link></Button>
-                : <LoginDrawer />
+                : <Button><Link href={process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://frame.darkmaterial.space'}>К портфолио</Link></Button>
             }
         </div>
         <div className="w-fit absolute flex bottom-3 items-center flex-col gap-2 justify-center text-muted-foreground">

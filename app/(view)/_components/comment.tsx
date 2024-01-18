@@ -6,6 +6,7 @@ import { CommentBlock } from "@/types/shot"
 import { ShortUserData } from "@/types/user"
 import { auth } from "@/utils/app"
 import { DateTime } from "luxon"
+import Link from "next/link"
 import { memo, useEffect, useMemo, useState } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { BiTrashAlt } from "react-icons/bi"
@@ -25,11 +26,13 @@ const Comment = ({ comment, onDelete }: Props) => {
   },[comment])
   return (
     <div className="w-full h-fit rounded-lg p-3 flex gap-3 border hover:bg-muted">
+      <Link href={author ? `/${author?.nickname || author.uid}` : ''}>
       {
         author && author.photoUrl
         ? <Avatar src={author.photoUrl} size={36} isSubscriber={author.isSubscriber || false} />
         : <div className="w-9 h-9 rounded-full bg-muted shrink-0" />
       }
+      </Link>
       <div className="w-full h-fit flex flex-col">
         <div className="w-full h-fit flex flex-row justify-between items-center">
           <div className="w-fit h-fit flex flex-col">

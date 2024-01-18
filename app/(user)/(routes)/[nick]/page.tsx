@@ -1,9 +1,7 @@
 import { bum } from "@/api/bum"
 import { user } from "@/api/user"
-import Loading from '@/app/(shots)/(routes)/shots/[order]/loading'
 import AdvancedChunk from "@/components/widgets/chunk"
 import { redirect } from "next/navigation"
-import { Suspense } from "react"
 
 type Props = {
     params: {
@@ -22,11 +20,9 @@ const page = async({ params }: Props) => {
             <div className="w-full p-6 min-h-[17rem] rounded-t-2xl border-t border-x bg-card max-w-screen-2xl mx-auto">
                 {
                     author && author.uid &&
-                    <Suspense fallback={ <Loading /> }>
-                        <div className="z-20 grid w-full h-full gap-6 shots_grid">
-                            <AdvancedChunk getter={ bum.shots.byUser } uid={author.uid} />
-                        </div>
-                    </Suspense>
+                    <div className="z-20 grid w-full h-full gap-6 shots_grid">
+                        <AdvancedChunk getter={ bum.shots.byUser } uid={author.uid} />
+                    </div>
                 }
             </div>
         </>

@@ -2,6 +2,8 @@ import { ChunkResponse } from "@/types/common"
 import Controller from "./ui/controller"
 import { DocShotData } from "@/types/shot"
 import ShotCard from "@/components/shared/shot-card"
+import { Suspense } from "react"
+import ShotSkeleton from "@/components/skeletons/shot"
 
 type Props = {
     uid?: string
@@ -19,12 +21,12 @@ async function AdvancedChunk({ getter, hideController=false, uid, category, orde
     const { data, next } =  uid ? await getter({uid, order, category}) : await getter({order, category})
     return (
         <>
-            { 
+            {
                 !data || data && data.length === 0 && <div className="w-full col-span-full h-96 mx-auto flex items-center justify-center">
                     <span className="text-sm text-muted-foreground">Работ не найдено</span>
                 </div>
             }
-            { data && data.map( item => <ShotCard key={item.doc_id} shot={item} />) }
+            { data && data.map( item => <Suspense fallback={<ShotSkeleton />}><ShotCard key={item.doc_id} shot={item} /></Suspense> ) }
             { (!hideController && data.length !== 0) && <Controller next={next} />}
         </>
     )

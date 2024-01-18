@@ -1,11 +1,12 @@
 'use client'
 import ShotCard from '@/components/shared/shot-card'
+import ShotSkeleton from '@/components/skeletons/shot'
 import { Button } from '@/components/ui/button'
 import { api_host } from '@/const/host'
 import { authorizationHeader } from '@/helpers/headers'
 import { ChunkResponse } from '@/types/common'
 import { DocShotData } from '@/types/shot'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { BiLoaderAlt } from 'react-icons/bi'
 
 type Props = {
@@ -37,11 +38,11 @@ function Controller({ next }: Props) {
         }
     }
     return (
-        <>  
-            { items && items.map( item => <ShotCard key={item.doc_id} shot={item} /> ) }
+        <>
+            { items && items.map( item => <Suspense fallback={<ShotSkeleton />}><ShotCard key={item.doc_id} shot={item} /></Suspense> ) }
             <div className='flex items-center justify-center w-full py-2 col-span-full h-fit'>
                 <Button disabled={!nextLink || loading} onClick={fetchNext} variant={!nextLink ? 'outline' : 'default'}>
-                    { loading && <BiLoaderAlt className='mr-1 animate-spin' /> } 
+                    { loading && <BiLoaderAlt className='mr-1 animate-spin' /> }
                     { nextLink ? 'Загрузить ещё' : 'Вы дошли до конца списка' }
                 </Button>
             </div>
