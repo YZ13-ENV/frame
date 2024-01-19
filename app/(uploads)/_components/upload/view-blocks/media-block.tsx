@@ -31,7 +31,7 @@ const MediaBlock = ({ block, index }: Props) => {
     const detach = () => {
         const updatedBlock: Props['block'] = {
             type: 'media',
-            id: '0',
+            id: '',
             content_type: ''
         }
         const updatedBlocks = blocks.map((_, i) => {
@@ -42,11 +42,11 @@ const MediaBlock = ({ block, index }: Props) => {
     }
     const isImage = block.content_type.includes('jpg') || block.content_type.includes('png')
     const attachment = attachments.find(item => item.id === block.id)
-    if (block.id === '0') return <FileUploader onAttachment={pickAttachment} />
+    if (!block.id) return <FileUploader onAttachment={pickAttachment} />
     return (
         <div className="w-full aspect-[4/3] rounded-xl relative bg-card border overflow-hidden">
             {
-                block.id !== '0' &&
+                block.id &&
                 <div className="w-fit h-fit p-2 z-20 absolute top-0 right-0">
                     <Button size='icon' onClick={detach}
                     variant='destructive'><GrDetach /></Button>

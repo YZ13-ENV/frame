@@ -24,7 +24,7 @@ const RootBlock = () => {
     }
     const detach = () => {
         dispatch(setRootBlock({
-            id: '0',
+            id: '',
             content_type: '',
             type: 'media'
         }))

@@ -5,7 +5,7 @@ export const getDefaultBlock = (blockType: Blocks['type']) => {
     switch (blockType) {
         case 'media':
             const media_block: IdBlock<MediaBlock> = {
-                id: '0',
+                id: '',
                 content_type: '',
                 type: 'media'
             }

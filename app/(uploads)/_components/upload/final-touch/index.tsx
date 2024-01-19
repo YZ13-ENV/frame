@@ -33,7 +33,7 @@ const FinalTouch = () => {
             setLoading(true)
             const preparedBlocks = draft.blocks.filter((block => {
                 if (block.type === 'media') {
-                    if (block.id === '0') return false
+                    if (!block.id) return false
                     return true
                 }
                 if (block.type === 'text') {
@@ -69,8 +69,8 @@ const FinalTouch = () => {
                 dispatch(setDraft({
                     isDraft: false, updatedAt: DateTime.now().toSeconds(),
                     blocks: [],
-                    rootBlock: { id: '0', content_type: '', type: 'media' },
-                    thumbnail: { id: '0', contentType: '', url: '' },
+                    rootBlock: { id: '', content_type: '', type: 'media' },
+                    thumbnail: { id: '', contentType: '', url: '' },
                     title: '', attachments:[], authorId: ''
                 }))
                 router.push(`/view/${draftId}`)

@@ -22,7 +22,7 @@ const ThumbnailBlock = () => {
     }
     const detachThumbnail = () => {
         dispatch(setThumbnail({
-            id: '0',
+            id: '',
             contentType: '',
             url: ''
         }))

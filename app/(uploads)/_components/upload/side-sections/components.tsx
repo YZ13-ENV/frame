@@ -14,7 +14,7 @@ const Components = () => {
     dispatch(setBlocks(updatedBlocks))
   }
   const move = (index: number, direction: 'up' | 'down') => {
-    const targetIndex = direction === 'down' ? index - 1 : index + 1
+    const targetIndex = direction === 'down' ? index + 1 : index - 1
     const initialBlock = blocks[index]
     const targetBlock = blocks[targetIndex]
     const updatedBlocks = blocks.map((_, i) => {
@@ -31,7 +31,7 @@ const Components = () => {
           blocks.length
           ? blocks.map((block, i) => {
             const isFirstBlock = i === 0
-            const isLastBlock = i === blocks.length -1
+            const isLastBlock = i === blocks.length - 1
             return (
                 <div key={block.id + ' ' + i} className="flex items-center justify-between w-full px-2 rounded-lg cursor-pointer h-9 hover:bg-muted">
                     <span className="capitalize">
