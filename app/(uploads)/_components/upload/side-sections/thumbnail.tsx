@@ -29,11 +29,11 @@ const ThumbnailBlock = () => {
     }
     const isImage = thumbnail.contentType.includes('jpg') || thumbnail.contentType.includes('png')
     const attachment = attachments.find(item => item.id === thumbnail.id)
-    if (thumbnail.id === '0') return <ThumbnailUploader onAttachment={pickAttachment} />
+    if (!thumbnail.id) return <ThumbnailUploader onAttachment={pickAttachment} />
     return (
         <div className="relative w-full aspect-[4/3] rounded-xl bg-card border overflow-hidden">
             {
-                thumbnail.url.length &&
+                thumbnail.url.length !== 0 &&
                 <div className="w-fit h-fit p-2 z-20 absolute top-0 right-0">
                     <Button size='icon' onClick={detachThumbnail}
                     variant='destructive'><GrDetach /></Button>

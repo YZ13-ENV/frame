@@ -24,7 +24,7 @@ const FinalTouch = () => {
     const [tags, setTags] = useState<string[]>([])
     const [feedBack, setFeedBack] = useState<boolean>(false)
     const disabled = tags.length === 0
-    const openDisabled = draft.thumbnail.id === '0' || draft.rootBlock.id === '0' || draft.title.length === 0 || !draftId
+    const openDisabled = !draft.thumbnail.id || !draft.rootBlock.id || draft.title.length === 0 || !draftId
     const [loading, setLoading] = useState<boolean>(false)
     const dispatch = useAppDispatch()
     const router = useRouter()
@@ -66,12 +66,12 @@ const FinalTouch = () => {
                 dispatch(setFinalTouchModal(false))
                 setOpen(false)
                 dispatch(setDraftId(null))
-                dispatch(setDraft({ 
+                dispatch(setDraft({
                     isDraft: false, updatedAt: DateTime.now().toSeconds(),
-                    blocks: [], 
-                    rootBlock: { id: '0', content_type: '', type: 'media' }, 
-                    thumbnail: { id: '0', contentType: '', url: '' }, 
-                    title: '', attachments:[], authorId: '' 
+                    blocks: [],
+                    rootBlock: { id: '0', content_type: '', type: 'media' },
+                    thumbnail: { id: '0', contentType: '', url: '' },
+                    title: '', attachments:[], authorId: ''
                 }))
                 router.push(`/view/${draftId}`)
             }

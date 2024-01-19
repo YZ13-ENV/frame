@@ -31,7 +31,7 @@ const RootBlock = () => {
     }
     const isImage = rootBlock.content_type.includes('jpg') || rootBlock.content_type.includes('png')
     const attachment = attachments.find(item => item.id === rootBlock.id)
-    if (rootBlock.id === '0') return <FileUploader onAttachment={pickAttachment} allowedFileTypes={media_with_video_type} />
+    if (!rootBlock.id) return <FileUploader onAttachment={pickAttachment} allowedFileTypes={media_with_video_type} />
     return (
         <div className="w-full aspect-[4/3] rounded-xl relative bg-card border overflow-hidden">
             {
