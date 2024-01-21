@@ -1,7 +1,9 @@
 import { user } from "@/api/user"
 import { DocShotData } from "@/types/shot"
 import Avatar from "../avatar"
-import { BiHeart, BiShow } from "react-icons/bi"
+import { BsEyeFill } from "react-icons/bs";
+import { RiMessage3Fill } from "react-icons/ri";
+import { BiSolidHeart } from "react-icons/bi";
 import Link from "next/link"
 
 type Props = {
@@ -9,6 +11,7 @@ type Props = {
 }
 const Footer = async({ shot }: Props) => {
     const author = await user.byId.short(shot.authorId)
+    const haveComments = !!shot.comments.length
     return (
         <div className="w-full mt-3 h-6 shrink-0 flex items-center justify-between gap-3">
             {
@@ -21,12 +24,19 @@ const Footer = async({ shot }: Props) => {
             }
 
             <div className="w-fit h-fit flex items-center justify-end gap-2">
+                {
+                    haveComments &&
+                    <div className="w-fit h-fit flex items-center justify-end gap-1">
+                        <RiMessage3Fill />
+                        <span className="text-sm">{shot.comments.length}</span>
+                    </div>
+                }
                 <div className="w-fit h-fit flex items-center justify-end gap-1">
-                    <BiHeart />
+                    <BiSolidHeart />
                     <span className="text-sm">{shot.likes.length}</span>
                 </div>
                 <div className="w-fit h-fit flex items-center justify-end gap-1">
-                    <BiShow />
+                    <BsEyeFill />
                     <span className="text-sm">{shot.views.length}</span>
                 </div>
             </div>
