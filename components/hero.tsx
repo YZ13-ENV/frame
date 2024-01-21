@@ -38,7 +38,7 @@ const HeroSection = async() => {
             Размещайте свои работы у нас, используйте страницу профиля как портфолио и делитесь им.
         </span>
         <div className="w-fit h-fit flex items-center gap-2">
-            <Button variant='outline'><Link href='/shots/popular'>К работам</Link></Button>
+            <Button variant='outline'><Link href={visitorId ? '/shots/following' : '/shots/popular'}>К работам</Link></Button>
             {
                 visitorId
                 ? <Button><Link href={`/${visitorId}`}>К портфолио</Link></Button>

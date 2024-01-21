@@ -21,7 +21,7 @@ const page = async({ params }: Props) => {
                 {
                     author && author.uid &&
                     <div className="z-20 grid w-full h-full gap-6 shots_grid">
-                        <AdvancedChunk getter={ bum.shots.byUser } uid={author.uid} />
+                        <AdvancedChunk getter={ bum.shots.byUser(author.uid) } />
                     </div>
                 }
             </div>

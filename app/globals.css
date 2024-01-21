@@ -249,6 +249,14 @@
     @apply grid md:grid-cols-4 grid-cols-2 md:grid-rows-1 grid-rows-2
   }
 
+  .nav-wrapper {
+    @apply relative z-40 flex flex-row items-center lg:justify-center justify-between w-full gap-8 my-6 shrink-0 h-fit
+  }
+
+  .app-title-wrapper {
+    @apply w-fit h-fit md:flex hidden flex-col
+  }
+
   .md-layout > h1 {
     @apply pt-12 mb-6
   }

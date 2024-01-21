@@ -209,7 +209,7 @@ export const bum = {
             }
         },
         drafts: {
-            all: async({ order, category }: { order?: string, category?: string }): Promise<ChunkResponse<DocDraftShotData[]>> => {
+            all: async(order?: string, category?: string): Promise<ChunkResponse<DocDraftShotData[]>> => {
                 try {
                     const headers = new Headers()
                     const authHeader = authorizationHeader()
@@ -226,7 +226,7 @@ export const bum = {
                     return { count: 0, data: [], next: '' }
                 }
             },
-            byUser: async({ uid, order, category }: { uid?: string, order?: string, category?: string }): Promise<ChunkResponse<DocDraftShotData[]>> => {
+            byUser: async(order?: string, category?: string, uid?: string): Promise<ChunkResponse<DocDraftShotData[]>> => {
                 try {
                     if (!uid) throw Error('uid is not provided')
                     const headers = new Headers()
@@ -247,7 +247,26 @@ export const bum = {
             },
         },
         shots: {
-                byUser: async({ uid, order, category }: { uid?: string, order?: string, category?: string }): Promise<ChunkResponse<DocShotData[]>> => {
+                search: async(query: string, order: string, category?: string, uid?: string): Promise<ChunkResponse<DocShotData[]>> => {
+                    try {
+                        if (!uid) throw Error('uid is not provided')
+                        const headers = new Headers()
+                        const authHeader = authorizationHeader()
+                        headers.append('authorization', authHeader || '')
+                        const url = order && category
+                        ? `${api_host}/shots/search/${query}/${order}/${category}?uid=${uid}`
+                        : order
+                        ? `${api_host}/shots/search/${query}/${order}?uid=${uid}`
+                        : `${api_host}/shots/search/${query}/popular?uid=${uid}`
+                        const res = await fetch(url, { method: 'GET', headers: headers })
+                        if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
+                        return { count: 0, data: [], next: '' }
+                    } catch(e) {
+                        console.warn(e)
+                        return { count: 0, data: [], next: '' }
+                    }
+                },
+                byUser: async(uid?: string, order?: string, category?: string): Promise<ChunkResponse<DocShotData[]>> => {
                     try {
                         if (!uid) throw Error('uid is not provided')
                         const headers = new Headers()
@@ -282,12 +301,14 @@ export const bum = {
                         return { count: 0, data: [], next: '' }
                     }
                 },
-                all: async({ order, category }: { order?: string, category?: string }): Promise<ChunkResponse<DocShotData[]>> => {
+                all: async(order: string, category?: string, uid?: string): Promise<ChunkResponse<DocShotData[]>> => {
                     try {
                         const headers = new Headers()
                         const authHeader = authorizationHeader()
                         headers.append('authorization', authHeader || '')
-                        const url = order && category ? `${api_host}/shots/all/${order}/${category}` : order ? `${api_host}/shots/all/${order}` : `${api_host}/shots/all/popular`
+                        const url = order && category
+                        ? `${api_host}/shots/all/${order}/${category}${uid ? `?uid=${uid}` : ''}` :
+                        order ? `${api_host}/shots/all/${order}${uid ? `?uid=${uid}` : ''}` : `${api_host}/shots/all/popular${uid ? `?uid=${uid}` : ''}`
                         const res = await fetch(url, { method: 'GET', headers: headers })
                         if (res.ok) return (await res.json() as ChunkResponse<DocShotData[]>)
                         return { count: 0, data: [], next: '' }
@@ -311,23 +332,6 @@ export const bum = {
                         console.log(e)
                         return []
                     }
-                },
-                search: async(q: string | null, order: string='popular'): Promise<DocShotData[]> => {
-                    if (q) {
-                        try {
-                            const headers = new Headers()
-                            const authHeader = authorizationHeader()
-                            headers.append('authorization', authHeader || '')
-                            const url = `${api_host}/search/query/${q.toLowerCase()}/${order}`
-                            const res = await fetch(url, { headers: headers })
-                            if (res.ok) {
-                                const shots: DocShotData[] = await res.json()
-                                return shots
-                            } else return []
-                        } catch(e) {
-                            return []
-                        }
-                    } else return []
                 },
                 byType: async(userId: string, type: 'draft' | 'shots'='shots', order?: 'popular' | 'new'): Promise<DocShotData[]> => {
                     const requestType = type === 'shots' ? 'onlyShots' : 'onlyDrafts'

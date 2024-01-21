@@ -34,7 +34,7 @@ const Nav = ({ padding=false }: Props) => {
         }
     },[isShotsLayout, isShotPage, orderTab, categoryTab])
     return (
-        <div className={`relative z-40 flex flex-row items-center lg:justify-center justify-between w-full gap-8 ${padding ? 'px-6' : 'px-0'} my-6 shrink-0 h-fit`}>
+        <div className={`nav-wrapper ${padding ? 'px-6' : 'px-0'}`}>
             <Select defaultValue="/popular" onValueChange={state => setOrderTab(state)} value={orderTab}>
                 <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Select a order" />
