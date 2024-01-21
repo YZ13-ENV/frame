@@ -8,60 +8,21 @@ const MEDIUM_CACHE_TIME = 300
 const SHORT_CACHE_TIME = 120
 
 export const bum = {
-        isFollowed: async(userId: string, followId: string): Promise<boolean> => {
-            try {
-                const headers = new Headers()
-                const authHeader = authorizationHeader()
-                headers.append('authorization', authHeader || '')
-                const res = await fetch(`${api_host}/users/isInFollowList?userId=${userId}&followId=${followId}`, { headers: headers })
-                if (res.ok) return Boolean(await res.json())
-                return false
-            } catch(e) {
-                return false
-            }
-        },
-        follow: async(userId: string, followId: string): Promise<boolean> => {
-            try {
-                const headers = new Headers()
-                const authHeader = authorizationHeader()
-                headers.append('authorization', authHeader || '')
-                const res = await fetch(`${api_host}/users/startFollow?userId=${userId}&followId=${followId}`, { method: 'POST', headers: headers })
-                if (res.ok) return Boolean(await res.json())
-                return false
-            } catch(e) {
-                return false
-            }
-        },
-        unFollow: async(userId: string, followId: string): Promise<boolean> => {
-            try {
-                const headers = new Headers()
-                const authHeader = authorizationHeader()
-                headers.append('authorization', authHeader || '')
-                const res = await fetch(`${api_host}/users/stopFollow?userId=${userId}&followId=${followId}`, { method: 'POST', headers: headers })
-                if (res.ok) return Boolean(await res.json())
-                return false
-            } catch(e) {
-                return false
-            }
-        },
-        like: async(authorId: string, shotId: string, userToAdd: string): Promise<boolean> => {
-            try {
-                const headers = new Headers()
-                const authHeader = authorizationHeader()
-                headers.append('authorization', authHeader || '')
-                const res = await fetch(`${api_host}/shots/addOrRemoveLikes?shotAuthorId=${authorId}&shotId=${shotId}&uid=${userToAdd}`, {
-                    method: 'PATCH',
-                    headers: headers
-                })
-                if (res.ok) {
-                    return true
-                } else return false
-            } catch(e) {
-                console.log(e)
-                return false
-            }
-        },
         author: {
+            saved: async(uid: string): Promise<DocShotData[]> => {
+                try {
+                    if (!uid) throw new Error('uid is not provided')
+                    const headers = new Headers()
+                    const authHeader = authorizationHeader()
+                    headers.append('authorization', authHeader || '')
+                    const url = `${api_host}/shots/user/saved?id=${uid}`
+                    const res = await fetch(url, { method: 'GET', headers: headers })
+                    if (res.ok) return await res.json() as DocShotData[]
+                    return []
+                } catch(e) {
+                    return []
+                }
+            },
             mostPopularShot: async(uid: string): Promise<DocShotData | null> => {
                 try {
                     if (!uid) throw new Error('uid is not provided')
