@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/footer"
 import Header from "@/components/widgets/header"
 
 
@@ -9,7 +10,7 @@ const layout = ({ children }: Props) => {
         <div className="w-full">
             <Header transparent={false} />
             { children }
-            <footer className="w-full border-b h-16"></footer>
+            <Footer className="view-wrapper-paddings py-6" />
         </div>
     )
 }

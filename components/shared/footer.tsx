@@ -2,11 +2,12 @@ import FrameMark from "./frame-mark"
 
 type Props = {
   profileMode?: boolean
+  className?: string
 }
-const Footer = ({ profileMode=false }: Props) => {
+const Footer = ({ className='', profileMode=false }: Props) => {
   return (
     <footer className="w-full h-fit">
-      <div className={`${profileMode ? "max-w-screen-2xl bg-card border-t border-x" : "max-w-7xl"} mx-auto w-full h-fit flex flex-col gap-6 p-6`}>
+      <div className={`${profileMode ? "max-w-screen-2xl bg-card border-t border-x" : "max-w-7xl"} mx-auto w-full h-fit flex flex-col gap-6 ${className ? className : 'p-6'}`}>
         <div className={"w-full h-fit gap-4 flex items-center justify-between"}>
           <FrameMark />
           <div className='flex items-center justify-center gap-4 flex-wrap'>

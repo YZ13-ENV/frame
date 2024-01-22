@@ -83,24 +83,27 @@ const page = async({ params }: Props) => {
                     </aside>
                 </div>
             </div>
-            <div className="w-full h-full flex flex-col border-b">
-                <div className="view-block-wrapper view-wrapper-paddings">
-                    <ShotAdaptiveWrapper noPaddings>
-                        {
-                            shot.blocks.map(block => {
-                                if (block.type === 'media') return <MediaBlock key={block.id + '-' + block.type + '-shot'} attachments={shot.attachments} block={block} />
-                                if (block.type === 'text') return <div className="w-full md-layout" key={block.id + '-' + block.type + '-shot'}>
-                                    <MDXRemote source={block.text} />
-                                </div>
-                                if (block.type === 'separator')  return <Separator key={block.id + '-' + block.type + '-shot'} />
-                                return null
-                            })
-                        }
-                    </ShotAdaptiveWrapper>
-                    <aside className="view-side-empty">
-                    </aside>
+            {
+                !!shot.blocks.length &&
+                <div className="w-full h-full flex flex-col border-b">
+                    <div className="view-block-wrapper view-wrapper-paddings">
+                        <ShotAdaptiveWrapper noPaddings>
+                            {
+                                shot.blocks.map(block => {
+                                    if (block.type === 'media') return <MediaBlock key={block.id + '-' + block.type + '-shot'} attachments={shot.attachments} block={block} />
+                                    if (block.type === 'text') return <div className="w-full md-layout" key={block.id + '-' + block.type + '-shot'}>
+                                        <MDXRemote source={block.text} />
+                                    </div>
+                                    if (block.type === 'separator')  return <Separator key={block.id + '-' + block.type + '-shot'} />
+                                    return null
+                                })
+                            }
+                        </ShotAdaptiveWrapper>
+                        <aside className="view-side-empty">
+                        </aside>
+                    </div>
                 </div>
-            </div>
+            }
             <AuthorWorks authorId={shot.authorId} />
         </>
     )
