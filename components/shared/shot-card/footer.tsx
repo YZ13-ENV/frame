@@ -5,6 +5,7 @@ import { BsEyeFill } from "react-icons/bs";
 import { RiMessage3Fill } from "react-icons/ri";
 import { BiSolidHeart } from "react-icons/bi";
 import Link from "next/link"
+import PlusBadge from "@/app/(settings)/_components/plus-badge";
 
 type Props = {
     shot: DocShotData
@@ -18,7 +19,8 @@ const Footer = async({ shot }: Props) => {
                 author
                 ? <Link href={`/${author.nickname || author.uid}`} className="w-fit h-fit flex items-center justify-start gap-2">
                     <Avatar src={author.photoUrl} isSubscriber={author.isSubscriber} />
-                    <span className="text-sm">{author.displayName}</span>
+                    <span className="font-medium text-sm">{author.displayName}</span>
+                    { author.isSubscriber && <PlusBadge /> }
                 </Link>
                 : <div />
             }
