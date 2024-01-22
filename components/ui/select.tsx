@@ -4,9 +4,9 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react"
 import {
   BiChevronDown,
   BiChevronUp,
-  BiCheck,
-  BiSort
+  BiCheck
 } from 'react-icons/bi'
+import { LuChevronsUpDown } from "react-icons/lu";
 import { Content, Group, Icon, Item, ItemIndicator, ItemText, Label, Portal, Root, ScrollDownButton, ScrollUpButton, Separator, Trigger, Value, Viewport } from "@radix-ui/react-select"
 
 import { cn } from "@/lib/utils"
@@ -31,7 +31,7 @@ const SelectTrigger = forwardRef<
   >
     {children}
     <Icon asChild>
-      <BiSort className="h-4 w-4 opacity-50" />
+      <LuChevronsUpDown className="h-4 w-4 opacity-50" />
     </Icon>
   </Trigger>
 ))

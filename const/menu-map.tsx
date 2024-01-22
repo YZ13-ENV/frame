@@ -1,4 +1,5 @@
 import { BiCog, BiUser } from 'react-icons/bi'
+import { TbDragDrop } from "react-icons/tb";
 import { MenuMapProps } from 'ui'
 
 export const menu: MenuMapProps = [
@@ -18,8 +19,13 @@ export const menu: MenuMapProps = [
                     },
                     {
                         link: '/uploads/shot',
-                        icon: BiCog,
+                        icon: TbDragDrop,
                         text: 'Конструктор'
+                    },
+                    {
+                        link: '/settings',
+                        icon: BiCog,
+                        text: 'Настройки'
                     }
                 ]
             }

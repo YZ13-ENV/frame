@@ -8,6 +8,7 @@ import { user } from "@/api/user"
 import { bum } from "@/api/bum"
 import Header from "@/components/widgets/header"
 import { notFound } from "next/navigation"
+import Footer from "@/components/shared/footer"
 
 type Props = {
     children: JSX.Element | JSX.Element[]
@@ -49,13 +50,7 @@ const layout = async({ children, params }: Props) => {
                 <PortfolioNav path={path} isYou={isYou} />
             </div>
             { children }
-            <footer className="w-full h-fit p-6 border-t bg-card max-w-screen-2xl mx-auto border-x">
-                <div className="max-w-7xl mx-auto w-full h-full flex gap-4 items-center justify-center">
-                    <span className="text-2xl font-semibold">2024</span>
-                    <FrameMark />
-                    <span className="text-2xl font-semibold">Frame</span>
-                </div>
-            </footer>
+            <Footer profileMode />
         </>
     )
 }

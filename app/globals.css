@@ -257,6 +257,10 @@
     @apply w-fit h-fit md:flex hidden flex-col
   }
 
+  .settings-content-wrapper {
+    @apply w-full h-fit flex md:flex-row flex-col gap-4
+  }
+
   .md-layout > h1 {
     @apply pt-12 mb-6
   }

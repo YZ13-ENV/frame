@@ -5,6 +5,7 @@ import Image from "next/image"
 import dynamic from "next/dynamic"
 import HeaderSkeleton from "@/components/skeletons/header"
 import Nav from "../../_components/nav"
+import Footer from "@/components/shared/footer"
 const Header = dynamic(() => import( "@/components/widgets/header"), {
     loading: () => <HeaderSkeleton />
 })
@@ -32,13 +33,7 @@ const layout = async({ children }: Props) => {
                     { children }
                 </div>
             </div>
-            <footer className="w-full h-fit p-6 border-t mt-24">
-                <div className="max-w-7xl mx-auto w-full h-full flex gap-4 items-center justify-center">
-                    <span className="text-2xl font-semibold">2024</span>
-                    <FrameMark />
-                    <span className="text-2xl font-semibold">Frame</span>
-                </div>
-            </footer>
+            <Footer />
         </>
     )
 }
