@@ -7,6 +7,10 @@ const nextConfig = {
                 hostname: '*'
             }
         ]
+    },
+    experimental: {
+        optimizeCss: true,
+        optimizeServerReact: true
     }
 }
 

@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "prepublish": "pnpm build && vercel && vercel --prod",
+    "postinstall:ui": "pnpm update ui hooks api",
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
@@ -30,6 +32,7 @@
     "ahooks": "^3.7.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "critters": "^0.0.20",
     "firebase": "^10.7.1",
     "framer-motion": "^10.16.16",
     "lodash": "^4.17.21",
