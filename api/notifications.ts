@@ -3,10 +3,9 @@ import { authorizationHeader } from "@/helpers/headers"
 import { DocNotification, Notification } from "@/types/notifications"
 import { DateTime } from "luxon"
 
-const generateNotification = (title: string, description: string, receiver: string, link?: string): Notification => {
+const generateNotification = (message: string, receiver: string, link?: string): Notification => {
   const notification: Notification = {
-    title: title,
-    description: description,
+    message: message,
     receiver: receiver,
     createdAt: DateTime.now().toSeconds(),
     isViewed: false
@@ -16,8 +15,8 @@ const generateNotification = (title: string, description: string, receiver: stri
 }
 
 export const notifications = {
-  push: async(title: string, description: string, receiver: string, link?: string): Promise<DocNotification | null> => {
-    const notification = generateNotification(title, description, receiver, link)
+  push: async(message: string, receiver: string, link?: string): Promise<DocNotification | null> => {
+    const notification = generateNotification(message, receiver, link)
     try {
       const headers = new Headers()
       const authHeader = authorizationHeader()
