@@ -15,8 +15,10 @@ const DraftCard = ({ draft }: Props) => {
         <div className="draft-card">
             {
                 hasThumbnail
-                ? <Image src={draft.thumbnail.url} alt="thumbnail"
-                fill className="!relative h-64 aspect-[4/3] rounded-lg bg-muted" />
+                ?
+                <div className="h-64 aspect-[4/3] rounded-lg bg-muted relative">
+                    <Image src={draft.thumbnail.url} alt="thumbnail" className="rounded-lg" fill />
+                </div>
                 : <div className="h-64 aspect-[4/3] rounded-lg bg-muted" />
             }
             <div className="w-full h-full flex flex-col gap-4">
