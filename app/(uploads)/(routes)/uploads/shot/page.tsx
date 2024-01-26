@@ -8,18 +8,15 @@ import AdvancedChunk from '@/components/widgets/draft-chunk'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 // import React from 'react'
 
-type Props = {
-    searchParams: {
-        selected?: string
-    }
-}
-const page = async({ searchParams }: Props) => {
+const page = async() => {
     const grid = await file.static.get('gird.svg')
     const cookiesList = cookies()
     const uidCookie = cookiesList.get('uid')
-    const uid = uidCookie ? uidCookie.value : null
+    const visitorId = uidCookie ? uidCookie.value : null
+    if (!visitorId) return redirect('/')
     return (
         <>
             { grid && <Image src={grid} fill className='z-[-2] object-cover opacity-40' alt='grid' /> }
@@ -36,7 +33,7 @@ const page = async({ searchParams }: Props) => {
                         <NewDraftButton />
                     </div>
                     <div className="w-full h-fit flex flex-col py-6 gap-6">
-                        { uid && <AdvancedChunk getter={ bum.drafts.byUser(uid) } /> }
+                         <AdvancedChunk getter={ bum.drafts.byUser(visitorId) } />
                     </div>
                 </div>
             </div>

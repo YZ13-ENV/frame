@@ -36,12 +36,12 @@ const NewDraftButton = () => {
                 blocks: [],
                 rootBlock: {
                     content_type: '',
-                    id: '0',
+                    id: '',
                     type: 'media'
                 },
                 thumbnail: {
                     contentType: '',
-                    id: '0',
+                    id: '',
                     url: ''
                 },
                 title: name

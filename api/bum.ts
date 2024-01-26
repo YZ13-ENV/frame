@@ -226,7 +226,7 @@ export const bum = {
                     return { count: 0, data: [], next: '' }
                 }
             },
-            byUser: async(order?: string, category?: string, uid?: string): Promise<ChunkResponse<DocDraftShotData[]>> => {
+            byUser: async(uid?: string, order?: string, category?: string): Promise<ChunkResponse<DocDraftShotData[]>> => {
                 try {
                     if (!uid) throw Error('uid is not provided')
                     const headers = new Headers()

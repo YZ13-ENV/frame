@@ -13,7 +13,7 @@ const AdvancedChunk = async ({ getter, hideController }: Props) => {
     return (
         <>
             {
-                !data || data && data.length === 0 && <div className="w-full col-span-full h-96 mx-auto flex items-center justify-center">
+                (!data || (data && data.length === 0)) && <div className="w-full col-span-full h-96 mx-auto flex items-center justify-center">
                     <span className="text-sm text-muted-foreground">Работ не найдено</span>
                 </div>
             }
