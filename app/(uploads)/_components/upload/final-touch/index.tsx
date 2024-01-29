@@ -14,6 +14,7 @@ import { bum } from '@/api/bum'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
+import { team } from 'api'
 
 const FinalTouch = () => {
     const [user] = useAuthState(auth)
@@ -21,6 +22,7 @@ const FinalTouch = () => {
     const draftObj = useAppSelector(state => state.uploader.draft)
     const draftId = draftObj.draftId
     const draft = draftObj.draft
+    const teamId = draftObj.teamId
     const [tags, setTags] = useState<string[]>([])
     const [feedBack, setFeedBack] = useState<boolean>(false)
     const disabled = tags.length === 0
@@ -58,9 +60,12 @@ const FinalTouch = () => {
                 tags: tags,
                 views: [],
             }
-            const isCreated = await bum.shot.create(draftId, shot)
+            const isCreated = teamId
+            ? await team.shot.create(teamId, draftId, shot)
+            : await bum.shot.create(draftId, shot)
             setLoading(false)
             if (isCreated) {
+                router.push(`/view/${draftId}`)
                 setTags([])
                 setFeedBack(true)
                 dispatch(setFinalTouchModal(false))
@@ -73,7 +78,6 @@ const FinalTouch = () => {
                     thumbnail: { id: '', contentType: '', url: '' },
                     title: '', attachments:[], authorId: ''
                 }))
-                router.push(`/view/${draftId}`)
             }
         }
     }

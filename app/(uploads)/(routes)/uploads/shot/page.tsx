@@ -5,7 +5,7 @@ import NewDraftButton from '@/app/(uploads)/_components/hub/new-draft-button'
 import Controls from '@/app/(uploads)/_components/upload/header/controls'
 import { Button } from '@/components/ui/button'
 import AdvancedChunk from '@/components/widgets/draft-chunk'
-import { cookies } from 'next/headers'
+import { getVisitorId } from '@/helpers/cookies'
 import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -13,9 +13,7 @@ import { redirect } from 'next/navigation'
 
 const page = async() => {
     const grid = await file.static.get('gird.svg')
-    const cookiesList = cookies()
-    const uidCookie = cookiesList.get('uid')
-    const visitorId = uidCookie ? uidCookie.value : null
+    const visitorId = getVisitorId()
     if (!visitorId) return redirect('/')
     return (
         <>

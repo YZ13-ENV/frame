@@ -34,7 +34,6 @@ const RootBlock = () => {
     if (!rootBlock.id) return <FileUploader onAttachment={pickAttachment} allowedFileTypes={media_with_video_type} />
     return (
         <div className="w-full aspect-[4/3] rounded-xl relative bg-card border overflow-hidden">
-            {rootBlock.id}
             {
                 rootBlock.id &&
                 <div className="w-fit h-fit p-2 z-20 absolute top-0 right-0">

@@ -2,9 +2,10 @@
 
 import { bum } from "@/api/bum"
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
-import { setDraft, setDraftId } from "@/components/entities/uploader/draft"
+import { setDraft, setDraftId, setTeamId } from "@/components/entities/uploader/draft"
 import { DocDraftShotData } from "@/types/shot"
 import { useDebounceEffect } from "ahooks"
+import { DraftShotData, team } from "api"
 import { isEqual } from "lodash"
 import { DateTime } from "luxon"
 import { useEffect, useMemo, useState } from "react"
@@ -13,18 +14,20 @@ import { MdOutlineCloudDone, MdOutlineCloudQueue } from "react-icons/md"
 
 type Props = {
   draft: DocDraftShotData
+  teamId?: string
 }
-const DraftWatcher = ({ draft }: Props) => {
+const DraftWatcher = ({ draft, teamId }: Props) => {
     const [loading, setLoading] = useState<boolean>(false)
     const localDraft = useAppSelector(state => state.uploader.draft.draft)
-    const [debouncedDraft, setDebouncedDraft] = useState<DocDraftShotData>(draft)
-    const draftId = useAppSelector(state => state.uploader.draft.draftId)
+    const [debouncedDraft, setDebouncedDraft] = useState<DraftShotData>(draft)
     const isEq = useMemo(() => { return isEqual(debouncedDraft, localDraft) },[localDraft, debouncedDraft])
     const dispatch = useAppDispatch()
     const lastUpdate = useMemo(() => { return DateTime.fromSeconds(localDraft.updatedAt).setLocale('ru') }, [localDraft, debouncedDraft])
     const syncDraft = async() => {
       setLoading(true)
-      const updatedDraft = await bum.draft.update(draft.doc_id, localDraft)
+      const updatedDraft = teamId
+      ? await team.draft.update(teamId, draft.doc_id, localDraft)
+      : await bum.draft.update(draft.doc_id, localDraft)
       if (updatedDraft) {
         setDebouncedDraft(updatedDraft)
         dispatch(setDraft(updatedDraft))
@@ -37,6 +40,7 @@ const DraftWatcher = ({ draft }: Props) => {
     useEffect(() => {
       dispatch(setDraft(draft))
       dispatch(setDraftId(draft.doc_id))
+      dispatch(setTeamId(teamId || null))
     },[])
     return (
         <div className="flex items-center gap-2 w-fit h-fit">

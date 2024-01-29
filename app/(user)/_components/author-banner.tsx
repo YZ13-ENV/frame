@@ -1,17 +1,16 @@
 import { DocShotData } from "@/types/shot"
 import AuthorBannerWrapper from "./author-banner-wrapper"
-import { ShortUserData } from "@/types/user"
 import AuthorInfo from "./author-info"
 import PopularWork from "./popular-work"
+import type { AuthorInfo as AuthorInfoConfig } from "../(routes)/[nick]/layout"
 
 
 type Props = {
     visitorId: string
-    authorId: string
-    author: ShortUserData | null
+    author: AuthorInfoConfig
     popularShot: DocShotData | null
 }
-const AuthorBanner = ({ authorId, author, visitorId, popularShot }: Props) => {
+const AuthorBanner = ({ author, visitorId, popularShot }: Props) => {
     return (
         <AuthorBannerWrapper>
             <div className="author-banner-wrapper">

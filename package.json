@@ -30,6 +30,7 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@reduxjs/toolkit": "^2.0.1",
     "ahooks": "^3.7.8",
+    "api": "github:yz13-env/api",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "critters": "^0.0.20",

@@ -1,6 +1,6 @@
 import { bum } from "@/api/bum"
-import { user } from "@/api/user"
 import AdvancedChunk from "@/components/widgets/chunk"
+import { author_config, fetch_author } from "@/helpers/portfolio-fetcher"
 import { redirect } from "next/navigation"
 
 type Props = {
@@ -9,19 +9,20 @@ type Props = {
     }
 }
 const page = async({ params }: Props) => {
-    const byId = user.byId.short(params.nick)
-    const byNickname = user.byNick.short(params.nick)
-    const [dataById, dataByNickname] = await Promise.all([byId, byNickname])
-    const author = dataByNickname ? dataByNickname : dataById
-    const isNickname = author ? params.nick === author.nickname : false
-    if (!isNickname && author && author.nickname) return redirect(`/${author.nickname}`)
+    const nick = params.nick
+    const author = await fetch_author(nick)
+    const config = author ? author_config(author) : null
+    if (
+        config && config.isNickname && author && config.data.type === 'user' && config.data.nickname
+        && nick !== config.data.nickname
+    ) return redirect(`/${config.data.nickname}`)
     return (
         <>
             <div className="w-full p-6 min-h-[17rem] rounded-t-2xl border-t border-x bg-card max-w-screen-2xl mx-auto">
                 {
-                    author && author.uid &&
+                    config && config.uid &&
                     <div className="z-20 grid w-full h-full gap-6 shots_grid">
-                        <AdvancedChunk getter={ bum.shots.byUser(author.uid) } />
+                        <AdvancedChunk getter={ bum.shots.byUser(config.uid) } />
                     </div>
                 }
             </div>

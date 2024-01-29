@@ -62,6 +62,9 @@ dependencies:
   ahooks:
     specifier: ^3.7.8
     version: 3.7.8(react@18.2.0)
+  api:
+    specifier: github:yz13-env/api
+    version: github.com/yz13-env/api/53a1a0a9d5127cdd60a89b560a1de28c191b4f1f(react-dom@18.2.0)(react@18.2.0)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -7390,12 +7393,12 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/yz13-env/api/4bd243d4897146df1d6b6a961d3ab565fdfd53cd(react-dom@18.2.0)(react@18.2.0):
-    resolution: {tarball: https://codeload.github.com/yz13-env/api/tar.gz/4bd243d4897146df1d6b6a961d3ab565fdfd53cd}
-    id: github.com/yz13-env/api/4bd243d4897146df1d6b6a961d3ab565fdfd53cd
+  github.com/yz13-env/api/53a1a0a9d5127cdd60a89b560a1de28c191b4f1f(react-dom@18.2.0)(react@18.2.0):
+    resolution: {tarball: https://codeload.github.com/yz13-env/api/tar.gz/53a1a0a9d5127cdd60a89b560a1de28c191b4f1f}
+    id: github.com/yz13-env/api/53a1a0a9d5127cdd60a89b560a1de28c191b4f1f
     name: api
-    version: 0.0.3
-    engines: {node: '21'}
+    version: 0.0.5-2-alpha
+    engines: {node: '20'}
     peerDependencies:
       react: '18'
       react-dom: '18'
@@ -7433,7 +7436,7 @@ packages:
       '@radix-ui/react-separator': 1.0.3(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.46)(react@18.2.0)
       ahooks: 3.7.8(react@18.2.0)
-      api: github.com/yz13-env/api/4bd243d4897146df1d6b6a961d3ab565fdfd53cd(react-dom@18.2.0)(react@18.2.0)
+      api: github.com/yz13-env/api/53a1a0a9d5127cdd60a89b560a1de28c191b4f1f(react-dom@18.2.0)(react@18.2.0)
       class-variance-authority: 0.7.0
       clsx: 2.1.0
       firebase: 10.7.1

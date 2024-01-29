@@ -14,13 +14,14 @@ const SignatureEditor = ({ readOnly, signature, authorId }: Props) => {
   const [text, setText] = useState<string>(signature)
   const [debounced, setDebounced] = useState<string>(signature)
   const [loading, setLoading] = useState<boolean>(false)
+  console.log(text, signature)
   const updateSignature = async() => {
     setLoading(true)
     const newSignature = await bum.author.addSignature(authorId, text)
     setDebounced(newSignature)
     setLoading(false)
   }
-  if (readOnly) return <span className="author-description">{text}</span>
+  if (readOnly) return <span className="author-description">{text || signature}</span>
   return (
     <div className="max-w-full flex gap-2 flex-col">
       <Textarea className="w-full author-description" placeholder="Ведите здесь..." value={text} onChange={e => setText(e.target.value)} />

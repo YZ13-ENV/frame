@@ -1,14 +1,12 @@
 import { file } from "@/api/file"
-import FrameMark from "@/components/shared/frame-mark"
 import Image from "next/image"
 import PortfolioNav from "../../_components/nav"
 import AuthorBanner from "../../_components/author-banner"
-import { cookies } from "next/headers"
-import { user } from "@/api/user"
 import { bum } from "@/api/bum"
 import Header from "@/components/widgets/header"
-import { notFound } from "next/navigation"
 import Footer from "@/components/shared/footer"
+import { getVisitorId } from "@/helpers/cookies"
+import { author_config, fetch_author } from "@/helpers/portfolio-fetcher"
 
 type Props = {
     children: JSX.Element | JSX.Element[]
@@ -16,22 +14,25 @@ type Props = {
         nick: string
     }
 }
+export type AuthorInfo = {
+    uid: string
+    type: 'user' | 'team'
+    photoURL: string | undefined
+    name: string
+    signature: string | undefined,
+    position: string | null
+}
 const layout = async({ children, params }: Props) => {
     const grid = await file.static.get('gird.svg')
     const nick = params.nick
-    const cookiesList = cookies()
-    const uidCookie = cookiesList.get('uid')
-    const uid = uidCookie ? uidCookie.value : null
-    const byId = user.byId.short(nick)
-    const byNickname = user.byNick.short(nick)
-    const [dataById, dataByNickname] = await Promise.all([byId, byNickname])
-    const author = dataByNickname ? dataByNickname : dataById
-    const popular = author ? await bum.author.mostPopularShot(author.uid) : null
-    const isNickname = author ? nick === author.nickname : false
-    const path = isNickname && author ? `/${author.nickname}` : `/${nick}`
-    const isYou = author && uid ? author.uid === uid : false
-    const isNotFound = author?.statusCode !== undefined
-    if (isNotFound) return notFound()
+    const visitorId = getVisitorId()
+    const author = await fetch_author(nick)
+    const config = author ? author_config(author) : null
+    const path = config && config.data.type === 'user' && config.isNickname ? `/${config.data.nickname}` : `/${nick}`
+    const isYou = config && visitorId ? config.uid === visitorId : false
+    const popular = config ? await bum.author.mostPopularShot(config.uid) : null
+    // const isNotFound = author?.statusCode !== undefined
+    // if (isNotFound) return notFound()
     return (
         <>
             {
@@ -43,8 +44,15 @@ const layout = async({ children, params }: Props) => {
             }
             <Header />
             {
-                author &&
-                <AuthorBanner author={author} authorId={author.uid} popularShot={popular} visitorId={uid || ''} />
+                config &&
+                <AuthorBanner author={{
+                    type: config.type,
+                    name: config.data.type === 'user' ? config.data.displayName : config.data.name,
+                    signature: config.data.type === 'user' ? undefined : config.data.signature,
+                    photoURL: config.data.type === 'user' ? config.data.photoUrl : config.data.photoURL,
+                    position: config.data.type === 'user' ? config.data.position || null : null,
+                    uid: config.uid
+                }} popularShot={popular} visitorId={visitorId || ''} />
             }
             <div className="w-full px-6 my-6 mx-auto max-w-screen-2xl">
                 <PortfolioNav path={path} isYou={isYou} />

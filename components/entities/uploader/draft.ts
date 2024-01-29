@@ -5,11 +5,13 @@ import { DateTime } from 'luxon';
 
 type Props = {
     draftId: string | null
+    teamId: string | null
     draft: DraftShotData
 }
 
 const initialState: Props = {
     draftId: null,
+    teamId: null,
     draft: {
         attachments: [],
         authorId: '',
@@ -34,6 +36,9 @@ const draftSlice = createSlice({
     name: 'draft-control',
     initialState,
     reducers: {
+        setTeamId(state, { payload, type }: { payload: Props['teamId'], type: string }) {
+            state.teamId = payload
+        },
         setDraft(state, { payload, type }: { payload: Props['draft'], type: string }) {
             state.draft = payload
         },
@@ -58,5 +63,7 @@ const draftSlice = createSlice({
     }
 })
 
-export const { setTitle, setBlocks, setDraftId, setThumbnail, setRootBlock, setDraft, setAttachments } = draftSlice.actions
+export const {
+    setTitle, setBlocks, setDraftId, setThumbnail, setRootBlock, setDraft, setAttachments, setTeamId
+} = draftSlice.actions
 export default draftSlice.reducer
