@@ -1,22 +1,22 @@
-import ShotAdaptiveWrapper from "@/components/shared/shot-adaptive-wrapper"
-import { cookies } from "next/headers";
 import ShotHeader from "../../../_components/shot-header";
-import { bum } from "@/api/bum";
 import { Suspense } from "react";
 import ShotHeaderSkeleton from "@/components/skeletons/shot-header";
 import { DateTime } from "luxon";
+import ShotAdaptiveWrapper from "@/components/shared/shot-adaptive-wrapper"
 import MediaBlock from "../../../_components/blocks/media-block";
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Separator } from "@/components/ui/separator";
 import AuthorControls from "@/app/(view)/_components/author-controls";
 import LikeButton from "@/components/shared/like-button";
-import LastShots from "@/app/(view)/_components/last-shots";
 import ViewWatcher from "@/app/(view)/_components/view-watcher";
 import { notFound } from "next/navigation";
 import Comments from "@/app/(view)/_components/comments";
 import FollowButton from "@/app/(user)/_components/follow-button";
 import AuthorWorks from "@/app/(view)/_components/author-works";
-
+import { getVisitorId } from "@/helpers/cookies";
+import { bum } from "api";
+import { StarField } from 'ui'
+import Line from "@/components/shared/line";
 
 type Props = {
     params: {
@@ -25,10 +25,11 @@ type Props = {
 }
 const page = async({ params }: Props) => {
     const shotId = params.id
-    const cookiesList = cookies()
-    const uidCookie = cookiesList.get('uid')
-    const visitorId = uidCookie ? uidCookie.value : null
-    const shot = shotId ? await bum.shot.get(shotId) : null
+    const visitorId = getVisitorId()
+    const shot = shotId
+    ? await bum.shot.get(shotId)
+    : null
+    const teamId = shot ? shot.teamId : undefined
     const isYou = shot && visitorId ? shot.authorId === visitorId : false
     if (!shot) return notFound()
     return (
@@ -36,15 +37,16 @@ const page = async({ params }: Props) => {
             <div className="w-full h-0" />
             <Suspense fallback={ <ShotHeaderSkeleton /> }>
                 <ShotHeader statistics={{ likes: shot.likes.length || 0, views: shot.views.length || 0 }}
-                authorId={shot.authorId} visitorId={visitorId || ''} />
+                authorId={shot.authorId} teamId={teamId}  />
             </Suspense>
             <ViewWatcher shotId={shot.doc_id} views={shot.views} />
-            <div className="w-full h-full flex flex-col border-b bg-card">
+            <div className="relative w-full h-full flex flex-col bg-gradient-to-t from-bg-card to-background">
+                <StarField className="z-0" />
                 {
                     isYou &&
                     <AuthorControls shot={shot} />
                 }
-                <div className="view-block-wrapper view-wrapper-paddings">
+                <div className="view-block-wrapper view-wrapper-paddings z-10">
                     <ShotAdaptiveWrapper noPaddings>
                         <MediaBlock key={shot.rootBlock.id + '-' + shot.rootBlock.type + '-shot'} attachments={shot.attachments} block={shot.rootBlock} />
                     </ShotAdaptiveWrapper>
@@ -83,9 +85,10 @@ const page = async({ params }: Props) => {
                     </aside>
                 </div>
             </div>
+            <Line orientation="horizontal" variant="primary" />
             {
                 !!shot.blocks.length &&
-                <div className="w-full h-full flex flex-col border-b">
+                <div className="w-full h-full flex flex-col">
                     <div className="view-block-wrapper view-wrapper-paddings">
                         <ShotAdaptiveWrapper noPaddings>
                             {

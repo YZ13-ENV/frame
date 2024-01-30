@@ -11,8 +11,8 @@ const EmptyComments = () => {
           <div className="w-full h-full flex flex-col gap-1">
             <span className="w-full h-4 rounded-md bg-muted" />
             <span className="w-1/2 h-4 rounded-md bg-muted" />
-            <span className="w-full h-6 rounded-md bg-muted" />
-            <span className="w-2/3 h-6 rounded-md bg-muted" />
+            <span className="w-full h-6 mt-4 rounded-md bg-muted" />
+            {/* <span className="w-2/3 h-6 rounded-md bg-muted" /> */}
           </div>
         </div>
 
@@ -21,8 +21,8 @@ const EmptyComments = () => {
           <div className="w-full h-full flex flex-col gap-1">
             <span className="w-full h-4 rounded-md bg-muted" />
             <span className="w-1/2 h-4 rounded-md bg-muted" />
-            <span className="w-full h-6 rounded-md bg-muted" />
-            <span className="w-2/3 h-6 rounded-md bg-muted" />
+            <span className="w-full h-6 mt-4 rounded-md bg-muted" />
+            {/* <span className="w-2/3 h-6 rounded-md bg-muted" /> */}
           </div>
         </div>
 
@@ -31,8 +31,8 @@ const EmptyComments = () => {
           <div className="w-full h-full flex flex-col gap-1">
             <span className="w-full h-4 rounded-md bg-muted" />
             <span className="w-1/2 h-4 rounded-md bg-muted" />
-            <span className="w-full h-6 rounded-md bg-muted" />
-            <span className="w-2/3 h-6 rounded-md bg-muted" />
+            <span className="w-full h-6 mt-4 rounded-md bg-muted" />
+            {/* <span className="w-2/3 h-6 rounded-md bg-muted" /> */}
           </div>
         </div>
 

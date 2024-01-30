@@ -7,7 +7,7 @@ import Title from '@/app/(uploads)/_components/upload/view-blocks/title'
 import ShotAdaptiveWrapper from '@/components/shared/shot-adaptive-wrapper'
 import { getVisitorId } from '@/helpers/cookies'
 import { author_config, fetch_author } from '@/helpers/portfolio-fetcher'
-import { auth, team } from 'api'
+import { bum } from 'api'
 import { redirect } from 'next/navigation'
 // import React from 'react'
 
@@ -22,12 +22,12 @@ const page = async({ params }: Props) => {
     const visitorId = getVisitorId()
     const author = await fetch_author(uid)
     const config = author ? author_config(author) : null
-    const shot = await team.shot.get(uid, id)
-    const draft = await team.draft.get(uid, id)
+    const shot = await bum.shot.get(id)
+    const draft = await bum.draft.get(id)
     const result = shot || draft
     const isSubscriber = author && author.type === 'team' ? true : author ? author.isSubscriber : false
     const hasTeam = config ? config.isTeam : false
-    const isAuthor = visitorId ? result && visitorId === result.authorId : false
+    const isAuthor = visitorId && result ? visitorId === result.authorId : false
     if (!hasTeam) return redirect(`/uploads/shot`)
     if (
       config && config.isNickname && author && config.data.type === 'user' && config.data.nickname

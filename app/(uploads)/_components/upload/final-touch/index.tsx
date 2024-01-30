@@ -60,24 +60,13 @@ const FinalTouch = () => {
                 tags: tags,
                 views: [],
             }
-            const isCreated = teamId
-            ? await team.shot.create(teamId, draftId, shot)
-            : await bum.shot.create(draftId, shot)
             setLoading(false)
-            if (isCreated) {
-                router.push(`/view/${draftId}`)
-                setTags([])
-                setFeedBack(true)
-                dispatch(setFinalTouchModal(false))
-                setOpen(false)
-                dispatch(setDraftId(null))
-                dispatch(setDraft({
-                    isDraft: false, updatedAt: DateTime.now().toSeconds(),
-                    blocks: [],
-                    rootBlock: { id: '', content_type: '', type: 'media' },
-                    thumbnail: { id: '', contentType: '', url: '' },
-                    title: '', attachments:[], authorId: ''
-                }))
+            if (teamId) {
+                const isCreated = await team.shot.create(teamId, draftId, shot)
+                if (isCreated) router.push(`/view/${draftId}`)
+            } else {
+                const isCreated = await bum.shot.create(draftId, shot)
+                if (isCreated) router.push(`/view/${draftId}`)
             }
         }
     }

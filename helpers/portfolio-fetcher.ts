@@ -7,7 +7,6 @@ export const fetch_author = async(id: string): Promise<UserVariant | TeamVariant
     const byId = await user.byId.short(id)
     const byNickname = await user.byNick.short(id, false) as unknown as ShortUserData | null
     const byTeamId = await team.get(id)
-    console.log(byId, byNickname, byTeamId)
     if (!byId && !byNickname && !byTeamId) return null
     if (byId) {
       const result = byId

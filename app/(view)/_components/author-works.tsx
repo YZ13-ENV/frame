@@ -9,7 +9,7 @@ type Props = {
 const AuthorWorks = async({ authorId }: Props) => {
   const author = await user.byId.short(authorId)
   return (
-    <div className="w-full h-full flex flex-col border-b py-6 gap-6">
+    <div className="w-full h-full flex flex-col py-6 gap-6">
         <div className="w-full h-fit max-w-7xl mx-auto flex gap-6 view-wrapper-paddings">
           {
             author

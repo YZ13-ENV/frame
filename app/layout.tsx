@@ -8,8 +8,7 @@ const first_font = Geologica({ subsets: ['latin', 'cyrillic'], weight: ['600', '
 const second_font = Spectral({ subsets: ['latin', 'cyrillic'], weight: ['600', '400'], variable: '--second-font' })
 
 export const metadata: Metadata = {
-  title: 'frame',
-  icons: ['ui/assets/bum.svg']
+  title: 'Frame',
 }
 
 export default function RootLayout({

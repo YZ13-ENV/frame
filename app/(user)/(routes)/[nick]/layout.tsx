@@ -23,7 +23,7 @@ export type AuthorInfo = {
     position: string | null
 }
 const layout = async({ children, params }: Props) => {
-    const grid = await file.static.get('gird.svg')
+    // const grid = await file.static.get('gird.svg')
     const nick = params.nick
     const visitorId = getVisitorId()
     const author = await fetch_author(nick)
@@ -35,13 +35,13 @@ const layout = async({ children, params }: Props) => {
     // if (isNotFound) return notFound()
     return (
         <>
-            {
+            {/* {
                 grid &&
                 <>
                     <div className='w-full h-full z-[-1] max-h-screen absolute -top-[60px] left-0 bg-gradient-to-b from-transparent to-background' />
                     <Image src={grid} fill className='z-[-2] max-h-screen absolute !-top-[60px] left-0 object-cover opacity-40' alt='grid' />
                 </>
-            }
+            } */}
             <Header />
             {
                 config &&

@@ -4,16 +4,16 @@ import Link from "next/link"
 
 type Props = {
     authorId: string
-    visitorId: string
+    teamId?: string
     statistics?: {
         views: number
         likes: number
     }
 }
-const ShotHeader = async({ authorId, visitorId, statistics={ likes: 0, views: 0 } }: Props) => {
+const ShotHeader = async({ authorId, teamId, statistics={ likes: 0, views: 0 } }: Props) => {
     const author = await user.byId.short(authorId)
     return (
-        <div className="w-full h-fit flex flex-col border-y bg-card sticky top-0 z-20">
+        <div className="w-full h-fit flex flex-col border-y bg-background sticky top-0 z-20">
             <div className="w-full h-fit max-w-7xl mx-auto flex gap-4 view-wrapper-paddings">
                 <div className="w-full h-20 flex items-center justify-between gap-4">
                     <div className="w-fit h-fit flex items-center gap-4">
@@ -25,7 +25,14 @@ const ShotHeader = async({ authorId, visitorId, statistics={ likes: 0, views: 0 
                                 isSubscriber={author.isSubscriber || false} />
                                 <div className="w-fit h-full flex flex-col">
                                     <span className="text-lg font-semibold">{author.displayName}</span>
-                                    <span className="text-sm text-muted-foreground">{author.position || author.email}</span>
+
+                                    {
+                                        teamId
+                                        ? <span className="text-sm text-muted-foreground">
+                                            Для команды <Link className="capitalize text-accent-foreground" href={`/${teamId}`}>{teamId}</Link>
+                                        </span>
+                                        : <span className="text-sm text-muted-foreground">{author.position || author.email}</span>
+                                    }
                                 </div>
                             </Link>
                             :

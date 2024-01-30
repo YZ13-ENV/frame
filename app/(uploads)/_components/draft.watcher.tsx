@@ -26,7 +26,7 @@ const DraftWatcher = ({ draft, teamId }: Props) => {
     const syncDraft = async() => {
       setLoading(true)
       const updatedDraft = teamId
-      ? await team.draft.update(teamId, draft.doc_id, localDraft)
+      ? await team.draft.update(teamId, draft.doc_id, { teamId: teamId, ...localDraft })
       : await bum.draft.update(draft.doc_id, localDraft)
       if (updatedDraft) {
         setDebouncedDraft(updatedDraft)
