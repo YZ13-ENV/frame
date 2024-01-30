@@ -9,12 +9,13 @@ type Props = {
     visitorId: string
     author: AuthorInfoConfig
     popularShot: DocShotData | null
+    teamId?: string
 }
-const AuthorBanner = ({ author, visitorId, popularShot }: Props) => {
+const AuthorBanner = ({ author, visitorId, popularShot, teamId }: Props) => {
     return (
         <AuthorBannerWrapper>
             <div className="author-banner-wrapper">
-                { author && <AuthorInfo author={author} userId={visitorId} /> }
+                { author && <AuthorInfo author={author} userId={visitorId} teamId={teamId} /> }
                 <div className="pinned-work-wrapper">
                     {
                         popularShot &&

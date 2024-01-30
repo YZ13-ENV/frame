@@ -7,6 +7,7 @@ import Header from "@/components/widgets/header"
 import Footer from "@/components/shared/footer"
 import { getVisitorId } from "@/helpers/cookies"
 import { author_config, fetch_author } from "@/helpers/portfolio-fetcher"
+import { team } from "api"
 
 type Props = {
     children: JSX.Element | JSX.Element[]
@@ -30,7 +31,8 @@ const layout = async({ children, params }: Props) => {
     const config = author ? author_config(author) : null
     const path = config && config.data.type === 'user' && config.isNickname ? `/${config.data.nickname}` : `/${nick}`
     const isYou = config && visitorId ? config.uid === visitorId : false
-    const popular = config ? await bum.author.mostPopularShot(config.uid) : null
+    const teamId = config && config.data.type === 'team' ? config.data.doc_id : undefined
+    const popular = teamId ? await team.mostPopularShot(teamId) : config ? await bum.author.mostPopularShot(config.uid) : null
     // const isNotFound = author?.statusCode !== undefined
     // if (isNotFound) return notFound()
     return (
@@ -52,7 +54,7 @@ const layout = async({ children, params }: Props) => {
                     photoURL: config.data.type === 'user' ? config.data.photoUrl : config.data.photoURL,
                     position: config.data.type === 'user' ? config.data.position || null : null,
                     uid: config.uid
-                }} popularShot={popular} visitorId={visitorId || ''} />
+                }} popularShot={popular} visitorId={visitorId || ''} teamId={teamId} />
             }
             <div className="w-full px-6 my-6 mx-auto max-w-screen-2xl">
                 <PortfolioNav path={path} isYou={isYou} />

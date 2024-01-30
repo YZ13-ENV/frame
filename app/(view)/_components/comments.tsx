@@ -11,13 +11,15 @@ import { format } from "@/helpers/format"
 import { DateTime } from "luxon"
 import { bum } from "@/api/bum"
 import Comment from "./comment"
+import { team } from "api"
 
 type Props = {
   isCommentsEnabled: boolean
   comments: DocShotData['comments']
   shotId: string
+  teamId?: string
 }
-const Comments = ({ isCommentsEnabled, comments, shotId }: Props) => {
+const Comments = ({ isCommentsEnabled, teamId, comments, shotId }: Props) => {
   const [user] = useAuthState(auth)
   const [syncedComments, setSyncedComments] = useState<DocShotData['comments']>(comments)
   const [text, setText] = useState<string>('')
@@ -33,7 +35,9 @@ const Comments = ({ isCommentsEnabled, comments, shotId }: Props) => {
         createdAt: DateTime.now().toSeconds(),
         answers: []
       }
-      const updatedComments = await bum.shot.addComment(shotId, comment)
+      const updatedComments = teamId
+      ? await team.shot.addComment(teamId, shotId, comment)
+      : await bum.shot.addComment(shotId, comment)
       setSyncedComments(updatedComments)
       setText('')
       setLoading(false)
@@ -41,7 +45,9 @@ const Comments = ({ isCommentsEnabled, comments, shotId }: Props) => {
   }
   const deleteComment = async(commentId: string) => {
     if (user) {
-      const isDeleted = await bum.shot.deleteComment(shotId, commentId)
+      const isDeleted = teamId
+      ? await team.shot.deleteComment(teamId, shotId, commentId)
+      : await bum.shot.deleteComment(shotId, commentId)
       if (isDeleted) {
         const updatedComments = syncedComments.filter(comment => comment.id !== commentId)
         setSyncedComments(updatedComments)

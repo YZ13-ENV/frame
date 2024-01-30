@@ -59,11 +59,13 @@ const page = async({ params }: Props) => {
                                 {
                                     isYou
                                     ? <button className="h-9 w-32 rounded-md bg-muted"></button>
-                                    : visitorId ? <FollowButton from={visitorId} to={shot.authorId} /> : <button className="h-9 w-32 rounded-md bg-muted"></button>
+                                    : visitorId
+                                    ? <FollowButton from={visitorId} to={shot.authorId} /> : <button className="h-9 w-32 rounded-md bg-muted"></button>
                                 }
                             </div>
                             <div className="w-fit h-fit flex items-center gap-2">
-                                <LikeButton id={shot.doc_id} defaultValue={!!shot.likes.find(like => visitorId ? like.uid === visitorId : false)} />
+                                <LikeButton id={shot.doc_id} teamId={teamId}
+                                defaultValue={!!shot.likes.find(like => visitorId ? like.uid === visitorId : false)} />
                             </div>
                         </div>
                         <div className="w-full h-fit p-2 rounded-lg bg-muted">
@@ -74,7 +76,7 @@ const page = async({ params }: Props) => {
                                 }
                             </div>
                         </div>
-                        <Comments comments={shot.comments} shotId={shot.doc_id}
+                        <Comments comments={shot.comments} shotId={shot.doc_id} teamId={teamId}
                         isCommentsEnabled={shot.needFeedback} />
                         {/* <div className="w-full h-fit flex flex-col gap-2">
                             <div className="w-full h-6 rounded-md bg-muted"></div>

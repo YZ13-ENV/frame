@@ -11,8 +11,9 @@ import type { AuthorInfo as AuthorInfoConfig } from "../(routes)/[nick]/layout"
 type Props = {
     author: AuthorInfoConfig
     userId: string | null
+    teamId?: string
 }
-const AuthorInfo = async({ author, userId }: Props) => {
+const AuthorInfo = async({ author, userId, teamId }: Props) => {
     const isYou = author.uid === (userId || '')
     const followers = userId ? await bum.author.followings(userId) : []
     const isFollowed = followers.includes(author.uid)
@@ -32,7 +33,7 @@ const AuthorInfo = async({ author, userId }: Props) => {
             </div>
             <SignatureEditor signature={signature} readOnly={!isYou} authorId={author.uid} />
             <Suspense fallback={<div className="w-64 h-5 rounded-md bg-muted animate-pulse" />}>
-                <AuthorStats authorId={author.uid} />
+                <AuthorStats authorId={author.uid} teamId={teamId} />
             </Suspense>
             <div className="flex items-center gap-2 mt-2 w-fit h-fit">
                 <FollowButton from={userId || ''} to={author.uid} defaultValue={isFollowed} />
