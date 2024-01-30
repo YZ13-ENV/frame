@@ -59,7 +59,7 @@ const layout = async({ children, params }: Props) => {
             <div className="w-full px-6 my-6 mx-auto max-w-screen-2xl">
                 <PortfolioNav path={path} isYou={isYou} teamId={teamId} />
             </div>
-            <pre>{JSON.stringify(config, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(config, null, 2)}</pre> */}
             { children }
             <Footer profileMode />
         </>

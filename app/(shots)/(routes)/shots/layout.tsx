@@ -3,7 +3,6 @@ import dynamic from "next/dynamic"
 import HeaderSkeleton from "@/components/skeletons/header"
 import Nav from "../../_components/nav"
 import Footer from "@/components/shared/footer"
-import { StarField } from "ui"
 const Header = dynamic(() => import( "@/components/widgets/header"), {
     loading: () => <HeaderSkeleton />
 })
