@@ -1,8 +1,8 @@
 import { bum } from "@/api/bum"
-import { user } from "@/api/user"
 import AboutEditor from "@/app/(user)/_components/about-editor"
 import { Input } from "@/components/ui/input"
-import { cookies } from "next/headers"
+import { getVisitorId } from "@/helpers/cookies"
+import { author_config, fetch_author } from "@/helpers/portfolio-fetcher"
 import { redirect } from "next/navigation"
 
 type Props = {
@@ -11,30 +11,31 @@ type Props = {
     }
 }
 const page = async({ params }: Props) => {
-    const byId = user.byId.short(params.nick)
-    const byNickname = user.byNick.short(params.nick)
-    const [dataById, dataByNickname] = await Promise.all([byId, byNickname])
-    const author = dataByNickname ? dataByNickname : dataById 
-    const isNickname = author ? params.nick === author.nickname : false
-    const cookiesList = cookies()
-    const uidCookie = cookiesList.get('uid')
-    const uid = uidCookie ? uidCookie.value : null
-    const isYou = uid && author ? uid === author.uid : false
-    const about = author ? await bum.author.getAbout(author.uid) : ''
-    if (!isNickname && author && author.nickname) return redirect(`/${author.nickname}/bio`)
+    const nickname = params.nick
+    const visitorId = getVisitorId()
+    const author = await fetch_author(nickname)
+    const config = author ? author_config(author) : null
+    const isYou = config && visitorId ? config.uid === visitorId : false
+    const teamId = config && config.data.type === 'team' ? config.data.doc_id : undefined
+    const about = config && config.data.type === 'user' ? await bum.author.getAbout(config.data.uid) : ''
+    if (!isYou) redirect(`/${nickname}`)
+    if (
+        config && config.isNickname && author && config.data.type === 'user' && config.data.nickname && !teamId
+        && nickname !== config.data.nickname
+    ) return redirect(`/${config.data.nickname}/bio`)
     return (
         <>
             <div className="w-full p-6 min-h-[17rem] rounded-t-2xl border-t border-x bg-card max-w-screen-2xl mx-auto">
                 <div className="bio-wrapper">
                     <div className="about-wrapper">
                         {
-                            isYou && author
-                            ? <AboutEditor authorId={author.uid} defaultValue={about} />
+                            isYou && teamId
+                            ? <AboutEditor authorId={teamId} defaultValue={about} />
                             : <span className="text-sm">{about}</span>
                         }
                     </div>
                     {
-                        isYou && 
+                        isYou &&
                         <div className="links-wrapper">
                             <div className="w-full h-fit flex flex-col gap-2">
                                 <span className="text-sm text-muted-foreground">Ссылка</span>

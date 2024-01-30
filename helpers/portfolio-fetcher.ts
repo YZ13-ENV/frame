@@ -38,6 +38,6 @@ export const author_config = (author: UserVariant | TeamVariant) => {
     isNickname: isNickname,
     isTeam: isTeam,
     uid: uid,
-    data: author
+    data: author.type === 'team' ? author as TeamVariant : author as UserVariant
   }
 }

@@ -1,8 +1,8 @@
 import { bum } from "@/api/bum"
-import { user } from "@/api/user"
 import ShotCard from "@/components/shared/shot-card"
 import ShotSkeleton from "@/components/skeletons/shot"
-import { cookies } from "next/headers"
+import { getVisitorId } from "@/helpers/cookies"
+import { author_config, fetch_author } from "@/helpers/portfolio-fetcher"
 import { redirect } from "next/navigation"
 import { Suspense } from "react"
 
@@ -13,18 +13,18 @@ type Props = {
 }
 const page = async({ params }: Props) => {
     const nickname = params.nick
-    const byId = user.byId.short(nickname)
-    const byNickname = user.byNick.short(nickname)
-    const [dataById, dataByNickname] = await Promise.all([byId, byNickname])
-    const author = dataByNickname ? dataByNickname : dataById
-    const isNickname = author ? nickname === author.nickname : false
-    const cookiesList = cookies()
-    const uidCookie = cookiesList.get('uid')
-    const visitorId = uidCookie ? uidCookie.value : null
-    const isYou = visitorId && author ? visitorId === author.uid : false
-    const saved = author ? await bum.author.saved(author.uid) : []
+    const visitorId = getVisitorId()
+    const author = await fetch_author(nickname)
+    const config = author ? author_config(author) : null
+    const isYou = config && visitorId ? config.uid === visitorId : false
+    const saved = config && config.data.type === 'user' ? await bum.author.saved(config.data.uid) : []
+    const teamId = config && config.data.type === 'team' ? config.data.doc_id : undefined
     if (!isYou) redirect(`/${nickname}`)
-    if (!isNickname && author && author.nickname) return redirect(`/${author.nickname}/saved`)
+    if (config && config.data.type === 'team') return redirect(`/${nickname}`)
+    if (
+        config && config.isNickname && author && config.data.type === 'user' && config.data.nickname && !teamId
+        && nickname !== config.data.nickname
+    ) return redirect(`/${config.data.nickname}/saved`)
     return (
         <>
             <div className="w-full p-6 min-h-[17rem] rounded-t-2xl border-t border-x bg-card max-w-screen-2xl mx-auto">

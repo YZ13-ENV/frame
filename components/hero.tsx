@@ -1,27 +1,18 @@
-import { file } from '@/api/file'
-import { cookies } from 'next/headers'
 import Link from 'next/link'
-import { BiRightArrowAlt, BiChevronDown } from 'react-icons/bi'
 import FrameMark from './shared/frame-mark'
 import User from './shared/user-circle'
-import Image from 'next/image'
 import { Button } from './ui/button'
+import { StarField } from 'ui'
+import { getVisitorId } from '@/helpers/cookies'
+import { BiChevronDown, BiRightArrowAlt } from 'react-icons/bi'
 
 const HeroSection = async() => {
-  const grid = await file.static.get('gird.svg')
-  const cookiesList = cookies()
-  const uidCookie = cookiesList.get('uid')
-  const visitorId = uidCookie ? uidCookie.value : null
+  const visitorId = getVisitorId()
   const backLink = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://frame.darkmaterial.space'
   const loginLink = `https://auth.darkmaterial.space/login?continue=${backLink}`
   return (
     <div className='relative flex items-center justify-center w-full h-[90vh] flex-col px-6 gap-6'>
-        { grid &&
-            <>
-                <div className='w-full h-full z-[-1] absolute top-0 left-0 bg-gradient-to-b from-transparent to-background' />
-                <Image src={grid} fill className='z-[-2] object-cover opacity-40' alt='grid' />
-            </>
-        }
+        <StarField />
         <div className="absolute p-6 top-0 right-0"><User /></div>
         <div className="w-fit h-fit flex items-center lg:gap-6 gap-4">
             <Link href='/shots/popular'>
