@@ -14,7 +14,6 @@ const SignatureEditor = ({ readOnly, signature, authorId }: Props) => {
   const [text, setText] = useState<string>(signature)
   const [debounced, setDebounced] = useState<string>(signature)
   const [loading, setLoading] = useState<boolean>(false)
-  console.log(text, signature)
   const updateSignature = async() => {
     setLoading(true)
     const newSignature = await bum.author.addSignature(authorId, text)

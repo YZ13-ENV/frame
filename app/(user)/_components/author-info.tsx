@@ -27,7 +27,10 @@ const AuthorInfo = async({ author, userId, teamId }: Props) => {
                     {
                         author.type === 'team'
                         ? <span className="text-base text-muted-foreground">Команда</span>
-                        : author.position && <span className="text-base text-muted-foreground">{author.position}</span>
+                        : author.position && <div className="w-fit h-fit flex items-center gap-2">
+                            <span className="text-xs px-3 py-1 rounded-full text-muted-foreground bg-muted border">{ teamId || 'ID-команды' }</span>
+                            <span className="text-base text-muted-foreground">{author.position}</span>
+                        </div>
                     }
                 </div>
             </div>

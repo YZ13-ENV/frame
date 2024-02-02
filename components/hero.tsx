@@ -11,7 +11,7 @@ const HeroSection = async() => {
   const backLink = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://frame.darkmaterial.space'
   const loginLink = `https://auth.darkmaterial.space/login?continue=${backLink}`
   return (
-    <div className='relative flex items-center justify-center w-full h-[90vh] flex-col px-6 gap-6'>
+    <div className='relative flex items-center justify-center w-full h-screen flex-col px-6 gap-6'>
         <StarField />
         <div className="absolute p-6 top-0 right-0"><User /></div>
         <div className="w-fit h-fit flex items-center lg:gap-6 gap-4">
