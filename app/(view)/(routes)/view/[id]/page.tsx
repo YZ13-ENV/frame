@@ -41,7 +41,7 @@ const page = async({ params }: Props) => {
             </Suspense>
             <ViewWatcher shotId={shot.doc_id} views={shot.views} />
             <div className="relative w-full h-full flex flex-col bg-gradient-to-t from-bg-card to-background">
-                <StarField className="z-0" />
+                <StarField />
                 {
                     isYou &&
                     <AuthorControls shot={shot} />
