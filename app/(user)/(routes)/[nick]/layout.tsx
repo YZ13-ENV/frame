@@ -1,13 +1,8 @@
-import { file } from "@/api/file"
-import Image from "next/image"
 import PortfolioNav from "../../_components/nav"
-import AuthorBanner from "../../_components/author-banner"
-import { bum } from "@/api/bum"
+import AuthorBanner from "../../_components/banner/author-banner"
 import Header from "@/components/widgets/header"
 import Footer from "@/components/shared/footer"
-import { getVisitorId } from "@/helpers/cookies"
-import { author_config, fetch_author } from "@/helpers/portfolio-fetcher"
-import { team } from "api"
+import { getPortfolio } from "@/helpers/getPortfolio"
 
 type Props = {
     children: JSX.Element | JSX.Element[]
@@ -15,51 +10,19 @@ type Props = {
         nick: string
     }
 }
-export type AuthorInfo = {
-    uid: string
-    type: 'user' | 'team'
-    photoURL: string | undefined
-    name: string
-    signature: string | undefined,
-    position: string | null
-}
 const layout = async({ children, params }: Props) => {
-    // const grid = await file.static.get('gird.svg')
-    const nick = params.nick
-    const visitorId = getVisitorId()
-    const author = await fetch_author(nick)
-    const config = author ? author_config(author) : null
-    const path = config && config.data.type === 'user' && config.isNickname ? `/${config.data.nickname}` : `/${nick}`
-    const isYou = config && visitorId ? config.uid === visitorId : false
-    const teamId = config && config.data.type === 'team' ? config.data.doc_id : undefined
-    const popular = teamId ? await team.mostPopularShot(teamId) : config ? await bum.author.mostPopularShot(config.uid) : null
-    // const isNotFound = author?.statusCode !== undefined
-    // if (isNotFound) return notFound()
+    const { nick } = params
+    const portfolio = await getPortfolio(nick)
+    const prefix = `/${nick}`
+    if (!portfolio) return null
     return (
         <>
-            {/* {
-                grid &&
-                <>
-                    <div className='w-full h-full z-[-1] max-h-screen absolute -top-[60px] left-0 bg-gradient-to-b from-transparent to-background' />
-                    <Image src={grid} fill className='z-[-2] max-h-screen absolute !-top-[60px] left-0 object-cover opacity-40' alt='grid' />
-                </>
-            } */}
             <Header />
-            {
-                config &&
-                <AuthorBanner author={{
-                    type: config.type,
-                    name: config.data.type === 'user' ? config.data.displayName : config.data.name,
-                    signature: config.data.type === 'user' ? undefined : config.data.signature,
-                    photoURL: config.data.type === 'user' ? config.data.photoUrl : config.data.photoURL,
-                    position: config.data.type === 'user' ? config.data.position || null : null,
-                    uid: config.uid
-                }} popularShot={popular} visitorId={visitorId || ''} teamId={teamId} />
-            }
+            <AuthorBanner portfolio={portfolio} />
             <div className="w-full px-6 my-6 mx-auto max-w-screen-2xl">
-                <PortfolioNav path={path} isYou={isYou} teamId={teamId} />
+                <PortfolioNav layout={portfolio.type} prefix={prefix} />
             </div>
-            {/* <pre>{JSON.stringify(config, null, 2)}</pre> */}
+            {/* <pre>{JSON.stringify(portfolio, null, 2)}</pre> */}
             { children }
             <Footer profileMode />
         </>

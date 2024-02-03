@@ -16,7 +16,8 @@ type PortfolioUserConfig = {
 export type PortfolioConfig = PortfolioTeamConfig | PortfolioUserConfig
 // Всё просто, на вход идет id, на выход объект, где указывается команда пользователь и что-нибудь экстра.
 // : Promise<TeamPageConfig>
-export const getTeam = async(id: string): Promise<PortfolioConfig> => {
+// id может быть id команды, или пользователя
+export const getPortfolio = async(id: string): Promise<PortfolioConfig> => {
   const visitorId = getVisitorId()
   const visitor = visitorId ? await user.byId.short(visitorId) : null
 

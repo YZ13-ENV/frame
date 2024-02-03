@@ -1,18 +1,18 @@
 'use client'
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { PortfolioConfig } from "@/helpers/getPortfolio"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useMemo } from "react"
 
 type Props = {
-    path: string
-    isYou?: boolean
-    teamId?: string
+  prefix: string
+  layout: PortfolioConfig['type']
 }
-const PortfolioTeamNav = ({ path, isYou, teamId }: Props) => {
+const PortfolioTeamNav = ({ prefix, layout }: Props) => {
     const pathname = usePathname()
     const val = useMemo(() => {
-        if (teamId) {
+        if (layout === 'team') {
             if (pathname.endsWith('/members')) return '/members'
             if (pathname.endsWith('/bio')) return '/bio'
             return '/'
@@ -21,15 +21,15 @@ const PortfolioTeamNav = ({ path, isYou, teamId }: Props) => {
             if (pathname.endsWith('/bio')) return '/bio'
             return '/'
         }
-    },[path, pathname])
-    if (teamId) {
+    },[prefix, pathname])
+    if (layout === 'team') {
       return (
         <Tabs value={val}>
           <TabsList>
-            <TabsTrigger value="/"><Link href={path}>Работы</Link></TabsTrigger>
-            <TabsTrigger value="/bio"><Link href={path + '/members'}>Участники</Link></TabsTrigger>
-            {/* { isYou && <TabsTrigger value="/saved"><Link href={path + '/saved'}>Сохраненные</Link></TabsTrigger> } */}
-            <TabsTrigger value="/bio"><Link href={path + '/bio'}>Био</Link></TabsTrigger>
+            <TabsTrigger value="/"><Link href={prefix}>Работы</Link></TabsTrigger>
+            <TabsTrigger value="/bio"><Link href={prefix + '/members'}>Участники</Link></TabsTrigger>
+            {/* { isYou && <TabsTrigger value="/saved"><Link href={prefix + '/saved'}>Сохраненные</Link></TabsTrigger> } */}
+            <TabsTrigger value="/bio"><Link href={prefix + '/bio'}>Био</Link></TabsTrigger>
           </TabsList>
         </Tabs>
       )
@@ -37,9 +37,9 @@ const PortfolioTeamNav = ({ path, isYou, teamId }: Props) => {
     return (
         <Tabs value={val}>
           <TabsList>
-            <TabsTrigger value="/"><Link href={path}>Работы</Link></TabsTrigger>
-            { isYou && <TabsTrigger value="/saved"><Link href={path + '/saved'}>Сохраненные</Link></TabsTrigger> }
-            <TabsTrigger value="/bio"><Link href={path + '/bio'}>Био</Link></TabsTrigger>
+            <TabsTrigger value="/"><Link href={prefix}>Работы</Link></TabsTrigger>
+            {/* { isYou && <TabsTrigger value="/saved"><Link href={prefix + '/saved'}>Сохраненные</Link></TabsTrigger> } */}
+            <TabsTrigger value="/bio"><Link href={prefix + '/bio'}>Био</Link></TabsTrigger>
           </TabsList>
         </Tabs>
     )
