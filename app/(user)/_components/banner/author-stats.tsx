@@ -10,7 +10,6 @@ const AuthorStats = async({ id, type }: Props) => {
     const followersPromise = bum.author.followers(id)
     const followingsPromise = type === 'team' ? [] : bum.author.followings(id)
     const [likes, followings, followers] = await Promise.all([likesPromise, followingsPromise, followersPromise])
-    console.log(likes, followings, followers)
     return (
         <div className="flex items-center gap-2 w-fit h-fit">
             <span className="text-sm text-muted-foreground">{followers.length} Подписчиков</span>
