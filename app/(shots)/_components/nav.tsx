@@ -1,4 +1,5 @@
 'use client'
+import { motion } from 'framer-motion'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cleanPathname, detectCategoryTab, detectSortTab, sortTabs, withCustomSortTab } from "@/const/categories"
@@ -72,13 +73,20 @@ const Nav = ({ padding=false }: Props) => {
                     </SelectContent>
                 </Select>
             </div>
-            <div className="nav-tabs">
+            <div className="nav-tabs ">
                 <Tabs defaultValue="/" value={categoryTab}  className="w-fit">
-                    <TabsList>
+                    <TabsList className='!bg-transparent !p-0 '>
                         {
                             withCustomSortTab(orderTab).map(tab =>
-                                <TabsTrigger key={tab.value} onClick={() => setCategoryTab(tab.value)} value={tab.value}>{tab.label}</TabsTrigger>
-                                )
+                                <TabsTrigger key={tab.value} onClick={() => setCategoryTab(tab.value)}
+                                value={tab.value} className="relative !bg-transparent">
+                                    {tab.label}
+                                    {
+                                        tab.value === categoryTab && <motion.div layoutId='category-tab'
+                                        className="absolute left-0 -bottom-3 w-full h-0.5 rounded-md bg-primary z-[-1]" />
+                                    }
+                                </TabsTrigger>
+                            )
                         }
                     </TabsList>
                 </Tabs>

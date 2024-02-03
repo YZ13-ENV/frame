@@ -16,7 +16,7 @@ const page = async({ params }: Props) => {
     if ( portfolio.type === 'user' && portfolio.data && portfolio.data.nickname && portfolio.data.nickname !== nick )
     return redirect(`/${portfolio.data.nickname}`)
     if (portfolio.type === 'team') return (
-        <div className="w-full p-6 min-h-[17rem] rounded-t-2xl border-t border-x bg-card max-w-screen-2xl mx-auto">
+        <div className="w-full min-h-[17rem] px-6 max-w-screen-2xl mx-auto my-24">
             {
                 teamId &&
                 <div className="z-20 grid w-full h-full gap-6 shots_grid">
@@ -26,7 +26,7 @@ const page = async({ params }: Props) => {
         </div>
     )
     return (
-        <div className="w-full p-6 min-h-[17rem] rounded-t-2xl border-t border-x bg-card max-w-screen-2xl mx-auto">
+        <div className="w-full min-h-[17rem] px-6 max-w-screen-2xl mx-auto my-24">
             {
                 portfolio && portfolio.data && portfolio.data.uid &&
                 <div className="z-20 grid w-full h-full gap-6 shots_grid">

@@ -5,7 +5,6 @@ import HeroSection from '@/components/hero'
 const HomePage = () => {
     return (
         <>
-            {/* <Dock /> */}
             <HeroSection />
             <PortfolioExample />
             <ShotsExample />

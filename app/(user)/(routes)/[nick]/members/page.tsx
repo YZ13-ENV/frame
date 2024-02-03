@@ -21,8 +21,8 @@ const page = async({ params }: Props) => {
         && nickname !== config.data.nickname
     ) return redirect(`/${config.data.nickname}/members`)
     return (
-      <div className="w-full p-6 min-h-[17rem] rounded-t-2xl border-t border-x bg-card max-w-screen-2xl mx-auto">
-      </div>
+        <div className="w-full px-6 min-h-[17rem] py-24 max-w-screen-2xl mx-auto">
+        </div>
     )
 }
 

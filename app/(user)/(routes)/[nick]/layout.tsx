@@ -1,8 +1,13 @@
 import PortfolioNav from "../../_components/nav"
 import AuthorBanner from "../../_components/banner/author-banner"
-import Header from "@/components/widgets/header"
+import HeaderSkeleton from "@/components/skeletons/header"
 import Footer from "@/components/shared/footer"
 import { getPortfolio } from "@/helpers/getPortfolio"
+import { Suspense } from 'react'
+import dynamic from "next/dynamic"
+const Header = dynamic(() => import( "@/components/widgets/header"), {
+    loading: () => <HeaderSkeleton />
+})
 
 type Props = {
     children: JSX.Element | JSX.Element[]
@@ -17,14 +22,17 @@ const layout = async({ children, params }: Props) => {
     if (!portfolio) return null
     return (
         <>
-            <Header />
+            <Suspense fallback={<HeaderSkeleton />}>
+                <Header />
+            </Suspense>
             <AuthorBanner portfolio={portfolio} />
-            <div className="w-full px-6 my-6 mx-auto max-w-screen-2xl">
-                <PortfolioNav layout={portfolio.type} prefix={prefix} />
+            <div className="w-full py-2 border-b">
+                <div className="mx-auto max-w-screen-2xl px-6">
+                    <PortfolioNav layout={portfolio.type} prefix={prefix} />
+                </div>
             </div>
-            {/* <pre>{JSON.stringify(portfolio, null, 2)}</pre> */}
             { children }
-            <Footer profileMode />
+            <Footer />
         </>
     )
 }

@@ -27,7 +27,7 @@ const page = async({ params }: Props) => {
     ) return redirect(`/${config.data.nickname}/saved`)
     return (
         <>
-            <div className="w-full p-6 min-h-[17rem] rounded-t-2xl border-t border-x bg-card max-w-screen-2xl mx-auto">
+            <div className="w-full px-6 min-h-[17rem] py-24 max-w-screen-2xl mx-auto">
                 <div className="z-20 grid w-full h-full gap-6 shots_grid">
                     {
                         saved.map(shot =>

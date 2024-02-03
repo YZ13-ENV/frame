@@ -34,11 +34,10 @@
 
     --radius: 0.5rem;
 
-    --shot-width-mini: 250px;
-
-    --shot-width-small: 204px;
-    --shot-width-medium: 270px;
-    --shot-width-large: 336px;
+    --shot-width-mini: 240px;
+    --shot-width-small: 216px;
+    --shot-width-medium: 280px;
+    --shot-width-large: 340px;
   }
 
   .dark {
@@ -250,7 +249,7 @@
   }
 
   .nav-wrapper {
-    @apply relative z-40 flex flex-row items-center lg:justify-center justify-between w-full gap-8 my-6 shrink-0 h-fit
+    @apply relative z-40 flex flex-row items-center lg:justify-center justify-between w-full gap-8 shrink-0 h-fit
   }
 
   .app-title-wrapper {
