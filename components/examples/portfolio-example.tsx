@@ -1,4 +1,4 @@
-import AuthorBannerWrapper from "@/app/(user)/_components/author-banner-wrapper"
+import AuthorBannerWrapper from "@/app/(user)/_components/banner/author-banner-wrapper"
 import { format } from "@/helpers/format"
 import { StarField } from "ui"
 
