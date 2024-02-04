@@ -15,23 +15,22 @@ const ShotHeader = async({ authorId, teamId, statistics={ likes: 0, views: 0 } }
     return (
         <div className="w-full h-fit flex flex-col border-y bg-background sticky top-0 z-20">
             <div className="w-full h-fit max-w-7xl mx-auto flex gap-4 view-wrapper-paddings">
-                <div className="w-full h-20 flex items-center justify-between gap-4">
+                <div className="w-full h-16 flex items-center justify-between gap-4">
                     <div className="w-fit h-fit flex items-center gap-4">
                         {
                             author
                             ?
                             <Link href={'/' + (author.nickname ? author.nickname : authorId)} className="w-fit h-fit flex items-center gap-2">
-                                <Avatar src={author.photoUrl} size={48}
+                                <Avatar src={author.photoUrl} size={42}
                                 isSubscriber={author.isSubscriber || false} />
                                 <div className="w-fit h-full flex flex-col">
-                                    <span className="text-lg font-semibold">{author.displayName}</span>
-
+                                    <span className="text-base font-semibold">{author.displayName}</span>
                                     {
                                         teamId
-                                        ? <span className="text-sm text-muted-foreground">
+                                        ? <span className="text-xs text-muted-foreground">
                                             Для команды <Link className="capitalize text-accent-foreground" href={`/${teamId}`}>{teamId}</Link>
                                         </span>
-                                        : <span className="text-sm text-muted-foreground">{author.position || author.email}</span>
+                                        : <span className="text-xs text-muted-foreground">{author.position || author.email}</span>
                                     }
                                 </div>
                             </Link>
@@ -47,12 +46,12 @@ const ShotHeader = async({ authorId, teamId, statistics={ likes: 0, views: 0 } }
                     </div>
                     <div className="w-fit h-fit flex items-center gap-4">
                         <div className="w-fit h-fit flex flex-col gap-1">
-                            <span className="text-sm text-muted-foreground">Просмотры</span>
-                            <span className="text-2xl font-semibold">{statistics.views}</span>
+                            <span className="text-xs text-muted-foreground">Просмотры</span>
+                            <span className="text-xl font-semibold">{statistics.views}</span>
                         </div>
                         <div className="w-fit h-fit flex flex-col gap-1">
-                            <span className="text-sm text-muted-foreground">Лайки</span>
-                            <span className="text-2xl font-semibold">{statistics.likes}</span>
+                            <span className="text-xs text-muted-foreground">Лайки</span>
+                            <span className="text-xl font-semibold">{statistics.likes}</span>
                         </div>
                     </div>
                 </div>

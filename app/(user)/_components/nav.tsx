@@ -4,6 +4,10 @@ import { PortfolioConfig } from "@/helpers/getPortfolio"
 import { motion } from "framer-motion"
 import { usePathname, useRouter } from "next/navigation"
 import { useMemo } from "react"
+import { TbLayoutDashboard } from "react-icons/tb";
+import { SiAboutdotme } from "react-icons/si";
+import { GrGroup } from "react-icons/gr";
+import { BiBookmarks } from "react-icons/bi";
 
 type Props = {
   prefix: string
@@ -12,24 +16,29 @@ type Props = {
 type NavTab = {
   value: string
   label: string
+  icon?: JSX.Element
 }
 const tabs = (prefix?: string, layout?: PortfolioConfig['type']) => {
   const tabs = [
     {
       value: '/',
-      label: 'Работы'
+      label: 'Работы',
+      icon: <TbLayoutDashboard size={16} />
     },
     {
       value: '/bio',
-      label: 'Био'
+      label: 'Био',
+      icon: <SiAboutdotme size={16} />
     },
     {
       value: '/saved',
-      label: 'Сохраненные'
+      label: 'Сохраненные',
+      icon: <BiBookmarks size={16} />
     },
     {
       value: '/members',
-      label: 'Участники'
+      label: 'Участники',
+      icon: <GrGroup size={16} />
     }
   ]
   const team = ['/', '/bio', '/members']
@@ -56,7 +65,8 @@ const PortfolioTeamNav = ({ prefix, layout }: Props) => {
             {
               tabs(prefix, layout)
               .map(tab =>
-                <TabsTrigger key={tab.value} value={tab.value} className="relative !bg-transparent">
+                <TabsTrigger key={tab.value} value={tab.value} className="relative !bg-transparent gap-2">
+                  { tab.icon && tab.icon }
                   { tab.label }
                   {
                     tab.value === section && <motion.div layoutId='portfolio-tab'

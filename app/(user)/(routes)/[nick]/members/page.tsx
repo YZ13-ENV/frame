@@ -8,6 +8,7 @@ type Props = {
     }
 }
 const page = async({ params }: Props) => {
+    // TODO rewrite this like page.tsx in this layout
     const nickname = params.nick
     const visitorId = getVisitorId()
     const author = await fetch_author(nickname)

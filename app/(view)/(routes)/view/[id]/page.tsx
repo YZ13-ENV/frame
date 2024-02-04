@@ -15,7 +15,6 @@ import FollowButton from "@/app/(user)/_components/follow-button";
 import AuthorWorks from "@/app/(view)/_components/author-works";
 import { getVisitorId } from "@/helpers/cookies";
 import { bum } from "api";
-import { StarField } from 'ui'
 import Line from "@/components/shared/line";
 
 type Props = {
@@ -41,7 +40,6 @@ const page = async({ params }: Props) => {
             </Suspense>
             <ViewWatcher shotId={shot.doc_id} views={shot.views} />
             <div className="relative w-full h-full flex flex-col bg-gradient-to-t from-bg-card to-background">
-                <StarField />
                 {
                     isYou &&
                     <AuthorControls shot={shot} />
