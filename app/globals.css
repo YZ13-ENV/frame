@@ -249,7 +249,7 @@
   }
 
   .nav-wrapper {
-    @apply relative z-40 flex flex-row items-center lg:justify-center justify-between w-full gap-8 shrink-0 h-fit
+    @apply relative z-40 flex flex-row items-center justify-between w-full gap-8 shrink-0 h-fit
   }
 
   .app-title-wrapper {

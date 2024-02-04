@@ -1,9 +1,12 @@
 import Controller from "./ui/controller"
-import ShotCard from "@/components/shared/shot-card"
 import { Suspense } from "react"
 import ShotSkeleton from "@/components/skeletons/shot"
 import { ChunkResponse } from "@/types/common"
 import { DocShotData } from "@/types/shot"
+import dynamic from "next/dynamic"
+const ShotCard = dynamic(() => import("@/components/shared/shot-card"), {
+    loading: () => <ShotSkeleton />
+})
 
 type Props = {
     hideController?: boolean

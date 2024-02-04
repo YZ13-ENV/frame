@@ -17,13 +17,41 @@ export type PortfolioConfig = PortfolioTeamConfig | PortfolioUserConfig
 // Всё просто, на вход идет id, на выход объект, где указывается команда пользователь и что-нибудь экстра.
 // : Promise<TeamPageConfig>
 // id может быть id команды, или пользователя
+const getShortById = async(id: string) => {
+  try {
+    const result = await user.byId.short(id)
+    if (typeof result?.status === 'number') return null
+    return result
+  } catch (error) {
+    return null
+  }
+}
+const getShortByNickname = async(id: string) => {
+  try {
+    const result =  await user.byNick.short(id, false) as ShortUserData | null
+    if (typeof result?.status === 'number') return null
+    return result
+  } catch (error) {
+    return null
+  }
+}
+const getTeamInfo = async(id: string) => {
+  try {
+    const result = await team.get(id)
+    // @ts-ignore
+    if (typeof result?.status === 'number') return null
+    return result
+  } catch (error) {
+    return null
+  }
+}
 export const getPortfolio = async(id: string): Promise<PortfolioConfig> => {
   const visitorId = getVisitorId()
   const visitor = visitorId ? await user.byId.short(visitorId) : null
 
-  const isId = await user.byId.short(id)
-  const isNickname = await user.byNick.short(id, false) as ShortUserData | null
-  const isTeam = await team.get(id)
+  const isId = await getShortById(id)
+  const isNickname = await getShortByNickname(id)
+  const isTeam = await getTeamInfo(id)
 
   if (isTeam) {
     const { members, founder } = isTeam

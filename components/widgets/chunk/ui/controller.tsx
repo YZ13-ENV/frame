@@ -1,14 +1,16 @@
 'use client'
-import ShotCard from '@/components/shared/shot-card'
 import ShotSkeleton from '@/components/skeletons/shot'
 import { Button } from '@/components/ui/button'
 import { api_host } from '@/const/host'
 import { authorizationHeader } from '@/helpers/headers'
 import { ChunkResponse } from '@/types/common'
 import { DocShotData } from '@/types/shot'
+import dynamic from 'next/dynamic'
 import { Suspense, useState } from 'react'
 import { BiLoaderAlt } from 'react-icons/bi'
-
+const ShotCard = dynamic(() => import("@/components/shared/shot-card"), {
+    loading: () => <ShotSkeleton />
+})
 type Props = {
     next: string
 }

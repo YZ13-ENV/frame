@@ -56,11 +56,11 @@ const PortfolioTeamNav = ({ prefix, layout }: Props) => {
             {
               tabs(prefix, layout)
               .map(tab =>
-                <TabsTrigger value={tab.value} className="relative">
+                <TabsTrigger key={tab.value} value={tab.value} className="relative !bg-transparent">
                   { tab.label }
                   {
                     tab.value === section && <motion.div layoutId='portfolio-tab'
-                    className="absolute left-0 -bottom-3 w-full h-0.5 rounded-md bg-primary z-[-1]" />
+                    className="absolute left-0 -bottom-3 w-full h-0.5 rounded-md bg-primary" />
                   }
                 </TabsTrigger>
               )

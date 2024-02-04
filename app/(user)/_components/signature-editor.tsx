@@ -20,9 +20,9 @@ const SignatureEditor = ({ readOnly, signature, id }: Props) => {
     setDebounced(newSignature)
     setLoading(false)
   }
-  if (readOnly) return <span className="author-description">{text || signature}</span>
+  if (readOnly) return <span className="author-description my-4">{text || signature}</span>
   return (
-    <div className="max-w-full flex gap-2 flex-col">
+    <div className="max-w-full flex gap-2 items-center justify-center flex-col my-4">
       <Textarea className="w-full author-description" placeholder="Ведите здесь..." value={text} onChange={e => setText(e.target.value)} />
       {
         debounced !== text &&

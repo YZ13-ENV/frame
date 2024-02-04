@@ -7,7 +7,6 @@ type Props = {
   portfolio: PortfolioConfig
 }
 const Author = ({ portfolio }: Props) => {
-
   if (portfolio.type === 'team' && portfolio.data) return (
       <div className="flex items-center gap-4 w-fit h-fit">
         {
@@ -16,7 +15,7 @@ const Author = ({ portfolio }: Props) => {
           : <div className="w-24 aspect-square rounded-full bg-muted shrink-0" />
         }
         <div className="flex flex-col justify-center h-full gap-2 w-fit">
-            <h1 className="text-4xl font-bold">{`${portfolio.data.name}`}</h1>
+            <h1 className="text-4xl font-bold">{portfolio.data.name}</h1>
             <span className="text-base text-muted-foreground">Команда</span>
         </div>
       </div>
