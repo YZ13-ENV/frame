@@ -20,7 +20,7 @@ const page = async({ params }: Props) => {
             {
                 teamId &&
                 <div className="z-20 grid w-full h-full gap-6 shots_grid">
-                    <AdvancedChunk getter={team.shots.all(teamId)} />
+                    <AdvancedChunk getter={ team.shots.all(teamId) } />
                 </div>
             }
         </div>

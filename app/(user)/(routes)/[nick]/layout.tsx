@@ -6,7 +6,10 @@ import { Suspense } from 'react'
 import dynamic from "next/dynamic"
 import { Metadata } from "next"
 import AuthorBannerWrapper from "../../_components/banner/author-banner-wrapper"
-import AuthorInfo from "../../_components/banner/author-info"
+import { bum } from "api"
+import Author from "../../_components/banner/author"
+import SignatureEditor from "../../_components/signature-editor"
+import AuthorStats from "../../_components/banner/author-stats"
 const Header = dynamic(() => import( "@/components/widgets/header"), {
     loading: () => <HeaderSkeleton />
 })
@@ -32,6 +35,11 @@ export async function generateMetadata({ params }: { params: { nick: string } })
 const layout = async({ children, params }: Props) => {
     const { nick } = params
     const portfolio = await getPortfolio(nick)
+    const signature = portfolio.type === 'team' && portfolio.data
+    ? portfolio.data.signature :
+    portfolio.type === 'user' && portfolio.data
+    ? await bum.author.getSignature(portfolio.data.uid)
+    : ''
     const prefix = `/${nick}`
     return (
         <>
@@ -40,7 +48,26 @@ const layout = async({ children, params }: Props) => {
                     <Header />
                 </Suspense>
                 <AuthorBannerWrapper>
-                    <AuthorInfo portfolio={portfolio} />
+                    <></>
+                    {
+                        (portfolio.type === 'team' && portfolio.data) ?
+                            <>
+                                <Author portfolio={portfolio} />
+                                <SignatureEditor signature={signature} readOnly={true} id={portfolio.data.doc_id} />
+                                <Suspense fallback={<div className="w-64 h-5 rounded-md bg-muted animate-pulse" />}>
+                                    <AuthorStats type={portfolio.type} id={portfolio.data.doc_id} />
+                                </Suspense>
+                            </>
+                        : (portfolio.type === 'user' && portfolio.data) ?
+                            <>
+                                <Author portfolio={portfolio} />
+                                <SignatureEditor signature={signature} readOnly={portfolio.current ? portfolio.current.uid !== portfolio.data.uid : true} id={portfolio.data.uid} />
+                                <Suspense fallback={<div className="w-64 h-5 rounded-md bg-muted animate-pulse" />}>
+                                    <AuthorStats type={portfolio.type} id={portfolio.data.uid} />
+                                </Suspense>
+                            </>
+                        : <></>
+                    }
                 </AuthorBannerWrapper>
                 <div className="w-full py-2 border-b">
                     <div className="mx-auto max-w-screen-2xl px-6">

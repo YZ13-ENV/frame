@@ -1,6 +1,6 @@
 
 type Props = {
-    children?: JSX.Element | JSX.Element[]
+    children: JSX.Element | JSX.Element[] | undefined
 }
 const AuthorBannerWrapper = ({ children }: Props) => {
     return (

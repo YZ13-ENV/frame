@@ -30,7 +30,7 @@ const AuthorInfo = async({ portfolio }: Props) => {
 
         </>
     )
-    return null
+    return <></>
 }
 {/* <div className="flex items-center gap-2 mt-2 w-fit h-fit"> */}
 {/* <FollowButton from={userId || ''} to={author.uid} defaultValue={isFollowed} /> */}
