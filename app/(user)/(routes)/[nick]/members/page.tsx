@@ -25,8 +25,8 @@ const page = async({ params }: Props) => {
             {
                 [...portfolio.data.members, portfolio.data.founder].map(
                     member =>
-                    <Suspense fallback={<MemberCardSkeleton />}>
-                        <MemberCard key={member + '-card'} memberId={member} />
+                    <Suspense fallback={<MemberCardSkeleton />} key={member + '-card'}>
+                        <MemberCard memberId={member} />
                     </Suspense>
                 )
             }

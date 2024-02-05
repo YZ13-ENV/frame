@@ -30,7 +30,7 @@ const MemberCard = async({ memberId }: Props) => {
         <div className="w-full h-full grid grid-cols-2 grid-rows-2 gap-4">
           {
             !!last.length
-            ? last.map(shot => <ShotCard shot={shot} enableFooter={false} />)
+            ? last.map(shot => <ShotCard key={shot.doc_id} shot={shot} enableFooter={false} />)
             : <div className="col-span-full aspect-[4/3] row-span-full flex items-center justify-center">
               <span className="text-sm text-muted-foreground text-center">Ещё нет опубликованных работ</span>
             </div>
