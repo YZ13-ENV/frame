@@ -5,7 +5,7 @@ import { StarField } from "ui"
 const PortfolioExample = () => {
   return (
     <AuthorBannerWrapper>
-      <StarField />
+      {/* <StarField /> */}
       <div className="author-banner-wrapper">
         <div className="author-info-wrapper">
             <div className="flex items-center gap-4 w-fit h-fit">

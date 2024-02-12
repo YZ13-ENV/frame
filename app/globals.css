@@ -187,6 +187,9 @@
 }
 
 @layer components {
+  .hero-banner {
+    @apply bg-opacity-40 backdrop-blur
+  }
   .side-wrapper {
     @apply sticky lg:flex hidden overflow-y-auto flex-col h-full gap-4 p-4 top-4 xl:w-96 lg:w-80 md:w-72 w-64 shrink-0
   }

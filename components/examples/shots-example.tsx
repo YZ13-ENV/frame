@@ -7,7 +7,7 @@ import { StarField } from "ui"
 const ShotsExample = () => {
   return (
     <div className="w-full h-fit relative">
-      <StarField starsCount={250} />
+      {/* <StarField starsCount={250} /> */}
       <div className="w-full p-6 min-h-[75vh] rounded-t-2xl border-t border-x bg-card max-w-screen-2xl mx-auto relative">
           <div className="w-full h-full absolute top-0 left-0 z-10 bg-gradient-to-t from-card to-transparent" />
           <div className="absolute left-0 z-40 bottom-0 w-full h-1/4 flex items-center justify-center">
