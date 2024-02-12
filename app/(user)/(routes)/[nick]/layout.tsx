@@ -10,6 +10,7 @@ import { bum } from "api"
 import Author from "../../_components/banner/author"
 import SignatureEditor from "../../_components/signature-editor"
 import AuthorStats from "../../_components/banner/author-stats"
+import DynamicNav from "../../_components/dynamic-nav"
 const Header = dynamic(() => import( "@/components/widgets/header"), {
     loading: () => <HeaderSkeleton />
 })
@@ -40,12 +41,14 @@ const layout = async({ children, params }: Props) => {
     portfolio.type === 'user' && portfolio.data
     ? await bum.author.getSignature(portfolio.data.uid)
     : ''
+    const name = portfolio.type === 'team' && portfolio.data ? portfolio.data.name : portfolio.type === 'user' && portfolio.data ? portfolio.data.displayName : 'Не указано'
+    const photoURL = portfolio.type === 'team' && portfolio.data ? portfolio.data.photoURL || '' : portfolio.type === 'user' && portfolio.data ? portfolio.data.photoUrl : ''
     const prefix = `/${nick}`
     return (
         <>
-            <div className="w-full bg-card">
+            {/* <div className="w-full bg-card"> */}
                 <Suspense fallback={<HeaderSkeleton />}>
-                    <Header />
+                    <Header transparent={false} />
                 </Suspense>
                 <AuthorBannerWrapper>
                     <></>
@@ -69,12 +72,8 @@ const layout = async({ children, params }: Props) => {
                         : <></>
                     }
                 </AuthorBannerWrapper>
-                <div className="w-full py-2 border-b">
-                    <div className="mx-auto max-w-screen-2xl px-6">
-                        <PortfolioNav layout={portfolio.type} prefix={prefix} />
-                    </div>
-                </div>
-            </div>
+                <DynamicNav layout={portfolio.type} prefix={prefix} user={{ name: name, photoURL: photoURL  }}  />
+            {/* </div> */}
             { children }
             <Footer />
         </>
