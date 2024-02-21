@@ -21,7 +21,7 @@
 }
 
 .dashboard_grid {
-  grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 .preview-screen-grid {
@@ -33,104 +33,115 @@
 }
 
 .shots_grid {
-  grid-template-columns: repeat(auto-fill, minmax(var(--shot-width-small), 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--shot-width-small), 1fr)
+  );
 }
 @media (min-width: 768px) {
   .preview-screen-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
   .shots_grid {
-    grid-template-columns: repeat(auto-fill,minmax(var(--shot-width-medium),1fr));
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--shot-width-medium), 1fr)
+    );
   }
 }
 
 @media (min-width: 1440px) {
   .shots_grid {
-    grid-template-columns: repeat(auto-fill,minmax(var(--shot-width-medium),1fr));
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--shot-width-medium), 1fr)
+    );
   }
 }
 
 @media (min-width: 1600px) {
   .shots_grid {
-    grid-template-columns: repeat(auto-fill,minmax(var(--shot-width-large),1fr));
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--shot-width-large), 1fr)
+    );
   }
-
 }
 
 @layer components {
   .hero-banner {
-    @apply bg-opacity-40 backdrop-blur
+    @apply bg-opacity-40 backdrop-blur;
   }
   .side-wrapper {
-    @apply sticky lg:flex hidden overflow-y-auto flex-col h-full gap-4 p-4 top-4 xl:w-96 lg:w-80 md:w-72 w-64 shrink-0
+    @apply sticky lg:flex hidden overflow-y-auto flex-col h-full gap-4 p-4 top-4 xl:w-96 lg:w-80 md:w-72 w-64 shrink-0;
   }
   .only-desktop-warning {
-    @apply flex flex-col items-center justify-center w-full min-h-screen gap-4 md:hidden
+    @apply flex flex-col items-center justify-center w-full min-h-screen gap-4 md:hidden;
   }
   .constructor-wrapper {
-    @apply relative z-0 flex-col hidden w-full min-h-screen h-fit md:flex shrink-0 bg-card
+    @apply relative z-0 flex-col hidden w-full min-h-screen h-fit md:flex shrink-0 bg-card;
   }
   .nav-tabs {
-    @apply lg:flex hidden
+    @apply lg:flex hidden;
   }
   .nav-select {
-    @apply lg:hidden flex
+    @apply lg:hidden flex;
   }
   .draft-card {
-    @apply w-full h-fit border bg-card rounded-lg p-4 flex items-start gap-4 md:flex-row flex-col
+    @apply w-full h-fit border bg-card rounded-lg p-4 flex items-start gap-4 md:flex-row flex-col;
   }
   .author-banner {
-    @apply w-full md:h-[60vh] shrink-0 h-fit
+    @apply w-full md:h-[60vh] shrink-0 h-fit;
   }
   .author-banner-wrapper {
-    @apply flex md:flex-row flex-col justify-between w-full h-full gap-6 px-6 py-12 mx-auto max-w-screen-2xl
+    @apply flex md:flex-row flex-col justify-between w-full h-full gap-6 px-6 py-12 mx-auto max-w-screen-2xl;
   }
   .author-info-wrapper {
-    @apply flex flex-col justify-center md:h-full h-fit gap-4 md:w-fit w-full
+    @apply flex flex-col justify-center md:h-full h-fit gap-4 md:w-fit w-full;
   }
   .pinned-work-wrapper {
-    @apply flex items-center md:h-full h-fit md:w-fit w-full shrink-0
+    @apply flex items-center md:h-full h-fit md:w-fit w-full shrink-0;
   }
   .pinned-work {
-    @apply lg:h-full h-fit lg:w-fit w-full aspect-[4/3] min-h-[20rem] lg:max-w-none max-w-xl lg:mx-0 mx-auto rounded-lg bg-muted shrink-0 relative
+    @apply lg:h-full h-fit lg:w-fit w-full aspect-[4/3] min-h-[20rem] lg:max-w-none max-w-xl lg:mx-0 mx-auto rounded-lg bg-muted shrink-0 relative;
   }
   .author-description {
-    @apply xl:text-5xl text-4xl font-bold text-accent-foreground
+    @apply xl:text-5xl text-4xl font-bold text-accent-foreground;
   }
   .bio-wrapper {
-    @apply w-full mx-auto max-w-screen-2xl h-fit flex md:flex-row flex-col gap-6
+    @apply w-full mx-auto max-w-screen-2xl h-fit flex md:flex-row flex-col gap-6;
   }
   .about-wrapper {
-    @apply md:w-2/3 w-full h-full flex flex-col
+    @apply md:w-2/3 w-full h-full flex flex-col;
   }
   .links-wrapper {
-    @apply md:w-1/3 w-full h-full flex flex-col gap-4
+    @apply md:w-1/3 w-full h-full flex flex-col gap-4;
   }
   .view-block-wrapper {
-    @apply w-full h-fit max-w-7xl mx-auto flex md:flex-row flex-col gap-6 md:py-14 py-6
+    @apply w-full h-fit max-w-7xl mx-auto flex md:flex-row flex-col gap-6 md:py-14 py-6;
   }
   .view-wrapper-paddings {
-    @apply lg:pl-10 pl-6 pr-6
+    @apply lg:pl-10 pl-6 pr-6;
   }
   .view-side {
-    @apply md:w-80 w-full shrink-0 flex flex-col gap-4
+    @apply md:w-80 w-full shrink-0 flex flex-col gap-4;
   }
   .view-side-empty {
-    @apply w-80 shrink-0 md:flex hidden flex-col gap-4
+    @apply w-80 shrink-0 md:flex hidden flex-col gap-4;
   }
   .view-last-shots-wrapper {
-    @apply grid md:grid-cols-4 grid-cols-2 md:grid-rows-1 grid-rows-2
+    @apply grid md:grid-cols-4 grid-cols-2 md:grid-rows-1 grid-rows-2;
   }
 
   .nav-wrapper {
-    @apply relative z-40 flex flex-row items-center justify-between w-full gap-8 shrink-0 h-fit
+    @apply relative z-0 flex flex-row items-center justify-between w-full gap-8 shrink-0 h-fit;
   }
 
   .app-title-wrapper {
-    @apply w-fit h-fit md:flex hidden flex-col
+    @apply w-fit h-fit md:flex hidden flex-col;
   }
 
   .settings-content-wrapper {
-    @apply w-full h-fit flex md:flex-row flex-col gap-4
+    @apply w-full h-fit flex md:flex-row flex-col gap-4;
   }
 }
