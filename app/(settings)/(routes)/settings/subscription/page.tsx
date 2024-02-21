@@ -1,10 +1,10 @@
-import { user } from "@/api/user"
+import { user } from "api"
 import SubscriptionAbility from "@/app/(settings)/_components/subscription/subscription-ability"
 import { Separator } from "@/components/ui/separator"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-const page = async() => {
+const page = async () => {
   const cookiesList = cookies()
   const visitorIdCookie = cookiesList.get('uid')
   const visitorId = visitorIdCookie ? visitorIdCookie.value : null

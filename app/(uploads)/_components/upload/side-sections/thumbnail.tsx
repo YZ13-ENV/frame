@@ -1,10 +1,9 @@
 'use client'
-
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
 import { setThumbnail } from "@/components/entities/uploader/draft"
 import { Button } from "@/components/ui/button"
 import ThumbnailUploader from "@/components/widgets/thumbnail-uploader"
-import { Attachment, Thumbnail } from "@/types/shot"
+import { Attachment, Thumbnail } from "api"
 import Image from "next/image"
 import { GrDetach } from "react-icons/gr"
 
@@ -36,7 +35,7 @@ const ThumbnailBlock = () => {
                 thumbnail.url.length !== 0 &&
                 <div className="w-fit h-fit p-2 z-20 absolute top-0 right-0">
                     <Button size='icon' onClick={detachThumbnail}
-                    variant='destructive'><GrDetach /></Button>
+                        variant='destructive'><GrDetach /></Button>
                 </div>
             }
             {

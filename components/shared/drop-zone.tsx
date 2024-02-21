@@ -4,7 +4,7 @@ type Props = {
     onFile: (file: File) => void
     className?: string
 }
-const DropZone = ({ onFile, className='' }: Props) => {
+const DropZone = ({ onFile, className = '' }: Props) => {
     const onCatchFile = (list: FileList | null) => {
         if (list) {
             const file = list[0]

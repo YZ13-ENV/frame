@@ -1,4 +1,4 @@
-import { DocShotData } from "@/types/shot"
+import { DocShotData } from "api"
 import Image from "next/image"
 import Footer from "./footer"
 import Link from "next/link"

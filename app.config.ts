@@ -1,4 +1,4 @@
-import { AppConfig } from "./types/config"
+import { AppConfig } from "api"
 
 export const config: AppConfig = {
     name: "frame",

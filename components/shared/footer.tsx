@@ -4,7 +4,7 @@ type Props = {
   profileMode?: boolean
   className?: string
 }
-const Footer = ({ className='', profileMode=false }: Props) => {
+const Footer = ({ className = '', profileMode = false }: Props) => {
   return (
     <footer className="w-full h-fit">
       <div className={`${profileMode ? "max-w-screen-2xl bg-card border-t border-x" : "max-w-7xl"} mx-auto w-full h-fit flex flex-col gap-6 ${className ? className : 'p-6'}`}>

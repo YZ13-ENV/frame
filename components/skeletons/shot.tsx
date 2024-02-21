@@ -2,7 +2,7 @@
 type Props = {
     hideFooter?: boolean
 }
-const ShotSkeleton = ({ hideFooter=false }: Props) => {
+const ShotSkeleton = ({ hideFooter = false }: Props) => {
     return (
         <div className="w-full h-full">
             <div className="relative w-full cursor-pointer aspect-[4/3] bg-background rounded-lg border group">

@@ -1,25 +1,24 @@
 'use client'
 import DropZone from "@/components/shared/drop-zone"
 import Description from "./description"
-import { bum } from "@/api/bum"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { auth } from "@/utils/app"
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
 import { format } from "@/helpers/format"
 import { setAttachments } from "@/components/entities/uploader/draft"
-import { Attachment } from "@/types/shot"
 import { media_type } from "@/const/file-types"
+import { Attachment, bum } from "api"
 
 type Props = {
     onAttachment?: (attachment: Attachment) => void
     allowedFileTypes?: string[]
 }
-const FileUploader = ({ onAttachment, allowedFileTypes=media_type }: Props) => {
+const FileUploader = ({ onAttachment, allowedFileTypes = media_type }: Props) => {
     const [user] = useAuthState(auth)
     const draftId = useAppSelector(state => state.uploader.draft.draftId)
     const attachments = useAppSelector(state => state.uploader.draft.draft.attachments)
     const dispatch = useAppDispatch()
-    const createAttachment = async(file: File) => {
+    const createAttachment = async (file: File) => {
         if (!allowedFileTypes.includes(file.type)) return null
         if (user) {
             const path = `users/${user.uid}/${draftId}`

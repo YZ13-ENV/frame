@@ -1,4 +1,4 @@
-import { bum } from "@/api/bum"
+import { bum } from "api"
 import AdvancedChunk from "@/components/widgets/chunk"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
@@ -16,8 +16,8 @@ const page = ({ params }: Props) => {
   const visitorId = uidCookie ? uidCookie.value : null
   const isFollowingOrder = params.order === 'following'
   if (isFollowingOrder && !visitorId) return redirect(`/search/${params.query}/popular/${params.category}`)
-  if (isFollowingOrder && visitorId) return <AdvancedChunk getter={ bum.shots.search(params.query, params.order, params.category, visitorId) } />
-  return <AdvancedChunk getter={ bum.shots.search(params.query, params.order, params.category) } />
+  if (isFollowingOrder && visitorId) return <AdvancedChunk getter={bum.shots.search(params.query, params.order, params.category, visitorId)} />
+  return <AdvancedChunk getter={bum.shots.search(params.query, params.order, params.category)} />
 }
 
 export default page

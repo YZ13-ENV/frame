@@ -25,7 +25,7 @@ const layout = ({ children }: Props) => {
     return (
         <>
             <Header transparent />
-            { children }
+            {children}
             <Footer className="view-wrapper-paddings py-6" />
         </>
     )

@@ -1,4 +1,3 @@
-import PortfolioNav from "../../_components/nav"
 import HeaderSkeleton from "@/components/skeletons/header"
 import Footer from "@/components/shared/footer"
 import { getPortfolio } from "@/helpers/getPortfolio"
@@ -11,7 +10,7 @@ import Author from "../../_components/banner/author"
 import SignatureEditor from "../../_components/signature-editor"
 import AuthorStats from "../../_components/banner/author-stats"
 import DynamicNav from "../../_components/dynamic-nav"
-const Header = dynamic(() => import( "@/components/widgets/header"), {
+const Header = dynamic(() => import("@/components/widgets/header"), {
     loading: () => <HeaderSkeleton />
 })
 
@@ -25,42 +24,42 @@ export async function generateMetadata({ params }: { params: { nick: string } })
     const { nick } = params
     const portfolio = await getPortfolio(nick)
     const title = portfolio.type === 'team' && portfolio.data
-    ? portfolio.data.name
-    : portfolio.type === 'user' && portfolio.data
-    ? portfolio.data.nickname || portfolio.data.displayName
-    : 'Не найдено'
+        ? portfolio.data.name
+        : portfolio.type === 'user' && portfolio.data
+            ? portfolio.data.nickname || portfolio.data.displayName
+            : 'Не найдено'
     return {
         title: title
     }
 }
-const layout = async({ children, params }: Props) => {
+const layout = async ({ children, params }: Props) => {
     const { nick } = params
     const portfolio = await getPortfolio(nick)
     const signature = portfolio.type === 'team' && portfolio.data
-    ? portfolio.data.signature :
-    portfolio.type === 'user' && portfolio.data
-    ? await bum.author.getSignature(portfolio.data.uid)
-    : ''
+        ? portfolio.data.signature :
+        portfolio.type === 'user' && portfolio.data
+            ? await bum.author.getSignature(portfolio.data.uid)
+            : ''
     const name = portfolio.type === 'team' && portfolio.data ? portfolio.data.name : portfolio.type === 'user' && portfolio.data ? portfolio.data.displayName : 'Не указано'
     const photoURL = portfolio.type === 'team' && portfolio.data ? portfolio.data.photoURL || '' : portfolio.type === 'user' && portfolio.data ? portfolio.data.photoUrl : ''
     const prefix = `/${nick}`
     return (
         <>
             {/* <div className="w-full bg-card"> */}
-                <Suspense fallback={<HeaderSkeleton />}>
-                    <Header transparent={false} />
-                </Suspense>
-                <AuthorBannerWrapper>
-                    <></>
-                    {
-                        (portfolio.type === 'team' && portfolio.data) ?
-                            <>
-                                <Author portfolio={portfolio} />
-                                <SignatureEditor signature={signature} readOnly={true} id={portfolio.data.doc_id} />
-                                <Suspense fallback={<div className="w-64 h-5 rounded-md bg-muted animate-pulse" />}>
-                                    <AuthorStats type={portfolio.type} id={portfolio.data.doc_id} />
-                                </Suspense>
-                            </>
+            <Suspense fallback={<HeaderSkeleton />}>
+                <Header transparent={false} />
+            </Suspense>
+            <AuthorBannerWrapper>
+                <></>
+                {
+                    (portfolio.type === 'team' && portfolio.data) ?
+                        <>
+                            <Author portfolio={portfolio} />
+                            <SignatureEditor signature={signature} readOnly={true} id={portfolio.data.doc_id} />
+                            <Suspense fallback={<div className="w-64 h-5 rounded-md bg-muted animate-pulse" />}>
+                                <AuthorStats type={portfolio.type} id={portfolio.data.doc_id} />
+                            </Suspense>
+                        </>
                         : (portfolio.type === 'user' && portfolio.data) ?
                             <>
                                 <Author portfolio={portfolio} />
@@ -69,12 +68,12 @@ const layout = async({ children, params }: Props) => {
                                     <AuthorStats type={portfolio.type} id={portfolio.data.uid} />
                                 </Suspense>
                             </>
-                        : <></>
-                    }
-                </AuthorBannerWrapper>
-                <DynamicNav layout={portfolio.type} prefix={prefix} user={{ name: name, photoURL: photoURL  }}  />
+                            : <></>
+                }
+            </AuthorBannerWrapper>
+            <DynamicNav layout={portfolio.type} prefix={prefix} user={{ name: name, photoURL: photoURL }} />
             {/* </div> */}
-            { children }
+            {children}
             <Footer />
         </>
     )

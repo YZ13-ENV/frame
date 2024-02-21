@@ -15,7 +15,7 @@ const Blocks = () => {
     return (
         <div className="absolute bottom-0 z-10 px-4 border-t left-6 w-80 bg-card rounded-t-xl border-x">
             <Accordion type="single" value={selected} className="w-full"
-            onValueChange={value => setSelected(value as Selects)}>
+                onValueChange={value => setSelected(value as Selects)}>
                 <AccordionItem value="1">
                     <AccordionTrigger onClick={() => selected === "1" ? setSelected('0') : null}>
                         <div className="flex items-center gap-2 w-fit h-fit">

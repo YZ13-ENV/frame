@@ -15,7 +15,7 @@ const AmbientLight = ({ link, forcedIsVideo }: Props) => {
     const bgCanvas = useRef<ElementRef<'canvas'>>(null);
     const isInView = useInView(mediaBlock)
     const [run, setRun] = useState<boolean>(true);
-    
+
     const repaintBgCanvas = () => {
         if (bgCanvas.current) {
             const context = bgCanvas.current.getContext("2d");
@@ -57,14 +57,14 @@ const AmbientLight = ({ link, forcedIsVideo }: Props) => {
                 video.pause()
             }
         }
-    },[run, mediaBlock], { wait: 750 })
+    }, [run, mediaBlock], { wait: 750 })
     useDebounceEffect(() => {
         if (isInView) {
             setRun(true)
         } else {
             setRun(false)
         }
-    },[isInView], { wait: 750 })
+    }, [isInView], { wait: 750 })
 
     useLayoutEffect(() => {
         const block = mediaBlock.current
@@ -102,28 +102,28 @@ const AmbientLight = ({ link, forcedIsVideo }: Props) => {
                 block.addEventListener("load", () => repaintAmbientLight());
             }
         }
-    },[mediaBlock.current])
+    }, [mediaBlock.current])
     useLayoutEffect(() => {
         if (mediaBlock.current) {
             mediaBlock.current.scrollIntoView({ block: 'center', behavior: 'smooth' })
         }
-    },[])
+    }, [])
     return (
         <div className='relative w-full z-20 aspect-[4/3] max-w-full flex items-center justify-center'>
             <div className={'absolute flex items-center justify-center light_wrapper h-full max-w-full opacity-60'}>
                 <MotionConfig transition={{ type: 'spring', duration: 400 }}>
                     <motion.canvas initial={{ opacity: .25 }} animate={{ opacity: .75 }} style={{ transitionDuration: '3000ms' }}
-                    ref={canvas} className={`ambientLight aspect-[4/3] z-[-1] scale-110 w-full blur-[125px]`} onLoad={() => repaintAmbientLight()} />
+                        ref={canvas} className={`ambientLight aspect-[4/3] z-[-1] scale-110 w-full blur-[125px]`} onLoad={() => repaintAmbientLight()} />
                     <motion.canvas initial={{ opacity: .25 }} animate={{ opacity: 1 }} style={{ transitionDuration: '3000ms' }}
-                    ref={bgCanvas} className={`ambientLight aspect-[4/3] z-[-2] scale-125 w-full blur-[125px]`} onLoad={() => repaintBgCanvas()} />
+                        ref={bgCanvas} className={`ambientLight aspect-[4/3] z-[-2] scale-125 w-full blur-[125px]`} onLoad={() => repaintBgCanvas()} />
                 </MotionConfig>
             </div>
             {
                 isVideo
-                ? <video ref={mediaBlock as LegacyRef<HTMLVideoElement>} autoPlay muted loop className="z-10 object-cover w-full h-full rounded-2xl">
-                    <source src={link} />
-                </video>
-                : <Image ref={mediaBlock as MutableRefObject<HTMLImageElement>} src={link} fill className="z-10 object-cover rounded-2xl" alt='img' />
+                    ? <video ref={mediaBlock as LegacyRef<HTMLVideoElement>} autoPlay muted loop className="z-10 object-cover w-full h-full rounded-2xl">
+                        <source src={link} />
+                    </video>
+                    : <Image ref={mediaBlock as MutableRefObject<HTMLImageElement>} src={link} fill className="z-10 object-cover rounded-2xl" alt='img' />
             }
         </div>
     )

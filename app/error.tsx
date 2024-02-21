@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button"
 const Error = ({
     error,
     reset,
-  }: {
+}: {
     error: Error & { digest?: string }
     reset: () => void
-  }) => {
+}) => {
     return (
         <div className="w-full h-screen">
             <section className="w-full max-w-7xl px-6 py-24 flex flex-col gap-4 mx-auto">

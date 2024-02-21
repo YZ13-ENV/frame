@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import React from 'react'
 import { BiSearch } from 'react-icons/bi'
-import Notifications from '../../notifications'
 import { ProjectsGrid } from 'ui'
 import User from '@/components/shared/user-circle'
+import dynamic from 'next/dynamic'
+const Notifications = dynamic(() => import('../../notifications'))
 
 const UserSection = () => {
   return (

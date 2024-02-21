@@ -6,12 +6,12 @@ type Props = {
     type: PortfolioConfig['type']
     id: string
 }
-const PopularWork = async({ id, type }: Props) => {
+const PopularWork = async ({ id, type }: Props) => {
     const shot = type === 'team'
-    ? await team.mostPopularShot(id)
-    : type === 'user'
-    ? await bum.author.mostPopularShot(id)
-    : null
+        ? await team.mostPopularShot(id)
+        : type === 'user'
+            ? await bum.author.mostPopularShot(id)
+            : null
     if (!shot) return null
     return (
         <div className="pinned-work">

@@ -8,7 +8,7 @@ import { bum } from "api"
 type Props = {
     portfolio: PortfolioConfig
 }
-const AuthorInfo = async({ portfolio }: Props) => {
+const AuthorInfo = async ({ portfolio }: Props) => {
     const signature = portfolio.type === 'team' && portfolio.data ? portfolio.data.signature : portfolio.type === 'user' && portfolio.data ? await bum.author.getSignature(portfolio.data.uid) : ''
     if (portfolio.type === 'team' && portfolio.data) return (
         <>
@@ -32,10 +32,10 @@ const AuthorInfo = async({ portfolio }: Props) => {
     )
     return <></>
 }
-{/* <div className="flex items-center gap-2 mt-2 w-fit h-fit"> */}
-{/* <FollowButton from={userId || ''} to={author.uid} defaultValue={isFollowed} /> */}
-{/* { !isYou && <Button disabled variant='outline'>Связаться</Button> } */}
-{/* <Button disabled variant='ghost' size='icon'><BiDotsVerticalRounded /></Button> */}
-{/* </div> */}
+{/* <div className="flex items-center gap-2 mt-2 w-fit h-fit"> */ }
+{/* <FollowButton from={userId || ''} to={author.uid} defaultValue={isFollowed} /> */ }
+{/* { !isYou && <Button disabled variant='outline'>Связаться</Button> } */ }
+{/* <Button disabled variant='ghost' size='icon'><BiDotsVerticalRounded /></Button> */ }
+{/* </div> */ }
 
 export default AuthorInfo

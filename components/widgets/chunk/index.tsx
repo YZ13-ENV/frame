@@ -1,9 +1,8 @@
 import Controller from "./ui/controller"
 import { Suspense } from "react"
 import ShotSkeleton from "@/components/skeletons/shot"
-import { ChunkResponse } from "@/types/common"
-import { DocShotData } from "@/types/shot"
 import dynamic from "next/dynamic"
+import { ChunkResponse, DocShotData } from "api"
 const ShotCard = dynamic(() => import("@/components/shared/shot-card"), {
     loading: () => <ShotSkeleton />
 })
@@ -22,8 +21,8 @@ const AdvancedChunk = async ({ getter, hideController }: Props) => {
                     <span className="text-sm text-muted-foreground">Работ не найдено</span>
                 </div>
             }
-            { data && data.map( item => <Suspense key={item.doc_id} fallback={<ShotSkeleton />}><ShotCard shot={item} /></Suspense> ) }
-            { (!hideController && data.length !== 0) && <Controller next={next} />}
+            {data && data.map(item => <Suspense key={item.doc_id} fallback={<ShotSkeleton />}><ShotCard shot={item} /></Suspense>)}
+            {(!hideController && data.length !== 0) && <Controller next={next} />}
         </>
     )
 }
