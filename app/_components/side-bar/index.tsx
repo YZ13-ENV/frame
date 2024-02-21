@@ -10,14 +10,14 @@ import SideButton from "./side-button";
 const Sidebar = async () => {
   const visitor = getVisitorId()
   const followings = visitor ? await bum.author.followings(visitor) : []
-  const size = 24
+  const rootLink = visitor ? "/shots/following" : "/shots/popular"
   return (
     <SidebarWrapper>
       <div className="w-full p-4 flex flex-col">
         <SideButton
           icon={BiHome}
           label="Главная"
-          link="/"
+          link={rootLink}
         />
         {
           visitor &&

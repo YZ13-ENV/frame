@@ -27,7 +27,7 @@ const Nav = ({ padding = false }: Props) => {
                 router.push(newPath + newSegment)
             }
         }
-    }, [isShotsLayout, isShotPage, orderTab, categoryTab])
+    }, [pathname, isShotsLayout, isShotPage, orderTab, categoryTab])
     return (
         <div className={cn(
             padding ? 'px-6' : 'px-0',
