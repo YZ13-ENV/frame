@@ -1,6 +1,5 @@
-import { ChunkResponse } from "@/types/common"
+import { ChunkResponse, DocDraftShotData } from "api"
 import Controller from "./ui/controller"
-import { DocDraftShotData } from "@/types/shot"
 import DraftCard from "@/components/shared/draft-card"
 
 type Props = {
@@ -17,8 +16,8 @@ const AdvancedChunk = async ({ getter, hideController }: Props) => {
                     <span className="text-sm text-muted-foreground">Работ не найдено</span>
                 </div>
             }
-            { data && data.map( item => <DraftCard key={item.doc_id} draft={item} />) }
-            { (!hideController && data.length !== 0) && <Controller next={next} />}
+            {data && data.map(item => <DraftCard key={item.doc_id} draft={item} />)}
+            {(!hideController && data.length !== 0) && <Controller next={next} />}
         </>
     )
 }

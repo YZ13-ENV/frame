@@ -1,5 +1,4 @@
 'use client'
-import { CommentBlock, DocShotData } from "@/types/shot"
 import EmptyComments from "./empty-comments"
 import NewCommentForm from "./new-comment-form"
 import { Suspense, useState } from "react"
@@ -9,9 +8,8 @@ import { auth } from "@/utils/app"
 import { BiLoaderAlt } from "react-icons/bi"
 import { format } from "@/helpers/format"
 import { DateTime } from "luxon"
-import { bum } from "@/api/bum"
 import Comment from "./comment"
-import { team } from "api"
+import { CommentBlock, DocShotData, bum, team } from "api"
 
 type Props = {
   isCommentsEnabled: boolean
@@ -25,7 +23,7 @@ const Comments = ({ isCommentsEnabled, teamId, comments, shotId }: Props) => {
   const [text, setText] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
   const disabled = text.length === 0 || !user || loading
-  const sendComment = async() => {
+  const sendComment = async () => {
     if (user) {
       setLoading(true)
       const comment: CommentBlock = {
@@ -36,18 +34,18 @@ const Comments = ({ isCommentsEnabled, teamId, comments, shotId }: Props) => {
         answers: []
       }
       const updatedComments = teamId
-      ? await team.shot.addComment(teamId, shotId, comment)
-      : await bum.shot.addComment(shotId, comment)
+        ? await team.shot.addComment(teamId, shotId, comment)
+        : await bum.shot.addComment(shotId, comment)
       setSyncedComments(updatedComments)
       setText('')
       setLoading(false)
     }
   }
-  const deleteComment = async(commentId: string) => {
+  const deleteComment = async (commentId: string) => {
     if (user) {
       const isDeleted = teamId
-      ? await team.shot.deleteComment(teamId, shotId, commentId)
-      : await bum.shot.deleteComment(shotId, commentId)
+        ? await team.shot.deleteComment(teamId, shotId, commentId)
+        : await bum.shot.deleteComment(shotId, commentId)
       if (isDeleted) {
         const updatedComments = syncedComments.filter(comment => comment.id !== commentId)
         setSyncedComments(updatedComments)
@@ -63,24 +61,24 @@ const Comments = ({ isCommentsEnabled, teamId, comments, shotId }: Props) => {
     <div className="w-full h-full flex flex-col gap-2 max-h-[435px]">
       <div className="w-full h-fit flex flex-col gap-2 mb-2">
         <NewCommentForm text={text} setText={setText} />
-        { text && <Button disabled={disabled} onClick={sendComment} className='w-full gap-2'>
-            { loading && <BiLoaderAlt className='animate-spin' /> }
-            Добавить
-          </Button>
+        {text && <Button disabled={disabled} onClick={sendComment} className='w-full gap-2'>
+          {loading && <BiLoaderAlt className='animate-spin' />}
+          Добавить
+        </Button>
         }
       </div>
       <div className="w-full h-full flex flex-col gap-2 overflow-y-auto">
-      {
+        {
           syncedComments.length
-          ? syncedComments
-          .sort((a, b) => b.createdAt - a.createdAt)
-          .map(comment =>
-            <Suspense fallback={ <div className='w-full h-20 rounded-lg bg-muted animate-pulse' /> }>
-              <Comment key={comment.id} onDelete={deleteComment} comment={comment} />
-            </Suspense>
-          )
-          : !text && <EmptyComments />
-      }
+            ? syncedComments
+              .sort((a, b) => b.createdAt - a.createdAt)
+              .map(comment =>
+                <Suspense fallback={<div className='w-full h-20 rounded-lg bg-muted animate-pulse' />}>
+                  <Comment key={comment.id} onDelete={deleteComment} comment={comment} />
+                </Suspense>
+              )
+            : !text && <EmptyComments />
+        }
       </div>
     </div>
   )

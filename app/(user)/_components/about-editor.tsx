@@ -1,17 +1,17 @@
 'use client'
-import { bum } from "@/api/bum"
-import Textarea from "@/components/shared/textarea"
+import { bum } from "api"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import { Textarea } from "ui"
 
 type Props = {
     authorId: string
     defaultValue?: string
 }
-const AboutEditor = ({ authorId, defaultValue='' }: Props) => {
+const AboutEditor = ({ authorId, defaultValue = '' }: Props) => {
     const [about, setAbout] = useState<string>(defaultValue)
     const [debouncedValue, setDebouncedValue] = useState<string>(defaultValue)
-    const syncAbout = async() => {
+    const syncAbout = async () => {
         const syncedValue = await bum.author.addAbout(authorId, about)
         setAbout(syncedValue)
         setDebouncedValue(syncedValue)
@@ -19,7 +19,7 @@ const AboutEditor = ({ authorId, defaultValue='' }: Props) => {
     return (
         <>
             <Textarea value={about} onChange={e => setAbout(e.target.value)}
-            placeholder="Расскажите о себе" />
+                placeholder="Расскажите о себе" />
             {
                 about !== debouncedValue &&
                 <div className="w-full h-fit flex items-center justify-end">

@@ -14,14 +14,14 @@ type Props = {
     uid: string
   }
 }
-const page = async({ params }: Props) => {
+const page = async ({ params }: Props) => {
   const { uid } = params
   const visitorId = getVisitorId()
   const author = await fetch_author(uid)
   const config = author ? author_config(author) : null
   const isMember = config && visitorId && config.data.type === 'team'
-  ? config.data.members.includes(visitorId) || config.data.founder === visitorId
-  : false
+    ? config.data.members.includes(visitorId) || config.data.founder === visitorId
+    : false
   const hasTeam = config ? config.isTeam : false
   if (!hasTeam) return redirect(`/uploads/shot`)
   if (config && config.isTeam && !isMember) return 'not a team member'
@@ -31,22 +31,22 @@ const page = async({ params }: Props) => {
   ) return redirect(`/uploads/${config.data.nickname}`)
   return (
     <div className="w-full h-full flex relative flex-col items-center justify-center">
-        <Controls />
-        <Header />
-        <div className="max-w-5xl w-full mx-0 pt-24 flex flex-col px-6">
-            <div className="w-full h-fit flex items-center justify-between">
-                <h2 className='text-xl font-bold'>Черновики</h2>
-                <div className='flex items-center gap-2'>
-                  <Button variant='outline' asChild>
-                      <Link href={"/uploads/shot"}>Мои черновики</Link>
-                  </Button>
-                  <NewDraftButton />
-                </div>
-            </div>
-            <div className="w-full h-fit flex flex-col py-6 gap-6">
-                  <AdvancedChunk getter={ bum.drafts.byUser(uid) } />
-            </div>
+      <Controls />
+      <Header />
+      <div className="max-w-5xl w-full mx-0 pt-24 flex flex-col px-6">
+        <div className="w-full h-fit flex items-center justify-between">
+          <h2 className='text-xl font-bold'>Черновики</h2>
+          <div className='flex items-center gap-2'>
+            <Button variant='outline' asChild>
+              <Link href={"/uploads/shot"}>Мои черновики</Link>
+            </Button>
+            <NewDraftButton />
+          </div>
         </div>
+        <div className="w-full h-fit flex flex-col py-6 gap-6">
+          <AdvancedChunk getter={bum.drafts.byUser(uid)} />
+        </div>
+      </div>
     </div>
   )
 }

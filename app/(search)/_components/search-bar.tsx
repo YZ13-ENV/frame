@@ -1,5 +1,4 @@
 'use client'
-
 import { Input } from "@/components/ui/input"
 import { useDebounceEffect } from "ahooks"
 import { usePathname, useRouter } from "next/navigation"
@@ -15,18 +14,18 @@ const SearchBar = ({ defaultValue }: Props) => {
   useDebounceEffect(() => {
     if (text !== '') {
       const query = text
-      .toLowerCase()
-      .replaceAll(' ', '-')
-      .replaceAll('--', '-')
+        .toLowerCase()
+        .replaceAll(' ', '-')
+        .replaceAll('--', '-')
       const newPath = defaultValue ? path.replace(defaultValue, query) : path.replace(text, query)
       console.log(newPath, query)
       if (newPath === '/search') return push(`/search/${query}`)
       return push(newPath)
     }
-  },[text, setText], { wait: 1000 })
+  }, [text, setText], { wait: 1000 })
   return (
     <Input placeholder="Что будем искать?" value={text} onChange={e => setText(e.target.value)}
-    className="text-center text-xl h-fit !border-0 !outline-none !ring-0" />
+      className="text-center text-xl h-fit !border-0 !outline-none !ring-0" />
   )
 }
 

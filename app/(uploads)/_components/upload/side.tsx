@@ -1,4 +1,4 @@
-import { DocDraftShotData } from "@/types/shot"
+import { DocDraftShotData } from "api"
 import ToolKit from "./took-kit"
 import { Button } from "@/components/ui/button"
 import { BiChevronLeft } from "react-icons/bi"
@@ -11,7 +11,7 @@ type Props = {
     title: string
     hasSubscription?: boolean
 }
-const Side = ({ title, teamId, draft, hasSubscription=false }: Props) => {
+const Side = ({ title, teamId, draft, hasSubscription = false }: Props) => {
     return (
         <>
             <header className="absolute top-0 left-0 flex items-center gap-2 pt-6 pl-6 w-fit">

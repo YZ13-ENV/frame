@@ -30,7 +30,7 @@ const layout = async ({ children }: Props) => {
                             {children}
                         </div>
                     </ShotsWrapper>
-                    <Footer />
+                    <Footer className="lg:px-24 md:px-12 px-6 py-6" />
                 </div>
             </div>
         </>

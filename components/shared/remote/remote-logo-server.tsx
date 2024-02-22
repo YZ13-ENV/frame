@@ -1,10 +1,10 @@
-import { file } from '@/api/file'
+import { file } from 'api'
 import Image, { ImageProps } from 'next/image'
 
 type VariantProps = { dark: string, light: string, size?: number }
 type RemoteLogoProps = VariantProps & Partial<ImageProps>
 
-const RemoteServerLogo = async(props: RemoteLogoProps) => {
+const RemoteServerLogo = async (props: RemoteLogoProps) => {
     const width = props.size ? props.size : props.width
     const height = props.size ? props.size : props.height
     const darkVariant = await file.static.get(props.dark)

@@ -3,6 +3,7 @@ import Nav from "@/app/(shots)/_components/nav"
 import ShotsWrapper from "@/app/(shots)/_components/shots-wrapper"
 import MenuButton from "@/app/_components/menu-button"
 import Sidebar from "@/app/_components/side-bar"
+import Footer from "@/components/shared/footer"
 import HeaderSkeleton from "@/components/skeletons/header"
 import dynamic from "next/dynamic"
 
@@ -36,6 +37,7 @@ const layout = async ({ params, children }: Props) => {
               {children}
             </div>
           </ShotsWrapper>
+          <Footer className="lg:px-24 md:px-12 px-6 py-6" />
         </div>
       </div>
 

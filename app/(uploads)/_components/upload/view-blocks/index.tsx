@@ -1,5 +1,4 @@
 'use client'
-
 import { useAppSelector } from "@/components/entities/store/store"
 import TextBlock from "./text-block"
 import MediaBlock from "./media-block"

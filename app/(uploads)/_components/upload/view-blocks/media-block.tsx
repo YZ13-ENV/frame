@@ -1,10 +1,9 @@
 'use client'
-
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
 import { setBlocks } from "@/components/entities/uploader/draft"
 import { Button } from "@/components/ui/button"
 import FileUploader from "@/components/widgets/file-uploader"
-import { Attachment, IdBlock, MediaBlock } from "@/types/shot"
+import { Attachment, IdBlock, MediaBlock } from "api"
 import Image from "next/image"
 import { GrDetach } from "react-icons/gr"
 
@@ -49,7 +48,7 @@ const MediaBlock = ({ block, index }: Props) => {
                 block.id &&
                 <div className="w-fit h-fit p-2 z-20 absolute top-0 right-0">
                     <Button size='icon' onClick={detach}
-                    variant='destructive'><GrDetach /></Button>
+                        variant='destructive'><GrDetach /></Button>
                 </div>
             }
             {
