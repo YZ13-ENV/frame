@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { DocDraftShotData } from "@/types/shot"
+import { DocDraftShotData } from "api"
 import { DateTime } from "luxon"
 import Image from "next/image"
 import Link from "next/link"
@@ -15,11 +15,11 @@ const DraftCard = ({ draft }: Props) => {
         <div className="draft-card">
             {
                 hasThumbnail
-                ?
-                <div className="h-64 aspect-[4/3] rounded-lg bg-muted relative">
-                    <Image src={draft.thumbnail.url} alt="thumbnail" className="rounded-lg" fill />
-                </div>
-                : <div className="h-64 aspect-[4/3] rounded-lg bg-muted" />
+                    ?
+                    <div className="h-64 aspect-[4/3] rounded-lg bg-muted relative">
+                        <Image src={draft.thumbnail.url} alt="thumbnail" className="rounded-lg" fill />
+                    </div>
+                    : <div className="h-64 aspect-[4/3] rounded-lg bg-muted" />
             }
             <div className="w-full h-full flex flex-col gap-4">
                 <div className="w-full h-fit flex items-center justify-between gap-4">
@@ -29,7 +29,7 @@ const DraftCard = ({ draft }: Props) => {
                     </div>
                     <div className="w-fit h-fit flex items-center gap-2">
                         <Button asChild className='gap-2' variant='outline'><Link href={`/uploads/shot/${draft.doc_id}`}
-                        className='flex items-center gap-2'>Открыть <BiRightArrowAlt /></Link></Button>
+                            className='flex items-center gap-2'>Открыть <BiRightArrowAlt /></Link></Button>
                     </div>
                 </div>
                 <div className="w-fit h-fit flex items-center gap-4">

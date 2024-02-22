@@ -17,7 +17,7 @@ const UserSection = dynamic(() => import("./widgets/header/ui/user-section"), {
     </div>
 })
 
-const HeroSection = async() => {
+const HeroSection = async () => {
     const shots = await bum.shots.all('popular')
     return (
         <div className="w-full min-h-[200dvh] flex flex-col items-center justify-start gap-4 relative">

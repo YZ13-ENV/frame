@@ -11,41 +11,39 @@ type Props = {
 const Category = ({ onValueChange, order, value }: Props) => {
   return (
     <>
-    <div className="nav-select">
-      <Select defaultValue="/" value={value} onValueChange={state => onValueChange(state)}>
-        <SelectTrigger className="w-[180px]">
+      <div className="nav-select">
+        <Select defaultValue="/" value={value} onValueChange={state => onValueChange(state)}>
+          <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select a category" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup className='z-20'>
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup className='z-20'>
+              {
+                withCustomSortTab(order).map(tab =>
+                  <SelectItem key={tab.value} value={tab.value}>{tab.label}</SelectItem>
+                )
+              }
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="nav-tabs ">
+        <Tabs defaultValue="/" value={value} className="w-fit" onValueChange={onValueChange}>
+          <TabsList className='!bg-transparent !p-0 '>
             {
               withCustomSortTab(order).map(tab =>
-                <SelectItem key={tab.value} onClick={() => onValueChange(tab.value)} value={tab.value}
-                >{tab.label}</SelectItem>
+                <TabsTrigger key={tab.value} value={tab.value} className="relative !bg-transparent">
+                  {tab.label}
+                  {
+                    tab.value === value && <motion.div layoutId='category-tab'
+                      className="absolute left-0 -bottom-3 w-full h-0.5 rounded-md bg-primary z-[-1]" />
+                  }
+                </TabsTrigger>
               )
             }
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    </div>
-    <div className="nav-tabs ">
-      <Tabs defaultValue="/" value={value}  className="w-fit">
-        <TabsList className='!bg-transparent !p-0 '>
-          {
-            withCustomSortTab(order).map(tab =>
-              <TabsTrigger key={tab.value} onClick={() => onValueChange(tab.value)}
-              value={tab.value} className="relative !bg-transparent">
-                {tab.label}
-                {
-                  tab.value === value && <motion.div layoutId='category-tab'
-                  className="absolute left-0 -bottom-3 w-full h-0.5 rounded-md bg-primary z-[-1]" />
-                }
-              </TabsTrigger>
-            )
-          }
-        </TabsList>
-      </Tabs>
-    </div>
+          </TabsList>
+        </Tabs>
+      </div>
     </>
   )
 }

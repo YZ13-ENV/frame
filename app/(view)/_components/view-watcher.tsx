@@ -1,8 +1,6 @@
 'use client'
-
-import { bum } from "@/api/bum"
-import { DocShotData } from "@/types/shot"
 import { auth } from "@/utils/app"
+import { DocShotData, bum } from "api"
 import { useEffect, useMemo } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 

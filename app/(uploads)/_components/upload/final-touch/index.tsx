@@ -1,20 +1,16 @@
 'use client'
 import { useAppDispatch, useAppSelector } from '@/components/entities/store/store'
 import { useState } from 'react'
-import { BiLoaderAlt, BiX } from 'react-icons/bi'
+import { BiLoaderAlt } from 'react-icons/bi'
 import Tagger from './ui/tagger'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { DateTime } from 'luxon'
 import { useRouter } from 'next/navigation'
-import { setDraft, setDraftId } from '@/components/entities/uploader/draft'
-import { setFinalTouchModal } from '@/components/entities/uploader/modal.store'
 import { auth } from '@/utils/app'
-import { ShotData } from '@/types/shot'
-import { bum } from '@/api/bum'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
-import { team } from 'api'
+import { team, bum, ShotData } from 'api'
 
 const FinalTouch = () => {
     const [user] = useAuthState(auth)
@@ -30,7 +26,7 @@ const FinalTouch = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const dispatch = useAppDispatch()
     const router = useRouter()
-    const uploadDraft = async() => {
+    const uploadDraft = async () => {
         if (user && draftId) {
             setLoading(true)
             const preparedBlocks = draft.blocks.filter((block => {
@@ -87,7 +83,7 @@ const FinalTouch = () => {
                     </div>
                     <div className="flex items-center justify-end w-full h-fit shrink-0">
                         <Button onClick={uploadDraft} disabled={disabled || loading}>
-                            { loading && <BiLoaderAlt size={19} className='mr-1 mb-0.5 animate-spin' /> }
+                            {loading && <BiLoaderAlt size={19} className='mr-1 mb-0.5 animate-spin' />}
                             Опубликовать
                         </Button>
                     </div>

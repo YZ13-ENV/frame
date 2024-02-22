@@ -9,15 +9,15 @@ type Props = {
         nick: string
     }
 }
-const page = async({ params }: Props) => {
+const page = async ({ params }: Props) => {
     const { nick } = params
     const portfolio = await getPortfolio(nick)
     if (portfolio.type === 'user') return redirect(`/${nick}`)
     // if (!isYou) redirect(`/${nickname}`)
     // if (config && config.data.type === 'user' && config.data.teamId === nickname) return redirect(`/${nickname}`)
     // if (
-        // config && config.isNickname && author && config.data.type === 'user' && config.data.nickname && !teamId
-        // && nickname !== config.data.nickname
+    // config && config.isNickname && author && config.data.type === 'user' && config.data.nickname && !teamId
+    // && nickname !== config.data.nickname
     // ) return redirect(`/${config.data.nickname}/members`)
     if (!portfolio.data) return null
     return (
@@ -25,9 +25,9 @@ const page = async({ params }: Props) => {
             {
                 [...portfolio.data.members, portfolio.data.founder].map(
                     member =>
-                    <Suspense fallback={<MemberCardSkeleton />} key={member + '-card'}>
-                        <MemberCard memberId={member} />
-                    </Suspense>
+                        <Suspense fallback={<MemberCardSkeleton />} key={member + '-card'}>
+                            <MemberCard memberId={member} />
+                        </Suspense>
                 )
             }
         </div>

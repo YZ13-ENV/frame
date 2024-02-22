@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/components/entities/store/store'
 import { setBlocks } from '@/components/entities/uploader/draft'
-import { ForwardRefEditor } from '@/components/shared/markdown-v2-forward-ref'
-import { IdBlock, TextBlock } from '@/types/shot'
+import { IdBlock, TextBlock } from "api"
+import { ForwardRefEditor } from 'ui'
 
 type Props = {
     index: number

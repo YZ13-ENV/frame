@@ -2,9 +2,7 @@
 import ShotSkeleton from '@/components/skeletons/shot'
 import { Button } from '@/components/ui/button'
 import { api_host } from '@/const/host'
-import { authorizationHeader } from '@/helpers/headers'
-import { ChunkResponse } from '@/types/common'
-import { DocShotData } from '@/types/shot'
+import { ChunkResponse, DocShotData, authorizationHeader } from 'api'
 import dynamic from 'next/dynamic'
 import { Suspense, useState } from 'react'
 import { BiLoaderAlt } from 'react-icons/bi'
@@ -18,7 +16,7 @@ function Controller({ next }: Props) {
     const [items, setItems] = useState<DocShotData[]>([])
     const [loading, setLoading] = useState<boolean>(false)
     const [nextLink, setNextLink] = useState<string>(next)
-    const fetchNext = async() => {
+    const fetchNext = async () => {
         if (next) {
             try {
                 setLoading(true)
@@ -32,7 +30,7 @@ function Controller({ next }: Props) {
                     setItems([...items, ...fetched.data])
                     setNextLink(fetched.next)
                 }
-            } catch(e) {
+            } catch (e) {
                 setNextLink('')
             } finally {
                 setLoading(false)
@@ -41,11 +39,11 @@ function Controller({ next }: Props) {
     }
     return (
         <>
-            { items && items.map( item => <Suspense key={item.doc_id} fallback={<ShotSkeleton />}><ShotCard shot={item} /></Suspense> ) }
+            {items && items.map(item => <Suspense key={item.doc_id} fallback={<ShotSkeleton />}><ShotCard shot={item} /></Suspense>)}
             <div className='flex items-center justify-center w-full py-2 col-span-full h-fit'>
                 <Button disabled={!nextLink || loading} onClick={fetchNext} variant={!nextLink ? 'outline' : 'default'}>
-                    { loading && <BiLoaderAlt className='mr-1 animate-spin' /> }
-                    { nextLink ? 'Загрузить ещё' : 'Вы дошли до конца списка' }
+                    {loading && <BiLoaderAlt className='mr-1 animate-spin' />}
+                    {nextLink ? 'Загрузить ещё' : 'Вы дошли до конца списка'}
                 </Button>
             </div>
         </>

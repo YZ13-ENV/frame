@@ -11,12 +11,12 @@ const KitButton = ({ children, tooltip, button }: Props) => {
         <TooltipProvider>
             <Tooltip delayDuration={0}>
                 <TooltipTrigger asChild>
-                    <Button size='icon' variant='secondary' {...button}>{ children }</Button>
+                    <Button size='icon' variant='secondary' {...button}>{children}</Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
                     <span>{tooltip}</span>
                 </TooltipContent>
-            </Tooltip>  
+            </Tooltip>
         </TooltipProvider>
     )
 }

@@ -18,11 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={`${first_font.className} ${first_font.variable} ${second_font.variable}`}>
-        <body id='root' className='w-full min-h-screen dark'>
-          <StateProvider>
-            {children}
-          </StateProvider>
-        </body>
-      </html>
+      <body id='root' className='w-full min-h-screen dark'>
+        <StateProvider>
+          {children}
+        </StateProvider>
+      </body>
+    </html>
   );
 }

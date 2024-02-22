@@ -10,8 +10,8 @@ const SettingsSideNav = () => {
   const prefix = '/settings/'
   const path = usePathname()
   const section_name = path
-  .replace('/settings', '')
-  .replace('/', '')
+    .replace('/settings', '')
+    .replace('/', '')
   const section = settings[section_name]
   const nav_links = links.map(link => {
     const name = settings[link].section_name
@@ -43,7 +43,7 @@ const SettingsSideNav = () => {
       {
         nav_links.map(nav =>
           <Button key={nav.link}
-          variant='ghost' className="justify-start" asChild>
+            variant='ghost' className="justify-start" asChild>
             <Link href={nav.link}>{nav.name}</Link>
           </Button>
         )

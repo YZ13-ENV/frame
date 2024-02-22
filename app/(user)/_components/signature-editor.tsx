@@ -1,9 +1,9 @@
 'use client'
-import { bum } from "@/api/bum"
-import Textarea from "@/components/shared/textarea"
+import { bum } from "api"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { BiLoaderAlt, BiSave } from "react-icons/bi"
+import { Textarea } from "ui"
 
 type Props = {
   readOnly?: boolean
@@ -14,7 +14,7 @@ const SignatureEditor = ({ readOnly, signature, id }: Props) => {
   const [text, setText] = useState<string>(signature)
   const [debounced, setDebounced] = useState<string>(signature)
   const [loading, setLoading] = useState<boolean>(false)
-  const updateSignature = async() => {
+  const updateSignature = async () => {
     setLoading(true)
     const newSignature = await bum.author.addSignature(id, text)
     setDebounced(newSignature)
@@ -29,8 +29,8 @@ const SignatureEditor = ({ readOnly, signature, id }: Props) => {
         <Button onClick={updateSignature} variant='outline' size='icon'>
           {
             loading
-            ? <BiLoaderAlt className='animate-spin' />
-            : <BiSave />
+              ? <BiLoaderAlt className='animate-spin' />
+              : <BiSave />
           }
         </Button>
       }

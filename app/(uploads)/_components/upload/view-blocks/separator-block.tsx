@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator"
-import { IdBlock, SeparatorProps } from "@/types/shot"
+import { IdBlock, SeparatorProps } from "api"
 
 type Props = {
     block: IdBlock<SeparatorProps>

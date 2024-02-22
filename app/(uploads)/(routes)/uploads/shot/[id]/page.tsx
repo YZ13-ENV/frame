@@ -1,6 +1,3 @@
-import { bum } from '@/api/bum'
-import { file } from '@/api/file'
-import { user } from '@/api/user'
 import Blocks from '@/app/(uploads)/_components/upload/blocks'
 import Controls from '@/app/(uploads)/_components/upload/header/controls'
 import Side from '@/app/(uploads)/_components/upload/side'
@@ -9,17 +6,17 @@ import RootBlock from '@/app/(uploads)/_components/upload/view-blocks/root-block
 import Title from '@/app/(uploads)/_components/upload/view-blocks/title'
 import ShotAdaptiveWrapper from '@/components/shared/shot-adaptive-wrapper'
 import { Button } from '@/components/ui/button'
+import { bum, file, user } from 'api'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
-// import React from 'react'
 
 type Props = {
     params: {
         id: string
     }
 }
-const page = async({ params }: Props) => {
+const page = async ({ params }: Props) => {
     const cookiesList = cookies()
     const uidCookie = cookiesList.get('uid')
     const uid = uidCookie ? uidCookie.value : null
@@ -31,7 +28,7 @@ const page = async({ params }: Props) => {
     if (!isAuthor || !draft) return JSON.stringify(draft, null, 2)
     return (
         <>
-            { grid && <Image src={grid} fill className='z-[-2] object-cover opacity-40' alt='grid' /> }
+            {grid && <Image src={grid} fill className='z-[-2] object-cover opacity-40' alt='grid' />}
             <div className="only-desktop-warning">
                 <span className="text-sm text-center text-muted-foreground">Конструктор недоступен на мобильных устройствах</span>
                 <Button asChild><Link href='/'>Вернуться</Link></Button>

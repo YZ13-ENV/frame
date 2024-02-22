@@ -1,4 +1,4 @@
-import { DocShotData, IdBlock, MediaBlock } from "@/types/shot"
+import { DocShotData, IdBlock, MediaBlock } from "api"
 import Image from "next/image"
 
 type Props = {

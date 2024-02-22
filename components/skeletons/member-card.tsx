@@ -12,12 +12,12 @@ const MemberCardSkeleton = () => {
         </div>
         <button className="h-9 w-36 rounded-md bg-muted"></button>
       </div>
-        <div className="w-full h-full grid grid-cols-2 grid-rows-2 gap-4">
-          <div className="w-full aspect-[4/3] rounded-lg border" />
-          <div className="w-full aspect-[4/3] rounded-lg border" />
-          <div className="w-full aspect-[4/3] rounded-lg border" />
-          <div className="w-full aspect-[4/3] rounded-lg border" />
-        </div>
+      <div className="w-full h-full grid grid-cols-2 grid-rows-2 gap-4">
+        <div className="w-full aspect-[4/3] rounded-lg border" />
+        <div className="w-full aspect-[4/3] rounded-lg border" />
+        <div className="w-full aspect-[4/3] rounded-lg border" />
+        <div className="w-full aspect-[4/3] rounded-lg border" />
+      </div>
     </div>
   )
 }

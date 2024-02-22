@@ -2,7 +2,9 @@ import { cn } from "@/lib/utils"
 import dynamic from "next/dynamic"
 import { ReactNode } from "react"
 const NavSection = dynamic(() => import("./ui/nav-section"))
-const UserSection = dynamic(() => import("./ui/user-section"))
+const UserSection = dynamic(() => import("./ui/user-section"), {
+    ssr: false
+})
 
 type Props = {
     menu?: ReactNode

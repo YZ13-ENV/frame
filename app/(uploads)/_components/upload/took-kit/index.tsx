@@ -4,7 +4,7 @@ import { BiImage, BiText } from "react-icons/bi"
 import { RiSeparator, RiEmojiStickerLine } from "react-icons/ri";
 import { LuGalleryThumbnails } from "react-icons/lu";
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store";
-import { Blocks } from "@/types/shot";
+import { Blocks } from "api";
 import { setBlocks } from "@/components/entities/uploader/draft";
 import { getDefaultBlock } from "@/const/default-blocks";
 import KitButton from "./kit-button";
@@ -12,7 +12,7 @@ import KitButton from "./kit-button";
 type Props = {
     hasSubscription?: boolean
 }
-const ToolKit = ({ hasSubscription=false }: Props) => {
+const ToolKit = ({ hasSubscription = false }: Props) => {
     const blocks = useAppSelector(state => state.uploader.draft.draft.blocks)
     const dispatch = useAppDispatch()
     const blockController = (blockType: Blocks['type']) => {
@@ -31,7 +31,7 @@ const ToolKit = ({ hasSubscription=false }: Props) => {
                 <RiSeparator />
             </KitButton>
             {
-                hasSubscription && 
+                hasSubscription &&
                 <>
                     <Separator />
                     <KitButton button={{ onClick: () => blockController('sticker') }} tooltip="Стикер блок">

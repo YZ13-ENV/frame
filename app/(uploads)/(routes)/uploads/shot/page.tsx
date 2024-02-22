@@ -1,18 +1,15 @@
-import { bum } from '@/api/bum'
-import { file } from '@/api/file'
 import Header from '@/app/(uploads)/_components/hub/header'
 import NewDraftButton from '@/app/(uploads)/_components/hub/new-draft-button'
 import Controls from '@/app/(uploads)/_components/upload/header/controls'
 import { Button } from '@/components/ui/button'
 import AdvancedChunk from '@/components/widgets/draft-chunk'
 import { getVisitorId } from '@/helpers/cookies'
-import { user } from 'api'
+import { bum, file, user } from 'api'
 import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-// import React from 'react'
 
-const page = async() => {
+const page = async () => {
     const grid = await file.static.get('gird.svg')
     const visitorId = getVisitorId()
     const short = visitorId ? await user.byId.short(visitorId) : null
@@ -20,7 +17,7 @@ const page = async() => {
     if (!visitorId) return redirect('/')
     return (
         <>
-            { grid && <Image src={grid} fill className='z-[-2] object-cover opacity-40' alt='grid' /> }
+            {grid && <Image src={grid} fill className='z-[-2] object-cover opacity-40' alt='grid' />}
             <div className="w-full h-full flex relative flex-col items-center justify-center">
                 <Controls />
                 <Header />
@@ -37,7 +34,7 @@ const page = async() => {
                         </div>
                     </div>
                     <div className="w-full h-fit flex flex-col py-6 gap-6">
-                        <AdvancedChunk getter={ bum.drafts.byUser(visitorId) } />
+                        <AdvancedChunk getter={bum.drafts.byUser(visitorId)} />
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 'use client'
-import { file } from '@/api/file'
+import { file } from 'api'
 import Image, { ImageProps } from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -12,25 +12,25 @@ const RemoteLogo = (props: RemoteLogoProps) => {
     const [loading, setLoading] = useState<boolean>(true)
     const [darkVariant, setDarkVariant] = useState<string | null>(null)
     const [lightVariant, setLightVariant] = useState<string | null>(null)
-    const fetchDarkVariant = async() => {
+    const fetchDarkVariant = async () => {
         const variant = await file.static.get(props.dark)
         setDarkVariant(variant)
     }
-    const fetchLightVariant = async() => {
+    const fetchLightVariant = async () => {
         const variant = await file.static.get(props.light)
         setLightVariant(variant)
     }
-    const fetchVariants = async() => {
+    const fetchVariants = async () => {
         setLoading(true)
-        Promise.all([ fetchDarkVariant(), fetchLightVariant() ])
+        Promise.all([fetchDarkVariant(), fetchLightVariant()])
         setLoading(false)
     }
     useEffect(() => {
         fetchVariants()
-    },[])
+    }, [])
     if (!loading && (!darkVariant && !lightVariant)) return null
-    if (loading) return <div style={{ width: props.width ? props.width : 24, height: props.height ? props.height : 24 }} 
-    className='rounded-full shrink-0 bg-muted animate-pulse' />
+    if (loading) return <div style={{ width: props.width ? props.width : 24, height: props.height ? props.height : 24 }}
+        className='rounded-full shrink-0 bg-muted animate-pulse' />
     if (!darkVariant || !lightVariant) return null
     return (
         <>

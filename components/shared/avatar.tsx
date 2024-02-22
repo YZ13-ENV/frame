@@ -9,23 +9,23 @@ type Props = {
     src: string | StaticImageData | null
     className?: string
 }
-const Avatar = ({ size=24, isSubscriber=false, src, className='' }: Props) => {
+const Avatar = ({ size = 24, isSubscriber = false, src, className = '' }: Props) => {
     const iconWrapperSize = size * .5
     const iconSize = iconWrapperSize * .5
     return (
-        <div style={{ width: `${size}px`, height: `${size}px`}} 
-        className={`relative flex items-center justify-center overflow-visible border rounded-full shrink-0 bg-background border-inherit ${className}`}>
+        <div style={{ width: `${size}px`, height: `${size}px` }}
+            className={`relative flex items-center justify-center overflow-visible border rounded-full shrink-0 bg-background border-inherit ${className}`}>
             {
                 src
-                ? <Image src={src} className='rounded-full !relative' fill alt='@avatar' />
-                : <BiUser size={size / 2} />
+                    ? <Image src={src} className='rounded-full !relative' fill alt='@avatar' />
+                    : <BiUser size={size / 2} />
             }
             {
                 isSubscriber &&
-                <div style={{ 
+                <div style={{
                     // maxWidth: '64px',
                     // maxHeight: '64px',
-                    top: `-${iconWrapperSize * .25}px`, 
+                    top: `-${iconWrapperSize * .25}px`,
                     left: `-${iconWrapperSize * .25}px`,
                     width: `${iconWrapperSize}px`,
                     height: `${iconWrapperSize}px`

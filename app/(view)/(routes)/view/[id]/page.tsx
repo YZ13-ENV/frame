@@ -22,21 +22,21 @@ type Props = {
         id: string
     }
 }
-const page = async({ params }: Props) => {
+const page = async ({ params }: Props) => {
     const shotId = params.id
     const visitorId = getVisitorId()
     const shot = shotId
-    ? await bum.shot.get(shotId)
-    : null
+        ? await bum.shot.get(shotId)
+        : null
     const teamId = shot ? shot.teamId : undefined
     const isYou = shot && visitorId ? shot.authorId === visitorId : false
     if (!shot) return notFound()
     return (
         <>
             <div className="w-full h-0" />
-            <Suspense fallback={ <ShotHeaderSkeleton /> }>
+            <Suspense fallback={<ShotHeaderSkeleton />}>
                 <ShotHeader statistics={{ likes: shot.likes.length || 0, views: shot.views.length || 0 }}
-                authorId={shot.authorId} teamId={teamId}  />
+                    authorId={shot.authorId} teamId={teamId} />
             </Suspense>
             <ViewWatcher shotId={shot.doc_id} views={shot.views} />
             <div className="relative w-full h-full flex flex-col bg-gradient-to-t from-bg-card to-background">
@@ -50,20 +50,20 @@ const page = async({ params }: Props) => {
                     </ShotAdaptiveWrapper>
                     <aside className="view-side">
                         <div className='flex items-center gap-2'>
-                            <span className="text-xl font-semibold">{ shot.title }</span>
+                            <span className="text-xl font-semibold">{shot.title}</span>
                         </div>
                         <div className="w-full h-fit flex items-center justify-between">
                             <div className="w-fit h-fit flex items-center">
                                 {
                                     isYou
-                                    ? <button className="h-9 w-32 rounded-md bg-muted"></button>
-                                    : visitorId
-                                    ? <FollowButton from={visitorId} to={shot.authorId} /> : <button className="h-9 w-32 rounded-md bg-muted"></button>
+                                        ? <button className="h-9 w-32 rounded-md bg-muted"></button>
+                                        : visitorId
+                                            ? <FollowButton from={visitorId} to={shot.authorId} /> : <button className="h-9 w-32 rounded-md bg-muted"></button>
                                 }
                             </div>
                             <div className="w-fit h-fit flex items-center gap-2">
                                 <LikeButton id={shot.doc_id} teamId={teamId}
-                                defaultValue={!!shot.likes.find(like => visitorId ? like.uid === visitorId : false)} />
+                                    defaultValue={!!shot.likes.find(like => visitorId ? like.uid === visitorId : false)} />
                             </div>
                         </div>
                         <div className="w-full h-fit p-2 rounded-lg bg-muted">
@@ -75,7 +75,7 @@ const page = async({ params }: Props) => {
                             </div>
                         </div>
                         <Comments comments={shot.comments} shotId={shot.doc_id} teamId={teamId}
-                        isCommentsEnabled={shot.needFeedback} />
+                            isCommentsEnabled={shot.needFeedback} />
                         {/* <div className="w-full h-fit flex flex-col gap-2">
                             <div className="w-full h-6 rounded-md bg-muted"></div>
                             <div className="w-2/3 h-6 rounded-md bg-muted"></div>
@@ -97,7 +97,7 @@ const page = async({ params }: Props) => {
                                     if (block.type === 'text') return <div className="w-full md-layout" key={block.id + '-' + block.type + '-shot'}>
                                         <MDXRemote source={block.text} />
                                     </div>
-                                    if (block.type === 'separator')  return <Separator key={block.id + '-' + block.type + '-shot'} />
+                                    if (block.type === 'separator') return <Separator key={block.id + '-' + block.type + '-shot'} />
                                     return null
                                 })
                             }

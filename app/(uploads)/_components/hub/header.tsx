@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { cdn } from "@/helpers/cdn"
+import { cdn } from "api"
 import Image from "next/image"
 import Link from "next/link"
 import { BiChevronLeft } from "react-icons/bi"
