@@ -74,7 +74,7 @@ const layout = async ({ children, params }: Props) => {
             <DynamicNav layout={portfolio.type} prefix={prefix} user={{ name: name, photoURL: photoURL }} />
             {/* </div> */}
             {children}
-            <Footer />
+            <Footer className="max-w-screen-2xl p-6" />
         </>
     )
 }

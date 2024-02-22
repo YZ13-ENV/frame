@@ -19,7 +19,7 @@ const page = async ({ params }: Props) => {
             <div className="w-full px-6 min-h-[27rem] py-24 max-w-screen-2xl mx-auto">
                 <div className="bio-wrapper">
                     <div className="about-wrapper">
-                        <span className="text-sm">{about}</span>
+                        <span className="text-base">{about}</span>
                     </div>
                     {
                         // isYou &&

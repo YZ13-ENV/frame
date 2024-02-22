@@ -20,8 +20,7 @@ const Category = ({ onValueChange, order, value }: Props) => {
             <SelectGroup className='z-20'>
               {
                 withCustomSortTab(order).map(tab =>
-                  <SelectItem key={tab.value} onClick={() => onValueChange(tab.value)} value={tab.value}
-                  >{tab.label}</SelectItem>
+                  <SelectItem key={tab.value} value={tab.value}>{tab.label}</SelectItem>
                 )
               }
             </SelectGroup>
@@ -29,12 +28,11 @@ const Category = ({ onValueChange, order, value }: Props) => {
         </Select>
       </div>
       <div className="nav-tabs ">
-        <Tabs defaultValue="/" value={value} className="w-fit">
+        <Tabs defaultValue="/" value={value} className="w-fit" onValueChange={onValueChange}>
           <TabsList className='!bg-transparent !p-0 '>
             {
               withCustomSortTab(order).map(tab =>
-                <TabsTrigger key={tab.value} onClick={() => onValueChange(tab.value)}
-                  value={tab.value} className="relative !bg-transparent">
+                <TabsTrigger key={tab.value} value={tab.value} className="relative !bg-transparent">
                   {tab.label}
                   {
                     tab.value === value && <motion.div layoutId='category-tab'
