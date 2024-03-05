@@ -16,7 +16,7 @@ dependencies:
     version: 3.2.2(react@18.2.0)
   '@mdxeditor/editor':
     specifier: ^2.2.0
-    version: 2.2.0(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.12)
+    version: 2.2.0(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14)
   '@radix-ui/react-accordion':
     specifier: ^1.1.2
     version: 1.1.2(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
@@ -64,7 +64,7 @@ dependencies:
     version: 3.7.8(react@18.2.0)
   api:
     specifier: github:yz13-env/api
-    version: github.com/yz13-env/api/fdab8d3155d6ad1788cdddc6f815e459878d06c9(react-dom@18.2.0)(react@18.2.0)
+    version: github.com/yz13-env/api/1780f975a8d8467b74a06f29751253ddfb3c948d(react-dom@18.2.0)(react@18.2.0)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -130,7 +130,7 @@ dependencies:
     version: 1.0.7(tailwindcss@3.4.0)
   ui:
     specifier: github:yz13-env/ui
-    version: github.com/yz13-env/ui/a1f935821c6c214bc168ac576ec95ea6efd26320(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)(yjs@13.6.12)
+    version: github.com/yz13-env/ui/a1f935821c6c214bc168ac576ec95ea6efd26320(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)(yjs@13.6.14)
   vaul:
     specifier: ^0.8.0
     version: 0.8.0(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
@@ -1827,7 +1827,7 @@ packages:
       lexical: 0.12.6
     dev: false
 
-  /@lexical/react@0.12.5(lexical@0.12.5)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.12):
+  /@lexical/react@0.12.5(lexical@0.12.5)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14):
     resolution: {integrity: sha512-pAbJQksin223Yp1p1VsPKxkRtSppVij+HcLTzP89q2QuSA0z0p/T+f5jZjs8eV6tecMtmrjizhdLTbk0jkej1w==}
     peerDependencies:
       lexical: 0.12.5
@@ -1850,7 +1850,7 @@ packages:
       '@lexical/table': 0.12.5(lexical@0.12.5)
       '@lexical/text': 0.12.5(lexical@0.12.5)
       '@lexical/utils': 0.12.5(lexical@0.12.5)
-      '@lexical/yjs': 0.12.5(lexical@0.12.5)(yjs@13.6.12)
+      '@lexical/yjs': 0.12.5(lexical@0.12.5)(yjs@13.6.14)
       lexical: 0.12.5
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -1859,7 +1859,7 @@ packages:
       - yjs
     dev: false
 
-  /@lexical/react@0.12.6(lexical@0.12.6)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.12):
+  /@lexical/react@0.12.6(lexical@0.12.6)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14):
     resolution: {integrity: sha512-Pto4wsVwrnY94tzcCXP2kWukQejSRPDfwOPd+EFh8dUzj+L7fa9Pze2wVgCRZpEohwfbcgAdEsvmSbhz+yGkog==}
     peerDependencies:
       lexical: 0.12.6
@@ -1882,7 +1882,7 @@ packages:
       '@lexical/table': 0.12.6(lexical@0.12.6)
       '@lexical/text': 0.12.6(lexical@0.12.6)
       '@lexical/utils': 0.12.6(lexical@0.12.6)
-      '@lexical/yjs': 0.12.6(lexical@0.12.6)(yjs@13.6.12)
+      '@lexical/yjs': 0.12.6(lexical@0.12.6)(yjs@13.6.14)
       lexical: 0.12.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -1991,7 +1991,7 @@ packages:
       lexical: 0.12.6
     dev: false
 
-  /@lexical/yjs@0.12.5(lexical@0.12.5)(yjs@13.6.12):
+  /@lexical/yjs@0.12.5(lexical@0.12.5)(yjs@13.6.14):
     resolution: {integrity: sha512-GNiRND/8ePdTWuSDFloPo/1355V0ce6OtH/25qxCq5D9MLNiIkAcwqQfnWFUdOtVMuNJOVc4OfCE9ARCGuEjyQ==}
     peerDependencies:
       lexical: 0.12.5
@@ -1999,10 +1999,10 @@ packages:
     dependencies:
       '@lexical/offset': 0.12.5(lexical@0.12.5)
       lexical: 0.12.5
-      yjs: 13.6.12
+      yjs: 13.6.14
     dev: false
 
-  /@lexical/yjs@0.12.6(lexical@0.12.6)(yjs@13.6.12):
+  /@lexical/yjs@0.12.6(lexical@0.12.6)(yjs@13.6.14):
     resolution: {integrity: sha512-I/Yf/Qm8/ydU983kWpFBlDFNFQXLYur5uaAimTSBcJuqHmy3cv1xM7Xrq4BtM+0orKgWJt8vR8cLVIU9sAmzfw==}
     peerDependencies:
       lexical: 0.12.6
@@ -2010,7 +2010,7 @@ packages:
     dependencies:
       '@lexical/offset': 0.12.6(lexical@0.12.6)
       lexical: 0.12.6
-      yjs: 13.6.12
+      yjs: 13.6.14
     dev: false
 
   /@lezer/common@1.2.0:
@@ -2111,7 +2111,7 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@mdxeditor/editor@2.2.0(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.12):
+  /@mdxeditor/editor@2.2.0(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14):
     resolution: {integrity: sha512-4OqD3/oBXkgRHgLc23hW1nhwR1FJspq1x6+OOqOXkffe4x2mP3Eb6liXAYv8NhbhfKpFB+DtXZbdKBqsomMWxA==}
     engines: {node: '>=16'}
     peerDependencies:
@@ -2128,7 +2128,7 @@ packages:
       '@lexical/list': 0.12.5(lexical@0.12.5)
       '@lexical/markdown': 0.12.5(@lexical/clipboard@0.12.5)(@lexical/selection@0.12.5)(lexical@0.12.5)
       '@lexical/plain-text': 0.12.5(@lexical/clipboard@0.12.5)(@lexical/selection@0.12.5)(@lexical/utils@0.12.5)(lexical@0.12.5)
-      '@lexical/react': 0.12.5(lexical@0.12.5)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.12)
+      '@lexical/react': 0.12.5(lexical@0.12.5)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14)
       '@lexical/rich-text': 0.12.5(@lexical/clipboard@0.12.5)(@lexical/selection@0.12.5)(@lexical/utils@0.12.5)(lexical@0.12.5)
       '@lexical/selection': 0.12.5(lexical@0.12.5)
       '@lexical/utils': 0.12.5(lexical@0.12.5)
@@ -2176,7 +2176,7 @@ packages:
       - yjs
     dev: false
 
-  /@mdxeditor/editor@2.8.3(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.12):
+  /@mdxeditor/editor@2.8.3(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14):
     resolution: {integrity: sha512-6O//JZIS6lwLKVMbO8Sbg/cgygysuXQayaC1GtuEd7FAoqzbmdj5XhLLIZttKlnmgWEREriK+5KSXC5MyoxKAA==}
     engines: {node: '>=16'}
     peerDependencies:
@@ -2193,7 +2193,7 @@ packages:
       '@lexical/list': 0.12.6(lexical@0.12.6)
       '@lexical/markdown': 0.12.6(@lexical/clipboard@0.12.6)(@lexical/selection@0.12.6)(lexical@0.12.6)
       '@lexical/plain-text': 0.12.6(@lexical/clipboard@0.12.6)(@lexical/selection@0.12.6)(@lexical/utils@0.12.6)(lexical@0.12.6)
-      '@lexical/react': 0.12.6(lexical@0.12.6)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.12)
+      '@lexical/react': 0.12.6(lexical@0.12.6)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14)
       '@lexical/rich-text': 0.12.6(@lexical/clipboard@0.12.6)(@lexical/selection@0.12.6)(@lexical/utils@0.12.6)(lexical@0.12.6)
       '@lexical/selection': 0.12.6(lexical@0.12.6)
       '@lexical/utils': 0.12.6(lexical@0.12.6)
@@ -5709,8 +5709,8 @@ packages:
     resolution: {integrity: sha512-Nlfjc+k9cIWpOMv7XufF0Mv09TAXSemNAuAqFLaOwTcN+RvhvYTDtVLSp9D9r+5I097fYs1Vf/UYwH2xEpkFfQ==}
     dev: false
 
-  /lib0@0.2.89:
-    resolution: {integrity: sha512-5j19vcCjsQhvLG6mcDD+nprtJUCbmqLz5Hzt5xgi9SV6RIW/Dty7ZkVZHGBuPOADMKjQuKDvuQTH495wsmw8DQ==}
+  /lib0@0.2.91:
+    resolution: {integrity: sha512-LRcTp8RmdHexL8olb7qErdROnJ2L6Js5Am99WQo0hiTRDWtk6vyUJJjTB6I/RcW8jwNQshM3NqH598DdhSOajA==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
@@ -8371,11 +8371,11 @@ packages:
       yargs-parser: 21.1.1
     dev: false
 
-  /yjs@13.6.12:
-    resolution: {integrity: sha512-KOT8ILoyVH2f/PxPadeu5kVVS055D1r3x1iFfJVJzFdnN98pVGM8H07NcKsO+fG3F7/0tf30Vnokf5YIqhU/iw==}
+  /yjs@13.6.14:
+    resolution: {integrity: sha512-D+7KcUr0j+vBCUSKXXEWfA+bG4UQBviAwP3gYBhkstkgwy5+8diOPMx0iqLIOxNo/HxaREUimZRxqHGAHCL2BQ==}
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     dependencies:
-      lib0: 0.2.89
+      lib0: 0.2.91
     dev: false
 
   /yocto-queue@0.1.0:
@@ -8387,11 +8387,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/yz13-env/api/fdab8d3155d6ad1788cdddc6f815e459878d06c9(react-dom@18.2.0)(react@18.2.0):
-    resolution: {tarball: https://codeload.github.com/yz13-env/api/tar.gz/fdab8d3155d6ad1788cdddc6f815e459878d06c9}
-    id: github.com/yz13-env/api/fdab8d3155d6ad1788cdddc6f815e459878d06c9
+  github.com/yz13-env/api/1780f975a8d8467b74a06f29751253ddfb3c948d(react-dom@18.2.0)(react@18.2.0):
+    resolution: {tarball: https://codeload.github.com/yz13-env/api/tar.gz/1780f975a8d8467b74a06f29751253ddfb3c948d}
+    id: github.com/yz13-env/api/1780f975a8d8467b74a06f29751253ddfb3c948d
     name: api
-    version: 0.0.8
+    version: 0.0.8-3
     engines: {node: '20'}
     peerDependencies:
       react: '18'
@@ -8424,7 +8424,7 @@ packages:
       react-dom: '18'
     dependencies:
       ahooks: 3.7.10(react@18.2.0)
-      api: github.com/yz13-env/api/fdab8d3155d6ad1788cdddc6f815e459878d06c9(react-dom@18.2.0)(react@18.2.0)
+      api: github.com/yz13-env/api/1780f975a8d8467b74a06f29751253ddfb3c948d(react-dom@18.2.0)(react@18.2.0)
       firebase: 10.8.0
       jsonwebtoken: 8.5.1
       luxon: 3.4.4
@@ -8440,7 +8440,7 @@ packages:
       - sass
     dev: false
 
-  github.com/yz13-env/ui/a1f935821c6c214bc168ac576ec95ea6efd26320(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)(yjs@13.6.12):
+  github.com/yz13-env/ui/a1f935821c6c214bc168ac576ec95ea6efd26320(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)(yjs@13.6.14):
     resolution: {tarball: https://codeload.github.com/yz13-env/ui/tar.gz/a1f935821c6c214bc168ac576ec95ea6efd26320}
     id: github.com/yz13-env/ui/a1f935821c6c214bc168ac576ec95ea6efd26320
     name: ui
@@ -8450,7 +8450,7 @@ packages:
       react: '18'
       react-dom: '18'
     dependencies:
-      '@mdxeditor/editor': 2.8.3(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.12)
+      '@mdxeditor/editor': 2.8.3(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14)
       '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-dropdown-menu': 2.0.6(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-icons': 1.3.0(react@18.2.0)
@@ -8458,7 +8458,7 @@ packages:
       '@radix-ui/react-separator': 1.0.3(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.46)(react@18.2.0)
       ahooks: 3.7.8(react@18.2.0)
-      api: github.com/yz13-env/api/fdab8d3155d6ad1788cdddc6f815e459878d06c9(react-dom@18.2.0)(react@18.2.0)
+      api: github.com/yz13-env/api/1780f975a8d8467b74a06f29751253ddfb3c948d(react-dom@18.2.0)(react@18.2.0)
       class-variance-authority: 0.7.0
       clsx: 2.1.0
       firebase: 10.7.1

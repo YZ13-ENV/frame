@@ -1,8 +1,9 @@
-import Controller from "./ui/controller"
-import { Suspense } from "react"
 import ShotSkeleton from "@/components/skeletons/shot"
-import dynamic from "next/dynamic"
 import { ChunkResponse, DocShotData } from "api"
+import { unstable_noStore } from "next/cache"
+import dynamic from "next/dynamic"
+import { Suspense } from "react"
+import Controller from "./ui/controller"
 const ShotCard = dynamic(() => import("@/components/shared/shot-card"), {
     loading: () => <ShotSkeleton />
 })
@@ -13,6 +14,7 @@ type Props = {
 }
 
 const AdvancedChunk = async ({ getter, hideController }: Props) => {
+    unstable_noStore()
     const { data, next } = await getter
     return (
         <>

@@ -1,9 +1,9 @@
 'use client'
 import { PortfolioConfig } from "@/helpers/getPortfolio"
-import PortfolioTeamNav from "./nav"
 import { useScroll } from "ahooks"
-import { useMemo } from "react"
 import Image from "next/image"
+import { useMemo } from "react"
+import PortfolioTeamNav from "./nav"
 
 type Props = {
   user?: {
@@ -18,7 +18,7 @@ const DynamicNav = ({ layout, prefix, user }: Props) => {
   const y = useMemo(() => { return scroll ? scroll.top : 0 }, [scroll, scroll?.top])
   // console.log(y)
   return (
-    <div className="w-full py-2 z-20 border-b sticky top-0 bg-card">
+    <div className="w-full py-2 border-b sticky top-0 bg-card">
       <div className="mx-auto max-w-screen-2xl px-6 w-full flex items-center justify-start gap-2">
         {
           (y >= 340 && user) &&
