@@ -17,7 +17,7 @@ type Props = {
   }
   children: JSX.Element | JSX.Element[]
 }
-const layout = async ({ params, children }: Props) => {
+const layout = ({ params, children }: Props) => {
   return (
     <>
       <Header menu={<MenuButton />} />
