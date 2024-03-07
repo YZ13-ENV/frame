@@ -1,13 +1,12 @@
 'use client'
-import { bum, DraftForUpload } from 'api'
-import type { ShortUserData } from 'api'
-import { team, user as userAPI } from 'api'
-import { auth } from '@/utils/app'
 import { Button } from '@/components/ui/button'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
+import { auth } from '@/utils/app'
 import { useDebounceEffect } from 'ahooks'
+import type { ShortUserData } from 'api'
+import { DraftForUpload, bum, team, user as userAPI } from 'api'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -88,12 +87,24 @@ const NewDraftButton = () => {
 
     }
     const checkName = async () => {
-        if (extra && extra.teamId) {
-            const draftPromise = hasTeam ? team.draft.get(extra.teamId, draftId) : bum.draft.get(draftId)
-            const shotPromise = hasTeam ? team.shot.get(extra.teamId, draftId) : bum.shot.get(draftId)
-            const [draft, shot] = await Promise.all([draftPromise, shotPromise])
-            const result = draft ? draft : shot
-            setIsExist(!!result)
+        if (extra) {
+            if (extra.teamId) {
+                const teamDraftPromise = team.draft.get(extra.teamId, draftId)
+                const teamShotPromise = team.shot.get(extra.teamId, draftId)
+                const draftPromise = bum.draft.get(draftId)
+                const shotPromise = bum.shot.get(draftId)
+                const [teamDraft, teamShot, draft, shot] = await Promise.all([teamDraftPromise, teamShotPromise, draftPromise, shotPromise])
+                const result = teamDraft ? teamDraft : teamShot ? teamShot : draft ? draft : shot
+                console.log(result)
+                setIsExist(!!result)
+            } else {
+                const draftPromise = bum.draft.get(draftId)
+                const shotPromise = bum.shot.get(draftId)
+                const [draft, shot] = await Promise.all([draftPromise, shotPromise])
+                const result = draft ? draft : shot
+                console.log(result)
+                setIsExist(!!result)
+            }
         }
     }
     useDebounceEffect(() => {
