@@ -1,8 +1,18 @@
-import AdvancedChunk from "@/components/widgets/chunk"
+import ShotSkeleton from "@/components/skeletons/shot"
 import { getPortfolio } from "@/helpers/getPortfolio"
-import { team, bum } from "api"
+import { bum, team } from "api"
+import dynamic from "next/dynamic"
 import { redirect } from "next/navigation"
-
+const AdvancedChunk = dynamic(() => import("@/components/widgets/chunk"), {
+    loading: () => <div className="z-20 grid w-full h-full gap-6 shots_grid">
+        <ShotSkeleton />
+        <ShotSkeleton />
+        <ShotSkeleton />
+        <ShotSkeleton />
+        <ShotSkeleton />
+        <ShotSkeleton />
+    </div>
+})
 type Props = {
     params: {
         nick: string
