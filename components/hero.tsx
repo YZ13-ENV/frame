@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic"
 import { bum } from "api"
+import dynamic from "next/dynamic"
 import { StarField } from "ui"
 const ContainerScroll = dynamic(() => import("@/app/_components/dynamic-scroll-container"), {
     ssr: false
@@ -21,7 +21,7 @@ const HeroSection = async () => {
     const shots = await bum.shots.all('popular')
     return (
         <div className="w-full min-h-[200dvh] flex flex-col items-center justify-start gap-4 relative">
-            <div className="w-fit h-fit absolute p-6 right-0 top-0">
+            <div className="w-fit h-fit z-20 absolute p-6 right-0 top-0">
                 <UserSection />
             </div>
             <StarField starsCount={100} />

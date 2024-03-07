@@ -1,8 +1,8 @@
+import { cn } from "@/lib/utils"
 import { DocShotData } from "api"
 import Image from "next/image"
-import Footer from "./footer"
 import Link from "next/link"
-import { cn } from "@/lib/utils"
+import Footer from "./footer"
 
 type Props = {
     shot: DocShotData
@@ -26,7 +26,7 @@ const ShotCard = ({ shot, enableFooter = true, enableOutline = false }: Props) =
                 {
                     process.env.NODE_ENV === 'production' &&
                     attachment &&
-                    <Image src={attachment.url} className="z-0 group-hover/wrapper:brightness-50 transition-all" fill alt='shot-thumbnail' />
+                    <Image src={attachment.url} className="z-0 rounded-lg group-hover/wrapper:brightness-50 transition-all" fill alt='shot-thumbnail' />
                 }
             </div>
             {

@@ -92,7 +92,7 @@ const NewDraftButton = () => {
             const draftPromise = hasTeam ? team.draft.get(extra.teamId, draftId) : bum.draft.get(draftId)
             const shotPromise = hasTeam ? team.shot.get(extra.teamId, draftId) : bum.shot.get(draftId)
             const [draft, shot] = await Promise.all([draftPromise, shotPromise])
-            const result = draft || shot
+            const result = draft ? draft : shot
             setIsExist(!!result)
         }
     }

@@ -15,7 +15,7 @@ const FollowingSection = async () => {
       </div>
     )
   }
-  if (!visitor) return null
+  if (!visitor || followings.length === 0) return null
   return (
     <Suspense fallback={<SubLoader />}>
       <div className="w-full flex flex-col p-4">
