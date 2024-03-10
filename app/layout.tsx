@@ -1,9 +1,10 @@
-import 'ui/dist/style.css'
-import '@/app/globals.css'
-import '@/app/local.css'
+import '@/app/globals.css';
+import '@/app/local.css';
+import StateProvider from '@/components/StateProvider';
 import { Metadata } from "next";
-import { Spectral, Geologica } from 'next/font/google'
-import StateProvider from '@/components/StateProvider'
+import { Geologica, Spectral } from 'next/font/google';
+import { WebVitals } from "ui";
+import 'ui/dist/style.css';
 const first_font = Geologica({ subsets: ['latin', 'cyrillic'], weight: ['600', '500', '400'], variable: '--root-font' })
 const second_font = Spectral({ subsets: ['latin', 'cyrillic'], weight: ['600', '400'], variable: '--second-font' })
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en' className={`${first_font.className} ${first_font.variable} ${second_font.variable}`}>
       <body id='root' className='w-full min-h-screen dark'>
+        <WebVitals appId="darkmaterial-frame" />
         <StateProvider>
           {children}
         </StateProvider>
