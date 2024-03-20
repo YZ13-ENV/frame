@@ -1,5 +1,5 @@
 'use client'
-import { file } from 'api'
+import { file } from "@darkmaterial/api"
 import Image, { ImageProps } from 'next/image'
 import { useEffect, useState } from 'react'
 

@@ -1,9 +1,9 @@
-import { DocDraftShotData } from "api"
-import ToolKit from "./took-kit"
 import { Button } from "@/components/ui/button"
-import { BiChevronLeft } from "react-icons/bi"
+import { DocDraftShotData } from "@darkmaterial/api"
 import Link from "next/link"
+import { BiChevronLeft } from "react-icons/bi"
 import DraftWatcher from "../draft.watcher"
+import ToolKit from "./took-kit"
 
 type Props = {
     draft: DocDraftShotData

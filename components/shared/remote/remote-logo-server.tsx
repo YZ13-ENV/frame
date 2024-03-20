@@ -1,4 +1,4 @@
-import { file } from 'api'
+import { file } from "@darkmaterial/api"
 import Image, { ImageProps } from 'next/image'
 
 type VariantProps = { dark: string, light: string, size?: number }

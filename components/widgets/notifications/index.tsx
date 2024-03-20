@@ -1,6 +1,6 @@
 'use client'
-import { Notifications } from 'ui'
 import { auth } from '@/utils/app'
+import { Notifications } from "@darkmaterial/ui"
 import { memo } from 'react'
 
 

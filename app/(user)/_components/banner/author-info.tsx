@@ -1,9 +1,9 @@
 import type { PortfolioConfig } from "@/helpers/getPortfolio"
-import Author from "./author"
-import SignatureEditor from "../signature-editor"
-import AuthorStats from "./author-stats"
+import { bum } from "@darkmaterial/api"
 import { Suspense } from "react"
-import { bum } from "api"
+import SignatureEditor from "../signature-editor"
+import Author from "./author"
+import AuthorStats from "./author-stats"
 
 type Props = {
     portfolio: PortfolioConfig

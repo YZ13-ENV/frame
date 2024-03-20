@@ -1,6 +1,6 @@
 import ShotSkeleton from "@/components/skeletons/shot"
 import { getPortfolio } from "@/helpers/getPortfolio"
-import { bum, team } from "api"
+import { bum, team } from "@darkmaterial/api"
 import dynamic from "next/dynamic"
 import { redirect } from "next/navigation"
 const AdvancedChunk = dynamic(() => import("@/components/widgets/chunk"), {

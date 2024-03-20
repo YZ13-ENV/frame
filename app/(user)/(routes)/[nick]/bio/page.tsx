@@ -1,5 +1,5 @@
-import { bum } from "api"
 import { getPortfolio } from "@/helpers/getPortfolio"
+import { bum } from "@darkmaterial/api"
 
 type Props = {
     params: {

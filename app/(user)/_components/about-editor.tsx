@@ -1,8 +1,8 @@
 'use client'
-import { bum } from "api"
 import { Button } from "@/components/ui/button"
+import { bum } from "@darkmaterial/api"
+import { Textarea } from "@darkmaterial/ui"
 import { useState } from "react"
-import { Textarea } from "ui"
 
 type Props = {
     authorId: string

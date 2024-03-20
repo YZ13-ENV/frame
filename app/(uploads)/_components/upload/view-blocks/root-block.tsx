@@ -4,7 +4,7 @@ import { setRootBlock } from "@/components/entities/uploader/draft"
 import { Button } from "@/components/ui/button"
 import FileUploader from "@/components/widgets/file-uploader"
 import { media_with_video_type } from "@/const/file-types"
-import { Attachment, IdBlock, MediaBlock } from "api"
+import { Attachment, IdBlock, MediaBlock } from "@darkmaterial/api"
 import Image from "next/image"
 import { GrDetach } from "react-icons/gr"
 

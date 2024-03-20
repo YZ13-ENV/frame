@@ -1,12 +1,12 @@
 'use client'
-import { Separator } from "@/components/ui/separator"
-import { BiImage, BiText } from "react-icons/bi"
-import { RiSeparator, RiEmojiStickerLine } from "react-icons/ri";
-import { LuGalleryThumbnails } from "react-icons/lu";
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store";
-import { Blocks } from "api";
 import { setBlocks } from "@/components/entities/uploader/draft";
+import { Separator } from "@/components/ui/separator";
 import { getDefaultBlock } from "@/const/default-blocks";
+import { Blocks } from "@darkmaterial/api";
+import { BiImage, BiText } from "react-icons/bi";
+import { LuGalleryThumbnails } from "react-icons/lu";
+import { RiEmojiStickerLine, RiSeparator } from "react-icons/ri";
 import KitButton from "./kit-button";
 
 type Props = {

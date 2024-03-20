@@ -1,5 +1,5 @@
 import { getVisitorId } from "@/helpers/cookies"
-import { bum } from "api"
+import { bum } from "@darkmaterial/api"
 import { Suspense } from "react"
 import FollowerButton from "./follower-button"
 

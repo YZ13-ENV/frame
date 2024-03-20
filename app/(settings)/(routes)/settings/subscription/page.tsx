@@ -1,6 +1,6 @@
-import { user } from "api"
 import SubscriptionAbility from "@/app/(settings)/_components/subscription/subscription-ability"
 import { Separator } from "@/components/ui/separator"
+import { user } from "@darkmaterial/api"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 

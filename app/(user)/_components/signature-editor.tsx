@@ -1,9 +1,9 @@
 'use client'
-import { bum } from "api"
 import { Button } from "@/components/ui/button"
+import { bum } from "@darkmaterial/api"
+import { Textarea } from "@darkmaterial/ui"
 import { useState } from "react"
 import { BiLoaderAlt, BiSave } from "react-icons/bi"
-import { Textarea } from "ui"
 
 type Props = {
   readOnly?: boolean

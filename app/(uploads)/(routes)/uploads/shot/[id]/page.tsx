@@ -6,7 +6,7 @@ import RootBlock from '@/app/(uploads)/_components/upload/view-blocks/root-block
 import Title from '@/app/(uploads)/_components/upload/view-blocks/title'
 import ShotAdaptiveWrapper from '@/components/shared/shot-adaptive-wrapper'
 import { Button } from '@/components/ui/button'
-import { bum, file, user } from 'api'
+import { bum, file, user } from "@darkmaterial/api"
 import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'

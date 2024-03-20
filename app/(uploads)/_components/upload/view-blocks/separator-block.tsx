@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator"
-import { IdBlock, SeparatorProps } from "api"
+import { IdBlock, SeparatorProps } from "@darkmaterial/api"
 
 type Props = {
     block: IdBlock<SeparatorProps>

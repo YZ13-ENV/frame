@@ -1,6 +1,6 @@
 'use client'
 import { auth } from "@/utils/app"
-import { DocShotData, bum } from "api"
+import { DocShotData, bum } from "@darkmaterial/api"
 import { useEffect, useMemo } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 

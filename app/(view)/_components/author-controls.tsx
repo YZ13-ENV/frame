@@ -1,6 +1,6 @@
 'use client'
-import { bum, DocShotData, team } from "api"
 import { Button } from "@/components/ui/button"
+import { bum, DocShotData, team } from "@darkmaterial/api"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { BiEdit, BiLoaderAlt, BiTrashAlt } from "react-icons/bi"

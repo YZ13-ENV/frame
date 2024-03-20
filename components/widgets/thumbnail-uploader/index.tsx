@@ -5,7 +5,7 @@ import DropZone from "@/components/shared/drop-zone"
 import { media_type } from "@/const/file-types"
 import { format } from "@/helpers/format"
 import { auth } from "@/utils/app"
-import { Attachment, bum } from "api"
+import { Attachment, bum } from "@darkmaterial/api"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 type Props = {

@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/components/entities/store/stor
 import { setThumbnail } from "@/components/entities/uploader/draft"
 import { Button } from "@/components/ui/button"
 import ThumbnailUploader from "@/components/widgets/thumbnail-uploader"
-import { Attachment, Thumbnail } from "api"
+import { Attachment, Thumbnail } from "@darkmaterial/api"
 import Image from "next/image"
 import { GrDetach } from "react-icons/gr"
 

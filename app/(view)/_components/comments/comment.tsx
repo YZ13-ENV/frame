@@ -1,13 +1,11 @@
 'use client'
-import { CommentBlock, ShortUserData, user } from "api"
 import Avatar from "@/components/shared/avatar"
-import { Button } from "@/components/ui/button"
 import { auth } from "@/utils/app"
+import { CommentBlock, ShortUserData, user } from "@darkmaterial/api"
 import { DateTime } from "luxon"
 import Link from "next/link"
 import { memo, useEffect, useMemo, useState } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
-import { BiTrashAlt } from "react-icons/bi"
 
 type Props = {
   comment: CommentBlock
@@ -23,29 +21,27 @@ const Comment = ({ comment, onDelete }: Props) => {
       .then(author => setAuthor(author))
   }, [comment])
   return (
-    <div className="w-full h-fit rounded-lg p-3 flex gap-3 border hover:bg-muted">
+    <div className="w-full h-fit rounded-lg p-3 flex gap-3">
       <Link href={author ? `/${author?.nickname || author.uid}` : ''}>
         {
           author && author.photoUrl
-            ? <Avatar src={author.photoUrl} size={36} isSubscriber={author.isSubscriber || false} />
-            : <div className="w-9 h-9 rounded-full bg-muted shrink-0" />
+            ? <Avatar src={author.photoUrl} size={48} isSubscriber={author.isSubscriber || false} />
+            : <div className="h-12 aspect-square rounded-full bg-muted shrink-0" />
         }
       </Link>
-      <div className="w-full h-fit flex flex-col">
-        <div className="w-full h-fit flex flex-row justify-between items-center">
-          <div className="w-fit h-fit flex flex-col">
-            <span className="text-base text-accent-foreground">{author?.displayName || 'Пользователь'}</span>
-            <span className="text-xs text-muted-foreground">{DateTime.fromSeconds(comment.createdAt).setLocale('ru').toRelative()}</span>
-          </div>
-          {
+      <div className="w-full flex flex-col gap-1">
+        <div className="w-fit h-fit flex items-center flex-row gap-2">
+          <span className="text-sm text-accent-foreground">{author?.nickname || author?.displayName || 'Пользователь'}</span>
+          <span className="text-sm text-muted-foreground">{DateTime.fromSeconds(comment.createdAt).setLocale('ru').toRelative()}</span>
+        </div>
+        <span className="text-base text-accent-foreground">{comment.text}</span>
+      </div>
+      {/* {
             isYou
               ? <Button onClick={() => onDelete && onDelete(comment.id)} disabled={disabled}
                 size='icon' variant='destructive'><BiTrashAlt /></Button>
               : <button className="hidden" />
-          }
-        </div>
-        <span className="text-sm mt-2 text-muted-foreground">{comment.text}</span>
-      </div>
+          } */}
     </div>
   )
 }

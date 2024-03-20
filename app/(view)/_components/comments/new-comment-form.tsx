@@ -1,8 +1,8 @@
 'use client'
 import { auth } from "@/utils/app"
+import { Textarea } from "@darkmaterial/ui"
 import { Dispatch, SetStateAction } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
-import { Textarea } from "ui"
 
 type Props = {
   text: string

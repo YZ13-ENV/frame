@@ -1,8 +1,8 @@
 "use client";
-import React, { useRef } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
-import { DocShotData } from "api";
 import ShotCard from "@/components/shared/shot-card";
+import { DocShotData } from "@darkmaterial/api";
+import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef } from "react";
 export const ContainerScroll = ({
   data,
   titleComponent,
@@ -97,18 +97,18 @@ export const Card = ({
           {
             !!data.length &&
             data.map((item, idx: number) => {
-            return <motion.div
-              key={`user-${idx}`}
-              className="bg-transparent cursor-pointer relative aspect-[4/3] w-full"
-              style={{ translateY: translate }}
-              whileHover={{
-                boxShadow:
-                  "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-              }}
-            >
-              <ShotCard shot={item} enableFooter={false} />
-            </motion.div>
-          })}
+              return <motion.div
+                key={`user-${idx}`}
+                className="bg-transparent cursor-pointer relative aspect-[4/3] w-full"
+                style={{ translateY: translate }}
+                whileHover={{
+                  boxShadow:
+                    "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+                }}
+              >
+                <ShotCard shot={item} enableFooter={false} />
+              </motion.div>
+            })}
         </div>
       </div>
     </motion.div>

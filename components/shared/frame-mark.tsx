@@ -1,4 +1,4 @@
-import { cdn } from 'api'
+import { cdn } from "@darkmaterial/api"
 import Image from 'next/image'
 
 type Props = {

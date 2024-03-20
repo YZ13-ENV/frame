@@ -7,7 +7,7 @@ import Title from '@/app/(uploads)/_components/upload/view-blocks/title'
 import ShotAdaptiveWrapper from '@/components/shared/shot-adaptive-wrapper'
 import { getVisitorId } from '@/helpers/cookies'
 import { author_config, fetch_author } from '@/helpers/portfolio-fetcher'
-import { bum } from 'api'
+import { bum } from "@darkmaterial/api"
 import { redirect } from 'next/navigation'
 
 type Props = {

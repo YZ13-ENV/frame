@@ -1,8 +1,8 @@
 'use client'
 import Avatar from "@/components/shared/avatar"
-import { ShortUserData } from "api"
-import { settings } from "./settings"
+import { ShortUserData } from "@darkmaterial/api"
 import { usePathname } from "next/navigation"
+import { settings } from "./settings"
 
 type Props = {
   author: ShortUserData

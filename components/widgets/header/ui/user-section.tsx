@@ -1,9 +1,8 @@
-import Link from 'next/link'
-import React from 'react'
-import { BiSearch } from 'react-icons/bi'
-import { ProjectsGrid } from 'ui'
 import User from '@/components/shared/user-circle'
+import { ProjectsGrid } from "@darkmaterial/ui"
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { BiSearch } from 'react-icons/bi'
 const Notifications = dynamic(() => import('../../notifications'))
 
 const UserSection = () => {

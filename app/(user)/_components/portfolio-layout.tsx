@@ -1,5 +1,5 @@
 import { getPortfolio } from "@/helpers/getPortfolio"
-import { bum } from "api"
+import { bum } from "@darkmaterial/api"
 import { Suspense } from "react"
 import Author from "./banner/author"
 import AuthorBannerWrapper from "./banner/author-banner-wrapper"

@@ -1,10 +1,10 @@
 'use client'
-import { useState } from "react"
-import { Button } from "../ui/button"
-import { BiHeart, BiLoaderAlt, BiSolidHeart } from "react-icons/bi"
-import { team, bum } from "api"
-import { useAuthState } from "react-firebase-hooks/auth"
 import { auth } from "@/utils/app"
+import { bum, team } from "@darkmaterial/api"
+import { useState } from "react"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { BiHeart, BiLoaderAlt, BiSolidHeart } from "react-icons/bi"
+import { Button } from "../ui/button"
 
 type Props = {
   id: string

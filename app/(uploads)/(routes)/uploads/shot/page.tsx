@@ -4,7 +4,7 @@ import Controls from '@/app/(uploads)/_components/upload/header/controls'
 import { Button } from '@/components/ui/button'
 import AdvancedChunk from '@/components/widgets/draft-chunk'
 import { getVisitorId } from '@/helpers/cookies'
-import { bum, file, user } from 'api'
+import { bum, file, user } from "@darkmaterial/api"
 import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'

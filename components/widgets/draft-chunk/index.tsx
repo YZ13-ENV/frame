@@ -1,6 +1,6 @@
-import { ChunkResponse, DocDraftShotData } from "api"
-import Controller from "./ui/controller"
 import DraftCard from "@/components/shared/draft-card"
+import { ChunkResponse, DocDraftShotData } from "@darkmaterial/api"
+import Controller from "./ui/controller"
 
 type Props = {
     hideController?: boolean
