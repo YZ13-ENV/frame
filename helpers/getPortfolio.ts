@@ -45,6 +45,44 @@ const getTeamInfo = async (id: string) => {
     return null;
   }
 };
+export const getPortfolioClient = async (
+  id: string,
+  visitorId?: string
+): Promise<PortfolioConfig> => {
+  const visitor = visitorId ? await user.byId.short(visitorId) : null;
+
+  const isId = await getShortById(id);
+  const isNickname = await getShortByNickname(id);
+  const isTeam = await getTeamInfo(id);
+
+  if (isTeam) {
+    const { members, founder } = isTeam;
+    const isFounder = visitor && founder === visitor.uid;
+    const isMember = visitor && members.includes(visitor.uid);
+    const isVisitor = !visitor || (!isFounder && !isMember);
+    return {
+      type: "team",
+      current: visitor,
+      data: isTeam,
+      relations: isVisitor
+        ? "visitor"
+        : isMember
+        ? "member"
+        : isFounder
+        ? "founder"
+        : "visitor",
+    };
+  } else {
+    const data = isId || isNickname;
+    const isYou = visitor && data ? data.uid === visitor.uid : false;
+    return {
+      type: "user",
+      current: visitor,
+      data: data,
+      isYou: isYou,
+    };
+  }
+};
 export const getPortfolio = async (id: string): Promise<PortfolioConfig> => {
   const visitorId = getVisitorId();
   const visitor = visitorId ? await user.byId.short(visitorId) : null;

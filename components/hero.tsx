@@ -25,7 +25,7 @@ const HeroSection = async () => {
                 <UserSection />
             </div>
             <StarField starsCount={100} />
-            <div className="overflow-x-hidden">
+            <div className="lg:overflow-x-visible overflow-x-hidden">
                 <ContainerScroll
                     titleComponent={
                         <h1 className="!text-7xl font-bold text-center">

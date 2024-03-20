@@ -1,9 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import draftReducer from "@/components/entities/uploader/draft";
-import { combineReducers } from "@reduxjs/toolkit";
-import ThumbnailStatusReducer from "@/components/entities/uploader/thumbnail.store";
 import ModalsReducer from "@/components/entities/uploader/modal.store";
+import ThumbnailStatusReducer from "@/components/entities/uploader/thumbnail.store";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import UserReducer from "../user/store";
 
 const uploader = combineReducers({
