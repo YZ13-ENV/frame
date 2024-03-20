@@ -37,7 +37,7 @@ const FileUploader = ({ onAttachment, allowedFileTypes = media_type }: Props) =>
         }
     }
     return (
-        <div className="relative w-full rounded-xl bg-background border aspect-[4/3] p-4 flex flex-col items-center justify-center">
+        <div className="relative w-full rounded-xl bg-background border aspect-video p-4 flex flex-col items-center justify-center">
             <Description />
             <DropZone onFile={file => createAttachment(file)} className="absolute top-0 left-0" />
         </div>

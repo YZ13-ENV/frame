@@ -21,7 +21,7 @@ const Side = ({ title, teamId, draft, hasSubscription = false }: Props) => {
                     <DraftWatcher draft={draft} teamId={teamId} />
                 </div>
             </header>
-            <div className="absolute left-0 flex gap-10 pl-6 w-fit h-fit">
+            <div className="absolute z-10 left-0 flex gap-10 pl-6 w-fit h-fit">
                 <ToolKit hasSubscription={hasSubscription} />
             </div>
         </>
