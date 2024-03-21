@@ -63,7 +63,7 @@ const page = async ({ params }: Props) => {
                         <MediaBlock key={shot.rootBlock.id + '-' + shot.rootBlock.type + '-shot'} attachments={shot.attachments} block={shot.rootBlock} />
                     </div>
                     <div className="max-w-5xl w-full mx-auto flex flex-col gap-4">
-                        <div className="flex md:flex-row flex-col w-full items-center gap-4 justify-between">
+                        <div className="flex md:!flex-row flex-col w-full items-center gap-4 justify-between">
                             <div className="w-fit flex items-center justify-start gap-4">
                                 <Author id={shot.authorId} teamId={teamId} />
                                 {/* <Button
@@ -79,14 +79,14 @@ const page = async ({ params }: Props) => {
                                 <LikeButton id={shot.doc_id} teamId={shot.teamId} defaultValue={isLiked} />
                                 <div className="flex items-center">
                                     <Button
-                                        className="rounded-full rounded-r-none gap-2"
+                                        className="rounded-full !rounded-r-none gap-2"
                                         variant="secondary"
                                     >
                                         <BiShare />
                                         Поделиться
                                     </Button>
                                     <Button
-                                        className="rounded-full rounded-l-none gap-2"
+                                        className="rounded-full !rounded-l-none gap-2"
                                         variant="secondary"
                                         size="icon"
                                     ><BiDotsVerticalRounded size={16} /></Button>
@@ -113,8 +113,8 @@ const page = async ({ params }: Props) => {
                             <Separator />
                         </>
                     }
-                    <div id="more-from-author" className="max-w-5xl w-full mx-auto flex md:flex-row flex-col gap-6">
-                        <div id="commentary" className="md:w-2/3 w-full flex flex-col gap-4">
+                    <div id="more-from-author" className="max-w-5xl w-full mx-auto flex md:!flex-row flex-col gap-6">
+                        <div id="commentary" className="md:!w-2/3 w-full flex flex-col gap-4">
                             <div className="flex flex-row flex-wrap gap-1.5 items-start justify-start">
                                 {
                                     shot.tags.map(
@@ -130,7 +130,7 @@ const page = async ({ params }: Props) => {
                             <Comments comments={shot.comments} shotId={shot.doc_id} teamId={teamId}
                                 isCommentsEnabled={shot.needFeedback} />
                         </div>
-                        <div className="md:w-1/3 w-full">
+                        <div className="md:!w-1/3 w-full">
                             <AuthorWorks authorId={shot.authorId} />
                         </div>
                     </div>
