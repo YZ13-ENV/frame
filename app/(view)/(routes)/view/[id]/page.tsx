@@ -1,9 +1,12 @@
+import FollowButton from "@/app/(user)/_components/follow-button";
 import Author from "@/app/(view)/_components/author";
+import EditButton from "@/app/(view)/_components/author-controls/edit-button";
 import AuthorWorks from "@/app/(view)/_components/author-works";
 import BlurRootBlock from "@/app/(view)/_components/blocks/blur-root-block";
 import MediaBlock from "@/app/(view)/_components/blocks/media-block";
 import Comments from "@/app/(view)/_components/comments";
 import ScrollSide from "@/app/(view)/_components/side/scroll-side";
+import LikeButton from "@/components/shared/like-button";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getVisitorId } from "@/helpers/cookies";
@@ -11,7 +14,7 @@ import { bum } from "@darkmaterial/api";
 import { DateTime } from "luxon";
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from "next/navigation";
-import { BiDotsVerticalRounded, BiHeart, BiShare } from "react-icons/bi";
+import { BiDotsVerticalRounded, BiShare } from "react-icons/bi";
 import { BsEyeFill } from "react-icons/bs";
 type Props = {
     params: {
@@ -26,7 +29,7 @@ const page = async ({ params }: Props) => {
         : null
     const teamId = shot ? shot.teamId : undefined
     const isYou = shot && visitorId ? shot.authorId === visitorId : false
-
+    const isLiked = shot && visitorId ? shot.likes.findIndex(item => item.uid === visitorId) > -1 : false
     if (!shot) return notFound()
     return (
         <div className="w-full relative my-10">
@@ -40,12 +43,10 @@ const page = async ({ params }: Props) => {
                                 {DateTime.fromSeconds(shot.createdAt).setLocale("ru").toRelative()}
                             </span>
                             <div className='flex items-center gap-2'>
-                                <Button
-                                    className="rounded-full gap-2"
-                                    variant="secondary"
-                                >
-                                    Редактировать
-                                </Button>
+                                {
+                                    isYou &&
+                                    <EditButton shot={shot} />
+                                }
                                 <Button
                                     className="rounded-full gap-2"
                                     variant="secondary"
@@ -71,20 +72,11 @@ const page = async ({ params }: Props) => {
                             >
                                 Вы подписаны
                             </Button> */}
-
-                                <Button className="rounded-full bg-primary/75 backdrop-blur-sm gap-2">
-                                    Подписаться
-                                </Button>
+                                {visitorId && <FollowButton from={visitorId} to={shot.authorId} />}
                                 {/* <button className="w-36 h-9 rounded-sm bg-muted" /> */}
                             </div>
                             <div className="w-fit flex items-center justify-end gap-2">
-                                <Button
-                                    className="rounded-full gap-2"
-                                    variant="secondary"
-                                >
-                                    <BiHeart size={16} />
-                                    Нравится
-                                </Button>
+                                <LikeButton id={shot.doc_id} teamId={shot.teamId} defaultValue={isLiked} />
                                 <div className="flex items-center">
                                     <Button
                                         className="rounded-full rounded-r-none gap-2"
