@@ -4,10 +4,10 @@ import { PortfolioConfig } from "@/helpers/getPortfolio"
 import { motion } from "framer-motion"
 import { usePathname, useRouter } from "next/navigation"
 import { useMemo } from "react"
-import { TbLayoutDashboard } from "react-icons/tb";
-import { SiAboutdotme } from "react-icons/si";
-import { GrGroup } from "react-icons/gr";
-import { BiBookmarks } from "react-icons/bi";
+import { BiBookmarks } from "react-icons/bi"
+import { GrGroup } from "react-icons/gr"
+import { SiAboutdotme } from "react-icons/si"
+import { TbLayoutDashboard } from "react-icons/tb"
 
 type Props = {
   prefix: string

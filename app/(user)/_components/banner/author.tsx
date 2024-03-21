@@ -1,6 +1,7 @@
 import { PortfolioConfig } from "@/helpers/getPortfolio"
-import TeamHint from "./team-hint"
 import Image from "next/image"
+import { BiBriefcase } from "react-icons/bi"
+import TeamHint from "./team-hint"
 
 
 type Props = {
@@ -31,7 +32,12 @@ const Author = ({ portfolio }: Props) => {
         <h1 className="text-4xl font-bold">{portfolio.data.displayName}</h1>
         <div className="w-fit h-fit flex items-center gap-2">
           {portfolio.data.teamId && <TeamHint id={portfolio.data.teamId} />}
-          {portfolio.data.position && <span className="text-base text-muted-foreground">{portfolio.data.position}</span>}
+          {
+            portfolio.data.position && <span className="text-base text-muted-foreground inline-flex items-center gap-1">
+              <BiBriefcase size={16} />
+              {portfolio.data.position}
+            </span>
+          }
         </div>
       </div>
     </div>

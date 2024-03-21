@@ -1,7 +1,8 @@
+import { who } from "@/api/who"
 import Footer from "@/components/shared/footer"
 import HeaderSkeleton from "@/components/skeletons/header"
 import PortfolioLayoutSkeleton from "@/components/skeletons/portfolio-layout"
-import { getPortfolio } from "@/helpers/getPortfolio"
+import { getVisitorId } from "@/helpers/cookies"
 import { Metadata } from "next"
 import dynamic from "next/dynamic"
 import { Suspense } from 'react'
@@ -20,7 +21,10 @@ type Props = {
 }
 export async function generateMetadata({ params }: { params: { nick: string } }): Promise<Metadata> {
     const { nick } = params
-    const portfolio = await getPortfolio(nick)
+    const portfolio = await who(nick)
+    if (!portfolio) return {
+        title: "Не найдено"
+    }
     const title = portfolio.type === 'team' && portfolio.data
         ? portfolio.data.name
         : portfolio.type === 'user' && portfolio.data
@@ -32,7 +36,7 @@ export async function generateMetadata({ params }: { params: { nick: string } })
 }
 const layout = async ({ children, params }: Props) => {
     const { nick } = params
-
+    const visitor = getVisitorId()
     return (
         <>
             <Suspense fallback={<HeaderSkeleton transparent={false} />}>
@@ -40,7 +44,7 @@ const layout = async ({ children, params }: Props) => {
             </Suspense>
             {/* <Skeleton></Skeleton> */}
             <Suspense fallback={<PortfolioLayoutSkeleton />}>
-                <PortfolioLayout nick={nick} />
+                <PortfolioLayout nick={nick} visitor={visitor || undefined} />
             </Suspense>
             {children}
             <Footer className="max-w-screen-2xl p-6" />
