@@ -12,7 +12,7 @@ const NavSection = ({ }: Props) => {
   const preferredSorting = preferredSortingCookie ? preferredSortingCookie.value : null
   const home_link = preferredSorting ? `/shots/${preferredSorting}` : visitorId ? '/shots/following' : '/shots/popular'
   return (
-    <div className="ld:absolute md:absolute lg:left-0 md:left-0 ml-6 w-fit h-fit">
+    <div className="ld:!absolute md:!absolute lg:!left-0 md:!left-0 ml-6 w-fit h-fit">
       <Link href={home_link}>
         <FrameMark size={32} />
       </Link>

@@ -7,8 +7,8 @@ const Notifications = dynamic(() => import('../../notifications'))
 
 const UserSection = () => {
   return (
-    <div className="ld:absolute md:absolute lg:right-0 md:right-0 mr-6 w-fit h-fit flex items-center rounded-full bg-muted justify-end">
-      <Link href='/search' className='w-9 h-9 rounded-full border bg-background lg:hidden md:hidden flex items-center justify-center'>
+    <div className="ld:!absolute md:!absolute lg:!right-0 md:!right-0 mr-6 w-fit h-fit flex items-center rounded-full bg-muted justify-end">
+      <Link href='/search' className='w-9 h-9 rounded-full border bg-background lg:!hidden md:!hidden flex items-center justify-center'>
         <BiSearch />
       </Link>
       <Notifications />
