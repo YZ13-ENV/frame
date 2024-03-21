@@ -1,4 +1,4 @@
-import { team } from "api"
+import { team } from "@darkmaterial/api"
 import Link from "next/link"
 
 type Props = {

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/components/entities/store/store'
 import { setBlocks } from '@/components/entities/uploader/draft'
-import { IdBlock, TextBlock } from "api"
-import { ForwardRefEditor } from 'ui'
+import { IdBlock, TextBlock } from "@darkmaterial/api"
+import { ForwardRefEditor } from "@darkmaterial/ui"
 
 type Props = {
     index: number
@@ -21,7 +21,7 @@ const TextBlock = ({ block, index }: Props) => {
         })
         dispatch(setBlocks(updatedBlocks))
     }
-    return <ForwardRefEditor markdown={block.text || `Введите текст...`} onChange={onChange} />
+    return <ForwardRefEditor markdown={block.text} onChange={onChange} />
 }
 
 export default TextBlock

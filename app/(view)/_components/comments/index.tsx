@@ -1,15 +1,15 @@
 'use client'
+import { Button } from "@/components/ui/button"
+import { format } from "@/helpers/format"
+import { auth } from "@/utils/app"
+import { CommentBlock, DocShotData, bum, team } from "@darkmaterial/api"
+import { DateTime } from "luxon"
+import { Suspense, useState } from "react"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { BiLoaderAlt } from "react-icons/bi"
+import Comment from "./comment"
 import EmptyComments from "./empty-comments"
 import NewCommentForm from "./new-comment-form"
-import { Suspense, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { useAuthState } from "react-firebase-hooks/auth"
-import { auth } from "@/utils/app"
-import { BiLoaderAlt } from "react-icons/bi"
-import { format } from "@/helpers/format"
-import { DateTime } from "luxon"
-import Comment from "./comment"
-import { CommentBlock, DocShotData, bum, team } from "api"
 
 type Props = {
   isCommentsEnabled: boolean
@@ -53,12 +53,13 @@ const Comments = ({ isCommentsEnabled, teamId, comments, shotId }: Props) => {
     }
   }
   if (!isCommentsEnabled) return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center h-24 justify-center bg-muted rounded-xl">
       <span className="text-center text-sm text-muted-foreground">Комментарии отключены</span>
     </div>
   )
   return (
-    <div className="w-full h-full flex flex-col gap-2 max-h-[435px]">
+    <div className="w-full h-full flex flex-col gap-2">
+      <h4>{syncedComments.length} комментарий</h4>
       <div className="w-full h-fit flex flex-col gap-2 mb-2">
         <NewCommentForm text={text} setText={setText} />
         {text && <Button disabled={disabled} onClick={sendComment} className='w-full gap-2'>

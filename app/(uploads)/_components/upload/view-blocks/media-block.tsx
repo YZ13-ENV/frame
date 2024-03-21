@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/components/entities/store/stor
 import { setBlocks } from "@/components/entities/uploader/draft"
 import { Button } from "@/components/ui/button"
 import FileUploader from "@/components/widgets/file-uploader"
-import { Attachment, IdBlock, MediaBlock } from "api"
+import { Attachment, IdBlock, MediaBlock } from "@darkmaterial/api"
 import Image from "next/image"
 import { GrDetach } from "react-icons/gr"
 

@@ -1,13 +1,13 @@
 'use client'
-import { MenuMapProps, UserCircle } from 'ui'
-import type { User } from 'firebase/auth'
-import { useMediaQuery } from 'react-responsive'
-import { useEffect, useState } from 'react'
-import { user as userAPI } from 'api'
 import { menu } from '@/const/menu-map'
-import dynamic from 'next/dynamic'
 import { auth } from '@/utils/app'
+import { user as userAPI } from "@darkmaterial/api"
+import { MenuMapProps, UserCircle } from "@darkmaterial/ui"
+import type { User } from 'firebase/auth'
 import { useSession } from 'hooks'
+import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 const OneClickAuth = dynamic(() => import('../widgets/one-click-auth'), {
     ssr: false
 })

@@ -1,10 +1,11 @@
 'use client'
-import { useState } from "react"
-import { Button } from "../ui/button"
-import { BiHeart, BiLoaderAlt, BiSolidHeart } from "react-icons/bi"
-import { team, bum } from "api"
-import { useAuthState } from "react-firebase-hooks/auth"
 import { auth } from "@/utils/app"
+import { bum, team } from "@darkmaterial/api"
+import { useState } from "react"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { BiHeart } from "react-icons/bi"
+import { BsFillHeartFill } from "react-icons/bs"
+import { Button } from "../ui/button"
 
 type Props = {
   id: string
@@ -26,14 +27,19 @@ const LikeButton = ({ id, teamId, defaultValue = false }: Props) => {
     }
   }
   return (
-    <Button size='icon' variant={isLiked ? 'default' : 'outline'} disabled={disabled} onClick={onClick}>
+    <Button
+      variant={isLiked ? "default" : "secondary"}
+      size={isLiked ? "icon" : "default"}
+      disabled={disabled} onClick={onClick}
+      className="rounded-full gap-2"
+    >
       {
-        loading
-          ? <BiLoaderAlt className='animate-spin' />
-          : isLiked
-            ? <BiSolidHeart />
-            : <BiHeart />
+        isLiked
+          ? <BsFillHeartFill />
+          : <BiHeart size={16} />
       }
+      {isLiked ? null : "Нравится"}
+
     </Button>
   )
 }

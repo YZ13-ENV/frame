@@ -1,5 +1,5 @@
-import { bum } from "api"
 import ShotCard from "@/components/shared/shot-card"
+import { bum } from "@darkmaterial/api"
 
 type Props = {
   authorId: string
@@ -7,7 +7,7 @@ type Props = {
 const LastShots = async ({ authorId }: Props) => {
   const lastShots = await bum.author.last(authorId)
   return (
-    <div className="view-block-wrapper view-last-shots-wrapper view-wrapper-paddings py-0">
+    <div className="flex flex-col gap-4">
       {
         lastShots.length
           ? lastShots.map(shot =>

@@ -15,7 +15,7 @@ const Description = () => {
                 </div>
                 <div className="w-full h-full p-2">
                     <ul>
-                        <li className='mb-4 text-sm text-muted-foreground'>Желательно чтобы соотношение сторон было 4:3</li>
+                        <li className='mb-4 text-sm text-muted-foreground'>Желательно чтобы соотношение сторон было 16:9</li>
                         <li className='mb-4 text-sm text-muted-foreground'>Файл должен принадлежать вам или команде с который вы работаете (воровать плохо).</li>
                     </ul>
                 </div>

@@ -1,5 +1,5 @@
+import { DraftShotData } from "@darkmaterial/api";
 import { createSlice } from "@reduxjs/toolkit";
-import { DraftShotData } from "api";
 import { DateTime } from "luxon";
 
 type Props = {

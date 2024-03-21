@@ -13,7 +13,7 @@ const ShotsWrapper = ({ children }: Props) => {
   return (
     <div className={cn(
       isOpen ? "px-6" : "lg:px-24 md:px-12 px-6",
-      "min-h-screen w-full relative py-12 "
+      "min-h-screen w-full relative py-12 overflow-y-visible"
     )}>
       {children}
     </div>

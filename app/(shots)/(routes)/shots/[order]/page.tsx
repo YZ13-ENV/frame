@@ -1,8 +1,8 @@
+import { bum } from "@darkmaterial/api"
 import dynamic from 'next/dynamic'
-import { bum } from 'api'
-import Loading from './loading'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import Loading from './loading'
 const AdvancedChunk = dynamic(() => import('@/components/widgets/chunk'), {
     loading: () => <Loading />
 })

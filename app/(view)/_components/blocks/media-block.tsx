@@ -1,4 +1,5 @@
-import { DocShotData, IdBlock, MediaBlock } from "api"
+import { cn } from "@/lib/utils"
+import { DocShotData, IdBlock, MediaBlock } from "@darkmaterial/api"
 import Image from "next/image"
 
 type Props = {
@@ -8,10 +9,14 @@ type Props = {
 const MediaBlock = ({ attachments, block }: Props) => {
     const isImage = block.content_type.includes('jpg') || block.content_type.includes('png')
     const attachment = attachments.find(item => item.id === block.id)
+    const isDev = process.env.NODE_ENV === 'development'
     return (
-        <div className="w-full aspect-[4/3] rounded-xl relative border overflow-hidden">
+        <div className={cn(
+            isDev ? "border" : "",
+            "w-full aspect-video rounded-xl relative overflow-hidden"
+        )}>
             {
-                process.env.NODE_ENV !== 'development' &&
+                !isDev &&
                 isImage && attachment && <Image src={attachment.url} fill alt={attachment.contentType + attachment.createdAt} />
             }
         </div>

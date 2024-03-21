@@ -4,7 +4,7 @@ import { setRootBlock } from "@/components/entities/uploader/draft"
 import { Button } from "@/components/ui/button"
 import FileUploader from "@/components/widgets/file-uploader"
 import { media_with_video_type } from "@/const/file-types"
-import { Attachment, IdBlock, MediaBlock } from "api"
+import { Attachment, IdBlock, MediaBlock } from "@darkmaterial/api"
 import Image from "next/image"
 import { GrDetach } from "react-icons/gr"
 
@@ -32,7 +32,7 @@ const RootBlock = () => {
     const attachment = attachments.find(item => item.id === rootBlock.id)
     if (!rootBlock.id) return <FileUploader onAttachment={pickAttachment} allowedFileTypes={media_with_video_type} />
     return (
-        <div className="w-full aspect-[4/3] rounded-xl relative bg-card border overflow-hidden">
+        <div className="w-full aspect-video rounded-xl relative bg-card border overflow-hidden">
             {
                 rootBlock.id &&
                 <div className="w-fit h-fit p-2 z-20 absolute top-0 right-0">

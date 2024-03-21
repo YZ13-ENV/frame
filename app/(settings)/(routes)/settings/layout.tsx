@@ -1,10 +1,10 @@
 import Footer from "@/components/shared/footer"
 import Header from "@/components/widgets/header"
-import SettingsSideNav from "../../_components/settings-side-nav"
+import { user } from "@darkmaterial/api"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import { user } from "api"
 import SettingsHeader from "../../_components/settings-header"
+import SettingsSideNav from "../../_components/settings-side-nav"
 
 type Props = {
   children: JSX.Element | JSX.Element[]

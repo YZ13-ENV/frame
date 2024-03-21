@@ -1,6 +1,6 @@
 import AdvancedChunk from "@/components/widgets/chunk"
 import { getVisitorId } from "@/helpers/cookies"
-import { bum } from "api"
+import { bum } from "@darkmaterial/api"
 import { redirect } from "next/navigation"
 
 type Props = {

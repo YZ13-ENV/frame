@@ -1,5 +1,5 @@
-import { user } from "api"
 import Avatar from "@/components/shared/avatar"
+import { user } from "@darkmaterial/api"
 import Link from "next/link"
 
 type Props = {

@@ -1,7 +1,8 @@
+import { who } from "@/api/who"
 import MemberCard from "@/app/(user)/_components/member-card"
 import MemberCardSkeleton from "@/components/skeletons/member-card"
-import { getPortfolio } from "@/helpers/getPortfolio"
-import { redirect } from "next/navigation"
+import { getVisitorId } from "@/helpers/cookies"
+import { notFound, redirect } from "next/navigation"
 import { Suspense } from "react"
 
 type Props = {
@@ -11,7 +12,9 @@ type Props = {
 }
 const page = async ({ params }: Props) => {
     const { nick } = params
-    const portfolio = await getPortfolio(nick)
+    const visitor = getVisitorId()
+    const portfolio = await who(nick, visitor || undefined)
+    if (!portfolio) return notFound()
     if (portfolio.type === 'user') return redirect(`/${nick}`)
     // if (!isYou) redirect(`/${nickname}`)
     // if (config && config.data.type === 'user' && config.data.teamId === nickname) return redirect(`/${nickname}`)

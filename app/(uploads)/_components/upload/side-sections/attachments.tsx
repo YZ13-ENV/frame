@@ -1,9 +1,9 @@
 'use client'
-import { file, Attachment } from "api"
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
 import { setAttachments } from "@/components/entities/uploader/draft"
 import { Button } from "@/components/ui/button"
 import { getSize } from "@/helpers/filer"
+import { Attachment, file } from "@darkmaterial/api"
 import { useMemo } from "react"
 import { BiPin, BiTrashAlt } from "react-icons/bi"
 

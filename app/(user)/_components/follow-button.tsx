@@ -1,6 +1,7 @@
 'use client'
-import { bum } from 'api'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { bum } from "@darkmaterial/api"
 import { useState } from 'react'
 import { BiLoaderAlt } from 'react-icons/bi'
 
@@ -21,9 +22,16 @@ const FollowButton = ({ from, to, defaultValue = false }: Props) => {
         setIsFollowed(isNowFollowed)
         setLoading(false)
     }
-    if (isYou) return <Button disabled variant='outline'>Это вы</Button>
+    if (isYou) return <Button className="rounded-full gap-2" disabled variant='secondary'>Это вы</Button>
     return (
-        <Button disabled={disabled} onClick={() => action(from, to)} variant={followed ? 'outline' : 'default'} className='gap-2'>
+        <Button
+            disabled={disabled}
+            onClick={() => action(from, to)}
+            variant={followed ? "secondary" : "default"}
+            className={cn(
+                followed ? "" : "bg-primary/75 backdrop-blur-sm",
+                "rounded-full gap-2"
+            )}>
             {loading && <BiLoaderAlt className='animate-spin' />}
             {followed ? 'Вы подписаны' : 'Подписаться'}
         </Button>

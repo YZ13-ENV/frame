@@ -1,12 +1,11 @@
-import { user } from "api"
-import Avatar from "../avatar"
+import PlusBadge from "@/app/(settings)/_components/plus-badge";
+import { DocShotData, team, user } from "@darkmaterial/api";
+import Image from "next/image";
+import Link from "next/link";
+import { BiSolidHeart } from "react-icons/bi";
 import { BsEyeFill } from "react-icons/bs";
 import { RiMessage3Fill } from "react-icons/ri";
-import { BiSolidHeart } from "react-icons/bi";
-import Link from "next/link"
-import PlusBadge from "@/app/(settings)/_components/plus-badge";
-import { DocShotData, team } from "api";
-import Image from "next/image";
+import Avatar from "../avatar";
 
 type Props = {
     shot: DocShotData

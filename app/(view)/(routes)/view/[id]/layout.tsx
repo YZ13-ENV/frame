@@ -1,6 +1,6 @@
 import Footer from "@/components/shared/footer"
 import Header from "@/components/widgets/header"
-import { bum } from "api"
+import { bum } from "@darkmaterial/api"
 import { Metadata, ResolvingMetadata } from "next"
 
 
@@ -26,7 +26,7 @@ const layout = ({ children }: Props) => {
         <>
             <Header transparent />
             {children}
-            <Footer className="view-wrapper-paddings py-6" />
+            <Footer className="p-6" />
         </>
     )
 }

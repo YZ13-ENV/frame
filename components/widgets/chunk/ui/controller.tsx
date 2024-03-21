@@ -2,7 +2,7 @@
 import ShotSkeleton from '@/components/skeletons/shot'
 import { Button } from '@/components/ui/button'
 import { api_host } from '@/const/host'
-import { ChunkResponse, DocShotData, authorizationHeader } from 'api'
+import { ChunkResponse, DocShotData, authorizationHeader } from "@darkmaterial/api"
 import dynamic from 'next/dynamic'
 import { Suspense, useState } from 'react'
 import { BiLoaderAlt } from 'react-icons/bi'

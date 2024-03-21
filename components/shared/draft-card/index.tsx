@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { DocDraftShotData } from "api"
+import { DocDraftShotData } from "@darkmaterial/api"
 import { DateTime } from "luxon"
 import Image from "next/image"
 import Link from "next/link"

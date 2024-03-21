@@ -1,5 +1,5 @@
 import { PortfolioConfig } from '@/helpers/getPortfolio'
-import { bum, team } from 'api'
+import { bum, team } from "@darkmaterial/api"
 
 type Props = {
     type: PortfolioConfig['type']

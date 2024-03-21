@@ -2,7 +2,7 @@
 
 import ShotCard from "@/components/shared/shot-card";
 import { cn } from "@/lib/utils";
-import { DocShotData } from "api";
+import { DocShotData } from "@darkmaterial/api";
 import React, { useEffect, useState } from "react";
 
 export const InfiniteMovingCards = ({

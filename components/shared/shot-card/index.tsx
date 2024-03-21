@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { DocShotData } from "api"
+import { DocShotData } from "@darkmaterial/api"
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "./footer"

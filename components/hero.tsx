@@ -1,6 +1,6 @@
-import { bum } from "api"
+import { bum } from "@darkmaterial/api"
+import { StarField } from "@darkmaterial/ui"
 import dynamic from "next/dynamic"
-import { StarField } from "ui"
 const ContainerScroll = dynamic(() => import("@/app/_components/dynamic-scroll-container"), {
     ssr: false
 })
@@ -25,14 +25,16 @@ const HeroSection = async () => {
                 <UserSection />
             </div>
             <StarField starsCount={100} />
-            <ContainerScroll
-                titleComponent={
-                    <h1 className="!text-7xl font-bold text-center">
-                        Вдохновляющие <br /> работы от дизайнеров
-                    </h1>
-                }
-                data={shots.data}
-            />
+            <div className="lg:overflow-x-visible overflow-x-hidden">
+                <ContainerScroll
+                    titleComponent={
+                        <h1 className="!text-7xl font-bold text-center">
+                            Вдохновляющие <br /> работы от дизайнеров
+                        </h1>
+                    }
+                    data={shots.data}
+                />
+            </div>
             <div className="w-full flex flex-col justify-center items-center">
                 <InfiniteMovingCards
                     speed="slow"

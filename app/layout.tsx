@@ -1,10 +1,10 @@
 import '@/app/globals.css';
 import '@/app/local.css';
 import StateProvider from '@/components/StateProvider';
+import { WebVitals } from "@darkmaterial/ui";
+import '@darkmaterial/ui/dist/style.css';
 import { Metadata } from "next";
 import { Geologica, Spectral } from 'next/font/google';
-import { WebVitals } from "ui";
-import 'ui/dist/style.css';
 const first_font = Geologica({ subsets: ['latin', 'cyrillic'], weight: ['600', '500', '400'], variable: '--root-font' })
 const second_font = Spectral({ subsets: ['latin', 'cyrillic'], weight: ['600', '400'], variable: '--second-font' })
 

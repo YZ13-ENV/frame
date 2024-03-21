@@ -1,5 +1,6 @@
-import { getPortfolio } from "@/helpers/getPortfolio"
-import { bum } from "api"
+import { who } from "@/api/who"
+import { bum } from "@darkmaterial/api"
+import { notFound } from "next/navigation"
 import { Suspense } from "react"
 import Author from "./banner/author"
 import AuthorBannerWrapper from "./banner/author-banner-wrapper"
@@ -9,9 +10,11 @@ import SignatureEditor from "./signature-editor"
 
 type Props = {
   nick: string
+  visitor: string | undefined
 }
-const PortfolioLayout = async ({ nick }: Props) => {
-  const portfolio = await getPortfolio(nick)
+const PortfolioLayout = async ({ nick, visitor }: Props) => {
+  const portfolio = await who(nick, visitor)
+  if (!portfolio) return notFound()
   const signature = portfolio.type === 'team' && portfolio.data
     ? portfolio.data.signature :
     portfolio.type === 'user' && portfolio.data

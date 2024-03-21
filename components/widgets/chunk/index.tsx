@@ -1,5 +1,5 @@
 import ShotSkeleton from "@/components/skeletons/shot"
-import { ChunkResponse, DocShotData } from "api"
+import { ChunkResponse, DocShotData } from "@darkmaterial/api"
 import { unstable_noStore } from "next/cache"
 import dynamic from "next/dynamic"
 import { Suspense } from "react"
@@ -16,7 +16,7 @@ type Props = {
 const AdvancedChunk = async ({ getter, hideController }: Props) => {
     unstable_noStore()
     const { data, next } = await getter
-    console.log(data)
+    // console.log(data)
     return (
         <>
             {

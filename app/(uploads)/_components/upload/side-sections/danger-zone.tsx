@@ -1,7 +1,7 @@
 'use client'
-import { bum } from "api"
 import { useAppSelector } from "@/components/entities/store/store"
 import { Button } from "@/components/ui/button"
+import { bum } from "@darkmaterial/api"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { BiLoaderAlt } from "react-icons/bi"

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { cdn } from "api"
+import { cdn } from "@darkmaterial/api"
 import Image from "next/image"
 import Link from "next/link"
 

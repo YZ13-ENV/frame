@@ -1,5 +1,5 @@
 import { format } from "@/helpers/format";
-import { Blocks, MediaBlock, IdBlock, TextBlock, GalleryBlock, StickerBlock, SeparatorProps } from "api";
+import { Blocks, GalleryBlock, IdBlock, MediaBlock, SeparatorProps, StickerBlock, TextBlock } from "@darkmaterial/api";
 
 export const getDefaultBlock = (blockType: Blocks['type']) => {
     switch (blockType) {

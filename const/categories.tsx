@@ -63,6 +63,15 @@ export const detectSortTab = (segment: string) => {
     return '/popular'
 }
 
+export const getNewOrderParams = (order: string, category: string) => `${order}${category}`
+
+export const runWithNewParams = (path: string, order?: string, category?: string) => {
+    const withCustomOrder = order ? order : "new"
+    const withCustomCategory = category ? category : "/"
+    const newSegment = getNewOrderParams(withCustomOrder, withCustomCategory)
+    const newPath = cleanPathname(path, withCustomOrder, withCustomCategory)
+    return (newPath + newSegment)
+}
 
 export const withCustomSortTab = (sortTag: string) => [
     {

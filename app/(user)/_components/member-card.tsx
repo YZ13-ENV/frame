@@ -1,6 +1,6 @@
 import ShotCard from "@/components/shared/shot-card"
 import { Button } from "@/components/ui/button"
-import { bum, user } from "api"
+import { bum, user } from "@darkmaterial/api"
 import Image from "next/image"
 import Link from "next/link"
 

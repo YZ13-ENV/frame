@@ -1,9 +1,8 @@
 'use client'
-import { bum, DocDraftShotData } from "api"
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
 import { setDraft, setDraftId, setTeamId } from "@/components/entities/uploader/draft"
+import { bum, DocDraftShotData, DraftShotData, team } from "@darkmaterial/api"
 import { useDebounceEffect } from "ahooks"
-import { DraftShotData, team } from "api"
 import { isEqual } from "lodash"
 import { DateTime } from "luxon"
 import { useEffect, useMemo, useState } from "react"

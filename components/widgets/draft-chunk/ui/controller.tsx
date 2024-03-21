@@ -2,7 +2,7 @@
 import DraftCard from '@/components/shared/draft-card'
 import { Button } from '@/components/ui/button'
 import { api_host } from '@/const/host'
-import { ChunkResponse, DocDraftShotData, authorizationHeader } from 'api'
+import { ChunkResponse, DocDraftShotData, authorizationHeader } from "@darkmaterial/api"
 import { useState } from 'react'
 import { BiLoaderAlt } from 'react-icons/bi'
 

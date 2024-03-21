@@ -1,5 +1,7 @@
-import { bum } from "api"
-import { getPortfolio } from "@/helpers/getPortfolio"
+import { who } from "@/api/who"
+import { getVisitorId } from "@/helpers/cookies"
+import { bum } from "@darkmaterial/api"
+import { notFound } from "next/navigation"
 
 type Props = {
     params: {
@@ -8,7 +10,9 @@ type Props = {
 }
 const page = async ({ params }: Props) => {
     const { nick } = params
-    const portfolio = await getPortfolio(nick)
+    const visitor = getVisitorId()
+    const portfolio = await who(nick, visitor || undefined)
+    if (!portfolio) return notFound()
     const about = portfolio.type === 'team' && portfolio.data
         ? portfolio.data.about || ''
         : portfolio.type === 'user' && portfolio.data

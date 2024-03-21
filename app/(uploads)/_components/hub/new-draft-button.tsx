@@ -4,9 +4,9 @@ import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
 import { auth } from '@/utils/app'
+import type { ShortUserData } from "@darkmaterial/api"
+import { DraftForUpload, bum, team, user as userAPI } from "@darkmaterial/api"
 import { useDebounceEffect } from 'ahooks'
-import type { ShortUserData } from 'api'
-import { DraftForUpload, bum, team, user as userAPI } from 'api'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -95,14 +95,14 @@ const NewDraftButton = () => {
                 const shotPromise = bum.shot.get(draftId)
                 const [teamDraft, teamShot, draft, shot] = await Promise.all([teamDraftPromise, teamShotPromise, draftPromise, shotPromise])
                 const result = teamDraft ? teamDraft : teamShot ? teamShot : draft ? draft : shot
-                console.log(result)
+                // console.log(result)
                 setIsExist(!!result)
             } else {
                 const draftPromise = bum.draft.get(draftId)
                 const shotPromise = bum.shot.get(draftId)
                 const [draft, shot] = await Promise.all([draftPromise, shotPromise])
                 const result = draft ? draft : shot
-                console.log(result)
+                // console.log(result)
                 setIsExist(!!result)
             }
         }

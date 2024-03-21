@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import AdvancedChunk from "@/components/widgets/draft-chunk"
 import { getVisitorId } from "@/helpers/cookies"
 import { author_config, fetch_author } from "@/helpers/portfolio-fetcher"
-import { bum } from "api"
+import { bum } from "@darkmaterial/api"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 

@@ -18,7 +18,7 @@ const SearchBar = ({ defaultValue }: Props) => {
         .replaceAll(' ', '-')
         .replaceAll('--', '-')
       const newPath = defaultValue ? path.replace(defaultValue, query) : path.replace(text, query)
-      console.log(newPath, query)
+      // console.log(newPath, query)
       if (newPath === '/search') return push(`/search/${query}`)
       return push(newPath)
     }

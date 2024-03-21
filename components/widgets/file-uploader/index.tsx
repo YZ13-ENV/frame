@@ -1,13 +1,13 @@
 'use client'
-import DropZone from "@/components/shared/drop-zone"
-import Description from "./description"
-import { useAuthState } from "react-firebase-hooks/auth"
-import { auth } from "@/utils/app"
 import { useAppDispatch, useAppSelector } from "@/components/entities/store/store"
-import { format } from "@/helpers/format"
 import { setAttachments } from "@/components/entities/uploader/draft"
+import DropZone from "@/components/shared/drop-zone"
 import { media_type } from "@/const/file-types"
-import { Attachment, bum } from "api"
+import { format } from "@/helpers/format"
+import { auth } from "@/utils/app"
+import { Attachment, bum } from "@darkmaterial/api"
+import { useAuthState } from "react-firebase-hooks/auth"
+import Description from "./description"
 
 type Props = {
     onAttachment?: (attachment: Attachment) => void
@@ -37,7 +37,7 @@ const FileUploader = ({ onAttachment, allowedFileTypes = media_type }: Props) =>
         }
     }
     return (
-        <div className="relative w-full rounded-xl bg-background border aspect-[4/3] p-4 flex flex-col items-center justify-center">
+        <div className="relative w-full rounded-xl bg-background border aspect-video p-4 flex flex-col items-center justify-center">
             <Description />
             <DropZone onFile={file => createAttachment(file)} className="absolute top-0 left-0" />
         </div>
