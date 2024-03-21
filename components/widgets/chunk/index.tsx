@@ -16,7 +16,7 @@ type Props = {
 const AdvancedChunk = async ({ getter, hideController }: Props) => {
     unstable_noStore()
     const { data, next } = await getter
-    console.log(data)
+    // console.log(data)
     return (
         <>
             {

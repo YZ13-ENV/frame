@@ -10,7 +10,10 @@ const page = async () => {
     <>
       <Header />
       {/* <div style={{ height: 'calc(100vh - 56px)' }} className="flex"> */}
-      <section className="w-full h-full flex flex-col items-center justify-center">
+      <section
+        style={{ height: 'calc(100vh - 56px)' }}
+        className="w-full h-full flex flex-col items-center justify-center"
+      >
         <div className="max-w-md w-full px-6 flex flex-col items-center justify-center gap-4">
           <SearchBar />
           <span className="text-xs text-center text-muted-foreground">
