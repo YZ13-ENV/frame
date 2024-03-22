@@ -1,4 +1,4 @@
-import ColorExtractor from "./_components/color-extractor"
+import ColorExtractor from "../_components/color-extractor"
 const page = () => {
   const paths = [
     "/wallpapers/black-lines.jpg",

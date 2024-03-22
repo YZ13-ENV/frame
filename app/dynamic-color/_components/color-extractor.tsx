@@ -7,6 +7,8 @@ import { cubicBezier, motion } from "framer-motion"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { BiRightArrowAlt } from 'react-icons/bi'
+import { Button } from './dynamic-color/button'
 
 type Props = {
   src: string
@@ -58,9 +60,21 @@ const ColorExtractor = ({ src }: Props) => {
                     >
                       <div style={{ backgroundColor: original }} className='w-9 shrink-0 aspect-square rounded-full' />
                       <div className='w-full flex flex-col gap-4 pt-1'>
-                        <Link href={`/dynamic-color/${hex.substring(1, hex.length)}`}>
-                          <h3 style={{ color: text }}>{hex}</h3>
-                        </Link>
+                        <div className='w-full flex items-center justify-between gap-2'>
+                          <Link href={`/dynamic-color/${hex.substring(1, hex.length)}?lightness=${lightness}&intensity=${intensity}`}>
+                            <h3 style={{ color: text }}>{hex}</h3>
+                          </Link>
+                          <Button
+                            className='gap-2'
+                            primary={text}
+                            secondary={background}
+                            asChild
+                          >
+                            <Link href={`/dynamic-color/${hex.substring(1, hex.length)}/view?lightness=${lightness}&intensity=${intensity}`}>
+                              Макет работы <BiRightArrowAlt size={16} />
+                            </Link>
+                          </Button>
+                        </div>
                         <div className='flex flex-col w-full'>
                           <span style={{ color: text }} className="text-sm">
                             Частота: {color.intensity.toFixed(2)}

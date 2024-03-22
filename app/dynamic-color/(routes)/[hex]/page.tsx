@@ -1,11 +1,11 @@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { getDynamicColors, hexToHSL } from "@/helpers/colors"
 import { redirect } from "next/navigation"
-import { Button } from "../_components/dynamic-color/button"
-import Div from "../_components/dynamic-color/div"
-import H from "../_components/dynamic-color/h"
-import { Input } from "../_components/dynamic-color/input"
-import Span from "../_components/dynamic-color/span"
+import { Button } from "../../_components/dynamic-color/button"
+import Div from "../../_components/dynamic-color/div"
+import H from "../../_components/dynamic-color/h"
+import { Input } from "../../_components/dynamic-color/input"
+import Span from "../../_components/dynamic-color/span"
 type Props = {
   params: {
     hex: string
