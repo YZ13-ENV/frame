@@ -19,8 +19,8 @@ const ColorExtractor = ({ src }: Props) => {
         .then(setColors)
   }, [src])
   return (
-    <div className='w-full flex flex-col gap-4'>
-      <div className='p-6'>
+    <div className='w-full flex flex-col'>
+      <div className='p-3'>
         <Image
           src={src}
           className='!relative aspect-video rounded-2xl object-cover'
@@ -28,7 +28,7 @@ const ColorExtractor = ({ src }: Props) => {
           alt="image-for-test"
         />
       </div>
-      <div className='w-full p-6 grid grid-cols-1 auto-rows-auto gap-4'>
+      <div className='w-full p-3 grid grid-cols-1 auto-rows-auto gap-4'>
         {
           colors.length === 0
             // .filter(color => color.intensity > .1)
@@ -58,7 +58,7 @@ const ColorExtractor = ({ src }: Props) => {
                     >
                       <div style={{ backgroundColor: original }} className='w-9 shrink-0 aspect-square rounded-full' />
                       <div className='w-full flex flex-col gap-4 pt-1'>
-                        <Link href={`/test/${hex.substring(1, hex.length)}`}>
+                        <Link href={`/dynamic-color/${hex.substring(1, hex.length)}`}>
                           <h3 style={{ color: text }}>{hex}</h3>
                         </Link>
                         <div className='flex flex-col w-full'>
