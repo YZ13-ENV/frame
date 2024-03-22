@@ -15,7 +15,7 @@ const buttonVariants = cva(
         default:
           "bg-dynamic-primary text-dynamic-secondary shadow hover:bg-dynamic-primary/90",
         outline:
-          "text-dynamic-primary border border-dynamic-secondary bg-transparent shadow-sm hover:bg-dynamic-secondary/80 shadow-sm hover:bg-dynamic-secondary hover:text-dynamic-primary",
+          "text-dynamic-primary border !border-dynamic-secondary bg-transparent shadow-sm hover:bg-dynamic-secondary/80 shadow-sm hover:bg-dynamic-secondary hover:text-dynamic-primary",
         secondary:
           "bg-dynamic-secondary text-dynamic-primary shadow-sm hover:bg-dynamic-secondary/80",
         ghost: "text-dynamic-primary hover:bg-dynamic-secondary hover:text-dynamic-primary",
