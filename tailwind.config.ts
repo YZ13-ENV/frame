@@ -26,26 +26,35 @@ module.exports = {
       colors: {
         border: {
           DEFAULT: "hsl(var(--border))",
-          "dynamic-primary": "hsl(var(--dynamic-primary))",
-          "dynamic-secondary": "hsl(var(--dynamic-secondary))",
+          dynamic: "hsl(var(--dynamic-border))",
         },
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        "dynamic-primary": {
-          DEFAULT: "hsl(var(--dynamic-primary))",
+        input: {
+          DEFAULT: "hsl(var(--input))",
+          dynamic: "hsl(var(--dynamic-input))",
         },
-        "dynamic-secondary": {
-          DEFAULT: "hsl(var(--dynamic-secondary))",
+        ring: {
+          DEFAULT: "hsl(var(--ring))",
+          dynamic: "hsl(var(--dynamic-ring))",
+        },
+        background: {
+          DEFAULT: "hsl(var(--background))",
+          dynamic: "hsl(var(--dynamic-background))",
+        },
+        foreground: {
+          DEFAULT: "hsl(var(--foreground))",
+          dynamic: "hsl(var(--dynamic-foreground))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          dynamic: "hsl(var(--dynamic-primary))",
+          "dynamic-foreground": "hsl(var(--dynamic-primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          dynamic: "hsl(var(--dynamic-secondary))",
+          "dynamic-foreground": "hsl(var(--dynamic-secondary-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -54,18 +63,26 @@ module.exports = {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
+          dynamic: "hsl(var(--dynamic-muted))",
+          "dynamic-foreground": "hsl(var(--dynamic-muted-foreground))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          dynamic: "hsl(var(--dynamic-accent))",
+          "dynamic-foreground": "hsl(var(--dynamic-accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
+          dynamic: "hsl(var(--dynamic-popover))",
+          "dynamic-foreground": "hsl(var(--dynamic-popover-foreground))",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+          dynamic: "hsl(var(--dynamic-card))",
+          "dynamic-foreground": "hsl(var(--dynamic-card-foreground))",
         },
       },
       borderRadius: {

@@ -1,3 +1,6 @@
+import { DynamicColorVariables } from "@/types/dynamic-color";
+import { CSSProperties } from "react";
+
 export const shadeColor = (color: string, percent: number) => {
   let R = parseInt(color.substring(1, 3), 16);
   let G = parseInt(color.substring(3, 5), 16);
@@ -35,21 +38,64 @@ export const getDynamicColors = (
   const original = hex;
   const more_darker = shadeColor(hex, more_darker_percent);
   const less_darker = shadeColor(hex, less_darker_percent);
-  const bg = shadeColor(hex, more_darker_percent - 10);
+  const background = shadeColor(hex, more_darker_percent - 10);
   return {
     original: original,
     isLightColor: isLightColor,
     ui: {
-      background: bg,
-      text: more_lighter,
-    },
-    extra: {
-      more_lighter: more_lighter,
-      less_lighter: less_lighter,
-      more_darker: more_darker,
-      less_darker: less_darker,
+      "dynamic-background": background,
+      "dynamic-foreground": more_lighter,
+      "dynamic-card": less_lighter,
+      "dynamic-card-foreground": more_lighter,
+      "dynamic-popover": less_lighter,
+      "dynamic-popover-foreground": more_lighter,
+      "dynamic-primary": more_lighter,
+      "dynamic-primary-foreground": less_lighter,
+      "dynamic-secondary": original,
+      "dynamic-secondary-foreground": more_lighter,
+      "dynamic-muted": original,
+      "dynamic-muted-foreground": less_darker,
+      "dynamic-accent": original,
+      "dynamic-accent-foreground": more_lighter,
+      "dynamic-border": original,
+      "dynamic-input": original,
+      "dynamic-ring": less_darker,
     },
   };
+};
+
+export const initVariables = (variables: DynamicColorVariables) => {
+  const properties: CSSProperties = {
+    // @ts-ignore
+    "--dynamic-background": hexToHSL(variables["dynamic-background"]),
+    "--dynamic-foreground": hexToHSL(variables["dynamic-foreground"]),
+    "--dynamic-card": hexToHSL(variables["dynamic-card"]),
+    "--dynamic-card-foreground": hexToHSL(variables["dynamic-card-foreground"]),
+    "--dynamic-popover": hexToHSL(variables["dynamic-popover"]),
+    "--dynamic-popover-foreground": hexToHSL(
+      variables["dynamic-popover-foreground"]
+    ),
+    "--dynamic-primary": hexToHSL(variables["dynamic-primary"]),
+    "--dynamic-primary-foreground": hexToHSL(
+      variables["dynamic-primary-foreground"]
+    ),
+    "--dynamic-secondary": hexToHSL(variables["dynamic-secondary"]),
+    "--dynamic-secondary-foreground": hexToHSL(
+      variables["dynamic-secondary-foreground"]
+    ),
+    "--dynamic-muted": hexToHSL(variables["dynamic-muted"]),
+    "--dynamic-muted-foreground": hexToHSL(
+      variables["dynamic-muted-foreground"]
+    ),
+    "--dynamic-accent": hexToHSL(variables["dynamic-accent"]),
+    "--dynamic-accent-foreground": hexToHSL(
+      variables["dynamic-accent-foreground"]
+    ),
+    "--dynamic-border": hexToHSL(variables["dynamic-border"]),
+    "--dynamic-input": hexToHSL(variables["dynamic-input"]),
+    "--dynamic-ring": hexToHSL(variables["dynamic-ring"]),
+  };
+  return properties;
 };
 
 export function hexToHSL(H: string) {

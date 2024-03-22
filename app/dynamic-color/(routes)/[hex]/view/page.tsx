@@ -21,103 +21,103 @@ const page = ({ params, searchParams }: Props) => {
   const lightness = searchParams.lightness ? parseInt(searchParams.lightness) : .5
   const intensity = searchParams.intensity ? parseInt(searchParams.intensity) : .1
   const validHEX = `#${hex}`
-  const { extra, isLightColor, original, ui } = getDynamicColors(validHEX, { intensity: intensity, lightness: lightness })
-  const { less_darker, less_lighter, more_darker, more_lighter } = extra
-  const { background, text } = ui
+  const { isLightColor, original, ui } = getDynamicColors(
+    validHEX, { intensity: intensity, lightness: lightness }
+  )
   return (
-    <Div secondary={background} primary={text} className="w-full min-h-screen pt-10">
-      <BlurRootBlock className="bg-dynamic-primary" />
+    <Div variables={ui} className="w-full min-h-screen pt-10">
+      <BlurRootBlock className="bg-primary-dynamic" />
       {/* blur */}
       <div className="relative max-w-7xl mx-auto w-full min-h-screen flex items-start gap-6 px-6">
 
         <div className="w-full space-y-6 py-6">
           <div className="max-w-5xl w-full mx-auto flex flex-col gap-2">
-            <H size={1} secondary={background} primary={text} className="w-1/3 h-7 rounded-md bg-dynamic-primary" />
+            <H size={1} variables={ui} className="w-1/3 h-7 rounded-md bg-primary-dynamic" />
             <div className='w-full flex items-center justify-between'>
-              <Span secondary={background} primary={text} className="w-1/4 h-4 rounded-sm bg-dynamic-primary/70" />
+              <Span variables={ui} className="w-1/4 h-4 rounded-sm bg-muted-dynamic" />
               <div className='flex items-center gap-2'>
-                <Button className="w-24 rounded-full" variant="secondary" secondary={background} primary={text}></Button>
-                <Button className="w-36 rounded-full" variant="secondary" secondary={background} primary={text}></Button>
+                <Button className="w-24 rounded-full" variant="secondary" variables={ui}></Button>
+                <Button className="w-36 rounded-full" variant="secondary" variables={ui}></Button>
               </div>
             </div>
           </div>
           <div id="overview" className="max-w-5xl w-full mx-auto flex flex-col gap-2">
-            <Div secondary={background} primary={text} className="w-full aspect-video bg-dynamic-primary rounded-xl" />
+            <Div variables={ui} className="w-full aspect-video bg-primary-dynamic rounded-xl" />
           </div>
           <div className="max-w-5xl w-full mx-auto flex flex-col gap-2">
             <div className="w-full flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
-                <Div secondary={background} primary={text} className="h-9 aspect-square rounded-full bg-dynamic-primary" />
+                <Div variables={ui} className="h-9 aspect-square rounded-full bg-primary-dynamic" />
                 <div className="h-fit flex flex-col justify-center gap-1">
-                  <Span secondary={background} primary={text} className='w-36 h-5 rounded-sm bg-dynamic-primary' />
-                  <Span secondary={background} primary={text} className='w-24 h-4 rounded-sm bg-dynamic-primary/70' />
+                  <Span variables={ui} className='w-36 h-5 rounded-sm bg-primary-dynamic' />
+                  <Span variables={ui} className='w-24 h-4 rounded-sm bg-muted-dynamic' />
                 </div>
-                <Button className="w-36 rounded-full" secondary={background} primary={text}></Button>
+                <Button className="w-36 rounded-full" variables={ui}></Button>
               </div>
               <div className="flex items-center gap-2">
-                <Button className="w-24 rounded-full" variant="secondary" secondary={background} primary={text}></Button>
-                <Button className="w-36 rounded-full" variant="secondary" secondary={background} primary={text}></Button>
+                <Button className="w-24 rounded-full" variant="secondary" variables={ui}></Button>
+                <Button className="w-36 rounded-full" variant="secondary" variables={ui}></Button>
               </div>
             </div>
           </div>
-          <div className="max-w-5xl w-full mx-auto flex flex-col gap-2">
-            <Div secondary={background} primary={text} className="w-full aspect-video rounded-lg bg-dynamic-primary"></Div>
+          <div className="max-w-5xl w-full mx-auto flex flex-col gap-2 py-12">
+            <Div variables={ui} className="w-full aspect-video rounded-lg bg-primary-dynamic"></Div>
             <div className='w-full py-2 gap-2 flex flex-col'>
-              <Div secondary={background} primary={text} className="w-1/2 h-5 rounded-md bg-dynamic-primary/70" />
-              <Div secondary={background} primary={text} className="w-1/3 h-5 rounded-md bg-dynamic-primary/70" />
-              <Div secondary={background} primary={text} className="w-2/3 h-5 rounded-md bg-dynamic-primary/70" />
-              <Div secondary={background} primary={text} className="w-1/2 h-5 rounded-md bg-dynamic-primary/70" />
+              <Div variables={ui} className="w-1/2 h-5 rounded-md bg-muted-dynamic" />
+              <Div variables={ui} className="w-1/3 h-5 rounded-md bg-muted-dynamic" />
+              <Div variables={ui} className="w-2/3 h-5 rounded-md bg-muted-dynamic" />
+              <Div variables={ui} className="w-1/2 h-5 rounded-md bg-muted-dynamic" />
             </div>
-            <Div secondary={background} primary={text} className="w-full aspect-video rounded-lg bg-dynamic-primary"></Div>
+            <Div variables={ui} className="w-full aspect-video rounded-lg bg-primary-dynamic"></Div>
             <div className='w-full py-2 gap-2 flex flex-col'>
-              <Div secondary={background} primary={text} className="w-1/2 h-5 rounded-md bg-dynamic-primary/70" />
-              <Div secondary={background} primary={text} className="w-1/3 h-5 rounded-md bg-dynamic-primary/70" />
-              <Div secondary={background} primary={text} className="w-2/3 h-5 rounded-md bg-dynamic-primary/70" />
-              <Div secondary={background} primary={text} className="w-1/2 h-5 rounded-md bg-dynamic-primary/70" />
+              <Div variables={ui} className="w-1/2 h-5 rounded-md bg-muted-dynamic" />
+              <Div variables={ui} className="w-1/3 h-5 rounded-md bg-muted-dynamic" />
+              <Div variables={ui} className="w-2/3 h-5 rounded-md bg-muted-dynamic" />
+              <Div variables={ui} className="w-1/2 h-5 rounded-md bg-muted-dynamic" />
             </div>
           </div>
           <div className="max-w-5xl w-full mx-auto flex flex-col gap-2">
             <div className="w-full h-fit grid lg:grid-cols-3 grid-cols-2 auto-rows-auto gap-4">
               <div className="w-full flex flex-col gap-2">
-                <Div secondary={background} primary={text} className="w-full h-48 aspect-video rounded-md bg-dynamic-primary" />
+                <Div variables={ui} className="w-full h-48 aspect-video rounded-md bg-primary-dynamic" />
                 <div className='w-full flex items-center justify-between'>
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
                 </div>
               </div>
               <div className="w-full flex flex-col gap-2">
-                <Div secondary={background} primary={text} className="w-full h-48 aspect-video rounded-md bg-dynamic-primary" />
+                <Div variables={ui} className="w-full h-48 aspect-video rounded-md bg-primary-dynamic" />
                 <div className='w-full flex items-center justify-between'>
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
                 </div>
               </div>
               <div className="w-full flex flex-col gap-2">
-                <Div secondary={background} primary={text} className="w-full h-48 aspect-video rounded-md bg-dynamic-primary" />
+                <Div variables={ui} className="w-full h-48 aspect-video rounded-md bg-primary-dynamic" />
                 <div className='w-full flex items-center justify-between'>
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
                 </div>
               </div>
               <div className="w-full flex flex-col gap-2">
-                <Div secondary={background} primary={text} className="w-full h-48 aspect-video rounded-md bg-dynamic-primary" />
+                <Div variables={ui} className="w-full h-48 aspect-video rounded-md bg-primary-dynamic" />
                 <div className='w-full flex items-center justify-between'>
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
                 </div>
               </div>
               <div className="w-full flex flex-col gap-2">
-                <Div secondary={background} primary={text} className="w-full h-48 aspect-video rounded-md bg-dynamic-primary" />
+                <Div variables={ui} className="w-full h-48 aspect-video rounded-md bg-primary-dynamic" />
                 <div className='w-full flex items-center justify-between'>
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
                 </div>
               </div>
               <div className="w-full flex flex-col gap-2">
-                <Div secondary={background} primary={text} className="w-full h-48 aspect-video rounded-md bg-dynamic-primary" />
+                <Div variables={ui} className="w-full h-48 aspect-video rounded-md bg-primary-dynamic" />
                 <div className='w-full flex items-center justify-between'>
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
-                  <Div secondary={background} primary={text} className='w-1/3 h-5 rounded-sm bg-dynamic-primary/70' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
+                  <Div variables={ui} className='w-1/3 h-5 rounded-sm bg-muted-dynamic' />
                 </div>
               </div>
             </div>
@@ -127,21 +127,21 @@ const page = ({ params, searchParams }: Props) => {
           <div className="flex flex-col gap-2 relative">
             <div className="w-full z-[10] flex items-center h-9 gap-2">
               <div className="h-full w-1">
-                <Div secondary={background} primary={text} className="h-full w-full bg-dynamic-primary rounded-sm" />
+                <Div variables={ui} className="h-full w-full bg-primary-dynamic rounded-sm" />
               </div>
-              <Span secondary={background} primary={text} className="text-sm">Обзор</Span>
+              <Span variables={ui} className="text-sm">Обзор</Span>
             </div>
             <div className="w-full z-[10] flex items-center h-9 gap-2">
               <div className="h-full w-1"></div>
-              <Span secondary={background} primary={text} className="text-sm">Контент</Span>
+              <Span variables={ui} className="text-sm">Контент</Span>
             </div>
             <div className="w-full z-[10] flex items-center h-9 gap-2">
               <div className="h-full w-1"></div>
-              <Span secondary={background} primary={text} className="text-sm">Больше от автора</Span>
+              <Span variables={ui} className="text-sm">Больше от автора</Span>
             </div>
-            <Div secondary={background} primary={text} className="absolute top-0 w-1 bg-dynamic-secondary h-full rounded-sm" />
+            <Div variables={ui} className="absolute top-0 w-1 bg-muted-dynamic h-full rounded-sm" />
           </div>
-          <Button variant="secondary" className="w-full rounded-full" secondary={background} primary={text} />
+          <Button variant="secondary" className="w-full rounded-full" variables={ui} />
         </aside>
       </div>
     </Div>

@@ -1,16 +1,16 @@
-import { hexToHSL } from "@/helpers/colors"
+import { initVariables } from "@/helpers/colors"
 import { cn } from "@/lib/utils"
-import { DynamicColorProps } from "@/types/dynamic-color"
+import { DynamicColorVariables } from "@/types/dynamic-color"
 import { VariantProps, cva } from "class-variance-authority"
-import { CSSProperties, HTMLAttributes, forwardRef } from "react"
+import { HTMLAttributes, forwardRef } from "react"
 
 const spanVariants = cva(
   "",
   {
     variants: {
       variant: {
-        "primary": "text-dynamic-primary",
-        "secondary": "text-dynamic-primary/70"
+        "primary": "text-primary-dynamic",
+        "secondary": "text-muted-dynamic"
       }
     },
     defaultVariants: {
@@ -20,15 +20,12 @@ const spanVariants = cva(
 )
 
 export interface SpanProps
-  extends DynamicColorProps, VariantProps<typeof spanVariants>, HTMLAttributes<HTMLSpanElement> { }
+  extends VariantProps<typeof spanVariants>, HTMLAttributes<HTMLSpanElement> {
+  variables: DynamicColorVariables
+}
 const Span = forwardRef<HTMLSpanElement, SpanProps>(
-  ({ className, primary, secondary, variant, ...props }, ref) => {
-    const style: CSSProperties = {
-      // @ts-ignore
-      "--dynamic-secondary": hexToHSL(secondary),
-      "--dynamic-primary": hexToHSL(primary)
-    }
-    return <span style={style} ref={ref} className={cn(spanVariants({ variant, className }), className)} {...props} />
+  ({ className, variables, variant, ...props }, ref) => {
+    return <span style={initVariables(variables)} ref={ref} className={cn(spanVariants({ variant, className }), className)} {...props} />
   }
 )
 

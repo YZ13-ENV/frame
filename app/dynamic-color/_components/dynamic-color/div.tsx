@@ -1,19 +1,16 @@
-import { hexToHSL } from "@/helpers/colors"
+import { initVariables } from "@/helpers/colors"
 import { cn } from "@/lib/utils"
-import { DynamicColorProps } from "@/types/dynamic-color"
-import { CSSProperties, HTMLAttributes, forwardRef } from "react"
+import { DynamicColorVariables } from "@/types/dynamic-color"
+import { HTMLAttributes, forwardRef } from "react"
 
 
 export interface SpanProps
-  extends DynamicColorProps, HTMLAttributes<HTMLDivElement> { }
+  extends HTMLAttributes<HTMLDivElement> {
+  variables: DynamicColorVariables
+}
 const Div = forwardRef<HTMLDivElement, SpanProps>(
-  ({ className, primary, secondary, ...props }, ref) => {
-    const style: CSSProperties = {
-      // @ts-ignore
-      "--dynamic-secondary": hexToHSL(secondary),
-      "--dynamic-primary": hexToHSL(primary)
-    }
-    return <div style={style} ref={ref} className={cn("bg-dynamic-secondary/10", className)} {...props} />
+  ({ className, variables, ...props }, ref) => {
+    return <div style={initVariables(variables)} ref={ref} className={cn("bg-dynamic-secondary/10", className)} {...props} />
   }
 )
 
