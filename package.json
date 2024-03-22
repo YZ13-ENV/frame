@@ -35,6 +35,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "critters": "^0.0.20",
+    "extract-colors": "^4.0.2",
     "firebase": "^10.7.1",
     "framer-motion": "^10.16.16",
     "hooks": "github:yz13-env/hooks",

@@ -10,7 +10,7 @@ dependencies:
     version: github.com/yz13-env/api/1333e82803a7e238699d520936cb0a998c6adbc7(react-dom@18.2.0)(react@18.2.0)
   '@darkmaterial/ui':
     specifier: github:yz13-env/ui
-    version: github.com/yz13-env/ui/4f0858d7c9950ff896cbc9c79c086f9468463041(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)(webpack@5.90.3)(yjs@13.6.14)
+    version: github.com/yz13-env/ui/54ce1b1740828d030519fc8e9e802b474999d4ef(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)(webpack@5.91.0)(yjs@13.6.14)
   '@dnd-kit/core':
     specifier: ^6.1.0
     version: 6.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -77,6 +77,9 @@ dependencies:
   critters:
     specifier: ^0.0.20
     version: 0.0.20
+  extract-colors:
+    specifier: ^4.0.2
+    version: 4.0.2
   firebase:
     specifier: ^10.7.1
     version: 10.7.1
@@ -309,7 +312,7 @@ packages:
     resolution: {integrity: sha512-5GrXzrhq6k+gL5fjkAwt90nYDmjlzTIJV8THnxNFtNKWotMIlzzN+CpqxqwXOECnUdOndmSeWntVrVcv5axWRQ==}
     dependencies:
       '@codemirror/state': 6.4.1
-      '@codemirror/view': 6.25.1
+      '@codemirror/view': 6.26.0
       '@lezer/common': 1.2.1
       '@lezer/highlight': 1.2.0
       '@lezer/lr': 1.4.0
@@ -358,8 +361,8 @@ packages:
       w3c-keyname: 2.2.8
     dev: false
 
-  /@codemirror/view@6.25.1:
-    resolution: {integrity: sha512-2LXLxsQnHDdfGzDvjzAwZh2ZviNJm7im6tGpa0IONIDnFd8RZ80D2SNi8PDi6YjKcMoMRK20v6OmKIdsrwsyoQ==}
+  /@codemirror/view@6.26.0:
+    resolution: {integrity: sha512-nSSmzONpqsNzshPOxiKhK203R6BvABepugAe34QfQDbNDslyjkqBuKgrK5ZBvqNXpfxz5iLrlGTmEfhbQyH46A==}
     dependencies:
       '@codemirror/state': 6.4.1
       style-mod: 4.1.2
@@ -2341,8 +2344,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@mdxeditor/editor@2.15.1(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14):
-    resolution: {integrity: sha512-EgRyqF5/rfg5cy4noFSrFRi8z42VCu+m9bGLRDj6FomtwzOd2n8RLqsQx4isOCplv8x7OTqTZw/KQ6j7UHmi1A==}
+  /@mdxeditor/editor@2.16.0(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14):
+    resolution: {integrity: sha512-9YnnIoVQntlZRHstkRxwDSFwioky0paVuzJtx2geAp+JLmDZHBCK63ZSLH+46i3QNsszMBcMMOZftKR9l9tRnA==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^18.2.0
@@ -2351,7 +2354,7 @@ packages:
       '@codemirror/lang-markdown': 6.2.3
       '@codemirror/merge': 6.5.0
       '@codemirror/state': 6.4.1
-      '@codemirror/view': 6.25.1
+      '@codemirror/view': 6.26.0
       '@codesandbox/sandpack-react': 2.11.0(@lezer/common@1.2.1)(react-dom@18.2.0)(react@18.2.0)
       '@lexical/clipboard': 0.13.1(lexical@0.13.1)
       '@lexical/link': 0.13.1(lexical@0.13.1)
@@ -2372,7 +2375,7 @@ packages:
       '@radix-ui/react-toolbar': 1.0.4(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-tooltip': 1.0.7(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       classnames: 2.5.1
-      cm6-theme-basic-light: 0.2.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.25.1)(@lezer/highlight@1.2.0)
+      cm6-theme-basic-light: 0.2.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.26.0)(@lezer/highlight@1.2.0)
       codemirror: 6.0.1(@lezer/common@1.2.1)
       downshift: 7.6.2(react@18.2.0)
       js-yaml: 4.1.0
@@ -3706,17 +3709,17 @@ packages:
     resolution: {integrity: sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==}
     dev: false
 
-  /@storybook/addon-styling-webpack@1.0.0(webpack@5.90.3):
+  /@storybook/addon-styling-webpack@1.0.0(webpack@5.91.0):
     resolution: {integrity: sha512-jo1kzn7pi+NA+LZxrWoRvW6w7dXIKY/BjTG80XX2uU92lIKT+X1k/9vYk/0KPVK3Bsf4tO6ToAuqIRyOk7MHtg==}
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      '@storybook/node-logger': 8.0.1
-      webpack: 5.90.3
+      '@storybook/node-logger': 8.0.2
+      webpack: 5.91.0
     dev: false
 
-  /@storybook/node-logger@8.0.1:
-    resolution: {integrity: sha512-uYWKSz9NhLOe2O60sJ4UPT1nzvbH0oR/YjK+OP3B4BySa6e195xY/5Uhou4lEaPSNU/0XXaLHCYeXjqeBjZopA==}
+  /@storybook/node-logger@8.0.2:
+    resolution: {integrity: sha512-UG6v5PCXYblNCZUlbC+D+NisvSn1caC+q3yNSVAW3Z2MDfWmrkThFVzI7LDj1c9DAkbMr2v9beMHdD+suSQe4g==}
     dev: false
 
   /@swc/helpers@0.5.2:
@@ -4480,7 +4483,7 @@ packages:
       '@lezer/highlight': 1.2.0
     dev: false
 
-  /cm6-theme-basic-light@0.2.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.25.1)(@lezer/highlight@1.2.0):
+  /cm6-theme-basic-light@0.2.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.26.0)(@lezer/highlight@1.2.0):
     resolution: {integrity: sha512-1prg2gv44sYfpHscP26uLT/ePrh0mlmVwMSoSd3zYKQ92Ab3jPRLzyCnpyOCQLJbK+YdNs4HvMRqMNYdy4pMhA==}
     peerDependencies:
       '@codemirror/language': ^6.0.0
@@ -4490,7 +4493,7 @@ packages:
     dependencies:
       '@codemirror/language': 6.10.1
       '@codemirror/state': 6.4.1
-      '@codemirror/view': 6.25.1
+      '@codemirror/view': 6.26.0
       '@lezer/highlight': 1.2.0
     dev: false
 
@@ -4790,6 +4793,15 @@ packages:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.2.1
+    dev: true
+
+  /enhanced-resolve@5.16.0:
+    resolution: {integrity: sha512-O+QWCviPNSSLAD9Ucn8Awv+poAkqn3T1XY5/N7kR7rQO9yfSGWkYZDwpJ+iKF7B8rxaQKWngSqACpgzeapSyoA==}
+    engines: {node: '>=10.13.0'}
+    dependencies:
+      graceful-fs: 4.2.11
+      tapable: 2.2.1
+    dev: false
 
   /entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
@@ -5282,6 +5294,10 @@ packages:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
     dev: false
 
+  /extract-colors@4.0.2:
+    resolution: {integrity: sha512-G7v2C3LJqW38U+yRUPD6nJCjBRfdLD7y8efEHn+1qONt1mhj+OZBpzFmiaS+dZiHU/k0dvgK2kgIkbAllHVbRw==}
+    dev: false
+
   /fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
 
@@ -5493,8 +5509,8 @@ packages:
       '@emotion/is-prop-valid': 0.8.8
     dev: false
 
-  /framer-motion@11.0.15(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-bQzPYHL66lO4SLoAHqWy5v1Pd4TDwYs8I16+ZlsoZjRn2MdUiygb8nyl9kcI/JjhcErSBq2XLaha4F5knn72ow==}
+  /framer-motion@11.0.18(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-TPKJ1KqQzTQ//cGFAb/jrpbbNY8UVh2q69vAcVRA8AxsKYkl5nrW1nsmrHRc5dLsRdwlXSV1kuo1Khylhph7kw==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0
@@ -8348,7 +8364,7 @@ packages:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
 
-  /terser-webpack-plugin@5.3.10(webpack@5.90.3):
+  /terser-webpack-plugin@5.3.10(webpack@5.91.0):
     resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -8369,7 +8385,7 @@ packages:
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.29.2
-      webpack: 5.90.3
+      webpack: 5.91.0
     dev: false
 
   /terser@5.29.2:
@@ -8780,13 +8796,21 @@ packages:
       graceful-fs: 4.2.11
     dev: false
 
+  /watchpack@2.4.1:
+    resolution: {integrity: sha512-8wrBCMtVhqcXP2Sup1ctSkga6uc2Bx0IIvKyT7yTFier5AXHooSI+QyQQAtTb7+E0IUCCKyTFmXqdqgum2XWGg==}
+    engines: {node: '>=10.13.0'}
+    dependencies:
+      glob-to-regexp: 0.4.1
+      graceful-fs: 4.2.11
+    dev: false
+
   /webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
     engines: {node: '>=10.13.0'}
     dev: false
 
-  /webpack@5.90.3:
-    resolution: {integrity: sha512-h6uDYlWCctQRuXBs1oYpVe6sFcWedl0dpcVaTf/YF67J9bKvwJajFulMVSYKHrksMB3I/pIagRzDxwxkebuzKA==}
+  /webpack@5.91.0:
+    resolution: {integrity: sha512-rzVwlLeBWHJbmgTC/8TvAcu5vpJNII+MelQpylD4jNERPwpBJOE2lEcko1zJX3QJeLjTTAnQxn/OJ8bjDzVQaw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -8804,7 +8828,7 @@ packages:
       acorn-import-assertions: 1.9.0(acorn@8.11.3)
       browserslist: 4.22.2
       chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.15.0
+      enhanced-resolve: 5.16.0
       es-module-lexer: 1.4.2
       eslint-scope: 5.1.1
       events: 3.3.0
@@ -8816,8 +8840,8 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(webpack@5.90.3)
-      watchpack: 2.4.0
+      terser-webpack-plugin: 5.3.10(webpack@5.91.0)
+      watchpack: 2.4.1
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
@@ -9032,30 +9056,30 @@ packages:
       - sass
     dev: false
 
-  github.com/yz13-env/ui/4f0858d7c9950ff896cbc9c79c086f9468463041(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)(webpack@5.90.3)(yjs@13.6.14):
-    resolution: {tarball: https://codeload.github.com/yz13-env/ui/tar.gz/4f0858d7c9950ff896cbc9c79c086f9468463041}
-    id: github.com/yz13-env/ui/4f0858d7c9950ff896cbc9c79c086f9468463041
+  github.com/yz13-env/ui/54ce1b1740828d030519fc8e9e802b474999d4ef(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)(webpack@5.91.0)(yjs@13.6.14):
+    resolution: {tarball: https://codeload.github.com/yz13-env/ui/tar.gz/54ce1b1740828d030519fc8e9e802b474999d4ef}
+    id: github.com/yz13-env/ui/54ce1b1740828d030519fc8e9e802b474999d4ef
     name: '@darkmaterial/ui'
-    version: 0.0.11
+    version: 0.0.12
     engines: {node: '20'}
     peerDependencies:
       react: '18'
       react-dom: '18'
     dependencies:
       '@darkmaterial/api': github.com/yz13-env/api/1333e82803a7e238699d520936cb0a998c6adbc7(react-dom@18.2.0)(react@18.2.0)
-      '@mdxeditor/editor': 2.15.1(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14)
+      '@mdxeditor/editor': 2.16.0(@codemirror/language@6.10.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)(yjs@13.6.14)
       '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-dropdown-menu': 2.0.6(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-icons': 1.3.0(react@18.2.0)
       '@radix-ui/react-popover': 1.0.7(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-separator': 1.0.3(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.46)(react@18.2.0)
-      '@storybook/addon-styling-webpack': 1.0.0(webpack@5.90.3)
+      '@storybook/addon-styling-webpack': 1.0.0(webpack@5.91.0)
       ahooks: 3.7.10(react@18.2.0)
       class-variance-authority: 0.7.0
       clsx: 2.1.0
       firebase: 10.9.0
-      framer-motion: 11.0.15(react-dom@18.2.0)(react@18.2.0)
+      framer-motion: 11.0.18(react-dom@18.2.0)(react@18.2.0)
       luxon: 3.4.4
       next: 13.5.6(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
