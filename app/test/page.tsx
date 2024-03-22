@@ -35,7 +35,7 @@ const page = () => {
     "/wallpapers/yellow.jpg",
   ]
   return (
-    <div className="w-full p-6 grid grid-cols-2 auto-rows-auto gap-4">
+    <div className="w-full p-6 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 auto-rows-auto gap-4">
       {
         paths.map(path =>
           <ColorExtractor key={path} src={path} />

@@ -5,6 +5,7 @@ import { extractColors } from 'extract-colors'
 import { FinalColor } from 'extract-colors/lib/types/Color'
 import { cubicBezier, motion } from "framer-motion"
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 type Props = {
@@ -27,7 +28,7 @@ const ColorExtractor = ({ src }: Props) => {
           alt="image-for-test"
         />
       </div>
-      <div className='w-full p-6 grid grid-cols-2 auto-rows-auto gap-4'>
+      <div className='w-full p-6 grid grid-cols-1 auto-rows-auto gap-4'>
         {
           colors.length === 0
             // .filter(color => color.intensity > .1)
@@ -56,7 +57,10 @@ const ColorExtractor = ({ src }: Props) => {
                       className="w-full h-fit flex gap-4 items-start p-4 rounded-2xl"
                     >
                       <div style={{ backgroundColor: original }} className='w-9 shrink-0 aspect-square rounded-full' />
-                      <div className='w-full flex flex-col gap-4'>
+                      <div className='w-full flex flex-col gap-4 pt-1'>
+                        <Link href={`/test/${hex.substring(1, hex.length)}`}>
+                          <h3 style={{ color: text }}>{hex}</h3>
+                        </Link>
                         <div className='flex flex-col w-full'>
                           <span style={{ color: text }} className="text-sm">
                             Частота: {color.intensity.toFixed(2)}

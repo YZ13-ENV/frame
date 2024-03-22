@@ -8,7 +8,60 @@
     --shot-width-small: 216px;
     --shot-width-medium: 280px;
     --shot-width-large: 340px;
+
+    --dynamic-primary: 0, 0%, 0%;
+    --dynamic-secondary: 0, 0%, 100%;
   }
+  .dark {
+    --dynamic-primary: 0, 0%, 0%;
+    --dynamic-secondary: 0, 0%, 100%;
+  }
+  .dynamic-color {
+    --dynamic-primary: 0, 0%, 0%;
+    --dynamic-secondary: 0, 0%, 100%;
+  }
+}
+
+@layer components {
+  /* button[data-variant="default"] {
+    @apply text-dynamic-secondary bg-dynamic-primary;
+  }
+  button[data-variant="default"]:disabled {
+    @apply text-dynamic-secondary bg-dynamic-primary;
+  }
+  button[data-variant="default"]:hover {
+    @apply text-dynamic-secondary bg-dynamic-primary;
+  }
+
+  button[data-variant="secondary"] {
+    @apply text-dynamic-primary bg-dynamic-secondary;
+  }
+  button[data-variant="secondary"]:disabled {
+    @apply text-dynamic-primary bg-dynamic-secondary;
+  }
+  button[data-variant="secondary"]:hover {
+    @apply text-dynamic-primary bg-dynamic-secondary;
+  }
+
+  button[data-variant="outline"] {
+    @apply text-dynamic-primary border border-dynamic-secondary bg-transparent;
+  }
+  button[data-variant="outline"]:disabled {
+    @apply text-dynamic-primary border bg-dynamic-secondary;
+  }
+  button[data-variant="outline"]:hover {
+    @apply text-dynamic-primary border border-dynamic-secondary bg-dynamic-secondary;
+  }
+
+  button[data-variant="ghost"] {
+    @apply text-dynamic-primary bg-transparent;
+  }
+  button[data-variant="ghost"]:disabled {
+    @apply bg-dynamic-secondary text-dynamic-primary;
+  }
+  button[data-variant="ghost"]:hover {
+    @apply bg-dynamic-primary/80;
+  } */
 }
 
 @layer base {

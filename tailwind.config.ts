@@ -24,11 +24,21 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
+        border: {
+          DEFAULT: "hsl(var(--border))",
+          "dynamic-primary": "hsl(var(--dynamic-primary))",
+          "dynamic-secondary": "hsl(var(--dynamic-secondary))",
+        },
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        "dynamic-primary": {
+          DEFAULT: "hsl(var(--dynamic-primary))",
+        },
+        "dynamic-secondary": {
+          DEFAULT: "hsl(var(--dynamic-secondary))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
