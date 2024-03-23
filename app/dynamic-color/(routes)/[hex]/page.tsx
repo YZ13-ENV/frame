@@ -11,20 +11,18 @@ type Props = {
   }
   searchParams: {
     lightness: string
-    intensity: string
   }
 }
 const page = ({ params, searchParams }: Props) => {
   const { hex } = params
   if (hex.length > 6) return redirect("/test")
   const lightness = searchParams.lightness ? parseInt(searchParams.lightness) : .5
-  const intensity = searchParams.intensity ? parseInt(searchParams.intensity) : .1
   const validHEX = `#${hex}`
-  const { isLightColor, original, ui } = getDynamicColors(
-    validHEX, { intensity: intensity, lightness: lightness }
+  const { ui } = getDynamicColors(
+    validHEX, { lightness: lightness }
   )
   return (
-    <Div variables={ui} className="p-6 w-full min-h-screen flex flex-col items-center gap-4">
+    <Div variables={ui} className="p-6 w-full min-h-screen flex flex-col items-center gap-4 bg-background-dynamic/10">
       <h1 className="text-center">{validHEX}</h1>
       <span className="text-center">{hexToHSL(validHEX)}</span>
       <div className="w-full flex flex-col gap-6 items-center">

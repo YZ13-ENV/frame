@@ -1,5 +1,6 @@
 import { DynamicColorVariables } from "@/types/dynamic-color";
 import { CSSProperties } from "react";
+import { dynamicColor } from "./dynamic-color";
 
 export const shadeColor = (color: string, percent: number) => {
   let R = parseInt(color.substring(1, 3), 16);
@@ -21,45 +22,44 @@ export const shadeColor = (color: string, percent: number) => {
   return "#" + RR + GG + BB;
 };
 
-const calculateColors = (hex: string) => {};
 export const getDynamicColors = (
   hex: string,
-  { intensity, lightness }: { lightness: number; intensity: number }
+  { lightness }: { lightness: number }
 ) => {
   const isLightColor = lightness >= 0.5;
-  const percent = (lightness / 1) * 100;
-  const second_percent = 100 - percent;
-  const more_lighter_percent = second_percent * 2;
-  const less_lighter_percent = second_percent;
-  const more_darker_percent = -percent;
-  const less_darker_percent = -percent / 2;
-  const more_lighter = shadeColor(hex, more_lighter_percent);
-  const less_lighter = shadeColor(hex, less_lighter_percent);
-  const original = hex;
-  const more_darker = shadeColor(hex, more_darker_percent);
-  const less_darker = shadeColor(hex, less_darker_percent);
-  const background = shadeColor(hex, more_darker_percent - 10);
+  const foreground = dynamicColor(lightness).getForegroundColor(hex);
+  const background = dynamicColor(lightness).getBackgroundColor(hex);
+  const primaryForeground =
+    dynamicColor(lightness).getPrimaryColorForeground(hex);
+  const card = dynamicColor(lightness).getCardColor(hex);
+  const secondary = dynamicColor(lightness).getSecondaryColor(hex);
+  const ring = dynamicColor(lightness).getRingColor(hex);
+  // primary = secondary-foreground
+  // card = popover
+  // secondary = muted = accent = border = input
+  // ring
+  // muted-foreground
   return {
-    original: original,
+    original: hex,
     isLightColor: isLightColor,
     ui: {
       "dynamic-background": background,
-      "dynamic-foreground": more_lighter,
-      "dynamic-card": less_lighter,
-      "dynamic-card-foreground": more_lighter,
-      "dynamic-popover": less_lighter,
-      "dynamic-popover-foreground": more_lighter,
-      "dynamic-primary": more_lighter,
-      "dynamic-primary-foreground": less_lighter,
-      "dynamic-secondary": original,
-      "dynamic-secondary-foreground": more_lighter,
-      "dynamic-muted": original,
-      "dynamic-muted-foreground": less_darker,
-      "dynamic-accent": original,
-      "dynamic-accent-foreground": more_lighter,
-      "dynamic-border": original,
-      "dynamic-input": original,
-      "dynamic-ring": less_darker,
+      "dynamic-foreground": foreground,
+      "dynamic-card": card,
+      "dynamic-card-foreground": foreground,
+      "dynamic-popover": card,
+      "dynamic-popover-foreground": foreground,
+      "dynamic-primary": foreground,
+      "dynamic-primary-foreground": primaryForeground,
+      "dynamic-secondary": secondary,
+      "dynamic-secondary-foreground": foreground,
+      "dynamic-muted": secondary,
+      "dynamic-muted-foreground": foreground,
+      "dynamic-accent": secondary,
+      "dynamic-accent-foreground": foreground,
+      "dynamic-border": secondary,
+      "dynamic-input": secondary,
+      "dynamic-ring": ring,
     },
   };
 };

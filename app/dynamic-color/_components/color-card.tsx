@@ -5,6 +5,7 @@ import { BiRightArrowAlt } from "react-icons/bi"
 import { Button } from "./dynamic-color/button"
 import Div from "./dynamic-color/div"
 import H from "./dynamic-color/h"
+import { Input } from "./dynamic-color/input"
 import Span from "./dynamic-color/span"
 
 type Props = {
@@ -13,9 +14,8 @@ type Props = {
 const DynamicColorCard = ({ color }: Props) => {
   const hex = color.hex
   const lightness = color.lightness
-  const intensity = color.intensity
   const { isLightColor, original, ui } = getDynamicColors(
-    hex, { intensity: intensity, lightness: lightness }
+    hex, { lightness: lightness }
   )
   return (
     <Div
@@ -23,17 +23,17 @@ const DynamicColorCard = ({ color }: Props) => {
       className="w-full h-fit flex gap-4 items-start p-4 rounded-2xl bg-background-dynamic"
     >
       <div style={{ backgroundColor: hex }} className='w-9 shrink-0 aspect-square rounded-full' />
-      <div className='w-full flex flex-col gap-4 pt-1'>
+      <div className='w-full flex flex-col gap-4 pt-0.5'>
         <div className='w-full flex items-center justify-between gap-2'>
-          <Link href={`/dynamic-color/${hex.substring(1, hex.length)}?lightness=${lightness}&intensity=${intensity}`}>
-            <H size={3} variables={ui}>{hex}</H>
+          <Link href={`/dynamic-color/${hex.substring(1, hex.length)}?lightness=${lightness}`}>
+            <H className="px-3 rounded-full bg-background-dynamic" size={3} variables={ui}>{hex}</H>
           </Link>
           <Button
             className='gap-2 rounded-full'
             variables={ui}
             asChild
           >
-            <Link href={`/dynamic-color/${hex.substring(1, hex.length)}/view?lightness=${lightness}&intensity=${intensity}`}>
+            <Link href={`/dynamic-color/${hex.substring(1, hex.length)}/view?lightness=${lightness}`}>
               Макет работы <BiRightArrowAlt size={16} />
             </Link>
           </Button>
@@ -49,6 +49,12 @@ const DynamicColorCard = ({ color }: Props) => {
             {isLightColor ? "Светлый" : "Темный"} цвет
           </Span>
         </div>
+        <Input variables={ui} placeholder="Проверка текста" />
+        <H size={4} variables={ui}>Darkmaterial DynamicColor</H>
+        <Span variables={ui}>
+          DynamicColor, извлекает основные цвета из картинки и генерирует несколько палитр,
+          можно выбрать наиболее подходящую и она будет применена для страницы работы
+        </Span>
         {/* <div className='w-full flex items-center rounded-full overflow-hidden'>
           <TooltipProvider>
             <Tooltip>

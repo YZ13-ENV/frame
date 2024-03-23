@@ -34,7 +34,7 @@ const ColorExtractor = ({ src }: Props) => {
             </div>
             : colors
               // .filter(color => color.intensity > .1)
-              .map(color => <DynamicColorCard color={color} />)
+              .map((color, i) => <DynamicColorCard key={color.hex + "-" + i} color={color} />)
         }
       </div>
     </div>

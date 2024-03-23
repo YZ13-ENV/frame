@@ -12,20 +12,18 @@ type Props = {
   }
   searchParams: {
     lightness: string
-    intensity: string
   }
 }
 const page = ({ params, searchParams }: Props) => {
   const { hex } = params
   if (hex.length > 6) return redirect("/test")
   const lightness = searchParams.lightness ? parseInt(searchParams.lightness) : .5
-  const intensity = searchParams.intensity ? parseInt(searchParams.intensity) : .1
   const validHEX = `#${hex}`
   const { isLightColor, original, ui } = getDynamicColors(
-    validHEX, { intensity: intensity, lightness: lightness }
+    validHEX, { lightness: lightness }
   )
   return (
-    <Div variables={ui} className="w-full min-h-screen pt-10">
+    <Div variables={ui} className="w-full min-h-screen pt-10 bg-background-dynamic/10">
       <BlurRootBlock className="bg-primary-dynamic" />
       {/* blur */}
       <div className="relative max-w-7xl mx-auto w-full min-h-screen flex items-start gap-6 px-6">
