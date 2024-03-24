@@ -50,7 +50,7 @@ const User = ({ size = 36 }: Props) => {
     }, [user])
     return (
         <>
-            {session && !session.activeUid && <OneClickAuth members={session.members} user={user} onUser={uid => controls('update', uid)} />}
+            {session && !session.activeUid && !!session.members.length && <OneClickAuth members={session.members} user={user} onUser={uid => controls('update', uid)} />}
             <UserCircle size={size} isSubscriber={isSubscriber} map={menuWithSignOut} loginLink={link}
                 activeMenu={isTabletOrMobile ? 'mobile' : 'desktop'} user={user as User | undefined} buttonSize='lg' />
         </>
