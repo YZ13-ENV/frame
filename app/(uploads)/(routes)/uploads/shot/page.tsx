@@ -34,7 +34,7 @@ const page = async () => {
                         </div>
                     </div>
                     <div className="w-full h-fit flex flex-col py-6 gap-6">
-                        <AdvancedChunk getter={bum.drafts.byUser(visitorId)} />
+                        <AdvancedChunk getter={bum.drafts.byUser("new", undefined, visitorId)} />
                     </div>
                 </div>
             </div>

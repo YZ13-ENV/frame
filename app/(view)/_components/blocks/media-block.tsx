@@ -10,6 +10,7 @@ const MediaBlock = ({ attachments, block }: Props) => {
     const isImage = block.content_type.includes('jpg') || block.content_type.includes('png')
     const attachment = attachments.find(item => item.id === block.id)
     const isDev = process.env.NODE_ENV === 'development'
+
     return (
         <div className={cn(
             isDev ? "border" : "",
@@ -17,7 +18,8 @@ const MediaBlock = ({ attachments, block }: Props) => {
         )}>
             {
                 !isDev &&
-                isImage && attachment && <Image src={attachment.url} fill alt={attachment.contentType + attachment.createdAt} />
+                isImage && attachment &&
+                <Image src={attachment.url} fill alt={attachment.contentType + attachment.createdAt} crossOrigin="anonymous" />
             }
         </div>
     )

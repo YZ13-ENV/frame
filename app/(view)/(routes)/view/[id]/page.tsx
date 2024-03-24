@@ -16,6 +16,8 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from "next/navigation";
 import { BiDotsVerticalRounded, BiShare } from "react-icons/bi";
 import { BsEyeFill } from "react-icons/bs";
+
+
 type Props = {
     params: {
         id: string

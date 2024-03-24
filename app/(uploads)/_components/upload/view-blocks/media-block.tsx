@@ -43,7 +43,7 @@ const MediaBlock = ({ block, index }: Props) => {
     const attachment = attachments.find(item => item.id === block.id)
     if (!block.id) return <FileUploader onAttachment={pickAttachment} />
     return (
-        <div className="w-full aspect-[4/3] rounded-xl relative bg-card border overflow-hidden">
+        <div className="w-full aspect-video rounded-xl relative bg-card border overflow-hidden">
             {
                 block.id &&
                 <div className="w-fit h-fit p-2 z-20 absolute top-0 right-0">

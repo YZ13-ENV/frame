@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import AdvancedChunk from "@/components/widgets/draft-chunk"
 import { getVisitorId } from "@/helpers/cookies"
 import { author_config, fetch_author } from "@/helpers/portfolio-fetcher"
-import { bum } from "@darkmaterial/api"
+import { team } from "@darkmaterial/api"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 
@@ -44,7 +44,8 @@ const page = async ({ params }: Props) => {
           </div>
         </div>
         <div className="w-full h-fit flex flex-col py-6 gap-6">
-          <AdvancedChunk getter={bum.drafts.byUser(uid)} />
+          <AdvancedChunk getter={team.drafts.byTeam(uid, "new", undefined)} />
+
         </div>
       </div>
     </div>
