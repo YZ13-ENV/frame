@@ -14,10 +14,10 @@ const ScrollSide = () => {
       value: "content",
       name: "Контент"
     },
-    {
-      value: "more-from-author",
-      name: "Больше от автора"
-    },
+    // {
+    //   value: "more-from-author",
+    //   name: "Больше от автора"
+    // },
   ]
   return (
     <aside className="w-36 h-fit md:flex hidden shrink-0 flex-col gap-4 sticky top-0 pt-6">

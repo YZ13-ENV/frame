@@ -19,7 +19,7 @@ const AuthorWorks = async ({ authorId }: Props) => {
         }
       </div>
       <Suspense fallback={
-        <div className="flex flex-col gap-4">
+        <div className="grid shots_grid gap-4">
           <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
           <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>
           <div className="w-full aspect-[4/3] rounded-lg bg-muted"></div>

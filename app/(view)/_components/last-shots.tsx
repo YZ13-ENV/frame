@@ -7,7 +7,7 @@ type Props = {
 const LastShots = async ({ authorId }: Props) => {
   const lastShots = await bum.author.last(authorId)
   return (
-    <div className="flex flex-col gap-4">
+    <div className="grid shots_grid gap-4">
       {
         lastShots.length
           ? lastShots.map(shot =>

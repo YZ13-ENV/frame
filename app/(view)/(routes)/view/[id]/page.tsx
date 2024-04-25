@@ -34,112 +34,114 @@ const page = async ({ params }: Props) => {
     const isLiked = shot && visitorId ? shot.likes.findIndex(item => item.uid === visitorId) > -1 : false
     if (!shot) return notFound()
     return (
-        <div className="w-full relative my-10">
-            <BlurRootBlock shot={shot} />
-            <div className="relative max-w-7xl mx-auto w-full min-h-screen flex items-start gap-6 px-6">
-                <div className="w-full space-y-6 py-6">
-                    <div className="max-w-5xl w-full mx-auto flex flex-col gap-2">
-                        <h2 className="">{shot.title}</h2>
-                        <div className='w-full flex items-center justify-between'>
-                            <span className="text-sm text-muted-foreground normal-case">
-                                {DateTime.fromSeconds(shot.createdAt).setLocale("ru").toRelative()}
-                            </span>
-                            <div className='flex items-center gap-2'>
-                                {
-                                    isYou &&
-                                    <EditButton shot={shot} />
-                                }
-                                <Button
-                                    className="rounded-full gap-2"
-                                    variant="secondary"
-                                >
-                                    <BsEyeFill size={16} />
-                                    <span className="text-sm">{shot.views.length}</span>
-                                </Button>
-                                {/* <button className="w-36 h-9 rounded-sm bg-muted" /> */}
-                                {/* <button className="w-24 h-9 rounded-sm bg-muted" /> */}
+        <>
+            <div className="w-full relative my-10">
+                <BlurRootBlock shot={shot} />
+                <div className="relative max-w-7xl mx-auto w-full min-h-screen flex items-start gap-6 px-6">
+                    <div className="w-full space-y-6 py-6">
+                        <div className="max-w-5xl w-full mx-auto flex flex-col gap-2">
+                            <h2 className="">{shot.title}</h2>
+                            <div className='w-full flex items-center justify-between'>
+                                <span className="text-sm text-muted-foreground normal-case">
+                                    {DateTime.fromSeconds(shot.createdAt).setLocale("ru").toRelative()}
+                                </span>
+                                <div className='flex items-center gap-2'>
+                                    {
+                                        isYou &&
+                                        <EditButton shot={shot} />
+                                    }
+                                    <Button
+                                        className="rounded-full gap-2"
+                                        variant="secondary"
+                                    >
+                                        <BsEyeFill size={16} />
+                                        <span className="text-sm">{shot.views.length}</span>
+                                    </Button>
+                                    {/* <button className="w-36 h-9 rounded-sm bg-muted" /> */}
+                                    {/* <button className="w-24 h-9 rounded-sm bg-muted" /> */}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="overview" className="max-w-5xl w-full mx-auto flex flex-col gap-2">
-                        <MediaBlock key={shot.rootBlock.id + '-' + shot.rootBlock.type + '-shot'} attachments={shot.attachments} block={shot.rootBlock} />
-                    </div>
-                    <div className="max-w-5xl w-full mx-auto flex flex-col gap-4">
-                        <div className="flex md:!flex-row flex-col w-full items-center gap-4 justify-between">
-                            <div className="w-fit flex items-center justify-start gap-4">
-                                <Author id={shot.authorId} teamId={teamId} />
-                                {/* <Button
+                        <div id="overview" className="max-w-5xl w-full mx-auto flex flex-col gap-2">
+                            <MediaBlock key={shot.rootBlock.id + '-' + shot.rootBlock.type + '-shot'} attachments={shot.attachments} block={shot.rootBlock} />
+                        </div>
+                        <div className="max-w-5xl w-full mx-auto flex flex-col gap-4">
+                            <div className="flex md:!flex-row flex-col w-full items-center gap-4 justify-between">
+                                <div className="w-fit flex items-center justify-start gap-4">
+                                    <Author id={shot.authorId} teamId={teamId} />
+                                    {/* <Button
                                 className="rounded-full bg-secondary/75 backdrop-blur-sm gap-2"
                                 variant="secondary"
                             >
                                 Вы подписаны
                             </Button> */}
-                                {visitorId && <FollowButton from={visitorId} to={shot.authorId} />}
-                                {/* <button className="w-36 h-9 rounded-sm bg-muted" /> */}
-                            </div>
-                            <div className="w-fit flex items-center justify-end gap-2">
-                                <LikeButton id={shot.doc_id} teamId={shot.teamId} defaultValue={isLiked} />
-                                <div className="flex items-center">
-                                    <Button
-                                        className="rounded-full !rounded-r-none gap-2"
-                                        variant="secondary"
-                                    >
-                                        <BiShare />
-                                        Поделиться
-                                    </Button>
-                                    <Button
-                                        className="rounded-full !rounded-l-none gap-2"
-                                        variant="secondary"
-                                        size="icon"
-                                    ><BiDotsVerticalRounded size={16} /></Button>
+                                    {visitorId && <FollowButton from={visitorId} to={shot.authorId} />}
+                                    {/* <button className="w-36 h-9 rounded-sm bg-muted" /> */}
+                                </div>
+                                <div className="w-fit flex items-center justify-end gap-2">
+                                    <LikeButton id={shot.doc_id} teamId={shot.teamId} defaultValue={isLiked} />
+                                    <div className="flex items-center">
+                                        <Button
+                                            className="rounded-full !rounded-r-none gap-2"
+                                            variant="secondary"
+                                        >
+                                            <BiShare />
+                                            Поделиться
+                                        </Button>
+                                        <Button
+                                            className="rounded-full !rounded-l-none gap-2"
+                                            variant="secondary"
+                                            size="icon"
+                                        ><BiDotsVerticalRounded size={16} /></Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        {/* <Separator /> */}
+                        {
+                            !!shot.blocks.length &&
+                            <>
+                                <div id="content" className="max-w-5xl w-full mx-auto flex flex-col gap-2 py-12">
+                                    {
+                                        shot.blocks.map(block => {
+                                            if (block.type === 'media') return <MediaBlock key={block.id + '-' + block.type + '-shot'} attachments={shot.attachments} block={block} />
+                                            if (block.type === 'text') return <div className="w-full md-layout" key={block.id + '-' + block.type + '-shot'}>
+                                                <MDXRemote source={block.text} />
+                                            </div>
+                                            if (block.type === 'separator') return <Separator key={block.id + '-' + block.type + '-shot'} />
+                                            return null
+                                        })
+                                    }
+                                </div>
+                                {/* <Separator /> */}
+                            </>
+                        }
                     </div>
-                    {/* <Separator /> */}
-                    {
-                        !!shot.blocks.length &&
-                        <>
-                            <div id="content" className="max-w-5xl w-full mx-auto flex flex-col gap-2 py-12">
-                                {
-                                    shot.blocks.map(block => {
-                                        if (block.type === 'media') return <MediaBlock key={block.id + '-' + block.type + '-shot'} attachments={shot.attachments} block={block} />
-                                        if (block.type === 'text') return <div className="w-full md-layout" key={block.id + '-' + block.type + '-shot'}>
-                                            <MDXRemote source={block.text} />
-                                        </div>
-                                        if (block.type === 'separator') return <Separator key={block.id + '-' + block.type + '-shot'} />
-                                        return null
-                                    })
-                                }
-                            </div>
-                            <Separator />
-                        </>
-                    }
-                    <div id="more-from-author" className="max-w-5xl w-full mx-auto flex md:!flex-row flex-col gap-6">
-                        <div id="commentary" className="md:!w-2/3 w-full flex flex-col gap-4">
-                            <div className="flex flex-row flex-wrap gap-1.5 items-start justify-start">
-                                {
-                                    shot.tags.map(
-                                        tag => <span
-                                            key={`${tag}-${shot.doc_id}`}
-                                            className="h-7 inline-flex items-center text-sm rounded-full px-3 bg-secondary text-secondary-foreground"
-                                        >
-                                            {tag}
-                                        </span>
-                                    )
-                                }
-                            </div>
-                            <Comments comments={shot.comments} shotId={shot.doc_id} teamId={teamId}
-                                isCommentsEnabled={shot.needFeedback} />
-                        </div>
-                        <div className="md:!w-1/3 w-full">
-                            <AuthorWorks authorId={shot.authorId} />
-                        </div>
-                    </div>
+                    <ScrollSide />
                 </div>
-                <ScrollSide />
             </div>
-        </div>
+            <div id="more-from-author" className="px-6 w-full mx-auto flex md:!flex-row flex-col gap-6">
+                <div id="commentary" className="lg:!w-1/5 md:!w-1/3 w-full flex flex-col gap-4">
+                    <div className="flex flex-row flex-wrap gap-1.5 items-start justify-start">
+                        {
+                            shot.tags.map(
+                                tag => <span
+                                    key={`${tag}-${shot.doc_id}`}
+                                    className="h-7 inline-flex items-center text-sm rounded-full px-3 bg-secondary text-secondary-foreground"
+                                >
+                                    {tag}
+                                </span>
+                            )
+                        }
+                    </div>
+                    <Comments comments={shot.comments} shotId={shot.doc_id} teamId={teamId}
+                        isCommentsEnabled={shot.needFeedback} />
+                </div>
+                <div className="lg:!w-4/5 md:!w-2/3 w-full">
+                    <AuthorWorks authorId={shot.authorId} />
+                </div>
+            </div>
+        </>
     )
     // return (
     //     <>

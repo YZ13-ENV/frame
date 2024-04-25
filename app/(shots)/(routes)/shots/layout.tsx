@@ -18,6 +18,8 @@ const layout = async ({ children }: Props) => {
             <Suspense fallback={<HeaderSkeleton />}>
                 <Header />
             </Suspense>
+            {/* <div className="w-full h-screen absolute top-0 left-0 z-[-1] bg-gradient-to-br from-blue-950/40 via-transparent to-transparent" /> */}
+            {/* <div className="w-full h-screen absolute top-0 left-0 z-[-1] bg-gradient-to-bl from-red-950/40 via-transparent to-transparent" /> */}
             <div className="mt-10" />
             <div className="w-full px-6 mx-auto flex flex-col items-center justify-center gap-4 max-w-4xl py-12">
                 <h1 className="text-center">Добро пожаловать во Frame</h1>
